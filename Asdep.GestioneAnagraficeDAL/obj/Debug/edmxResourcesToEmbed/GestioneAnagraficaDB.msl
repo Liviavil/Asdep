@@ -1,0 +1,262 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ASSICURATI_ASDEPModelStoreContainer" CdmEntityContainer="ASSICURATI_ASDEPEntities">
+    <EntitySetMapping Name="ALTRE_CATEGORIE_2017">
+      <EntityTypeMapping TypeName="ASSICURATI_ASDEPModel.ALTRE_CATEGORIE_2017">
+        <MappingFragment StoreEntitySet="ALTRE CATEGORIE 2017">
+          <ScalarProperty Name="PARTITA_IVA_AZIENDA" ColumnName="PARTITA_IVA_AZIENDA" />
+          <ScalarProperty Name="TIPO_RECORD" ColumnName="TIPO_RECORD" />
+          <ScalarProperty Name="PARENTELA" ColumnName="PARENTELA" />
+          <ScalarProperty Name="CODICE_FISCALE" ColumnName="CODICE_FISCALE" />
+          <ScalarProperty Name="CODICE_FISCALE_CAPONUCLEO" ColumnName="CODICE_FISCALE_CAPONUCLEO" />
+          <ScalarProperty Name="COGNOME" ColumnName="COGNOME" />
+          <ScalarProperty Name="NOME" ColumnName="NOME" />
+          <ScalarProperty Name="SESSO" ColumnName="SESSO" />
+          <ScalarProperty Name="data_di_nascita" ColumnName="data_di_nascita" />
+          <ScalarProperty Name="COMUNE_DI_NASCITA" ColumnName="COMUNE_DI_NASCITA" />
+          <ScalarProperty Name="PROVINCIA_DI_NASCITA" ColumnName="PROVINCIA_DI_NASCITA" />
+          <ScalarProperty Name="INDIRIZZO" ColumnName="INDIRIZZO" />
+          <ScalarProperty Name="CAP" ColumnName="CAP" />
+          <ScalarProperty Name="CITTA" ColumnName="CITTA" />
+          <ScalarProperty Name="PROVINCIA" ColumnName="PROVINCIA" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="TELEFONO" ColumnName="TELEFONO" />
+          <ScalarProperty Name="DATA_INGRESSO_IN_POLIZZA" ColumnName="DATA_INGRESSO_IN_POLIZZA" />
+          <ScalarProperty Name="DATA_USCITA_IN_POLIZZA" ColumnName="DATA_USCITA_IN_POLIZZA" />
+          <ScalarProperty Name="IBAN" ColumnName="IBAN" />
+          <ScalarProperty Name="DEN_INTESTATARIO_CONTO" ColumnName="DEN_INTESTATARIO_CONTO" />
+          <ScalarProperty Name="OPZIONE" ColumnName="OPZIONE" />
+          <ScalarProperty Name="DATA_MODIFICA_OPZIONE" ColumnName="DATA_MODIFICA_OPZIONE" />
+          <ScalarProperty Name="PRESENZA_INTEGRATIVA" ColumnName="PRESENZA_INTEGRATIVA" />
+          <ScalarProperty Name="PRESENZA_LTC" ColumnName="PRESENZA_LTC" />
+          <ScalarProperty Name="CATEGORIA" ColumnName="CATEGORIA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ASSICURATI">
+      <EntityTypeMapping TypeName="ASSICURATI_ASDEPModel.ASSICURATI">
+        <MappingFragment StoreEntitySet="ASSICURATI">
+          <ScalarProperty Name="Id_Assicurato" ColumnName="Id_Assicurato" />
+          <ScalarProperty Name="Ente" ColumnName="Ente" />
+          <ScalarProperty Name="Cognome" ColumnName="Cognome" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="Secondo_Nome" ColumnName="Secondo_Nome" />
+          <ScalarProperty Name="Codice_fiscale_assicurato" ColumnName="Codice_fiscale_assicurato" />
+          <ScalarProperty Name="Luogo_nascita_assicurato" ColumnName="Luogo_nascita_assicurato" />
+          <ScalarProperty Name="Data_nascita_assicurato" ColumnName="Data_nascita_assicurato" />
+          <ScalarProperty Name="Codice_fiscale_caponucleo" ColumnName="Codice_fiscale_caponucleo" />
+          <ScalarProperty Name="CodiceLegame" ColumnName="CodiceLegame" />
+          <ScalarProperty Name="Data_Effetto" ColumnName="Data_Effetto" />
+          <ScalarProperty Name="Indirizzo_residenza" ColumnName="Indirizzo_residenza" />
+          <ScalarProperty Name="Localita_residenza" ColumnName="Localita_residenza" />
+          <ScalarProperty Name="Sigla_prov_residenza" ColumnName="Sigla_prov_residenza" />
+          <ScalarProperty Name="Cap_residenza" ColumnName="Cap_residenza" />
+          <ScalarProperty Name="IBAN" ColumnName="IBAN" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Data_inserimento" ColumnName="Data_inserimento" />
+          <ScalarProperty Name="Data_ultimo_aggiornamento" ColumnName="Data_ultimo_aggiornamento" />
+          <ScalarProperty Name="Esportato" ColumnName="Esportato" />
+          <ScalarProperty Name="TimeStampGenerali" ColumnName="TimeStampGenerali" />
+          <ScalarProperty Name="Match_compagnia" ColumnName="Match_compagnia" />
+          <ScalarProperty Name="Con_Errori" ColumnName="Con_Errori" />
+          <ScalarProperty Name="CF_errato" ColumnName="CF_errato" />
+          <ScalarProperty Name="Match_Asdep" ColumnName="Match_Asdep" />
+          <ScalarProperty Name="PremioVITA" ColumnName="PremioVITA" />
+          <ScalarProperty Name="PremioLTC" ColumnName="PremioLTC" />
+          <ScalarProperty Name="PremioRSMO" ColumnName="PremioRSMO" />
+          <ScalarProperty Name="Eta" ColumnName="Eta" />
+          <ScalarProperty Name="Err_eta" ColumnName="Err_eta" />
+          <ScalarProperty Name="Convenzione" ColumnName="Convenzione" />
+          <ScalarProperty Name="Categoria" ColumnName="Categoria" />
+          <ScalarProperty Name="Esclusione_Pregresse" ColumnName="Esclusione_Pregresse" />
+          <ScalarProperty Name="Numero_Polizza" ColumnName="Numero_Polizza" />
+          <ScalarProperty Name="Data_cessazione" ColumnName="Data_cessazione" />
+          <ScalarProperty Name="Progressivo" ColumnName="Progressivo" />
+          <ScalarProperty Name="Matricola" ColumnName="Matricola" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BenefitPackage">
+      <EntityTypeMapping TypeName="ASSICURATI_ASDEPModel.BenefitPackage">
+        <MappingFragment StoreEntitySet="BenefitPackage">
+          <ScalarProperty Name="Polizza" ColumnName="Polizza" />
+          <ScalarProperty Name="cCategoria" ColumnName="cCategoria" />
+          <ScalarProperty Name="bCaponucleo" ColumnName="bCaponucleo" />
+          <ScalarProperty Name="bFiscalmente_a_carico" ColumnName="bFiscalmente_a_carico" />
+          <ScalarProperty Name="cBenefitPackage" ColumnName="cBenefitPackage" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ENTI">
+      <EntityTypeMapping TypeName="ASSICURATI_ASDEPModel.ENTI">
+        <MappingFragment StoreEntitySet="ENTI">
+          <ScalarProperty Name="CodiceEnte" ColumnName="CodiceEnte" />
+          <ScalarProperty Name="Descrizione" ColumnName="Descrizione" />
+          <ScalarProperty Name="DecorrenzaCopertura" ColumnName="DecorrenzaCopertura" />
+          <ScalarProperty Name="DataCessazione" ColumnName="DataCessazione" />
+          <ScalarProperty Name="DataRiapertura" ColumnName="DataRiapertura" />
+          <ScalarProperty Name="Provincia" ColumnName="Provincia" />
+          <ScalarProperty Name="IdEnte" ColumnName="IdEnte" />
+          <ScalarProperty Name="Certificato" ColumnName="Certificato" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FNAC_DIPENDENTI_2017">
+      <EntityTypeMapping TypeName="ASSICURATI_ASDEPModel.FNAC_DIPENDENTI_2017">
+        <MappingFragment StoreEntitySet="FNAC-DIPENDENTI-2017">
+          <ScalarProperty Name="PARTITA_IVA_AZIENDA" ColumnName="PARTITA_IVA_AZIENDA" />
+          <ScalarProperty Name="TIPO_RECORD" ColumnName="TIPO_RECORD" />
+          <ScalarProperty Name="PARENTELA" ColumnName="PARENTELA" />
+          <ScalarProperty Name="CODICE_FISCALE" ColumnName="CODICE_FISCALE" />
+          <ScalarProperty Name="CODICE_FISCALE_CAPONUCLEO" ColumnName="CODICE_FISCALE_CAPONUCLEO" />
+          <ScalarProperty Name="COGNOME" ColumnName="COGNOME" />
+          <ScalarProperty Name="NOME" ColumnName="NOME" />
+          <ScalarProperty Name="SESSO" ColumnName="SESSO" />
+          <ScalarProperty Name="data_di_nascita" ColumnName="data_di_nascita" />
+          <ScalarProperty Name="COMUNE_DI_NASCITA" ColumnName="COMUNE_DI_NASCITA" />
+          <ScalarProperty Name="PROVINCIA_DI_NASCITA" ColumnName="PROVINCIA_DI_NASCITA" />
+          <ScalarProperty Name="INDIRIZZO" ColumnName="INDIRIZZO" />
+          <ScalarProperty Name="CAP" ColumnName="CAP" />
+          <ScalarProperty Name="CITTA" ColumnName="CITTA" />
+          <ScalarProperty Name="PROVINCIA" ColumnName="PROVINCIA" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="TELEFONO" ColumnName="TELEFONO" />
+          <ScalarProperty Name="DATA_INGRESSO_IN_POLIZZA" ColumnName="DATA_INGRESSO_IN_POLIZZA" />
+          <ScalarProperty Name="DATA_USCITA_IN_POLIZZA" ColumnName="DATA_USCITA_IN_POLIZZA" />
+          <ScalarProperty Name="IBAN" ColumnName="IBAN" />
+          <ScalarProperty Name="DEN_INTESTATARIO_CONTO" ColumnName="DEN_INTESTATARIO_CONTO" />
+          <ScalarProperty Name="OPZIONE" ColumnName="OPZIONE" />
+          <ScalarProperty Name="DATA_MODIFICA_OPZIONE" ColumnName="DATA_MODIFICA_OPZIONE" />
+          <ScalarProperty Name="PRESENZA_INTEGRATIVA" ColumnName="PRESENZA_INTEGRATIVA" />
+          <ScalarProperty Name="PRESENZA_LTC" ColumnName="PRESENZA_LTC" />
+          <ScalarProperty Name="CATEGORIA" ColumnName="CATEGORIA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FNAC_DIPENDENTI_2017_2">
+      <EntityTypeMapping TypeName="ASSICURATI_ASDEPModel.FNAC_DIPENDENTI_2017_2">
+        <MappingFragment StoreEntitySet="FNAC-DIPENDENTI-2017-2">
+          <ScalarProperty Name="PARTITA_IVA_AZIENDA" ColumnName="PARTITA_IVA_AZIENDA" />
+          <ScalarProperty Name="TIPO_RECORD" ColumnName="TIPO_RECORD" />
+          <ScalarProperty Name="PARENTELA" ColumnName="PARENTELA" />
+          <ScalarProperty Name="CODICE_FISCALE" ColumnName="CODICE_FISCALE" />
+          <ScalarProperty Name="CODICE_FISCALE_CAPONUCLEO" ColumnName="CODICE_FISCALE_CAPONUCLEO" />
+          <ScalarProperty Name="COGNOME" ColumnName="COGNOME" />
+          <ScalarProperty Name="NOME" ColumnName="NOME" />
+          <ScalarProperty Name="SESSO" ColumnName="SESSO" />
+          <ScalarProperty Name="data_di_nascita" ColumnName="data_di_nascita" />
+          <ScalarProperty Name="COMUNE_DI_NASCITA" ColumnName="COMUNE_DI_NASCITA" />
+          <ScalarProperty Name="PROVINCIA_DI_NASCITA" ColumnName="PROVINCIA_DI_NASCITA" />
+          <ScalarProperty Name="INDIRIZZO" ColumnName="INDIRIZZO" />
+          <ScalarProperty Name="CAP" ColumnName="CAP" />
+          <ScalarProperty Name="CITTA" ColumnName="CITTA" />
+          <ScalarProperty Name="PROVINCIA" ColumnName="PROVINCIA" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="TELEFONO" ColumnName="TELEFONO" />
+          <ScalarProperty Name="DATA_INGRESSO_IN_POLIZZA" ColumnName="DATA_INGRESSO_IN_POLIZZA" />
+          <ScalarProperty Name="DATA_USCITA_IN_POLIZZA" ColumnName="DATA_USCITA_IN_POLIZZA" />
+          <ScalarProperty Name="IBAN" ColumnName="IBAN" />
+          <ScalarProperty Name="DEN_INTESTATARIO_CONTO" ColumnName="DEN_INTESTATARIO_CONTO" />
+          <ScalarProperty Name="OPZIONE" ColumnName="OPZIONE" />
+          <ScalarProperty Name="DATA_MODIFICA_OPZIONE" ColumnName="DATA_MODIFICA_OPZIONE" />
+          <ScalarProperty Name="PRESENZA_INTEGRATIVA" ColumnName="PRESENZA_INTEGRATIVA" />
+          <ScalarProperty Name="PRESENZA_LTC" ColumnName="PRESENZA_LTC" />
+          <ScalarProperty Name="CATEGORIA" ColumnName="CATEGORIA" />
+          <ScalarProperty Name="Expr1" ColumnName="Expr1" />
+          <ScalarProperty Name="ENTE" ColumnName="ENTE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LEGAMI">
+      <EntityTypeMapping TypeName="ASSICURATI_ASDEPModel.LEGAMI">
+        <MappingFragment StoreEntitySet="LEGAMI">
+          <ScalarProperty Name="CodiceLegame" ColumnName="CodiceLegame" />
+          <ScalarProperty Name="DescrizioneLegame" ColumnName="DescrizioneLegame" />
+          <ScalarProperty Name="Fiscalmente_a_Carico" ColumnName="Fiscalmente_a_Carico" />
+          <ScalarProperty Name="Caponucleo" ColumnName="Caponucleo" />
+          <ScalarProperty Name="CodiceCapoNucleo" ColumnName="CodiceCapoNucleo" />
+          <ScalarProperty Name="Eta_min" ColumnName="Eta_min" />
+          <ScalarProperty Name="Eta_max" ColumnName="Eta_max" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SUPERQUERY">
+      <EntityTypeMapping TypeName="ASSICURATI_ASDEPModel.SUPERQUERY">
+        <MappingFragment StoreEntitySet="SUPERQUERY">
+          <ScalarProperty Name="CODICE_FISCALE" ColumnName="CODICE FISCALE" />
+          <ScalarProperty Name="Tipo_Record" ColumnName="Tipo Record" />
+          <ScalarProperty Name="parentela" ColumnName="parentela" />
+          <ScalarProperty Name="Codice_fiscale_caponucleo" ColumnName="Codice_fiscale_caponucleo" />
+          <ScalarProperty Name="Codice_fiscale_assicurato" ColumnName="Codice_fiscale_assicurato" />
+          <ScalarProperty Name="Cognome" ColumnName="Cognome" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="sesso" ColumnName="sesso" />
+          <ScalarProperty Name="data_di_nascita" ColumnName="data di nascita" />
+          <ScalarProperty Name="Comune" ColumnName="Comune" />
+          <ScalarProperty Name="Provincia" ColumnName="Provincia" />
+          <ScalarProperty Name="Indirizzo" ColumnName="Indirizzo" />
+          <ScalarProperty Name="cap" ColumnName="cap" />
+          <ScalarProperty Name="città" ColumnName="città" />
+          <ScalarProperty Name="Expr1" ColumnName="Expr1" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="dataingressoinpolizza" ColumnName="dataingressoinpolizza" />
+          <ScalarProperty Name="data_uscita_polizza" ColumnName="data uscita polizza" />
+          <ScalarProperty Name="IBAN" ColumnName="IBAN" />
+          <ScalarProperty Name="Den_intestatario_conto" ColumnName="Den intestatario conto" />
+          <ScalarProperty Name="Opzione" ColumnName="Opzione" />
+          <ScalarProperty Name="data_modifica_opzione" ColumnName="data modifica opzione" />
+          <ScalarProperty Name="presenza_integrativa" ColumnName="presenza integrativa" />
+          <ScalarProperty Name="presenza_LTC" ColumnName="presenza LTC" />
+          <ScalarProperty Name="Numero_Polizza" ColumnName="Numero_Polizza" />
+          <ScalarProperty Name="Categoria" ColumnName="Categoria" />
+          <ScalarProperty Name="Convenzione" ColumnName="Convenzione" />
+          <ScalarProperty Name="Ente" ColumnName="Ente" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TIPI_ERRORI">
+      <EntityTypeMapping TypeName="ASSICURATI_ASDEPModel.TIPI_ERRORI">
+        <MappingFragment StoreEntitySet="TIPI_ERRORI">
+          <ScalarProperty Name="CodiceErrore" ColumnName="CodiceErrore" />
+          <ScalarProperty Name="DescrizioneErrori" ColumnName="DescrizioneErrori" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VOLONTARIE_ALTRE_CATEGORIE_2017">
+      <EntityTypeMapping TypeName="ASSICURATI_ASDEPModel.VOLONTARIE_ALTRE_CATEGORIE_2017">
+        <MappingFragment StoreEntitySet="VOLONTARIE-ALTRE-CATEGORIE-2017">
+          <ScalarProperty Name="PARTITA_IVA_AZIENDA" ColumnName="PARTITA_IVA_AZIENDA" />
+          <ScalarProperty Name="TIPO_RECORD" ColumnName="TIPO_RECORD" />
+          <ScalarProperty Name="PARENTELA" ColumnName="PARENTELA" />
+          <ScalarProperty Name="CODICE_FISCALE" ColumnName="CODICE_FISCALE" />
+          <ScalarProperty Name="CODICE_FISCALE_CAPONUCLEO" ColumnName="CODICE_FISCALE_CAPONUCLEO" />
+          <ScalarProperty Name="COGNOME" ColumnName="COGNOME" />
+          <ScalarProperty Name="NOME" ColumnName="NOME" />
+          <ScalarProperty Name="SESSO" ColumnName="SESSO" />
+          <ScalarProperty Name="data_di_nascita" ColumnName="data_di_nascita" />
+          <ScalarProperty Name="COMUNE_DI_NASCITA" ColumnName="COMUNE_DI_NASCITA" />
+          <ScalarProperty Name="PROVINCIA_DI_NASCITA" ColumnName="PROVINCIA_DI_NASCITA" />
+          <ScalarProperty Name="INDIRIZZO" ColumnName="INDIRIZZO" />
+          <ScalarProperty Name="CAP" ColumnName="CAP" />
+          <ScalarProperty Name="CITTA" ColumnName="CITTA" />
+          <ScalarProperty Name="PROVINCIA" ColumnName="PROVINCIA" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="TELEFONO" ColumnName="TELEFONO" />
+          <ScalarProperty Name="DATA_INGRESSO_IN_POLIZZA" ColumnName="DATA_INGRESSO_IN_POLIZZA" />
+          <ScalarProperty Name="DATA_USCITA_IN_POLIZZA" ColumnName="DATA_USCITA_IN_POLIZZA" />
+          <ScalarProperty Name="IBAN" ColumnName="IBAN" />
+          <ScalarProperty Name="DEN_INTESTATARIO_CONTO" ColumnName="DEN_INTESTATARIO_CONTO" />
+          <ScalarProperty Name="OPZIONE" ColumnName="OPZIONE" />
+          <ScalarProperty Name="DATA_MODIFICA_OPZIONE" ColumnName="DATA_MODIFICA_OPZIONE" />
+          <ScalarProperty Name="PRESENZA_INTEGRATIVA" ColumnName="PRESENZA_INTEGRATIVA" />
+          <ScalarProperty Name="PRESENZA_LTC" ColumnName="PRESENZA_LTC" />
+          <ScalarProperty Name="CATEGORIA" ColumnName="CATEGORIA" />
+          <ScalarProperty Name="Expr1" ColumnName="Expr1" />
+          <ScalarProperty Name="ENTE" ColumnName="ENTE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AsdepGestioneAnagraficaModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="AsdepGestioneAnagraficaModelStoreContainer">
+    <EntitySet Name="Assicurati" EntityType="AsdepGestioneAnagraficaModel.Store.Assicurati" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="BenefitPackages" EntityType="AsdepGestioneAnagraficaModel.Store.BenefitPackages" store:Type="Tables" store:Schema="dbo" store:Name="BenefitPackages">
+      <DefiningQuery>SELECT 
+      [BenefitPackages].[Polizza] AS [Polizza], 
+      [BenefitPackages].[Categoria] AS [Categoria], 
+      [BenefitPackages].[Caponucleo] AS [Caponucleo], 
+      [BenefitPackages].[FiscalmenteACarico] AS [FiscalmenteACarico], 
+      [BenefitPackages].[BenefitPackage] AS [BenefitPackage]
+      FROM [dbo].[BenefitPackages] AS [BenefitPackages]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Enti" EntityType="AsdepGestioneAnagraficaModel.Store.Enti" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Legami" EntityType="AsdepGestioneAnagraficaModel.Store.Legami" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="sysdiagrams" EntityType="AsdepGestioneAnagraficaModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Users" EntityType="AsdepGestioneAnagraficaModel.Store.Users" store:Type="Tables" store:Schema="dbo" store:Name="Users">
+      <DefiningQuery>SELECT 
+      [Users].[Username] AS [Username], 
+      [Users].[Password] AS [Password], 
+      [Users].[Role] AS [Role]
+      FROM [dbo].[Users] AS [Users]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK__Assicurat__Codic__276EDEB3" Association="AsdepGestioneAnagraficaModel.Store.FK__Assicurat__Codic__276EDEB3">
+      <End Role="Enti" EntitySet="Enti" />
+      <End Role="Assicurati" EntitySet="Assicurati" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Assicurat__Codic__286302EC" Association="AsdepGestioneAnagraficaModel.Store.FK__Assicurat__Codic__286302EC">
+      <End Role="Legami" EntitySet="Legami" />
+      <End Role="Assicurati" EntitySet="Assicurati" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Assicurati">
+    <Key>
+      <PropertyRef Name="IdAssicurato" />
+    </Key>
+    <Property Name="IdAssicurato" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="CodiceEnte" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Cognome" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Nome" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SecondoNome" Type="nvarchar(max)" />
+    <Property Name="CodiceFiscaleAssicurato" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LuogoNascitaAssicurato" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DataNascitaAssicurato" Type="datetime" />
+    <Property Name="CodiceFiscaleCapoNucleo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CodiceLegame" Type="nchar" Nullable="false" MaxLength="10" />
+    <Property Name="DataEffetto" Type="datetime" />
+    <Property Name="IndirizzoResidenza" Type="nvarchar(max)" />
+    <Property Name="LocalitaResidenza" Type="nvarchar(max)" />
+    <Property Name="SiglaProvResidenza" Type="varchar" MaxLength="2" />
+    <Property Name="CapResidenza" Type="nchar" MaxLength="10" />
+    <Property Name="Iban" Type="nvarchar(max)" />
+    <Property Name="Email" Type="nvarchar(max)" />
+    <Property Name="Telefono" Type="nchar" MaxLength="15" />
+    <Property Name="DataInserimento" Type="datetime" Nullable="false" />
+    <Property Name="DataUltimoAggiornamento" Type="datetime" Nullable="false" />
+    <Property Name="Esportato" Type="bit" />
+    <Property Name="TimeStampGenerali" Type="datetime" />
+    <Property Name="CfErrato" Type="nvarchar(max)" />
+    <Property Name="Convenzione" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Categoria" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="EsclusioniPregresse" Type="nvarchar(max)" />
+    <Property Name="NumeroPolizza" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DataCessazione" Type="datetime" Nullable="false" />
+    <Property Name="Progressivo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Matricola" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'AsdepGestioneAnagrafica.dbo.BenefitPackages' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="BenefitPackages">
+    <Key>
+      <PropertyRef Name="Polizza" />
+      <PropertyRef Name="Categoria" />
+    </Key>
+    <Property Name="Polizza" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Categoria" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Caponucleo" Type="nvarchar(max)" />
+    <Property Name="FiscalmenteACarico" Type="bit" />
+    <Property Name="BenefitPackage" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Enti">
+    <Key>
+      <PropertyRef Name="CodiceEnte" />
+    </Key>
+    <Property Name="CodiceEnte" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Descrizione" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IdEnte" Type="char" Nullable="false" MaxLength="10" />
+    <Property Name="Certificato" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Legami">
+    <Key>
+      <PropertyRef Name="CodiceLegame" />
+    </Key>
+    <Property Name="CodiceLegame" Type="nchar" Nullable="false" MaxLength="10" />
+    <Property Name="Descrizione" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="FiscalmenteACarico" Type="bit" Nullable="false" />
+    <Property Name="Caponucleo" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'AsdepGestioneAnagrafica.dbo.Users' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Username" />
+      <PropertyRef Name="Password" />
+      <PropertyRef Name="Role" />
+    </Key>
+    <Property Name="Username" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Role" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Assicurat__Codic__276EDEB3">
+    <End Role="Enti" Type="AsdepGestioneAnagraficaModel.Store.Enti" Multiplicity="1" />
+    <End Role="Assicurati" Type="AsdepGestioneAnagraficaModel.Store.Assicurati" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Enti">
+        <PropertyRef Name="CodiceEnte" />
+      </Principal>
+      <Dependent Role="Assicurati">
+        <PropertyRef Name="CodiceEnte" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Assicurat__Codic__286302EC">
+    <End Role="Legami" Type="AsdepGestioneAnagraficaModel.Store.Legami" Multiplicity="1" />
+    <End Role="Assicurati" Type="AsdepGestioneAnagraficaModel.Store.Assicurati" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Legami">
+        <PropertyRef Name="CodiceLegame" />
+      </Principal>
+      <Dependent Role="Assicurati">
+        <PropertyRef Name="CodiceLegame" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

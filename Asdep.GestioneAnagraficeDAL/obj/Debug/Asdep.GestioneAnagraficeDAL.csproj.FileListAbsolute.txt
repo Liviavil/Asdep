@@ -1,0 +1,7 @@
+C:\Users\inps_admin\documents\visual studio 2012\Projects\Inps.Asdep\Asdep.GestioneAnagraficeDAL\bin\Debug\Asdep.GestioneAnagraficeDAL.dll.config
+C:\Users\inps_admin\documents\visual studio 2012\Projects\Inps.Asdep\Asdep.GestioneAnagraficeDAL\bin\Debug\Asdep.GestioneAnagraficeDAL.dll
+C:\Users\inps_admin\documents\visual studio 2012\Projects\Inps.Asdep\Asdep.GestioneAnagraficeDAL\bin\Debug\Asdep.GestioneAnagraficeDAL.pdb
+C:\Users\inps_admin\documents\visual studio 2012\Projects\Inps.Asdep\Asdep.GestioneAnagraficeDAL\bin\Debug\EntityFramework.dll
+C:\Users\inps_admin\documents\visual studio 2012\Projects\Inps.Asdep\Asdep.GestioneAnagraficeDAL\bin\Debug\EntityFramework.xml
+C:\Users\inps_admin\documents\visual studio 2012\Projects\Inps.Asdep\Asdep.GestioneAnagraficeDAL\obj\Debug\Asdep.GestioneAnagraficeDAL.dll
+C:\Users\inps_admin\documents\visual studio 2012\Projects\Inps.Asdep\Asdep.GestioneAnagraficeDAL\obj\Debug\Asdep.GestioneAnagraficeDAL.pdb

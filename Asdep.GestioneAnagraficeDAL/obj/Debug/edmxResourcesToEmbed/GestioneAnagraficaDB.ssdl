@@ -1,0 +1,652 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ASSICURATI_ASDEPModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="ASSICURATI_ASDEPModelStoreContainer">
+    <EntitySet Name="ALTRE CATEGORIE 2017" EntityType="ASSICURATI_ASDEPModel.Store.ALTRE CATEGORIE 2017" store:Type="Tables" store:Schema="dbo" store:Name="ALTRE CATEGORIE 2017">
+      <DefiningQuery>SELECT 
+      [ALTRE CATEGORIE 2017].[PARTITA_IVA_AZIENDA] AS [PARTITA_IVA_AZIENDA], 
+      [ALTRE CATEGORIE 2017].[TIPO_RECORD] AS [TIPO_RECORD], 
+      [ALTRE CATEGORIE 2017].[PARENTELA] AS [PARENTELA], 
+      [ALTRE CATEGORIE 2017].[CODICE_FISCALE] AS [CODICE_FISCALE], 
+      [ALTRE CATEGORIE 2017].[CODICE_FISCALE_CAPONUCLEO] AS [CODICE_FISCALE_CAPONUCLEO], 
+      [ALTRE CATEGORIE 2017].[COGNOME] AS [COGNOME], 
+      [ALTRE CATEGORIE 2017].[NOME] AS [NOME], 
+      [ALTRE CATEGORIE 2017].[SESSO] AS [SESSO], 
+      [ALTRE CATEGORIE 2017].[data_di_nascita] AS [data_di_nascita], 
+      [ALTRE CATEGORIE 2017].[COMUNE_DI_NASCITA] AS [COMUNE_DI_NASCITA], 
+      [ALTRE CATEGORIE 2017].[PROVINCIA_DI_NASCITA] AS [PROVINCIA_DI_NASCITA], 
+      [ALTRE CATEGORIE 2017].[INDIRIZZO] AS [INDIRIZZO], 
+      [ALTRE CATEGORIE 2017].[CAP] AS [CAP], 
+      [ALTRE CATEGORIE 2017].[CITTA] AS [CITTA], 
+      [ALTRE CATEGORIE 2017].[PROVINCIA] AS [PROVINCIA], 
+      [ALTRE CATEGORIE 2017].[EMAIL] AS [EMAIL], 
+      [ALTRE CATEGORIE 2017].[TELEFONO] AS [TELEFONO], 
+      [ALTRE CATEGORIE 2017].[DATA_INGRESSO_IN_POLIZZA] AS [DATA_INGRESSO_IN_POLIZZA], 
+      [ALTRE CATEGORIE 2017].[DATA_USCITA_IN_POLIZZA] AS [DATA_USCITA_IN_POLIZZA], 
+      [ALTRE CATEGORIE 2017].[IBAN] AS [IBAN], 
+      [ALTRE CATEGORIE 2017].[DEN_INTESTATARIO_CONTO] AS [DEN_INTESTATARIO_CONTO], 
+      [ALTRE CATEGORIE 2017].[OPZIONE] AS [OPZIONE], 
+      [ALTRE CATEGORIE 2017].[DATA_MODIFICA_OPZIONE] AS [DATA_MODIFICA_OPZIONE], 
+      [ALTRE CATEGORIE 2017].[PRESENZA_INTEGRATIVA] AS [PRESENZA_INTEGRATIVA], 
+      [ALTRE CATEGORIE 2017].[PRESENZA_LTC] AS [PRESENZA_LTC], 
+      [ALTRE CATEGORIE 2017].[CATEGORIA] AS [CATEGORIA]
+      FROM [dbo].[ALTRE CATEGORIE 2017] AS [ALTRE CATEGORIE 2017]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="ASSICURATI" EntityType="ASSICURATI_ASDEPModel.Store.ASSICURATI" store:Type="Tables" store:Schema="dbo" store:Name="ASSICURATI">
+      <DefiningQuery>SELECT 
+      [ASSICURATI].[Id_Assicurato] AS [Id_Assicurato], 
+      [ASSICURATI].[Ente] AS [Ente], 
+      [ASSICURATI].[Cognome] AS [Cognome], 
+      [ASSICURATI].[Nome] AS [Nome], 
+      [ASSICURATI].[Secondo_Nome] AS [Secondo_Nome], 
+      [ASSICURATI].[Codice_fiscale_assicurato] AS [Codice_fiscale_assicurato], 
+      [ASSICURATI].[Luogo_nascita_assicurato] AS [Luogo_nascita_assicurato], 
+      [ASSICURATI].[Data_nascita_assicurato] AS [Data_nascita_assicurato], 
+      [ASSICURATI].[Codice_fiscale_caponucleo] AS [Codice_fiscale_caponucleo], 
+      [ASSICURATI].[CodiceLegame] AS [CodiceLegame], 
+      [ASSICURATI].[Data_Effetto] AS [Data_Effetto], 
+      [ASSICURATI].[Indirizzo_residenza] AS [Indirizzo_residenza], 
+      [ASSICURATI].[Localita_residenza] AS [Localita_residenza], 
+      [ASSICURATI].[Sigla_prov_residenza] AS [Sigla_prov_residenza], 
+      [ASSICURATI].[Cap_residenza] AS [Cap_residenza], 
+      [ASSICURATI].[IBAN] AS [IBAN], 
+      [ASSICURATI].[Email] AS [Email], 
+      [ASSICURATI].[Telefono] AS [Telefono], 
+      [ASSICURATI].[Data_inserimento] AS [Data_inserimento], 
+      [ASSICURATI].[Data_ultimo_aggiornamento] AS [Data_ultimo_aggiornamento], 
+      [ASSICURATI].[Esportato] AS [Esportato], 
+      [ASSICURATI].[TimeStampGenerali] AS [TimeStampGenerali], 
+      [ASSICURATI].[Match_compagnia] AS [Match_compagnia], 
+      [ASSICURATI].[Con_Errori] AS [Con_Errori], 
+      [ASSICURATI].[CF_errato] AS [CF_errato], 
+      [ASSICURATI].[Match_Asdep] AS [Match_Asdep], 
+      [ASSICURATI].[PremioVITA] AS [PremioVITA], 
+      [ASSICURATI].[PremioLTC] AS [PremioLTC], 
+      [ASSICURATI].[PremioRSMO] AS [PremioRSMO], 
+      [ASSICURATI].[Eta] AS [Eta], 
+      [ASSICURATI].[Err_eta] AS [Err_eta], 
+      [ASSICURATI].[Convenzione] AS [Convenzione], 
+      [ASSICURATI].[Categoria] AS [Categoria], 
+      [ASSICURATI].[Esclusione_Pregresse] AS [Esclusione_Pregresse], 
+      [ASSICURATI].[Numero_Polizza] AS [Numero_Polizza], 
+      [ASSICURATI].[Data_cessazione] AS [Data_cessazione], 
+      [ASSICURATI].[Progressivo] AS [Progressivo], 
+      [ASSICURATI].[Matricola] AS [Matricola]
+      FROM [dbo].[ASSICURATI] AS [ASSICURATI]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="BenefitPackage" EntityType="ASSICURATI_ASDEPModel.Store.BenefitPackage" store:Type="Tables" store:Schema="dbo" store:Name="BenefitPackage">
+      <DefiningQuery>SELECT 
+      [BenefitPackage].[Polizza] AS [Polizza], 
+      [BenefitPackage].[cCategoria] AS [cCategoria], 
+      [BenefitPackage].[bCaponucleo] AS [bCaponucleo], 
+      [BenefitPackage].[bFiscalmente_a_carico] AS [bFiscalmente_a_carico], 
+      [BenefitPackage].[cBenefitPackage] AS [cBenefitPackage]
+      FROM [dbo].[BenefitPackage] AS [BenefitPackage]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="ENTI" EntityType="ASSICURATI_ASDEPModel.Store.ENTI" store:Type="Tables" store:Schema="dbo" store:Name="ENTI">
+      <DefiningQuery>SELECT 
+      [ENTI].[CodiceEnte] AS [CodiceEnte], 
+      [ENTI].[Descrizione] AS [Descrizione], 
+      [ENTI].[DecorrenzaCopertura] AS [DecorrenzaCopertura], 
+      [ENTI].[DataCessazione] AS [DataCessazione], 
+      [ENTI].[DataRiapertura] AS [DataRiapertura], 
+      [ENTI].[Provincia] AS [Provincia], 
+      [ENTI].[IdEnte] AS [IdEnte], 
+      [ENTI].[Certificato] AS [Certificato]
+      FROM [dbo].[ENTI] AS [ENTI]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="FNAC-DIPENDENTI-2017" EntityType="ASSICURATI_ASDEPModel.Store.FNAC-DIPENDENTI-2017" store:Type="Tables" store:Schema="dbo" store:Name="FNAC-DIPENDENTI-2017">
+      <DefiningQuery>SELECT 
+      [FNAC-DIPENDENTI-2017].[PARTITA_IVA_AZIENDA] AS [PARTITA_IVA_AZIENDA], 
+      [FNAC-DIPENDENTI-2017].[TIPO_RECORD] AS [TIPO_RECORD], 
+      [FNAC-DIPENDENTI-2017].[PARENTELA] AS [PARENTELA], 
+      [FNAC-DIPENDENTI-2017].[CODICE_FISCALE] AS [CODICE_FISCALE], 
+      [FNAC-DIPENDENTI-2017].[CODICE_FISCALE_CAPONUCLEO] AS [CODICE_FISCALE_CAPONUCLEO], 
+      [FNAC-DIPENDENTI-2017].[COGNOME] AS [COGNOME], 
+      [FNAC-DIPENDENTI-2017].[NOME] AS [NOME], 
+      [FNAC-DIPENDENTI-2017].[SESSO] AS [SESSO], 
+      [FNAC-DIPENDENTI-2017].[data_di_nascita] AS [data_di_nascita], 
+      [FNAC-DIPENDENTI-2017].[COMUNE_DI_NASCITA] AS [COMUNE_DI_NASCITA], 
+      [FNAC-DIPENDENTI-2017].[PROVINCIA_DI_NASCITA] AS [PROVINCIA_DI_NASCITA], 
+      [FNAC-DIPENDENTI-2017].[INDIRIZZO] AS [INDIRIZZO], 
+      [FNAC-DIPENDENTI-2017].[CAP] AS [CAP], 
+      [FNAC-DIPENDENTI-2017].[CITTA] AS [CITTA], 
+      [FNAC-DIPENDENTI-2017].[PROVINCIA] AS [PROVINCIA], 
+      [FNAC-DIPENDENTI-2017].[EMAIL] AS [EMAIL], 
+      [FNAC-DIPENDENTI-2017].[TELEFONO] AS [TELEFONO], 
+      [FNAC-DIPENDENTI-2017].[DATA_INGRESSO_IN_POLIZZA] AS [DATA_INGRESSO_IN_POLIZZA], 
+      [FNAC-DIPENDENTI-2017].[DATA_USCITA_IN_POLIZZA] AS [DATA_USCITA_IN_POLIZZA], 
+      [FNAC-DIPENDENTI-2017].[IBAN] AS [IBAN], 
+      [FNAC-DIPENDENTI-2017].[DEN_INTESTATARIO_CONTO] AS [DEN_INTESTATARIO_CONTO], 
+      [FNAC-DIPENDENTI-2017].[OPZIONE] AS [OPZIONE], 
+      [FNAC-DIPENDENTI-2017].[DATA_MODIFICA_OPZIONE] AS [DATA_MODIFICA_OPZIONE], 
+      [FNAC-DIPENDENTI-2017].[PRESENZA_INTEGRATIVA] AS [PRESENZA_INTEGRATIVA], 
+      [FNAC-DIPENDENTI-2017].[PRESENZA_LTC] AS [PRESENZA_LTC], 
+      [FNAC-DIPENDENTI-2017].[CATEGORIA] AS [CATEGORIA]
+      FROM [dbo].[FNAC-DIPENDENTI-2017] AS [FNAC-DIPENDENTI-2017]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="FNAC-DIPENDENTI-2017-2" EntityType="ASSICURATI_ASDEPModel.Store.FNAC-DIPENDENTI-2017-2" store:Type="Tables" store:Schema="dbo" store:Name="FNAC-DIPENDENTI-2017-2">
+      <DefiningQuery>SELECT 
+      [FNAC-DIPENDENTI-2017-2].[PARTITA_IVA_AZIENDA] AS [PARTITA_IVA_AZIENDA], 
+      [FNAC-DIPENDENTI-2017-2].[TIPO_RECORD] AS [TIPO_RECORD], 
+      [FNAC-DIPENDENTI-2017-2].[PARENTELA] AS [PARENTELA], 
+      [FNAC-DIPENDENTI-2017-2].[CODICE_FISCALE] AS [CODICE_FISCALE], 
+      [FNAC-DIPENDENTI-2017-2].[CODICE_FISCALE_CAPONUCLEO] AS [CODICE_FISCALE_CAPONUCLEO], 
+      [FNAC-DIPENDENTI-2017-2].[COGNOME] AS [COGNOME], 
+      [FNAC-DIPENDENTI-2017-2].[NOME] AS [NOME], 
+      [FNAC-DIPENDENTI-2017-2].[SESSO] AS [SESSO], 
+      [FNAC-DIPENDENTI-2017-2].[data_di_nascita] AS [data_di_nascita], 
+      [FNAC-DIPENDENTI-2017-2].[COMUNE_DI_NASCITA] AS [COMUNE_DI_NASCITA], 
+      [FNAC-DIPENDENTI-2017-2].[PROVINCIA_DI_NASCITA] AS [PROVINCIA_DI_NASCITA], 
+      [FNAC-DIPENDENTI-2017-2].[INDIRIZZO] AS [INDIRIZZO], 
+      [FNAC-DIPENDENTI-2017-2].[CAP] AS [CAP], 
+      [FNAC-DIPENDENTI-2017-2].[CITTA] AS [CITTA], 
+      [FNAC-DIPENDENTI-2017-2].[PROVINCIA] AS [PROVINCIA], 
+      [FNAC-DIPENDENTI-2017-2].[EMAIL] AS [EMAIL], 
+      [FNAC-DIPENDENTI-2017-2].[TELEFONO] AS [TELEFONO], 
+      [FNAC-DIPENDENTI-2017-2].[DATA_INGRESSO_IN_POLIZZA] AS [DATA_INGRESSO_IN_POLIZZA], 
+      [FNAC-DIPENDENTI-2017-2].[DATA_USCITA_IN_POLIZZA] AS [DATA_USCITA_IN_POLIZZA], 
+      [FNAC-DIPENDENTI-2017-2].[IBAN] AS [IBAN], 
+      [FNAC-DIPENDENTI-2017-2].[DEN_INTESTATARIO_CONTO] AS [DEN_INTESTATARIO_CONTO], 
+      [FNAC-DIPENDENTI-2017-2].[OPZIONE] AS [OPZIONE], 
+      [FNAC-DIPENDENTI-2017-2].[DATA_MODIFICA_OPZIONE] AS [DATA_MODIFICA_OPZIONE], 
+      [FNAC-DIPENDENTI-2017-2].[PRESENZA_INTEGRATIVA] AS [PRESENZA_INTEGRATIVA], 
+      [FNAC-DIPENDENTI-2017-2].[PRESENZA_LTC] AS [PRESENZA_LTC], 
+      [FNAC-DIPENDENTI-2017-2].[CATEGORIA] AS [CATEGORIA], 
+      [FNAC-DIPENDENTI-2017-2].[Expr1] AS [Expr1], 
+      [FNAC-DIPENDENTI-2017-2].[ENTE] AS [ENTE]
+      FROM [dbo].[FNAC-DIPENDENTI-2017-2] AS [FNAC-DIPENDENTI-2017-2]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="LEGAMI" EntityType="ASSICURATI_ASDEPModel.Store.LEGAMI" store:Type="Tables" store:Schema="dbo" store:Name="LEGAMI">
+      <DefiningQuery>SELECT 
+      [LEGAMI].[CodiceLegame] AS [CodiceLegame], 
+      [LEGAMI].[DescrizioneLegame] AS [DescrizioneLegame], 
+      [LEGAMI].[Fiscalmente_a_Carico] AS [Fiscalmente_a_Carico], 
+      [LEGAMI].[Caponucleo] AS [Caponucleo], 
+      [LEGAMI].[CodiceCapoNucleo] AS [CodiceCapoNucleo], 
+      [LEGAMI].[Eta_min] AS [Eta_min], 
+      [LEGAMI].[Eta_max] AS [Eta_max]
+      FROM [dbo].[LEGAMI] AS [LEGAMI]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="SUPERQUERY" EntityType="ASSICURATI_ASDEPModel.Store.SUPERQUERY" store:Type="Tables" store:Schema="dbo" store:Name="SUPERQUERY">
+      <DefiningQuery>SELECT 
+      [SUPERQUERY].[CODICE FISCALE] AS [CODICE FISCALE], 
+      [SUPERQUERY].[Tipo Record] AS [Tipo Record], 
+      [SUPERQUERY].[parentela] AS [parentela], 
+      [SUPERQUERY].[Codice_fiscale_caponucleo] AS [Codice_fiscale_caponucleo], 
+      [SUPERQUERY].[Codice_fiscale_assicurato] AS [Codice_fiscale_assicurato], 
+      [SUPERQUERY].[Cognome] AS [Cognome], 
+      [SUPERQUERY].[Nome] AS [Nome], 
+      [SUPERQUERY].[sesso] AS [sesso], 
+      [SUPERQUERY].[data di nascita] AS [data di nascita], 
+      [SUPERQUERY].[Comune] AS [Comune], 
+      [SUPERQUERY].[Provincia] AS [Provincia], 
+      [SUPERQUERY].[Indirizzo] AS [Indirizzo], 
+      [SUPERQUERY].[cap] AS [cap], 
+      [SUPERQUERY].[città] AS [città], 
+      [SUPERQUERY].[Expr1] AS [Expr1], 
+      [SUPERQUERY].[Email] AS [Email], 
+      [SUPERQUERY].[Telefono] AS [Telefono], 
+      [SUPERQUERY].[dataingressoinpolizza] AS [dataingressoinpolizza], 
+      [SUPERQUERY].[data uscita polizza] AS [data uscita polizza], 
+      [SUPERQUERY].[IBAN] AS [IBAN], 
+      [SUPERQUERY].[Den intestatario conto] AS [Den intestatario conto], 
+      [SUPERQUERY].[Opzione] AS [Opzione], 
+      [SUPERQUERY].[data modifica opzione] AS [data modifica opzione], 
+      [SUPERQUERY].[presenza integrativa] AS [presenza integrativa], 
+      [SUPERQUERY].[presenza LTC] AS [presenza LTC], 
+      [SUPERQUERY].[Numero_Polizza] AS [Numero_Polizza], 
+      [SUPERQUERY].[Categoria] AS [Categoria], 
+      [SUPERQUERY].[Convenzione] AS [Convenzione], 
+      [SUPERQUERY].[Ente] AS [Ente]
+      FROM [dbo].[SUPERQUERY] AS [SUPERQUERY]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="TIPI_ERRORI" EntityType="ASSICURATI_ASDEPModel.Store.TIPI_ERRORI" store:Type="Tables" store:Schema="dbo" store:Name="TIPI_ERRORI">
+      <DefiningQuery>SELECT 
+      [TIPI_ERRORI].[CodiceErrore] AS [CodiceErrore], 
+      [TIPI_ERRORI].[DescrizioneErrori] AS [DescrizioneErrori]
+      FROM [dbo].[TIPI_ERRORI] AS [TIPI_ERRORI]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="VOLONTARIE-ALTRE-CATEGORIE-2017" EntityType="ASSICURATI_ASDEPModel.Store.VOLONTARIE-ALTRE-CATEGORIE-2017" store:Type="Tables" store:Schema="dbo" store:Name="VOLONTARIE-ALTRE-CATEGORIE-2017">
+      <DefiningQuery>SELECT 
+      [VOLONTARIE-ALTRE-CATEGORIE-2017].[PARTITA_IVA_AZIENDA] AS [PARTITA_IVA_AZIENDA], 
+      [VOLONTARIE-ALTRE-CATEGORIE-2017].[TIPO_RECORD] AS [TIPO_RECORD], 
+      [VOLONTARIE-ALTRE-CATEGORIE-2017].[PARENTELA] AS [PARENTELA], 
+      [VOLONTARIE-ALTRE-CATEGORIE-2017].[CODICE_FISCALE] AS [CODICE_FISCALE], 
+      [VOLONTARIE-ALTRE-CATEGORIE-2017].[CODICE_FISCALE_CAPONUCLEO] AS [CODICE_FISCALE_CAPONUCLEO], 
+      [VOLONTARIE-ALTRE-CATEGORIE-2017].[COGNOME] AS [COGNOME], 
+      [VOLONTARIE-ALTRE-CATEGORIE-2017].[NOME] AS [NOME], 
+      [VOLONTARIE-ALTRE-CATEGORIE-2017].[SESSO] AS [SESSO], 
+      [VOLONTARIE-ALTRE-CATEGORIE-2017].[data_di_nascita] AS [data_di_nascita], 
+      [VOLONTARIE-ALTRE-CATEGORIE-2017].[COMUNE_DI_NASCITA] AS [COMUNE_DI_NASCITA], 
+      [VOLONTARIE-ALTRE-CATEGORIE-2017].[PROVINCIA_DI_NASCITA] AS [PROVINCIA_DI_NASCITA], 
+      [VOLONTARIE-ALTRE-CATEGORIE-2017].[INDIRIZZO] AS [INDIRIZZO], 
+      [VOLONTARIE-ALTRE-CATEGORIE-2017].[CAP] AS [CAP], 
+      [VOLONTARIE-ALTRE-CATEGORIE-2017].[CITTA] AS [CITTA], 
+      [VOLONTARIE-ALTRE-CATEGORIE-2017].[PROVINCIA] AS [PROVINCIA], 
+      [VOLONTARIE-ALTRE-CATEGORIE-2017].[EMAIL] AS [EMAIL], 
+      [VOLONTARIE-ALTRE-CATEGORIE-2017].[TELEFONO] AS [TELEFONO], 
+      [VOLONTARIE-ALTRE-CATEGORIE-2017].[DATA_INGRESSO_IN_POLIZZA] AS [DATA_INGRESSO_IN_POLIZZA], 
+      [VOLONTARIE-ALTRE-CATEGORIE-2017].[DATA_USCITA_IN_POLIZZA] AS [DATA_USCITA_IN_POLIZZA], 
+      [VOLONTARIE-ALTRE-CATEGORIE-2017].[IBAN] AS [IBAN], 
+      [VOLONTARIE-ALTRE-CATEGORIE-2017].[DEN_INTESTATARIO_CONTO] AS [DEN_INTESTATARIO_CONTO], 
+      [VOLONTARIE-ALTRE-CATEGORIE-2017].[OPZIONE] AS [OPZIONE], 
+      [VOLONTARIE-ALTRE-CATEGORIE-2017].[DATA_MODIFICA_OPZIONE] AS [DATA_MODIFICA_OPZIONE], 
+      [VOLONTARIE-ALTRE-CATEGORIE-2017].[PRESENZA_INTEGRATIVA] AS [PRESENZA_INTEGRATIVA], 
+      [VOLONTARIE-ALTRE-CATEGORIE-2017].[PRESENZA_LTC] AS [PRESENZA_LTC], 
+      [VOLONTARIE-ALTRE-CATEGORIE-2017].[CATEGORIA] AS [CATEGORIA], 
+      [VOLONTARIE-ALTRE-CATEGORIE-2017].[Expr1] AS [Expr1], 
+      [VOLONTARIE-ALTRE-CATEGORIE-2017].[ENTE] AS [ENTE]
+      FROM [dbo].[VOLONTARIE-ALTRE-CATEGORIE-2017] AS [VOLONTARIE-ALTRE-CATEGORIE-2017]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'ASSICURATI_ASDEP.dbo.ALTRE CATEGORIE 2017' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="ALTRE CATEGORIE 2017">
+    <Key>
+      <PropertyRef Name="CATEGORIA" />
+    </Key>
+    <Property Name="PARTITA_IVA_AZIENDA" Type="nvarchar" MaxLength="16" />
+    <Property Name="TIPO_RECORD" Type="nvarchar" MaxLength="20" />
+    <Property Name="PARENTELA" Type="nvarchar" MaxLength="2" />
+    <Property Name="CODICE_FISCALE" Type="nvarchar" MaxLength="16" />
+    <Property Name="CODICE_FISCALE_CAPONUCLEO" Type="nvarchar" MaxLength="16" />
+    <Property Name="COGNOME" Type="nvarchar" MaxLength="50" />
+    <Property Name="NOME" Type="nvarchar" MaxLength="50" />
+    <Property Name="SESSO" Type="nvarchar" MaxLength="1" />
+    <Property Name="data_di_nascita" Type="nvarchar" MaxLength="16" />
+    <Property Name="COMUNE_DI_NASCITA" Type="nvarchar" MaxLength="80" />
+    <Property Name="PROVINCIA_DI_NASCITA" Type="nvarchar" MaxLength="2" />
+    <Property Name="INDIRIZZO" Type="nvarchar" MaxLength="80" />
+    <Property Name="CAP" Type="nvarchar" MaxLength="5" />
+    <Property Name="CITTA" Type="nvarchar" MaxLength="80" />
+    <Property Name="PROVINCIA" Type="nvarchar" MaxLength="2" />
+    <Property Name="EMAIL" Type="nvarchar" MaxLength="70" />
+    <Property Name="TELEFONO" Type="nvarchar" MaxLength="80" />
+    <Property Name="DATA_INGRESSO_IN_POLIZZA" Type="nvarchar" MaxLength="8" />
+    <Property Name="DATA_USCITA_IN_POLIZZA" Type="nvarchar" MaxLength="8" />
+    <Property Name="IBAN" Type="nvarchar" MaxLength="27" />
+    <Property Name="DEN_INTESTATARIO_CONTO" Type="nvarchar" MaxLength="80" />
+    <Property Name="OPZIONE" Type="nvarchar" MaxLength="18" />
+    <Property Name="DATA_MODIFICA_OPZIONE" Type="nvarchar" MaxLength="8" />
+    <Property Name="PRESENZA_INTEGRATIVA" Type="nvarchar" MaxLength="20" />
+    <Property Name="PRESENZA_LTC" Type="nvarchar" MaxLength="20" />
+    <Property Name="CATEGORIA" Type="varchar" Nullable="false" MaxLength="15" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'ASSICURATI_ASDEP.dbo.ASSICURATI' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="ASSICURATI">
+    <Key>
+      <PropertyRef Name="Id_Assicurato" />
+      <PropertyRef Name="Ente" />
+      <PropertyRef Name="Cognome" />
+      <PropertyRef Name="Nome" />
+      <PropertyRef Name="Codice_fiscale_assicurato" />
+      <PropertyRef Name="Luogo_nascita_assicurato" />
+      <PropertyRef Name="Codice_fiscale_caponucleo" />
+      <PropertyRef Name="CodiceLegame" />
+      <PropertyRef Name="Data_Effetto" />
+      <PropertyRef Name="Data_inserimento" />
+    </Key>
+    <Property Name="Id_Assicurato" Type="int" Nullable="false" />
+    <Property Name="Ente" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Cognome" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Nome" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Secondo_Nome" Type="nvarchar" MaxLength="50" />
+    <Property Name="Codice_fiscale_assicurato" Type="nvarchar" Nullable="false" MaxLength="16" />
+    <Property Name="Luogo_nascita_assicurato" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Data_nascita_assicurato" Type="datetime" />
+    <Property Name="Codice_fiscale_caponucleo" Type="nvarchar" Nullable="false" MaxLength="16" />
+    <Property Name="CodiceLegame" Type="nvarchar" Nullable="false" MaxLength="3" />
+    <Property Name="Data_Effetto" Type="datetime" Nullable="false" />
+    <Property Name="Indirizzo_residenza" Type="nvarchar" MaxLength="50" />
+    <Property Name="Localita_residenza" Type="nvarchar" MaxLength="50" />
+    <Property Name="Sigla_prov_residenza" Type="nvarchar" MaxLength="5" />
+    <Property Name="Cap_residenza" Type="nvarchar" MaxLength="5" />
+    <Property Name="IBAN" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="Telefono" Type="nvarchar" MaxLength="20" />
+    <Property Name="Data_inserimento" Type="datetime" Nullable="false" />
+    <Property Name="Data_ultimo_aggiornamento" Type="datetime" />
+    <Property Name="Esportato" Type="bit" />
+    <Property Name="TimeStampGenerali" Type="datetime" />
+    <Property Name="Match_compagnia" Type="bit" />
+    <Property Name="Con_Errori" Type="bit" />
+    <Property Name="CF_errato" Type="bit" />
+    <Property Name="Match_Asdep" Type="bit" />
+    <Property Name="PremioVITA" Type="decimal" Scale="4" />
+    <Property Name="PremioLTC" Type="decimal" Scale="4" />
+    <Property Name="PremioRSMO" Type="decimal" Scale="4" />
+    <Property Name="Eta" Type="int" />
+    <Property Name="Err_eta" Type="bit" />
+    <Property Name="Convenzione" Type="nvarchar" MaxLength="50" />
+    <Property Name="Categoria" Type="nvarchar" MaxLength="50" />
+    <Property Name="Esclusione_Pregresse" Type="bit" />
+    <Property Name="Numero_Polizza" Type="nvarchar" MaxLength="50" />
+    <Property Name="Data_cessazione" Type="datetime" />
+    <Property Name="Progressivo" Type="nvarchar" MaxLength="3" />
+    <Property Name="Matricola" Type="nvarchar" MaxLength="7" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'ASSICURATI_ASDEP.dbo.BenefitPackage' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="BenefitPackage">
+    <Key>
+      <PropertyRef Name="Polizza" />
+      <PropertyRef Name="cCategoria" />
+      <PropertyRef Name="bCaponucleo" />
+      <PropertyRef Name="bFiscalmente_a_carico" />
+      <PropertyRef Name="cBenefitPackage" />
+    </Key>
+    <Property Name="Polizza" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="cCategoria" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="bCaponucleo" Type="bit" Nullable="false" />
+    <Property Name="bFiscalmente_a_carico" Type="bit" Nullable="false" />
+    <Property Name="cBenefitPackage" Type="nvarchar" Nullable="false" MaxLength="8" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'ASSICURATI_ASDEP.dbo.ENTI' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="ENTI">
+    <Key>
+      <PropertyRef Name="CodiceEnte" />
+    </Key>
+    <Property Name="CodiceEnte" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Descrizione" Type="nvarchar" MaxLength="50" />
+    <Property Name="DecorrenzaCopertura" Type="nvarchar" MaxLength="6" />
+    <Property Name="DataCessazione" Type="datetime" />
+    <Property Name="DataRiapertura" Type="datetime" />
+    <Property Name="Provincia" Type="nvarchar" MaxLength="2" />
+    <Property Name="IdEnte" Type="decimal" Precision="10" />
+    <Property Name="Certificato" Type="nvarchar" MaxLength="11" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'ASSICURATI_ASDEP.dbo.FNAC-DIPENDENTI-2017' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="FNAC-DIPENDENTI-2017">
+    <Key>
+      <PropertyRef Name="CATEGORIA" />
+    </Key>
+    <Property Name="PARTITA_IVA_AZIENDA" Type="nvarchar" MaxLength="16" />
+    <Property Name="TIPO_RECORD" Type="nvarchar" MaxLength="20" />
+    <Property Name="PARENTELA" Type="nvarchar" MaxLength="2" />
+    <Property Name="CODICE_FISCALE" Type="nvarchar" MaxLength="16" />
+    <Property Name="CODICE_FISCALE_CAPONUCLEO" Type="nvarchar" MaxLength="16" />
+    <Property Name="COGNOME" Type="nvarchar" MaxLength="50" />
+    <Property Name="NOME" Type="nvarchar" MaxLength="50" />
+    <Property Name="SESSO" Type="nvarchar" MaxLength="1" />
+    <Property Name="data_di_nascita" Type="nvarchar" MaxLength="16" />
+    <Property Name="COMUNE_DI_NASCITA" Type="nvarchar" MaxLength="80" />
+    <Property Name="PROVINCIA_DI_NASCITA" Type="nvarchar" MaxLength="2" />
+    <Property Name="INDIRIZZO" Type="nvarchar" MaxLength="80" />
+    <Property Name="CAP" Type="nvarchar" MaxLength="5" />
+    <Property Name="CITTA" Type="nvarchar" MaxLength="80" />
+    <Property Name="PROVINCIA" Type="nvarchar" MaxLength="2" />
+    <Property Name="EMAIL" Type="nvarchar" MaxLength="70" />
+    <Property Name="TELEFONO" Type="nvarchar" MaxLength="80" />
+    <Property Name="DATA_INGRESSO_IN_POLIZZA" Type="nvarchar" MaxLength="8" />
+    <Property Name="DATA_USCITA_IN_POLIZZA" Type="nvarchar" MaxLength="8" />
+    <Property Name="IBAN" Type="nvarchar" MaxLength="27" />
+    <Property Name="DEN_INTESTATARIO_CONTO" Type="nvarchar" MaxLength="80" />
+    <Property Name="OPZIONE" Type="nvarchar" MaxLength="18" />
+    <Property Name="DATA_MODIFICA_OPZIONE" Type="nvarchar" MaxLength="8" />
+    <Property Name="PRESENZA_INTEGRATIVA" Type="nvarchar" MaxLength="20" />
+    <Property Name="PRESENZA_LTC" Type="nvarchar" MaxLength="20" />
+    <Property Name="CATEGORIA" Type="varchar" Nullable="false" MaxLength="10" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'ASSICURATI_ASDEP.dbo.FNAC-DIPENDENTI-2017-2' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="FNAC-DIPENDENTI-2017-2">
+    <Key>
+      <PropertyRef Name="CATEGORIA" />
+    </Key>
+    <Property Name="PARTITA_IVA_AZIENDA" Type="nvarchar" MaxLength="16" />
+    <Property Name="TIPO_RECORD" Type="nvarchar" MaxLength="20" />
+    <Property Name="PARENTELA" Type="nvarchar" MaxLength="2" />
+    <Property Name="CODICE_FISCALE" Type="nvarchar" MaxLength="16" />
+    <Property Name="CODICE_FISCALE_CAPONUCLEO" Type="nvarchar" MaxLength="16" />
+    <Property Name="COGNOME" Type="nvarchar" MaxLength="50" />
+    <Property Name="NOME" Type="nvarchar" MaxLength="50" />
+    <Property Name="SESSO" Type="nvarchar" MaxLength="1" />
+    <Property Name="data_di_nascita" Type="nvarchar" MaxLength="16" />
+    <Property Name="COMUNE_DI_NASCITA" Type="nvarchar" MaxLength="80" />
+    <Property Name="PROVINCIA_DI_NASCITA" Type="nvarchar" MaxLength="2" />
+    <Property Name="INDIRIZZO" Type="nvarchar" MaxLength="80" />
+    <Property Name="CAP" Type="nvarchar" MaxLength="5" />
+    <Property Name="CITTA" Type="nvarchar" MaxLength="80" />
+    <Property Name="PROVINCIA" Type="nvarchar" MaxLength="2" />
+    <Property Name="EMAIL" Type="nvarchar" MaxLength="70" />
+    <Property Name="TELEFONO" Type="nvarchar" MaxLength="80" />
+    <Property Name="DATA_INGRESSO_IN_POLIZZA" Type="nvarchar" MaxLength="8" />
+    <Property Name="DATA_USCITA_IN_POLIZZA" Type="nvarchar" MaxLength="8" />
+    <Property Name="IBAN" Type="nvarchar" MaxLength="27" />
+    <Property Name="DEN_INTESTATARIO_CONTO" Type="nvarchar" MaxLength="80" />
+    <Property Name="OPZIONE" Type="nvarchar" MaxLength="18" />
+    <Property Name="DATA_MODIFICA_OPZIONE" Type="nvarchar" MaxLength="8" />
+    <Property Name="PRESENZA_INTEGRATIVA" Type="nvarchar" MaxLength="20" />
+    <Property Name="PRESENZA_LTC" Type="nvarchar" MaxLength="20" />
+    <Property Name="CATEGORIA" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="Expr1" Type="nvarchar" MaxLength="8" />
+    <Property Name="ENTE" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'ASSICURATI_ASDEP.dbo.LEGAMI' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="LEGAMI">
+    <Key>
+      <PropertyRef Name="CodiceLegame" />
+    </Key>
+    <Property Name="CodiceLegame" Type="nvarchar" Nullable="false" MaxLength="3" />
+    <Property Name="DescrizioneLegame" Type="nvarchar" MaxLength="100" />
+    <Property Name="Fiscalmente_a_Carico" Type="bit" />
+    <Property Name="Caponucleo" Type="bit" />
+    <Property Name="CodiceCapoNucleo" Type="nvarchar" MaxLength="3" />
+    <Property Name="Eta_min" Type="int" />
+    <Property Name="Eta_max" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'ASSICURATI_ASDEP.dbo.SUPERQUERY' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="SUPERQUERY">
+    <Key>
+      <PropertyRef Name="Tipo Record" />
+      <PropertyRef Name="parentela" />
+      <PropertyRef Name="Codice_fiscale_caponucleo" />
+      <PropertyRef Name="Codice_fiscale_assicurato" />
+      <PropertyRef Name="Cognome" />
+      <PropertyRef Name="Nome" />
+      <PropertyRef Name="data di nascita" />
+      <PropertyRef Name="Den intestatario conto" />
+      <PropertyRef Name="Opzione" />
+      <PropertyRef Name="data modifica opzione" />
+      <PropertyRef Name="presenza integrativa" />
+      <PropertyRef Name="presenza LTC" />
+      <PropertyRef Name="Ente" />
+    </Key>
+    <Property Name="CODICE FISCALE" Type="nvarchar" MaxLength="16" />
+    <Property Name="Tipo Record" Type="varchar" Nullable="false" MaxLength="1" />
+    <Property Name="parentela" Type="nvarchar" Nullable="false" MaxLength="3" />
+    <Property Name="Codice_fiscale_caponucleo" Type="nvarchar" Nullable="false" MaxLength="16" />
+    <Property Name="Codice_fiscale_assicurato" Type="nvarchar" Nullable="false" MaxLength="16" />
+    <Property Name="Cognome" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Nome" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="sesso" Type="nvarchar" MaxLength="2" />
+    <Property Name="data di nascita" Type="nvarchar" Nullable="false" MaxLength="16" />
+    <Property Name="Comune" Type="nvarchar" MaxLength="60" />
+    <Property Name="Provincia" Type="nvarchar" MaxLength="2" />
+    <Property Name="Indirizzo" Type="nvarchar" MaxLength="50" />
+    <Property Name="cap" Type="nvarchar" MaxLength="5" />
+    <Property Name="città" Type="nvarchar" MaxLength="50" />
+    <Property Name="Expr1" Type="nvarchar" MaxLength="5" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="Telefono" Type="nvarchar" MaxLength="20" />
+    <Property Name="dataingressoinpolizza" Type="varchar" MaxLength="8" />
+    <Property Name="data uscita polizza" Type="datetime" />
+    <Property Name="IBAN" Type="nvarchar" MaxLength="50" />
+    <Property Name="Den intestatario conto" Type="varchar" Nullable="false" MaxLength="1" />
+    <Property Name="Opzione" Type="varchar" Nullable="false" MaxLength="1" />
+    <Property Name="data modifica opzione" Type="varchar" Nullable="false" MaxLength="1" />
+    <Property Name="presenza integrativa" Type="varchar" Nullable="false" MaxLength="1" />
+    <Property Name="presenza LTC" Type="varchar" Nullable="false" MaxLength="1" />
+    <Property Name="Numero_Polizza" Type="nvarchar" MaxLength="50" />
+    <Property Name="Categoria" Type="nvarchar" MaxLength="50" />
+    <Property Name="Convenzione" Type="nvarchar" MaxLength="50" />
+    <Property Name="Ente" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'ASSICURATI_ASDEP.dbo.TIPI_ERRORI' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="TIPI_ERRORI">
+    <Key>
+      <PropertyRef Name="CodiceErrore" />
+      <PropertyRef Name="DescrizioneErrori" />
+    </Key>
+    <Property Name="CodiceErrore" Type="char" Nullable="false" MaxLength="2" />
+    <Property Name="DescrizioneErrori" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'ASSICURATI_ASDEP.dbo.VOLONTARIE-ALTRE-CATEGORIE-2017' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="VOLONTARIE-ALTRE-CATEGORIE-2017">
+    <Key>
+      <PropertyRef Name="CATEGORIA" />
+    </Key>
+    <Property Name="PARTITA_IVA_AZIENDA" Type="nvarchar" MaxLength="16" />
+    <Property Name="TIPO_RECORD" Type="nvarchar" MaxLength="20" />
+    <Property Name="PARENTELA" Type="nvarchar" MaxLength="2" />
+    <Property Name="CODICE_FISCALE" Type="nvarchar" MaxLength="16" />
+    <Property Name="CODICE_FISCALE_CAPONUCLEO" Type="nvarchar" MaxLength="16" />
+    <Property Name="COGNOME" Type="nvarchar" MaxLength="50" />
+    <Property Name="NOME" Type="nvarchar" MaxLength="50" />
+    <Property Name="SESSO" Type="nvarchar" MaxLength="1" />
+    <Property Name="data_di_nascita" Type="nvarchar" MaxLength="16" />
+    <Property Name="COMUNE_DI_NASCITA" Type="nvarchar" MaxLength="80" />
+    <Property Name="PROVINCIA_DI_NASCITA" Type="nvarchar" MaxLength="2" />
+    <Property Name="INDIRIZZO" Type="nvarchar" MaxLength="80" />
+    <Property Name="CAP" Type="nvarchar" MaxLength="5" />
+    <Property Name="CITTA" Type="nvarchar" MaxLength="80" />
+    <Property Name="PROVINCIA" Type="nvarchar" MaxLength="2" />
+    <Property Name="EMAIL" Type="nvarchar" MaxLength="70" />
+    <Property Name="TELEFONO" Type="nvarchar" MaxLength="80" />
+    <Property Name="DATA_INGRESSO_IN_POLIZZA" Type="nvarchar" MaxLength="8" />
+    <Property Name="DATA_USCITA_IN_POLIZZA" Type="nvarchar" MaxLength="8" />
+    <Property Name="IBAN" Type="nvarchar" MaxLength="27" />
+    <Property Name="DEN_INTESTATARIO_CONTO" Type="nvarchar" MaxLength="80" />
+    <Property Name="OPZIONE" Type="nvarchar" MaxLength="18" />
+    <Property Name="DATA_MODIFICA_OPZIONE" Type="nvarchar" MaxLength="8" />
+    <Property Name="PRESENZA_INTEGRATIVA" Type="nvarchar" MaxLength="20" />
+    <Property Name="PRESENZA_LTC" Type="nvarchar" MaxLength="20" />
+    <Property Name="CATEGORIA" Type="varchar" Nullable="false" MaxLength="1" />
+    <Property Name="Expr1" Type="nvarchar" MaxLength="8" />
+    <Property Name="ENTE" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6013: The table/view 'ASSICURATI_ASDEP.dbo.COMUNI_CODICE_FISCO' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+      
+      <EntityType Name="COMUNI_CODICE_FISCO">
+        <Property Name="CodiceCatastale" Type="nvarchar" MaxLength="4" />
+        <Property Name="Comune" Type="nvarchar" MaxLength="60" />
+        <Property Name="Provincia" Type="nvarchar" MaxLength="2" />
+      </EntityType>
+      Errors Found During Generation:
+      warning 6013: The table/view 'ASSICURATI_ASDEP.dbo.ENTI-COD-FISC' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+      
+      <EntityType Name="ENTI-COD-FISC">
+        <Property Name="ENTE" Type="nvarchar" MaxLength="50" />
+        <Property Name="CODICE FISCALE" Type="nvarchar" MaxLength="16" />
+        <Property Name="INDIRIZZO" Type="nvarchar" MaxLength="50" />
+        <Property Name="CAP" Type="nvarchar" MaxLength="5" />
+        <Property Name="LOCALITA'" Type="nvarchar" MaxLength="50" />
+        <Property Name="PROVINCIA" Type="nvarchar" MaxLength="2" />
+      </EntityType>
+      Errors Found During Generation:
+      warning 6013: The table/view 'ASSICURATI_ASDEP.dbo.INTEGRATIVE_TITOLARI_2017' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+      
+      <EntityType Name="INTEGRATIVE_TITOLARI_2017">
+        <Property Name="PARTITA_IVA_AZIENDA" Type="nvarchar" MaxLength="16" />
+        <Property Name="TIPO_RECORD" Type="nvarchar" MaxLength="20" />
+        <Property Name="PARENTELA" Type="nvarchar" MaxLength="2" />
+        <Property Name="MATRICOLA" Type="nvarchar" MaxLength="18" />
+        <Property Name="CODICE_FISCALE" Type="nvarchar" MaxLength="16" />
+        <Property Name="CODICE_FISCALE_CAPONUCLEO" Type="nvarchar" MaxLength="16" />
+        <Property Name="COGNOME" Type="nvarchar" MaxLength="50" />
+        <Property Name="NOME" Type="nvarchar" MaxLength="50" />
+        <Property Name="SESSO" Type="nvarchar" MaxLength="1" />
+        <Property Name="DATA_DI_NASCITA" Type="nvarchar" MaxLength="8" />
+        <Property Name="COMUNE_DI_NASCITA" Type="nvarchar" MaxLength="80" />
+        <Property Name="PROVINCIA_DI_NASCITA" Type="nvarchar" MaxLength="2" />
+        <Property Name="INDIRIZZO" Type="nvarchar" MaxLength="80" />
+        <Property Name="CAP" Type="nvarchar" MaxLength="5" />
+        <Property Name="CITTA" Type="nvarchar" MaxLength="80" />
+        <Property Name="PROVINCIA" Type="nvarchar" MaxLength="2" />
+        <Property Name="EMAIL" Type="nvarchar" MaxLength="70" />
+        <Property Name="TELEFONO" Type="nvarchar" MaxLength="80" />
+        <Property Name="DATA_INGRESSO_IN_POLIZZA" Type="nvarchar" MaxLength="8" />
+        <Property Name="DATA_USCITA_IN_POLIZZA" Type="nvarchar" MaxLength="8" />
+        <Property Name="IBAN" Type="nvarchar" MaxLength="27" />
+        <Property Name="DEN_INTESTATARIO_CONTO" Type="nvarchar" MaxLength="80" />
+        <Property Name="OPZIONE" Type="nvarchar" MaxLength="18" />
+        <Property Name="DATA_MODIFICA_OPZIONE" Type="nvarchar" MaxLength="8" />
+        <Property Name="PRESENZA_INTEGRATIVA" Type="nvarchar" MaxLength="20" />
+        <Property Name="PRESENZA_LTC" Type="nvarchar" MaxLength="20" />
+        <Property Name="ENTE" Type="nvarchar" MaxLength="60" />
+        <Property Name="PIANO_SANITARIO" Type="nvarchar" MaxLength="60" />
+      </EntityType>
+      Errors Found During Generation:
+      warning 6013: The table/view 'ASSICURATI_ASDEP.dbo.LEGAMI_PREMI' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+      
+      <EntityType Name="LEGAMI_PREMI">
+        <Property Name="CodiceLegame" Type="nvarchar" MaxLength="3" />
+        <Property Name="PremioVITA" Type="decimal" Scale="4" />
+        <Property Name="PremioLTC" Type="decimal" Scale="4" />
+        <Property Name="PremioRSMO" Type="decimal" Scale="4" />
+        <Property Name="PremioVITA_perc" Type="decimal" Precision="5" Scale="2" />
+        <Property Name="PremioLTC_perc" Type="decimal" Precision="5" Scale="2" />
+        <Property Name="PremioRSMO_perc" Type="decimal" Precision="5" Scale="2" />
+        <Property Name="DataSponda" Type="nvarchar" MaxLength="4" />
+      </EntityType>
+      Errors Found During Generation:
+      warning 6013: The table/view 'ASSICURATI_ASDEP.dbo.PROFILI' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+      
+      <EntityType Name="PROFILI">
+        <Property Name="ID_UTENTE" Type="nchar" MaxLength="32" />
+        <Property Name="COGNOME" Type="nchar" MaxLength="32" />
+        <Property Name="NOME" Type="nchar" MaxLength="32" />
+        <Property Name="PROFILO" Type="nchar" MaxLength="16" />
+      </EntityType>
+      Errors Found During Generation:
+      warning 6013: The table/view 'ASSICURATI_ASDEP.dbo.VOLONTARIE_2017' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+      
+      <EntityType Name="VOLONTARIE_2017">
+        <Property Name="PARTITA_IVA_AZIENDA" Type="nvarchar" MaxLength="16" />
+        <Property Name="TIPO_RECORD" Type="nvarchar" MaxLength="20" />
+        <Property Name="PARENTELA" Type="nvarchar" MaxLength="2" />
+        <Property Name="MATRICOLA" Type="nvarchar" MaxLength="18" />
+        <Property Name="CODICE_FISCALE" Type="nvarchar" MaxLength="16" />
+        <Property Name="CODICE_FISCALE_CAPONUCLEO" Type="nvarchar" MaxLength="16" />
+        <Property Name="COGNOME" Type="nvarchar" MaxLength="50" />
+        <Property Name="NOME" Type="nvarchar" MaxLength="50" />
+        <Property Name="SESSO" Type="nvarchar" MaxLength="1" />
+        <Property Name="DATA_DI_NASCITA" Type="nvarchar" MaxLength="8" />
+        <Property Name="COMUNE_DI_NASCITA" Type="nvarchar" MaxLength="80" />
+        <Property Name="PROVINCIA_DI_NASCITA" Type="nvarchar" MaxLength="2" />
+        <Property Name="INDIRIZZO" Type="nvarchar" MaxLength="80" />
+        <Property Name="CAP" Type="nvarchar" MaxLength="5" />
+        <Property Name="CITTA" Type="nvarchar" MaxLength="80" />
+        <Property Name="PROVINCIA" Type="nvarchar" MaxLength="2" />
+        <Property Name="EMAIL" Type="nvarchar" MaxLength="70" />
+        <Property Name="TELEFONO" Type="nvarchar" MaxLength="80" />
+        <Property Name="DATA_INGRESSO_IN_POLIZZA" Type="nvarchar" MaxLength="8" />
+        <Property Name="DATA_USCITA_IN_POLIZZA" Type="nvarchar" MaxLength="8" />
+        <Property Name="IBAN" Type="nvarchar" MaxLength="27" />
+        <Property Name="DEN_INTESTATARIO_CONTO" Type="nvarchar" MaxLength="80" />
+        <Property Name="OPZIONE" Type="nvarchar" MaxLength="18" />
+        <Property Name="DATA_MODIFICA_OPZIONE" Type="nvarchar" MaxLength="8" />
+        <Property Name="PRESENZA_INTEGRATIVA" Type="nvarchar" MaxLength="20" />
+        <Property Name="PRESENZA_LTC" Type="nvarchar" MaxLength="20" />
+        <Property Name="ENTE" Type="nvarchar" MaxLength="60" />
+        <Property Name="PIANO_SANITARIO" Type="nvarchar" MaxLength="60" />
+      </EntityType>-->
+</Schema>

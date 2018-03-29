@@ -1,0 +1,288 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ASSICURATI_ASDEPModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="ASSICURATI_ASDEPEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="ALTRE_CATEGORIE_2017" EntityType="ASSICURATI_ASDEPModel.ALTRE_CATEGORIE_2017" />
+    <EntitySet Name="ASSICURATI" EntityType="ASSICURATI_ASDEPModel.ASSICURATI" />
+    <EntitySet Name="BenefitPackage" EntityType="ASSICURATI_ASDEPModel.BenefitPackage" />
+    <EntitySet Name="ENTI" EntityType="ASSICURATI_ASDEPModel.ENTI" />
+    <EntitySet Name="FNAC_DIPENDENTI_2017" EntityType="ASSICURATI_ASDEPModel.FNAC_DIPENDENTI_2017" />
+    <EntitySet Name="FNAC_DIPENDENTI_2017_2" EntityType="ASSICURATI_ASDEPModel.FNAC_DIPENDENTI_2017_2" />
+    <EntitySet Name="LEGAMI" EntityType="ASSICURATI_ASDEPModel.LEGAMI" />
+    <EntitySet Name="SUPERQUERY" EntityType="ASSICURATI_ASDEPModel.SUPERQUERY" />
+    <EntitySet Name="TIPI_ERRORI" EntityType="ASSICURATI_ASDEPModel.TIPI_ERRORI" />
+    <EntitySet Name="VOLONTARIE_ALTRE_CATEGORIE_2017" EntityType="ASSICURATI_ASDEPModel.VOLONTARIE_ALTRE_CATEGORIE_2017" />
+  </EntityContainer>
+  <EntityType Name="ALTRE_CATEGORIE_2017">
+    <Key>
+      <PropertyRef Name="CATEGORIA" />
+    </Key>
+    <Property Name="PARTITA_IVA_AZIENDA" Type="String" MaxLength="16" Unicode="true" FixedLength="false" />
+    <Property Name="TIPO_RECORD" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="PARENTELA" Type="String" MaxLength="2" Unicode="true" FixedLength="false" />
+    <Property Name="CODICE_FISCALE" Type="String" MaxLength="16" Unicode="true" FixedLength="false" />
+    <Property Name="CODICE_FISCALE_CAPONUCLEO" Type="String" MaxLength="16" Unicode="true" FixedLength="false" />
+    <Property Name="COGNOME" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="NOME" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="SESSO" Type="String" MaxLength="1" Unicode="true" FixedLength="false" />
+    <Property Name="data_di_nascita" Type="String" MaxLength="16" Unicode="true" FixedLength="false" />
+    <Property Name="COMUNE_DI_NASCITA" Type="String" MaxLength="80" Unicode="true" FixedLength="false" />
+    <Property Name="PROVINCIA_DI_NASCITA" Type="String" MaxLength="2" Unicode="true" FixedLength="false" />
+    <Property Name="INDIRIZZO" Type="String" MaxLength="80" Unicode="true" FixedLength="false" />
+    <Property Name="CAP" Type="String" MaxLength="5" Unicode="true" FixedLength="false" />
+    <Property Name="CITTA" Type="String" MaxLength="80" Unicode="true" FixedLength="false" />
+    <Property Name="PROVINCIA" Type="String" MaxLength="2" Unicode="true" FixedLength="false" />
+    <Property Name="EMAIL" Type="String" MaxLength="70" Unicode="true" FixedLength="false" />
+    <Property Name="TELEFONO" Type="String" MaxLength="80" Unicode="true" FixedLength="false" />
+    <Property Name="DATA_INGRESSO_IN_POLIZZA" Type="String" MaxLength="8" Unicode="true" FixedLength="false" />
+    <Property Name="DATA_USCITA_IN_POLIZZA" Type="String" MaxLength="8" Unicode="true" FixedLength="false" />
+    <Property Name="IBAN" Type="String" MaxLength="27" Unicode="true" FixedLength="false" />
+    <Property Name="DEN_INTESTATARIO_CONTO" Type="String" MaxLength="80" Unicode="true" FixedLength="false" />
+    <Property Name="OPZIONE" Type="String" MaxLength="18" Unicode="true" FixedLength="false" />
+    <Property Name="DATA_MODIFICA_OPZIONE" Type="String" MaxLength="8" Unicode="true" FixedLength="false" />
+    <Property Name="PRESENZA_INTEGRATIVA" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="PRESENZA_LTC" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="CATEGORIA" Type="String" Nullable="false" MaxLength="15" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="ASSICURATI">
+    <Key>
+      <PropertyRef Name="Id_Assicurato" />
+      <PropertyRef Name="Ente" />
+      <PropertyRef Name="Cognome" />
+      <PropertyRef Name="Nome" />
+      <PropertyRef Name="Codice_fiscale_assicurato" />
+      <PropertyRef Name="Luogo_nascita_assicurato" />
+      <PropertyRef Name="Codice_fiscale_caponucleo" />
+      <PropertyRef Name="CodiceLegame" />
+      <PropertyRef Name="Data_Effetto" />
+      <PropertyRef Name="Data_inserimento" />
+    </Key>
+    <Property Name="Id_Assicurato" Type="Int32" Nullable="false" />
+    <Property Name="Ente" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Cognome" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Nome" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Secondo_Nome" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Codice_fiscale_assicurato" Type="String" Nullable="false" MaxLength="16" Unicode="true" FixedLength="false" />
+    <Property Name="Luogo_nascita_assicurato" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Data_nascita_assicurato" Type="DateTime" Precision="3" />
+    <Property Name="Codice_fiscale_caponucleo" Type="String" Nullable="false" MaxLength="16" Unicode="true" FixedLength="false" />
+    <Property Name="CodiceLegame" Type="String" Nullable="false" MaxLength="3" Unicode="true" FixedLength="false" />
+    <Property Name="Data_Effetto" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Indirizzo_residenza" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Localita_residenza" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Sigla_prov_residenza" Type="String" MaxLength="5" Unicode="true" FixedLength="false" />
+    <Property Name="Cap_residenza" Type="String" MaxLength="5" Unicode="true" FixedLength="false" />
+    <Property Name="IBAN" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Email" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Telefono" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="Data_inserimento" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Data_ultimo_aggiornamento" Type="DateTime" Precision="3" />
+    <Property Name="Esportato" Type="Boolean" />
+    <Property Name="TimeStampGenerali" Type="DateTime" Precision="3" />
+    <Property Name="Match_compagnia" Type="Boolean" />
+    <Property Name="Con_Errori" Type="Boolean" />
+    <Property Name="CF_errato" Type="Boolean" />
+    <Property Name="Match_Asdep" Type="Boolean" />
+    <Property Name="PremioVITA" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="PremioLTC" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="PremioRSMO" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="Eta" Type="Int32" />
+    <Property Name="Err_eta" Type="Boolean" />
+    <Property Name="Convenzione" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Categoria" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Esclusione_Pregresse" Type="Boolean" />
+    <Property Name="Numero_Polizza" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Data_cessazione" Type="DateTime" Precision="3" />
+    <Property Name="Progressivo" Type="String" MaxLength="3" Unicode="true" FixedLength="false" />
+    <Property Name="Matricola" Type="String" MaxLength="7" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="BenefitPackage">
+    <Key>
+      <PropertyRef Name="Polizza" />
+      <PropertyRef Name="cCategoria" />
+      <PropertyRef Name="bCaponucleo" />
+      <PropertyRef Name="bFiscalmente_a_carico" />
+      <PropertyRef Name="cBenefitPackage" />
+    </Key>
+    <Property Name="Polizza" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="cCategoria" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="bCaponucleo" Type="Boolean" Nullable="false" />
+    <Property Name="bFiscalmente_a_carico" Type="Boolean" Nullable="false" />
+    <Property Name="cBenefitPackage" Type="String" Nullable="false" MaxLength="8" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="ENTI">
+    <Key>
+      <PropertyRef Name="CodiceEnte" />
+    </Key>
+    <Property Name="CodiceEnte" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Descrizione" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="DecorrenzaCopertura" Type="String" MaxLength="6" Unicode="true" FixedLength="false" />
+    <Property Name="DataCessazione" Type="DateTime" Precision="3" />
+    <Property Name="DataRiapertura" Type="DateTime" Precision="3" />
+    <Property Name="Provincia" Type="String" MaxLength="2" Unicode="true" FixedLength="false" />
+    <Property Name="IdEnte" Type="Decimal" Precision="10" Scale="0" />
+    <Property Name="Certificato" Type="String" MaxLength="11" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="FNAC_DIPENDENTI_2017">
+    <Key>
+      <PropertyRef Name="CATEGORIA" />
+    </Key>
+    <Property Name="PARTITA_IVA_AZIENDA" Type="String" MaxLength="16" Unicode="true" FixedLength="false" />
+    <Property Name="TIPO_RECORD" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="PARENTELA" Type="String" MaxLength="2" Unicode="true" FixedLength="false" />
+    <Property Name="CODICE_FISCALE" Type="String" MaxLength="16" Unicode="true" FixedLength="false" />
+    <Property Name="CODICE_FISCALE_CAPONUCLEO" Type="String" MaxLength="16" Unicode="true" FixedLength="false" />
+    <Property Name="COGNOME" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="NOME" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="SESSO" Type="String" MaxLength="1" Unicode="true" FixedLength="false" />
+    <Property Name="data_di_nascita" Type="String" MaxLength="16" Unicode="true" FixedLength="false" />
+    <Property Name="COMUNE_DI_NASCITA" Type="String" MaxLength="80" Unicode="true" FixedLength="false" />
+    <Property Name="PROVINCIA_DI_NASCITA" Type="String" MaxLength="2" Unicode="true" FixedLength="false" />
+    <Property Name="INDIRIZZO" Type="String" MaxLength="80" Unicode="true" FixedLength="false" />
+    <Property Name="CAP" Type="String" MaxLength="5" Unicode="true" FixedLength="false" />
+    <Property Name="CITTA" Type="String" MaxLength="80" Unicode="true" FixedLength="false" />
+    <Property Name="PROVINCIA" Type="String" MaxLength="2" Unicode="true" FixedLength="false" />
+    <Property Name="EMAIL" Type="String" MaxLength="70" Unicode="true" FixedLength="false" />
+    <Property Name="TELEFONO" Type="String" MaxLength="80" Unicode="true" FixedLength="false" />
+    <Property Name="DATA_INGRESSO_IN_POLIZZA" Type="String" MaxLength="8" Unicode="true" FixedLength="false" />
+    <Property Name="DATA_USCITA_IN_POLIZZA" Type="String" MaxLength="8" Unicode="true" FixedLength="false" />
+    <Property Name="IBAN" Type="String" MaxLength="27" Unicode="true" FixedLength="false" />
+    <Property Name="DEN_INTESTATARIO_CONTO" Type="String" MaxLength="80" Unicode="true" FixedLength="false" />
+    <Property Name="OPZIONE" Type="String" MaxLength="18" Unicode="true" FixedLength="false" />
+    <Property Name="DATA_MODIFICA_OPZIONE" Type="String" MaxLength="8" Unicode="true" FixedLength="false" />
+    <Property Name="PRESENZA_INTEGRATIVA" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="PRESENZA_LTC" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="CATEGORIA" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="FNAC_DIPENDENTI_2017_2">
+    <Key>
+      <PropertyRef Name="CATEGORIA" />
+    </Key>
+    <Property Name="PARTITA_IVA_AZIENDA" Type="String" MaxLength="16" Unicode="true" FixedLength="false" />
+    <Property Name="TIPO_RECORD" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="PARENTELA" Type="String" MaxLength="2" Unicode="true" FixedLength="false" />
+    <Property Name="CODICE_FISCALE" Type="String" MaxLength="16" Unicode="true" FixedLength="false" />
+    <Property Name="CODICE_FISCALE_CAPONUCLEO" Type="String" MaxLength="16" Unicode="true" FixedLength="false" />
+    <Property Name="COGNOME" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="NOME" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="SESSO" Type="String" MaxLength="1" Unicode="true" FixedLength="false" />
+    <Property Name="data_di_nascita" Type="String" MaxLength="16" Unicode="true" FixedLength="false" />
+    <Property Name="COMUNE_DI_NASCITA" Type="String" MaxLength="80" Unicode="true" FixedLength="false" />
+    <Property Name="PROVINCIA_DI_NASCITA" Type="String" MaxLength="2" Unicode="true" FixedLength="false" />
+    <Property Name="INDIRIZZO" Type="String" MaxLength="80" Unicode="true" FixedLength="false" />
+    <Property Name="CAP" Type="String" MaxLength="5" Unicode="true" FixedLength="false" />
+    <Property Name="CITTA" Type="String" MaxLength="80" Unicode="true" FixedLength="false" />
+    <Property Name="PROVINCIA" Type="String" MaxLength="2" Unicode="true" FixedLength="false" />
+    <Property Name="EMAIL" Type="String" MaxLength="70" Unicode="true" FixedLength="false" />
+    <Property Name="TELEFONO" Type="String" MaxLength="80" Unicode="true" FixedLength="false" />
+    <Property Name="DATA_INGRESSO_IN_POLIZZA" Type="String" MaxLength="8" Unicode="true" FixedLength="false" />
+    <Property Name="DATA_USCITA_IN_POLIZZA" Type="String" MaxLength="8" Unicode="true" FixedLength="false" />
+    <Property Name="IBAN" Type="String" MaxLength="27" Unicode="true" FixedLength="false" />
+    <Property Name="DEN_INTESTATARIO_CONTO" Type="String" MaxLength="80" Unicode="true" FixedLength="false" />
+    <Property Name="OPZIONE" Type="String" MaxLength="18" Unicode="true" FixedLength="false" />
+    <Property Name="DATA_MODIFICA_OPZIONE" Type="String" MaxLength="8" Unicode="true" FixedLength="false" />
+    <Property Name="PRESENZA_INTEGRATIVA" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="PRESENZA_LTC" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="CATEGORIA" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+    <Property Name="Expr1" Type="String" MaxLength="8" Unicode="true" FixedLength="false" />
+    <Property Name="ENTE" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="LEGAMI">
+    <Key>
+      <PropertyRef Name="CodiceLegame" />
+    </Key>
+    <Property Name="CodiceLegame" Type="String" Nullable="false" MaxLength="3" Unicode="true" FixedLength="false" />
+    <Property Name="DescrizioneLegame" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="Fiscalmente_a_Carico" Type="Boolean" />
+    <Property Name="Caponucleo" Type="Boolean" />
+    <Property Name="CodiceCapoNucleo" Type="String" MaxLength="3" Unicode="true" FixedLength="false" />
+    <Property Name="Eta_min" Type="Int32" />
+    <Property Name="Eta_max" Type="Int32" />
+  </EntityType>
+  <EntityType Name="SUPERQUERY">
+    <Key>
+      <PropertyRef Name="Tipo_Record" />
+      <PropertyRef Name="parentela" />
+      <PropertyRef Name="Codice_fiscale_caponucleo" />
+      <PropertyRef Name="Codice_fiscale_assicurato" />
+      <PropertyRef Name="Cognome" />
+      <PropertyRef Name="Nome" />
+      <PropertyRef Name="data_di_nascita" />
+      <PropertyRef Name="Den_intestatario_conto" />
+      <PropertyRef Name="Opzione" />
+      <PropertyRef Name="data_modifica_opzione" />
+      <PropertyRef Name="presenza_integrativa" />
+      <PropertyRef Name="presenza_LTC" />
+      <PropertyRef Name="Ente" />
+    </Key>
+    <Property Name="CODICE_FISCALE" Type="String" MaxLength="16" Unicode="true" FixedLength="false" />
+    <Property Name="Tipo_Record" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="false" />
+    <Property Name="parentela" Type="String" Nullable="false" MaxLength="3" Unicode="true" FixedLength="false" />
+    <Property Name="Codice_fiscale_caponucleo" Type="String" Nullable="false" MaxLength="16" Unicode="true" FixedLength="false" />
+    <Property Name="Codice_fiscale_assicurato" Type="String" Nullable="false" MaxLength="16" Unicode="true" FixedLength="false" />
+    <Property Name="Cognome" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Nome" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="sesso" Type="String" MaxLength="2" Unicode="true" FixedLength="false" />
+    <Property Name="data_di_nascita" Type="String" Nullable="false" MaxLength="16" Unicode="true" FixedLength="false" />
+    <Property Name="Comune" Type="String" MaxLength="60" Unicode="true" FixedLength="false" />
+    <Property Name="Provincia" Type="String" MaxLength="2" Unicode="true" FixedLength="false" />
+    <Property Name="Indirizzo" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="cap" Type="String" MaxLength="5" Unicode="true" FixedLength="false" />
+    <Property Name="città" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Expr1" Type="String" MaxLength="5" Unicode="true" FixedLength="false" />
+    <Property Name="Email" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Telefono" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="dataingressoinpolizza" Type="String" MaxLength="8" Unicode="false" FixedLength="false" />
+    <Property Name="data_uscita_polizza" Type="DateTime" Precision="3" />
+    <Property Name="IBAN" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Den_intestatario_conto" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="false" />
+    <Property Name="Opzione" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="false" />
+    <Property Name="data_modifica_opzione" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="false" />
+    <Property Name="presenza_integrativa" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="false" />
+    <Property Name="presenza_LTC" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="false" />
+    <Property Name="Numero_Polizza" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Categoria" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Convenzione" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Ente" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TIPI_ERRORI">
+    <Key>
+      <PropertyRef Name="CodiceErrore" />
+      <PropertyRef Name="DescrizioneErrori" />
+    </Key>
+    <Property Name="CodiceErrore" Type="String" Nullable="false" MaxLength="2" Unicode="false" FixedLength="true" />
+    <Property Name="DescrizioneErrori" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="VOLONTARIE_ALTRE_CATEGORIE_2017">
+    <Key>
+      <PropertyRef Name="CATEGORIA" />
+    </Key>
+    <Property Name="PARTITA_IVA_AZIENDA" Type="String" MaxLength="16" Unicode="true" FixedLength="false" />
+    <Property Name="TIPO_RECORD" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="PARENTELA" Type="String" MaxLength="2" Unicode="true" FixedLength="false" />
+    <Property Name="CODICE_FISCALE" Type="String" MaxLength="16" Unicode="true" FixedLength="false" />
+    <Property Name="CODICE_FISCALE_CAPONUCLEO" Type="String" MaxLength="16" Unicode="true" FixedLength="false" />
+    <Property Name="COGNOME" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="NOME" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="SESSO" Type="String" MaxLength="1" Unicode="true" FixedLength="false" />
+    <Property Name="data_di_nascita" Type="String" MaxLength="16" Unicode="true" FixedLength="false" />
+    <Property Name="COMUNE_DI_NASCITA" Type="String" MaxLength="80" Unicode="true" FixedLength="false" />
+    <Property Name="PROVINCIA_DI_NASCITA" Type="String" MaxLength="2" Unicode="true" FixedLength="false" />
+    <Property Name="INDIRIZZO" Type="String" MaxLength="80" Unicode="true" FixedLength="false" />
+    <Property Name="CAP" Type="String" MaxLength="5" Unicode="true" FixedLength="false" />
+    <Property Name="CITTA" Type="String" MaxLength="80" Unicode="true" FixedLength="false" />
+    <Property Name="PROVINCIA" Type="String" MaxLength="2" Unicode="true" FixedLength="false" />
+    <Property Name="EMAIL" Type="String" MaxLength="70" Unicode="true" FixedLength="false" />
+    <Property Name="TELEFONO" Type="String" MaxLength="80" Unicode="true" FixedLength="false" />
+    <Property Name="DATA_INGRESSO_IN_POLIZZA" Type="String" MaxLength="8" Unicode="true" FixedLength="false" />
+    <Property Name="DATA_USCITA_IN_POLIZZA" Type="String" MaxLength="8" Unicode="true" FixedLength="false" />
+    <Property Name="IBAN" Type="String" MaxLength="27" Unicode="true" FixedLength="false" />
+    <Property Name="DEN_INTESTATARIO_CONTO" Type="String" MaxLength="80" Unicode="true" FixedLength="false" />
+    <Property Name="OPZIONE" Type="String" MaxLength="18" Unicode="true" FixedLength="false" />
+    <Property Name="DATA_MODIFICA_OPZIONE" Type="String" MaxLength="8" Unicode="true" FixedLength="false" />
+    <Property Name="PRESENZA_INTEGRATIVA" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="PRESENZA_LTC" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="CATEGORIA" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="false" />
+    <Property Name="Expr1" Type="String" MaxLength="8" Unicode="true" FixedLength="false" />
+    <Property Name="ENTE" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+  </EntityType>
+</Schema>

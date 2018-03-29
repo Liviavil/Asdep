@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="AsdepGestioneAnagraficaModelStoreContainer" CdmEntityContainer="AsdepGestioneAnagraficaEntities">
+    <EntitySetMapping Name="Assicurati">
+      <EntityTypeMapping TypeName="AsdepGestioneAnagraficaModel.Assicurati">
+        <MappingFragment StoreEntitySet="Assicurati">
+          <ScalarProperty Name="IdAssicurato" ColumnName="IdAssicurato" />
+          <ScalarProperty Name="CodiceEnte" ColumnName="CodiceEnte" />
+          <ScalarProperty Name="Cognome" ColumnName="Cognome" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="SecondoNome" ColumnName="SecondoNome" />
+          <ScalarProperty Name="CodiceFiscaleAssicurato" ColumnName="CodiceFiscaleAssicurato" />
+          <ScalarProperty Name="LuogoNascitaAssicurato" ColumnName="LuogoNascitaAssicurato" />
+          <ScalarProperty Name="DataNascitaAssicurato" ColumnName="DataNascitaAssicurato" />
+          <ScalarProperty Name="CodiceFiscaleCapoNucleo" ColumnName="CodiceFiscaleCapoNucleo" />
+          <ScalarProperty Name="CodiceLegame" ColumnName="CodiceLegame" />
+          <ScalarProperty Name="DataEffetto" ColumnName="DataEffetto" />
+          <ScalarProperty Name="IndirizzoResidenza" ColumnName="IndirizzoResidenza" />
+          <ScalarProperty Name="LocalitaResidenza" ColumnName="LocalitaResidenza" />
+          <ScalarProperty Name="SiglaProvResidenza" ColumnName="SiglaProvResidenza" />
+          <ScalarProperty Name="CapResidenza" ColumnName="CapResidenza" />
+          <ScalarProperty Name="Iban" ColumnName="Iban" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="DataInserimento" ColumnName="DataInserimento" />
+          <ScalarProperty Name="DataUltimoAggiornamento" ColumnName="DataUltimoAggiornamento" />
+          <ScalarProperty Name="Esportato" ColumnName="Esportato" />
+          <ScalarProperty Name="TimeStampGenerali" ColumnName="TimeStampGenerali" />
+          <ScalarProperty Name="CfErrato" ColumnName="CfErrato" />
+          <ScalarProperty Name="Convenzione" ColumnName="Convenzione" />
+          <ScalarProperty Name="Categoria" ColumnName="Categoria" />
+          <ScalarProperty Name="EsclusioniPregresse" ColumnName="EsclusioniPregresse" />
+          <ScalarProperty Name="NumeroPolizza" ColumnName="NumeroPolizza" />
+          <ScalarProperty Name="DataCessazione" ColumnName="DataCessazione" />
+          <ScalarProperty Name="Progressivo" ColumnName="Progressivo" />
+          <ScalarProperty Name="Matricola" ColumnName="Matricola" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BenefitPackages">
+      <EntityTypeMapping TypeName="AsdepGestioneAnagraficaModel.BenefitPackages">
+        <MappingFragment StoreEntitySet="BenefitPackages">
+          <ScalarProperty Name="Polizza" ColumnName="Polizza" />
+          <ScalarProperty Name="Categoria" ColumnName="Categoria" />
+          <ScalarProperty Name="Caponucleo" ColumnName="Caponucleo" />
+          <ScalarProperty Name="FiscalmenteACarico" ColumnName="FiscalmenteACarico" />
+          <ScalarProperty Name="BenefitPackage" ColumnName="BenefitPackage" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Enti">
+      <EntityTypeMapping TypeName="AsdepGestioneAnagraficaModel.Enti">
+        <MappingFragment StoreEntitySet="Enti">
+          <ScalarProperty Name="CodiceEnte" ColumnName="CodiceEnte" />
+          <ScalarProperty Name="Descrizione" ColumnName="Descrizione" />
+          <ScalarProperty Name="IdEnte" ColumnName="IdEnte" />
+          <ScalarProperty Name="Certificato" ColumnName="Certificato" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Legami">
+      <EntityTypeMapping TypeName="AsdepGestioneAnagraficaModel.Legami">
+        <MappingFragment StoreEntitySet="Legami">
+          <ScalarProperty Name="CodiceLegame" ColumnName="CodiceLegame" />
+          <ScalarProperty Name="Descrizione" ColumnName="Descrizione" />
+          <ScalarProperty Name="FiscalmenteACarico" ColumnName="FiscalmenteACarico" />
+          <ScalarProperty Name="Caponucleo" ColumnName="Caponucleo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="AsdepGestioneAnagraficaModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="AsdepGestioneAnagraficaModel.Users">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

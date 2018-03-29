@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AsdepGestioneAnagraficaModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="AsdepGestioneAnagraficaEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="Assicurati" EntityType="AsdepGestioneAnagraficaModel.Assicurati" />
+    <EntitySet Name="BenefitPackages" EntityType="AsdepGestioneAnagraficaModel.BenefitPackages" />
+    <EntitySet Name="Enti" EntityType="AsdepGestioneAnagraficaModel.Enti" />
+    <EntitySet Name="Legami" EntityType="AsdepGestioneAnagraficaModel.Legami" />
+    <EntitySet Name="sysdiagrams" EntityType="AsdepGestioneAnagraficaModel.sysdiagrams" />
+    <EntitySet Name="Users" EntityType="AsdepGestioneAnagraficaModel.Users" />
+    <AssociationSet Name="FK__Assicurat__Codic__276EDEB3" Association="AsdepGestioneAnagraficaModel.FK__Assicurat__Codic__276EDEB3">
+      <End Role="Enti" EntitySet="Enti" />
+      <End Role="Assicurati" EntitySet="Assicurati" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Assicurat__Codic__286302EC" Association="AsdepGestioneAnagraficaModel.FK__Assicurat__Codic__286302EC">
+      <End Role="Legami" EntitySet="Legami" />
+      <End Role="Assicurati" EntitySet="Assicurati" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Assicurati">
+    <Key>
+      <PropertyRef Name="IdAssicurato" />
+    </Key>
+    <Property Name="IdAssicurato" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="CodiceEnte" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Cognome" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Nome" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="SecondoNome" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="CodiceFiscaleAssicurato" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="LuogoNascitaAssicurato" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="DataNascitaAssicurato" Type="DateTime" Precision="3" />
+    <Property Name="CodiceFiscaleCapoNucleo" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="CodiceLegame" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="true" />
+    <Property Name="DataEffetto" Type="DateTime" Precision="3" />
+    <Property Name="IndirizzoResidenza" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="LocalitaResidenza" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="SiglaProvResidenza" Type="String" MaxLength="2" Unicode="false" FixedLength="false" />
+    <Property Name="CapResidenza" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+    <Property Name="Iban" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Email" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Telefono" Type="String" MaxLength="15" Unicode="true" FixedLength="true" />
+    <Property Name="DataInserimento" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DataUltimoAggiornamento" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Esportato" Type="Boolean" />
+    <Property Name="TimeStampGenerali" Type="DateTime" Precision="3" />
+    <Property Name="CfErrato" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Convenzione" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Categoria" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="EsclusioniPregresse" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="NumeroPolizza" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="DataCessazione" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Progressivo" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Matricola" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Enti" Relationship="AsdepGestioneAnagraficaModel.FK__Assicurat__Codic__276EDEB3" FromRole="Assicurati" ToRole="Enti" />
+    <NavigationProperty Name="Legami" Relationship="AsdepGestioneAnagraficaModel.FK__Assicurat__Codic__286302EC" FromRole="Assicurati" ToRole="Legami" />
+  </EntityType>
+  <EntityType Name="BenefitPackages">
+    <Key>
+      <PropertyRef Name="Polizza" />
+      <PropertyRef Name="Categoria" />
+    </Key>
+    <Property Name="Polizza" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Categoria" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Caponucleo" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="FiscalmenteACarico" Type="Boolean" />
+    <Property Name="BenefitPackage" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Enti">
+    <Key>
+      <PropertyRef Name="CodiceEnte" />
+    </Key>
+    <Property Name="CodiceEnte" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Descrizione" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="IdEnte" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="true" />
+    <Property Name="Certificato" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Assicurati" Relationship="AsdepGestioneAnagraficaModel.FK__Assicurat__Codic__276EDEB3" FromRole="Enti" ToRole="Assicurati" />
+  </EntityType>
+  <EntityType Name="Legami">
+    <Key>
+      <PropertyRef Name="CodiceLegame" />
+    </Key>
+    <Property Name="CodiceLegame" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="true" />
+    <Property Name="Descrizione" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="FiscalmenteACarico" Type="Boolean" Nullable="false" />
+    <Property Name="Caponucleo" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Assicurati" Relationship="AsdepGestioneAnagraficaModel.FK__Assicurat__Codic__286302EC" FromRole="Legami" ToRole="Assicurati" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Username" />
+      <PropertyRef Name="Password" />
+      <PropertyRef Name="Role" />
+    </Key>
+    <Property Name="Username" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Role" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK__Assicurat__Codic__276EDEB3">
+    <End Role="Enti" Type="AsdepGestioneAnagraficaModel.Enti" Multiplicity="1" />
+    <End Role="Assicurati" Type="AsdepGestioneAnagraficaModel.Assicurati" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Enti">
+        <PropertyRef Name="CodiceEnte" />
+      </Principal>
+      <Dependent Role="Assicurati">
+        <PropertyRef Name="CodiceEnte" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Assicurat__Codic__286302EC">
+    <End Role="Legami" Type="AsdepGestioneAnagraficaModel.Legami" Multiplicity="1" />
+    <End Role="Assicurati" Type="AsdepGestioneAnagraficaModel.Assicurati" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Legami">
+        <PropertyRef Name="CodiceLegame" />
+      </Principal>
+      <Dependent Role="Assicurati">
+        <PropertyRef Name="CodiceLegame" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

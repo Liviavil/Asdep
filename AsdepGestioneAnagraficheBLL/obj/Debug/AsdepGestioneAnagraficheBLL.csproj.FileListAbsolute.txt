@@ -1,0 +1,10 @@
+C:\Users\inps_admin\documents\visual studio 2012\Projects\Inps.Asdep\AsdepGestioneAnagraficheBLL\obj\Debug\AsdepGestioneAnagraficheBLL.csprojResolveAssemblyReference.cache
+C:\Users\inps_admin\documents\visual studio 2012\Projects\Inps.Asdep\AsdepGestioneAnagraficheBLL\bin\Debug\AsdepGestioneAnagraficheBLL.dll.config
+C:\Users\inps_admin\documents\visual studio 2012\Projects\Inps.Asdep\AsdepGestioneAnagraficheBLL\bin\Debug\AsdepGestioneAnagraficheBLL.dll
+C:\Users\inps_admin\documents\visual studio 2012\Projects\Inps.Asdep\AsdepGestioneAnagraficheBLL\bin\Debug\AsdepGestioneAnagraficheBLL.pdb
+C:\Users\inps_admin\documents\visual studio 2012\Projects\Inps.Asdep\AsdepGestioneAnagraficheBLL\bin\Debug\Asdep.GestioneAnagraficeDAL.dll
+C:\Users\inps_admin\documents\visual studio 2012\Projects\Inps.Asdep\AsdepGestioneAnagraficheBLL\bin\Debug\EntityFramework.dll
+C:\Users\inps_admin\documents\visual studio 2012\Projects\Inps.Asdep\AsdepGestioneAnagraficheBLL\bin\Debug\Asdep.GestioneAnagraficeDAL.pdb
+C:\Users\inps_admin\documents\visual studio 2012\Projects\Inps.Asdep\AsdepGestioneAnagraficheBLL\bin\Debug\EntityFramework.xml
+C:\Users\inps_admin\documents\visual studio 2012\Projects\Inps.Asdep\AsdepGestioneAnagraficheBLL\obj\Debug\AsdepGestioneAnagraficheBLL.dll
+C:\Users\inps_admin\documents\visual studio 2012\Projects\Inps.Asdep\AsdepGestioneAnagraficheBLL\obj\Debug\AsdepGestioneAnagraficheBLL.pdb
