@@ -7,6 +7,7 @@ using System.Web;
 namespace WcfService.DAL
 {
     [DataContract]
+    [KnownType(typeof(Anagrafica))]
     public class Anagrafica
     {
         private string _convenzione;
@@ -25,10 +26,10 @@ namespace WcfService.DAL
             get { return _categoria; }
             set { _categoria = value; }
         }
-        bool _esclusioniPregresse;
+        string _esclusioniPregresse;
 
         [DataMember]
-        public bool EsclusioniPregresse
+        public string Esclusioni
         {
             get { return _esclusioniPregresse; }
             set { _esclusioniPregresse = value; }
@@ -36,7 +37,7 @@ namespace WcfService.DAL
         string _numeroPolizzaEnte;
 
         [DataMember]
-        public string NumeroPolizzaEnte
+        public string NumeroPolizza
         {
             get { return _numeroPolizzaEnte; }
             set { _numeroPolizzaEnte = value; }
@@ -71,22 +72,30 @@ namespace WcfService.DAL
 
 
         [DataMember]
-        public string LuogoNascita
+        public string LuogoNascitaAssicurato
         {
             get { return _luogoNascita; }
             set { _luogoNascita = value; }
         }
-        DateTime _dataNascita;
+        DateTime? _dataNascita;
 
 
         [DataMember]
-        public DateTime DataNascita
+        public DateTime? DataNascitaAssicurato
         {
             get { return _dataNascita; }
             set { _dataNascita = value; }
         }
         string _codiceFiscaleCapoNucleo;
 
+        DateTime? _effetto;
+
+        [DataMember]
+        public DateTime? Effetto
+        {
+            get { return _effetto; }
+            set { _effetto = value; }
+        }
 
         [DataMember]
         public string CodiceFiscaleCapoNucleo
@@ -107,13 +116,21 @@ namespace WcfService.DAL
 
 
         [DataMember]
-        public string Residenza
+        public string IndirizzoResidenza
         {
             get { return _residenza; }
             set { _residenza = value; }
         }
         string _siglaProvResidenza;
 
+        string _localitaResidenza;
+
+        [DataMember]
+        public string LocalitaResidenza
+        {
+            get { return _localitaResidenza; }
+            set { _localitaResidenza = value; }
+        }
 
         [DataMember]
         public string SiglaProvResidenza
@@ -157,14 +174,21 @@ namespace WcfService.DAL
             get { return _telefono; }
             set { _telefono = value; }
         }
-        DateTime _dataCessazione;
+        DateTime? _dataCessazione;
 
 
         [DataMember]
-        public DateTime DataCessazione
+        public DateTime? DataCessazione
         {
             get { return _dataCessazione; }
             set { _dataCessazione = value; }
         }
+
+
+        [DataMember]
+        public string Ente { get; set; }
+        
+        [DataMember]
+        public string SecondoNome { get; set; }
     }
 }

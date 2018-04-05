@@ -44,20 +44,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AssicuratiService.cs" />
+    <Compile Include="Business\AssicuratiService.cs" />
+    <Compile Include="Business\EnteService.cs" />
     <Compile Include="IServiceAsdep.cs" />
-    <Compile Include="Model\AssicuratiBL.cs" />
+    <Compile Include="Model\EnteBL.cs" />
+    <Compile Include="Model\SoggettiImportatiAppoggioBL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Asdep.GestioneAnagraficeDAL\Asdep.GestioneAnagraficeDAL.csproj">
-      <Project>{1647a8fb-e675-49de-a7a5-354a2c004bd5}</Project>
-      <Name>Asdep.GestioneAnagraficeDAL</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AmministrazioneAsdep\AmministrazioneAsdep.csproj">
+      <Project>{6ec09edf-e363-4250-acfa-8adfbb5da70c}</Project>
+      <Name>AmministrazioneAsdep</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

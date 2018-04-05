@@ -1,6 +1,4 @@
-﻿using AsdepGestioneAnagraficheBLL;
-using AsdepGestioneAnagraficheBLL.Model;
-using MvcWebApp.CustomCode;
+﻿using MvcWebApp.CustomCode;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,32 +13,8 @@ namespace MvcWebApp.Controllers
         {
             ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
 
-            IServiceAsdep<AssicuratiBL> inter = new AssicuratiService();
-            List<AssicuratiBL> list =  inter.GetAll();
 
-            //AssicuratiBL assicurato = new AssicuratiBL
-            //{
-            //    IdAssicurato = "xxx",
-            //    Cognome = "xxx",
-            //    Nome = "xxx",
-            //    CodiceFiscaleAssicurato = "xxx",
-            //    CodiceFiscaleCapoNucleo = "xxx",
-            //    CodiceLegame = "1",
-            //    DataEffetto = DateTime.Now,
-            //    DataInserimento = DateTime.Now,
-            //    DataUltimoAggiornamento = DateTime.Now,
-            //    Convenzione = "xxx",
-            //    Categoria = "xxx",
-            //    NumeroPolizza = "xxx",
-            //    DataCessazione = DateTime.Now,
-            //    CodiceEnte="1",
-            //    Matricola="xxx",
-            //    LuogoNascitaAssicurato="xxx",
-            //    Progressivo="xxx"
-            //};
-
-            //bool aggiunto = inter.AddAssicuratoBL(assicurato);
-            //Helper hp = new Helper();
+            Helper hp = new Helper();
             //hp.InitializeWorkbook(@"Book1.xls");
             //hp.ConvertToDataTable();
 
