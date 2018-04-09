@@ -180,5 +180,53 @@ namespace WcfService
             catch { }
             return _anagrafiche;
         }
+
+        public int DeleteAnagraficaByEnte(string ente)
+        {
+            int result = -1;
+            try 
+            {
+                List<Anagrafica> anagrafiche = GetSoggettiByEnte(ente);
+                List<SoggettiImportatiAppoggioBL> _soggettiBL = new List<SoggettiImportatiAppoggioBL>();
+                foreach (Anagrafica _soggBL in anagrafiche)
+                {
+                    SoggettiImportatiAppoggioBL _soggetto = new SoggettiImportatiAppoggioBL
+                    {
+                        #region _soggetto
+                        CapResidenza = _soggBL.CapResidenza,
+                        Categoria = _soggBL.Categoria,
+                        CodiceFiscaleAssicurato = _soggBL.CodiceFiscaleAssicurato,
+                        CodiceFiscaleCapoNucleo = _soggBL.CodiceFiscaleCapoNucleo,
+                        Cognome = _soggBL.Cognome,
+                        Convenzione = _soggBL.Convenzione,
+                        DataCessazione = _soggBL.DataCessazione,
+                        DataNascitaAssicurato = _soggBL.DataNascitaAssicurato,
+                        Effetto = _soggBL.Effetto,
+                        Email = _soggBL.Email,
+                        Ente = _soggBL.Ente,
+                        EsclusioniPregresse = _soggBL.Esclusioni,
+                        Iban = _soggBL.Iban,
+                        IndirizzoResidenza = _soggBL.IndirizzoResidenza,
+                        IdSoggetto = _soggBL.IdSoggetto,
+                        LegameNucleo = _soggBL.LegameNucleo,
+                        LocalitaResidenza = _soggBL.LocalitaResidenza,
+                        LuogoNascitaAssicurato = _soggBL.LuogoNascitaAssicurato,
+                        Nome = _soggBL.Nome,
+                        NumeroPolizza = _soggBL.NumeroPolizza,
+                        SecondoNome = _soggBL.SecondoNome,
+                        SiglaProvResidenza = _soggBL.SiglaProvResidenza,
+                        Telefono = _soggBL.Telefono
+                        #endregion
+                    };
+                    _soggettiBL.Add(_soggetto);
+                }
+
+                AssicuratiService serviceBL = new AssicuratiService();
+                result = serviceBL.DeleteMany(_soggettiBL);
+
+            }
+            catch { }
+            return result;
+        }
     }
 }

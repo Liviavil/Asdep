@@ -89,33 +89,31 @@ namespace MvcWebApp.CustomCode
 
             dt.Rows.RemoveAt(0);
             dataSet1.Tables.Add(dt);
+            
             InsertIntoTableAppoggio(dataSet1);
+            
         }
 
         public int InsertIntoTableAppoggio(DataSet dataset)
         {
             int result = -1;
-
+            List<Anagrafica> anagrafiche = new List<Anagrafica>();
+            List<Anagrafica> toDelete = new List<Anagrafica>();
             try
             {
-                List<Anagrafica> anagrafiche = new List<Anagrafica>();
                 DataTableCollection tables = dataset.Tables;
                 anagrafiche = Extensions.ToList<Anagrafica>(dataset.Tables[0]);
-
-                Uri baseAddress = new Uri(ConfigurationManager.AppSettings["ASDEP_WCF"].ToString());
-                WebServiceHost host = new WebServiceHost(typeof(AsdepWcf), baseAddress);
-                host.Open();
-
-                WebChannelFactory<IAsdepWcf> cf = new WebChannelFactory<IAsdepWcf>(baseAddress);
-                IAsdepWcf channel = cf.CreateChannel();
-                //int s;
-
-                //s = channel.InsertSoggettiAppoggio(anagrafiche);
-
+                string ente = anagrafiche.Select(x => x.Ente).FirstOrDefault();
+                int s;
+                using (HelperService service =  new HelperService ())
+                {
+                    s = service.channel.DeleteAnagraficaByEnte(ente);
+                    s = service.channel.InsertSoggettiAppoggio(anagrafiche);
+                }
             }
 
             catch { }
-
+            
             return result;
         }
     }

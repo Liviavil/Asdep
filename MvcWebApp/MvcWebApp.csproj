@@ -359,6 +359,7 @@
     <Content Include="Views\GestioneAnagrafica\InLavorazione.cshtml" />
     <Content Include="Views\GestioneAnagrafica\Index.cshtml" />
     <Content Include="Views\GestioneAnagrafica\RisultatiSoggettiImportati.cshtml" />
+    <Content Include="Views\GestioneAnagrafica\Carica.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

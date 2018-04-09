@@ -94,5 +94,16 @@ namespace AsdepGestioneAnagraficheBLL.Business
             catch { }
             return _entiBL;
         }
+
+
+        public int DeleteOne(EnteBL obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int DeleteMany(List<EnteBL> objs)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

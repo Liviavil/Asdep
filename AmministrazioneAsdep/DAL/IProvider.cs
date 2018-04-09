@@ -10,7 +10,7 @@ namespace AmministrazioneAsdep.DAL
     {
         List<T> GetAll(AmministrazioneAsdepEntities db);
 
-        T SelectById(AmministrazioneAsdepEntities db, string id);
+        T SelectById(AmministrazioneAsdepEntities db, long id);
 
         List<T> Find(AmministrazioneAsdepEntities db, T obj);
 
@@ -19,6 +19,10 @@ namespace AmministrazioneAsdep.DAL
         int AddMany(AmministrazioneAsdepEntities db, List<T> objs);
 
         int Update(AmministrazioneAsdepEntities db, T obj);
+
+        int DeleteOne(AmministrazioneAsdepEntities db, T obj);
+
+        int DeleteMany(AmministrazioneAsdepEntities db, List<T> objs);
 
     }
 }

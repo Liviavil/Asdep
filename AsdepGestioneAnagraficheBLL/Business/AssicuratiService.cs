@@ -170,5 +170,85 @@ namespace AsdepGestioneAnagraficheBLL.Business
 
             return _soggettiBL;
         }
+
+
+        public int DeleteOne(SoggettiImportatiAppoggioBL assicurato)
+        {
+            int result = -1;
+            try
+            {
+                SoggettiImportAppoggio _assicurato = new SoggettiImportAppoggio
+                {
+                    IdSoggetto = assicurato.IdSoggetto,
+                    Cognome = assicurato.Cognome,
+                    Nome = assicurato.Nome,
+                    CodiceFiscaleAssicurato = assicurato.CodiceFiscaleAssicurato,
+                    CodiceFiscaleCapoNucleo = assicurato.CodiceFiscaleCapoNucleo,
+                    Ente = assicurato.Ente,
+                    LegameNucleo = assicurato.LegameNucleo,
+                    Effetto = assicurato.Effetto,
+                    Convenzione = assicurato.Convenzione,
+                    Categoria = assicurato.Categoria,
+                    NumeroPolizza = assicurato.NumeroPolizza,
+                    DataCessazione = assicurato.DataCessazione,
+                    LuogoNascitaAssicurato = assicurato.LuogoNascitaAssicurato
+                };
+
+                using (db = new AmministrazioneAsdepEntities())
+                {
+                    result = provider.DeleteOne(db, _assicurato);
+                }
+            }
+            catch (Exception ex)
+            {
+                result = -1;
+            }
+            return result;
+        }
+
+        public int DeleteMany(List<SoggettiImportatiAppoggioBL> objs)
+        {
+            int result = -1;
+            List<SoggettiImportAppoggio> _soggettiOrigin = new List<SoggettiImportAppoggio>();
+
+            foreach (SoggettiImportatiAppoggioBL _soggetto in objs)
+            {
+                SoggettiImportAppoggio _soggBL = new SoggettiImportAppoggio
+                {
+                    #region _soggBL
+                    IdSoggetto = _soggetto.IdSoggetto,
+                    IndirizzoResidenza = _soggetto.IndirizzoResidenza,
+                    CapResidenza = _soggetto.CapResidenza,
+                    Categoria = _soggetto.Categoria,
+                    CodiceFiscaleAssicurato = _soggetto.CodiceFiscaleAssicurato,
+                    CodiceFiscaleCapoNucleo = _soggetto.CodiceFiscaleCapoNucleo,
+                    Cognome = _soggetto.Cognome,
+                    Convenzione = _soggetto.Convenzione,
+                    DataCessazione = _soggetto.DataCessazione,
+                    DataNascitaAssicurato = _soggetto.DataNascitaAssicurato,
+                    Effetto = _soggetto.Effetto,
+                    Email = _soggetto.Email,
+                    Ente = _soggetto.Ente,
+                    EsclusioniPregresse = _soggetto.EsclusioniPregresse,
+                    Iban = _soggetto.Iban,
+                    LegameNucleo = _soggetto.LegameNucleo,
+                    LocalitaResidenza = _soggetto.LocalitaResidenza,
+                    LuogoNascitaAssicurato = _soggetto.LuogoNascitaAssicurato,
+                    Nome = _soggetto.Nome,
+                    NumeroPolizza = _soggetto.NumeroPolizza,
+                    SecondoNome = _soggetto.SecondoNome,
+                    SiglaProvResidenza = _soggetto.SiglaProvResidenza,
+                    Telefono = _soggetto.Telefono
+                    #endregion
+                };
+                _soggettiOrigin.Add(_soggBL);
+            }
+            using (db = new AmministrazioneAsdepEntities())
+            {
+                result = provider.DeleteMany(db, _soggettiOrigin);
+            }
+
+            return result;
+        }
     }
 }

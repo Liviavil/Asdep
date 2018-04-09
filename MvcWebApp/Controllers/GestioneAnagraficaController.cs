@@ -7,30 +7,53 @@ using System.Web.Mvc;
 using MvcWebApp.CustomCode;
 using System.ServiceModel.Web;
 using WcfService;
+using System.IO;
 
 namespace MvcWebApp.Controllers
 {
     public class GestioneAnagraficaController : Controller
     {
-        //
-        // GET: /InLavorazione/
 
-        public ActionResult Index()
+        public ActionResult Carica(HttpPostedFileBase file)
         {
+            if (file != null && file.ContentLength > 0)
+                try
+                {
+                    string path = //Path.Combine(Server.MapPath("~/"),
+                                               Path.GetFileName(file.FileName);
+                    Helper hp = new Helper();
+                    hp.InitializeWorkbook(path);
+                    hp.ConvertToDataTable();
+
+                    //SoggImportAppoggio soggetto = new SoggImportAppoggio();
+                    //soggetto.selectedId = ente;
+                    //RedirectToAction("RisultatiSoggettiImportati", soggetto);
+
+                    //file.SaveAs(path);
+                    ViewBag.Message = "File caricato con successo";
+                }
+                catch (Exception ex)
+                {
+                    ViewBag.Message = "ERROR:" + ex.Message.ToString();
+                }
+            else
+            {
+                ViewBag.Message = "You have not specified a file.";
+            }
             return View();
         }
 
         public ActionResult InLavorazione()
         {
             SoggImportAppoggio soggetto = new SoggImportAppoggio();
-            
+
             //Impostare i risultati di ricerca come ancora non trovati è il primo caricamento
             SoggImportAppoggioSearchResults results = new SoggImportAppoggioSearchResults();
             results.CountResults = 0;
 
 
             //Utilizzo del servizio wcf per recuperare i dati dal db
-            using (HelperService help = new HelperService ())
+            using (HelperService help = new HelperService())
             {
                 List<WcfService.DAL.Ente> enti = help.channel.GetAllEnti();
 
@@ -44,25 +67,25 @@ namespace MvcWebApp.Controllers
                     SelectListItem listItem = new SelectListItem() { Value = ente.CodiceEnte/*ente.IdEnte.ToString()*/, Text = ente.CodiceEnte };
                     list.Add(listItem);
                 }
-                
+
                 soggetto.ListItemEnti = new SelectList(list, "Value", "Text", 0);
                 soggetto.SearchResults = results;
-                
+
             }
 
-            return View(soggetto); 
+            return View(soggetto);
         }
 
-        public ActionResult RisultatiSoggettiImportati(SoggImportAppoggio modello) 
+        public ActionResult RisultatiSoggettiImportati(SoggImportAppoggio modello)
         {
             Search<SoggImportAppoggio> results = new SoggImportAppoggioSearchResults();
             List<SoggImportAppoggio> soggetti = new List<SoggImportAppoggio>();
 
-            using (HelperService help = new HelperService ())
+            using (HelperService help = new HelperService())
             {
                 List<WcfService.DAL.Anagrafica> _anagrafiche = help.channel.GetSoggettiByEnte(modello.selectedId.ToString());
 
-                foreach (WcfService.DAL.Anagrafica _anag in _anagrafiche) 
+                foreach (WcfService.DAL.Anagrafica _anag in _anagrafiche)
                 {
                     SoggImportAppoggio _sia = new SoggImportAppoggio
                     {
@@ -97,7 +120,7 @@ namespace MvcWebApp.Controllers
                 }
                 results.CountResults = _anagrafiche.Count();
             }
-            
+
             results.Results = soggetti;
             //ViewBag.Soggetti = soggetti;
             Session["Soggetti"] = soggetti;

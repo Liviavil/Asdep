@@ -14,9 +14,7 @@ namespace MvcWebApp.Controllers
             ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
 
 
-            Helper hp = new Helper();
-            //hp.InitializeWorkbook(@"Book1.xls");
-            //hp.ConvertToDataTable();
+           
 
             return View();
         }

@@ -12,6 +12,8 @@ namespace AsdepGestioneAnagraficheBLL
         int AddOne(T obj);
         int AddMany(List<T> obj);
         List<T> GetAll();
+        int DeleteOne(T obj);
+        int DeleteMany(List<T> objs);
     }
 }
 

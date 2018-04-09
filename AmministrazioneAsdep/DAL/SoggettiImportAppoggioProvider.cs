@@ -8,15 +8,15 @@ namespace AmministrazioneAsdep.DAL
 {
     public class SoggettiImportAppoggioProvider : IProvider<SoggettiImportAppoggio>
     {
-        public List<SoggettiImportAppoggio> GetByEnte(AmministrazioneAsdepEntities db, string nomeEnte) 
+        public List<SoggettiImportAppoggio> GetByEnte(AmministrazioneAsdepEntities db, string nomeEnte)
         {
             List<SoggettiImportAppoggio> assicurati = new List<SoggettiImportAppoggio>();
 
-            try 
+            try
             {
                 assicurati = (from table in db.SoggettiImportAppoggio where table.Ente.Equals(nomeEnte) select table).ToList();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
             }
 
@@ -34,9 +34,15 @@ namespace AmministrazioneAsdep.DAL
             return _assicurati;
         }
 
-        public SoggettiImportAppoggio SelectById(AmministrazioneAsdepEntities db, string id)
+        public SoggettiImportAppoggio SelectById(AmministrazioneAsdepEntities db, long id)
         {
-            throw new NotImplementedException();
+            SoggettiImportAppoggio _sogg = new SoggettiImportAppoggio();
+            try 
+            {
+                _sogg = (from table in db.SoggettiImportAppoggio where table.IdSoggetto.Equals(id) select table).FirstOrDefault();
+            }
+            catch { }
+            return _sogg;
         }
 
         public List<SoggettiImportAppoggio> Find(AmministrazioneAsdepEntities db, SoggettiImportAppoggio obj)
@@ -79,6 +85,34 @@ namespace AmministrazioneAsdep.DAL
         public int Update(AmministrazioneAsdepEntities db, SoggettiImportAppoggio obj)
         {
             throw new NotImplementedException();
+        }
+
+        public int DeleteOne(AmministrazioneAsdepEntities db, SoggettiImportAppoggio obj)
+        {
+            int result = -1;
+            try
+            {
+                db.SoggettiImportAppoggio.Remove(obj);
+                result = db.SaveChanges();
+            }
+            catch { }
+            return result;
+        }
+
+        public int DeleteMany(AmministrazioneAsdepEntities db, List<SoggettiImportAppoggio> objs)
+        {
+            int result = -1;
+            try
+            {
+                foreach (SoggettiImportAppoggio _ass in objs)
+                {
+                    SoggettiImportAppoggio _s = SelectById(db,_ass.IdSoggetto);
+                    db.SoggettiImportAppoggio.Remove(_s);
+                    result = db.SaveChanges();
+                }
+            }
+            catch { }
+            return result;
         }
     }
 }

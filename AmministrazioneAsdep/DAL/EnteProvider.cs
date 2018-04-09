@@ -30,7 +30,7 @@ namespace AmministrazioneAsdep.DAL
             return _enti;
         }
 
-        public Ente SelectById(AmministrazioneAsdepEntities db, string id)
+        public Ente SelectById(AmministrazioneAsdepEntities db, long id)
         {
             Ente _ente = new Ente();
             try
@@ -57,6 +57,17 @@ namespace AmministrazioneAsdep.DAL
         }
 
         public int Update(AmministrazioneAsdepEntities db, Ente obj)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public int DeleteOne(AmministrazioneAsdepEntities db, Ente obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int DeleteMany(AmministrazioneAsdepEntities db, List<Ente> objs)
         {
             throw new NotImplementedException();
         }
