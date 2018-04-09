@@ -8,14 +8,15 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace AsdepGestioneAnagraficheBLL.Business
-{
+{    
     public class AssicuratiService : IServiceAsdep<SoggettiImportatiAppoggioBL>
     {
         private AmministrazioneAsdepEntities db;
+        private SoggettiImportAppoggioProvider provider = new SoggettiImportAppoggioProvider();
 
         public AssicuratiService()
         {
-            db = new AmministrazioneAsdepEntities();
+            provider = new SoggettiImportAppoggioProvider();
         }
 
         public List<SoggettiImportatiAppoggioBL> GetAll()
@@ -23,9 +24,9 @@ namespace AsdepGestioneAnagraficheBLL.Business
             List<SoggettiImportatiAppoggioBL> lst = new List<SoggettiImportatiAppoggioBL>();
             try
             {
-                using (db)
+                using (db = new AmministrazioneAsdepEntities())
                 {
-                    List<SoggettiImportAppoggio> _assicuratiDal = SoggettiImportAppoggioProvider.GetAllAssicurati(db);
+                    List<SoggettiImportAppoggio> _assicuratiDal = provider.GetAll(db);
                     if (_assicuratiDal.Any())
                     {
                         foreach (SoggettiImportAppoggio _as in _assicuratiDal)
@@ -52,6 +53,7 @@ namespace AsdepGestioneAnagraficheBLL.Business
                     foreach (SoggettiImportatiAppoggioBL _assBL in _assicurati)
                     {
                         SoggettiImportAppoggio _sogg = new SoggettiImportAppoggio {
+                            #region _sogg
                             IndirizzoResidenza = _assBL.IndirizzoResidenza,
                             CapResidenza = _assBL.CapResidenza,
                             Categoria = _assBL.Categoria,
@@ -73,15 +75,16 @@ namespace AsdepGestioneAnagraficheBLL.Business
                             NumeroPolizza = _assBL.NumeroPolizza,
                             SecondoNome = _assBL.SecondoNome,
                             SiglaProvResidenza = _assBL.SiglaProvResidenza,
-                            Telefono = _assBL.Telefono
+                            Telefono = _assBL.Telefono 
+                            #endregion
                         };
                         assToAdd.Add(_sogg);
                     }
                 }
-                using (db)
+                using (db = new AmministrazioneAsdepEntities())
                 {
 
-                    result = SoggettiImportAppoggioProvider.AddAssicurati(db, assToAdd);
+                    result = provider.AddMany(db, assToAdd);
                 }
             }
             catch (Exception ex) { result = -1; }
@@ -110,9 +113,9 @@ namespace AsdepGestioneAnagraficheBLL.Business
                     LuogoNascitaAssicurato = assicurato.LuogoNascitaAssicurato
                 };
 
-                using (db)
+                using (db = new AmministrazioneAsdepEntities())
                 {
-                    result = SoggettiImportAppoggioProvider.AddAssicurato(db, _assicurato);
+                    result = provider.AddOne(db, _assicurato);
                 }
             }
             catch (Exception ex)
@@ -120,6 +123,52 @@ namespace AsdepGestioneAnagraficheBLL.Business
                 result = -1;
             }
             return result;
+        }
+
+        public List<SoggettiImportatiAppoggioBL> GetByEnte(string ente) 
+        {
+            List<SoggettiImportatiAppoggioBL> _soggettiBL = new List<SoggettiImportatiAppoggioBL>();
+            List<SoggettiImportAppoggio> _soggettiOrigin = new List<SoggettiImportAppoggio>();
+
+            using (db = new AmministrazioneAsdepEntities ())
+            {
+                _soggettiOrigin = provider.GetByEnte(db,ente);
+            }
+
+            foreach (SoggettiImportAppoggio _soggetto in _soggettiOrigin)
+            {
+                SoggettiImportatiAppoggioBL _soggBL = new SoggettiImportatiAppoggioBL
+                {
+                    #region _soggBL
+                    IdSoggetto = _soggetto.IdSoggetto,
+                    IndirizzoResidenza = _soggetto.IndirizzoResidenza,
+                    CapResidenza = _soggetto.CapResidenza,
+                    Categoria = _soggetto.Categoria,
+                    CodiceFiscaleAssicurato = _soggetto.CodiceFiscaleAssicurato,
+                    CodiceFiscaleCapoNucleo = _soggetto.CodiceFiscaleCapoNucleo,
+                    Cognome = _soggetto.Cognome,
+                    Convenzione = _soggetto.Convenzione,
+                    DataCessazione = _soggetto.DataCessazione,
+                    DataNascitaAssicurato = _soggetto.DataNascitaAssicurato,
+                    Effetto = _soggetto.Effetto,
+                    Email = _soggetto.Email,
+                    Ente = _soggetto.Ente,
+                    EsclusioniPregresse = _soggetto.EsclusioniPregresse,
+                    Iban = _soggetto.Iban,
+                    LegameNucleo = _soggetto.LegameNucleo,
+                    LocalitaResidenza = _soggetto.LocalitaResidenza,
+                    LuogoNascitaAssicurato = _soggetto.LuogoNascitaAssicurato,
+                    Nome = _soggetto.Nome,
+                    NumeroPolizza = _soggetto.NumeroPolizza,
+                    SecondoNome = _soggetto.SecondoNome,
+                    SiglaProvResidenza = _soggetto.SiglaProvResidenza,
+                    Telefono = _soggetto.Telefono 
+                    #endregion
+                };
+                _soggettiBL.Add(_soggBL);
+            }
+
+            return _soggettiBL;
         }
     }
 }

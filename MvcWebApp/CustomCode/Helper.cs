@@ -12,6 +12,7 @@ using System.Web;
 using System.ServiceModel.Web;
 using WcfService.DAL;
 using WcfService;
+using System.Configuration;
 
 namespace MvcWebApp.CustomCode
 {
@@ -101,7 +102,7 @@ namespace MvcWebApp.CustomCode
                 DataTableCollection tables = dataset.Tables;
                 anagrafiche = Extensions.ToList<Anagrafica>(dataset.Tables[0]);
 
-                Uri baseAddress = new Uri("http://localhost:49672/AsdepWcf.svc");
+                Uri baseAddress = new Uri(ConfigurationManager.AppSettings["ASDEP_WCF"].ToString());
                 WebServiceHost host = new WebServiceHost(typeof(AsdepWcf), baseAddress);
                 host.Open();
 
@@ -121,7 +122,7 @@ namespace MvcWebApp.CustomCode
 
     public class HelperService : IDisposable
     {
-        Uri baseAddress = new Uri("http://localhost:49672/AsdepWcf.svc");
+        Uri baseAddress = new Uri(ConfigurationManager.AppSettings["ASDEP_WCF"].ToString());
         WebServiceHost host;
         public IAsdepWcf channel { get; set; }
 

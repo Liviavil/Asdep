@@ -23,7 +23,6 @@ namespace WcfService
             throw new NotImplementedException();
         }
 
-
         bool IAsdepWcf.ValidaAnagrafica()
         {
             throw new NotImplementedException();
@@ -34,12 +33,10 @@ namespace WcfService
             throw new NotImplementedException();
         }
 
-
         public int CaricaAnagrafica(Anagrafica anagrafica)
         {
             throw new NotImplementedException();
         }
-
 
         public Anagrafica GetSoggettiImportAnagrafica()
         {
@@ -57,7 +54,6 @@ namespace WcfService
             return result;
         }
 
-
         public int InsertSoggettiAppoggio(List<Anagrafica> anagrafiche)
         {
             int result = -1;
@@ -70,6 +66,7 @@ namespace WcfService
                     {
                         SoggettiImportatiAppoggioBL soggettoAppoggio = new SoggettiImportatiAppoggioBL
                         {
+                            #region soggettoAppoggio
                             CapResidenza = an.CapResidenza,
                             Categoria = an.Categoria,
                             CodiceFiscaleAssicurato = an.CodiceFiscaleAssicurato,
@@ -91,7 +88,8 @@ namespace WcfService
                             NumeroPolizza = an.NumeroPolizza,
                             SecondoNome = an.SecondoNome,
                             SiglaProvResidenza = an.SiglaProvResidenza,
-                            Telefono = an.Telefono
+                            Telefono = an.Telefono 
+                            #endregion
                         };
                         soggetti.Add(soggettoAppoggio);
                     }
@@ -102,7 +100,6 @@ namespace WcfService
             catch (Exception ex) { }
             return result;
         }
-
 
         public List<DAL.Ente> GetAllEnti()
         {
@@ -117,25 +114,71 @@ namespace WcfService
                 {
                     WcfService.DAL.Ente _e = new DAL.Ente 
                     {
+                        #region _e
                         IdEnte = _ente.IdEnte,
                         CodAppl = _ente.CodAppl,
                         CodiceEnte = _ente.CodiceEnte,
                         CodiceFiscale = _ente.CodiceFiscale,
                         CodiceUtente = _ente.CodiceUtente,
-                        ContribuzioneEnte = null,
                         DataAggiornamento = _ente.DataAggiornamento,
                         DataFine = _ente.DataFine,
                         DataInizio = _ente.DataInizio,
-                        EnteAppartenenza = null,
                         Progressivo = _ente.Progressivo,
-                        RagioneSociale = _ente.RagioneSociale,
-                        TipologiaEnte = null
+                        RagioneSociale = _ente.RagioneSociale 
+                        #endregion
                     };
                     _enti.Add(_e);
                 }
             }
             catch (Exception ex) { }
             return _enti;
+        }
+
+        public List<Anagrafica> GetSoggettiByEnte(string ente)
+        {
+            List<Anagrafica> _anagrafiche = new List<Anagrafica>();
+            List<SoggettiImportatiAppoggioBL> _soggettiFromBL = new List<SoggettiImportatiAppoggioBL>();
+            try 
+            {
+                AssicuratiService serviceBL = new AssicuratiService();
+                _soggettiFromBL = serviceBL.GetByEnte(ente);
+
+                foreach(SoggettiImportatiAppoggioBL _soggBL in _soggettiFromBL)
+                {
+                    Anagrafica _soggetto = new Anagrafica 
+                    {
+                        #region _soggetto
+                        CapResidenza = _soggBL.CapResidenza,
+                        Categoria = _soggBL.Categoria,
+                        CodiceFiscaleAssicurato = _soggBL.CodiceFiscaleAssicurato,
+                        CodiceFiscaleCapoNucleo = _soggBL.CodiceFiscaleCapoNucleo,
+                        Cognome = _soggBL.Cognome,
+                        Convenzione = _soggBL.Convenzione,
+                        DataCessazione = _soggBL.DataCessazione,
+                        DataNascitaAssicurato = _soggBL.DataNascitaAssicurato,
+                        Effetto = _soggBL.Effetto,
+                        Email = _soggBL.Email,
+                        Ente = _soggBL.Ente,
+                        Esclusioni = _soggBL.EsclusioniPregresse,
+                        Iban = _soggBL.Iban,
+                        IndirizzoResidenza = _soggBL.IndirizzoResidenza,
+                        IdSoggetto = _soggBL.IdSoggetto,
+                        LegameNucleo = _soggBL.LegameNucleo,
+                        LocalitaResidenza = _soggBL.LocalitaResidenza,
+                        LuogoNascitaAssicurato = _soggBL.LuogoNascitaAssicurato,
+                        Nome = _soggBL.Nome,
+                        NumeroPolizza = _soggBL.NumeroPolizza,
+                        SecondoNome = _soggBL.SecondoNome,
+                        SiglaProvResidenza = _soggBL.SiglaProvResidenza,
+                        Telefono = _soggBL.Telefono 
+                        #endregion
+                    };
+
+                    _anagrafiche.Add(_soggetto);
+                }
+            }
+            catch { }
+            return _anagrafiche;
         }
     }
 }

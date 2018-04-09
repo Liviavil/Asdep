@@ -6,23 +6,50 @@ using System.Threading.Tasks;
 
 namespace AmministrazioneAsdep.DAL
 {
-    public class SoggettiImportAppoggioProvider
+    public class SoggettiImportAppoggioProvider : IProvider<SoggettiImportAppoggio>
     {
+        public List<SoggettiImportAppoggio> GetByEnte(AmministrazioneAsdepEntities db, string nomeEnte) 
+        {
+            List<SoggettiImportAppoggio> assicurati = new List<SoggettiImportAppoggio>();
 
-        public static List<SoggettiImportAppoggio> GetAllAssicurati(AmministrazioneAsdepEntities db)
+            try 
+            {
+                assicurati = (from table in db.SoggettiImportAppoggio where table.Ente.Equals(nomeEnte) select table).ToList();
+            }
+            catch(Exception ex)
+            {
+            }
+
+            return assicurati;
+        }
+
+        public List<SoggettiImportAppoggio> GetAll(AmministrazioneAsdepEntities db)
         {
             List<SoggettiImportAppoggio> _assicurati = new List<SoggettiImportAppoggio>();
-            _assicurati = (from table in db.SoggettiImportAppoggio select table).ToList();
-
+            try
+            {
+                _assicurati = (from table in db.SoggettiImportAppoggio select table).ToList();
+            }
+            catch { }
             return _assicurati;
         }
 
-        public static int AddAssicurato(AmministrazioneAsdepEntities db, SoggettiImportAppoggio assicurato)
+        public SoggettiImportAppoggio SelectById(AmministrazioneAsdepEntities db, string id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<SoggettiImportAppoggio> Find(AmministrazioneAsdepEntities db, SoggettiImportAppoggio obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int AddOne(AmministrazioneAsdepEntities db, SoggettiImportAppoggio obb)
         {
             int result = -1;
             try
             {
-                db.SoggettiImportAppoggio.Add(assicurato);
+                db.SoggettiImportAppoggio.Add(obb);
                 result = db.SaveChanges();
 
                 return result;
@@ -32,12 +59,13 @@ namespace AmministrazioneAsdep.DAL
                 return -1;
             }
         }
-        public static int AddAssicurati(AmministrazioneAsdepEntities db, List<SoggettiImportAppoggio> assicurati)
+
+        public int AddMany(AmministrazioneAsdepEntities db, List<SoggettiImportAppoggio> objs)
         {
             int result = -1;
             try
             {
-                foreach (SoggettiImportAppoggio _ass in assicurati)
+                foreach (SoggettiImportAppoggio _ass in objs)
                 {
                     db.SoggettiImportAppoggio.Add(_ass);
                     result = db.SaveChanges();
@@ -48,5 +76,9 @@ namespace AmministrazioneAsdep.DAL
             catch (Exception ex) { return -1; }
         }
 
+        public int Update(AmministrazioneAsdepEntities db, SoggettiImportAppoggio obj)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

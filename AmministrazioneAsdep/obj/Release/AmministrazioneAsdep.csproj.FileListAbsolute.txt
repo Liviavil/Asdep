@@ -1,0 +1,8 @@
+C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\AmministrazioneAsdep\bin\Release\AmministrazioneAsdep.dll.config
+C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\AmministrazioneAsdep\bin\Release\AmministrazioneAsdep.dll
+C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\AmministrazioneAsdep\bin\Release\AmministrazioneAsdep.pdb
+C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\AmministrazioneAsdep\bin\Release\EntityFramework.dll
+C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\AmministrazioneAsdep\bin\Release\EntityFramework.xml
+C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\AmministrazioneAsdep\obj\Release\AmministrazioneAsdep.csprojResolveAssemblyReference.cache
+C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\AmministrazioneAsdep\obj\Release\AmministrazioneAsdep.dll
+C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\AmministrazioneAsdep\obj\Release\AmministrazioneAsdep.pdb

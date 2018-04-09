@@ -1,0 +1,276 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="AmministrazioneAsdepModelStoreContainer" CdmEntityContainer="AmministrazioneAsdepEntities">
+    <EntitySetMapping Name="Adesione">
+      <EntityTypeMapping TypeName="AmministrazioneAsdepModel.Adesione">
+        <MappingFragment StoreEntitySet="Adesione">
+          <ScalarProperty Name="CodAppl" ColumnName="CodAppl" />
+          <ScalarProperty Name="CodiceUtente" ColumnName="CodiceUtente" />
+          <ScalarProperty Name="DataAggiornamento" ColumnName="DataAggiornamento" />
+          <ScalarProperty Name="DataFine" ColumnName="DataFine" />
+          <ScalarProperty Name="DataInizio" ColumnName="DataInizio" />
+          <ScalarProperty Name="AnnoScadenza" ColumnName="AnnoScadenza" />
+          <ScalarProperty Name="AnnoDecorrenza" ColumnName="AnnoDecorrenza" />
+          <ScalarProperty Name="MeseScadenza" ColumnName="MeseScadenza" />
+          <ScalarProperty Name="MeseDecorrenza" ColumnName="MeseDecorrenza" />
+          <ScalarProperty Name="NumeroPratica" ColumnName="NumeroPratica" />
+          <ScalarProperty Name="StatoAdesione" ColumnName="StatoAdesione" />
+          <ScalarProperty Name="FlagPagamentoSoggetto" ColumnName="FlagPagamentoSoggetto" />
+          <ScalarProperty Name="FlagPagamentoEnte" ColumnName="FlagPagamentoEnte" />
+          <ScalarProperty Name="CodLegame" ColumnName="CodLegame" />
+          <ScalarProperty Name="CodTipoSoggetto" ColumnName="CodTipoSoggetto" />
+          <ScalarProperty Name="IdSoggetto" ColumnName="IdSoggetto" />
+          <ScalarProperty Name="IdCaponucleo" ColumnName="IdCaponucleo" />
+          <ScalarProperty Name="CodTipoAdesione" ColumnName="CodTipoAdesione" />
+          <ScalarProperty Name="IdAdesione" ColumnName="IdAdesione" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ContribuzioneEnte">
+      <EntityTypeMapping TypeName="AmministrazioneAsdepModel.ContribuzioneEnte">
+        <MappingFragment StoreEntitySet="ContribuzioneEnte">
+          <ScalarProperty Name="CodAppl" ColumnName="CodAppl" />
+          <ScalarProperty Name="CodiceUtente" ColumnName="CodiceUtente" />
+          <ScalarProperty Name="DataAggiornamento" ColumnName="DataAggiornamento" />
+          <ScalarProperty Name="DataFine" ColumnName="DataFine" />
+          <ScalarProperty Name="NumeroPolizza" ColumnName="NumeroPolizza" />
+          <ScalarProperty Name="ValoreAssolutoQuota" ColumnName="ValoreAssolutoQuota" />
+          <ScalarProperty Name="PercentualeQuota" ColumnName="PercentualeQuota" />
+          <ScalarProperty Name="DataInizioAdesione" ColumnName="DataInizioAdesione" />
+          <ScalarProperty Name="CodTipoAdesione" ColumnName="CodTipoAdesione" />
+          <ScalarProperty Name="IdEnte" ColumnName="IdEnte" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ente">
+      <EntityTypeMapping TypeName="AmministrazioneAsdepModel.Ente">
+        <MappingFragment StoreEntitySet="Ente">
+          <ScalarProperty Name="CodAppl" ColumnName="CodAppl" />
+          <ScalarProperty Name="CodiceUtente" ColumnName="CodiceUtente" />
+          <ScalarProperty Name="DataAggiornamento" ColumnName="DataAggiornamento" />
+          <ScalarProperty Name="DataFine" ColumnName="DataFine" />
+          <ScalarProperty Name="DataInizio" ColumnName="DataInizio" />
+          <ScalarProperty Name="CodiceEnte" ColumnName="CodiceEnte" />
+          <ScalarProperty Name="RagioneSociale" ColumnName="RagioneSociale" />
+          <ScalarProperty Name="Progressivo" ColumnName="Progressivo" />
+          <ScalarProperty Name="CodiceFiscale" ColumnName="CodiceFiscale" />
+          <ScalarProperty Name="IdEnte" ColumnName="IdEnte" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EnteAppartenenza">
+      <EntityTypeMapping TypeName="AmministrazioneAsdepModel.EnteAppartenenza">
+        <MappingFragment StoreEntitySet="EnteAppartenenza">
+          <ScalarProperty Name="CodAppl" ColumnName="CodAppl" />
+          <ScalarProperty Name="CodiceUtente" ColumnName="CodiceUtente" />
+          <ScalarProperty Name="DataAggiornamento" ColumnName="DataAggiornamento" />
+          <ScalarProperty Name="DataFine" ColumnName="DataFine" />
+          <ScalarProperty Name="DataInizio" ColumnName="DataInizio" />
+          <ScalarProperty Name="IdSoggetto" ColumnName="IdSoggetto" />
+          <ScalarProperty Name="IdEnte" ColumnName="IdEnte" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ErroriIO">
+      <EntityTypeMapping TypeName="AmministrazioneAsdepModel.ErroriIO">
+        <MappingFragment StoreEntitySet="ErroriIO">
+          <ScalarProperty Name="CodAppl" ColumnName="CodAppl" />
+          <ScalarProperty Name="CodiceUtente" ColumnName="CodiceUtente" />
+          <ScalarProperty Name="DataAggiornamento" ColumnName="DataAggiornamento" />
+          <ScalarProperty Name="DataFine" ColumnName="DataFine" />
+          <ScalarProperty Name="DataInizio" ColumnName="DataInizio" />
+          <ScalarProperty Name="InputOutput" ColumnName="InputOutput" />
+          <ScalarProperty Name="Gravita" ColumnName="Gravita" />
+          <ScalarProperty Name="DescErrore" ColumnName="DescErrore" />
+          <ScalarProperty Name="CodTipoErrore" ColumnName="CodTipoErrore" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ModalitaPagamentoEnte">
+      <EntityTypeMapping TypeName="AmministrazioneAsdepModel.ModalitaPagamentoEnte">
+        <MappingFragment StoreEntitySet="ModalitaPagamentoEnte">
+          <ScalarProperty Name="ImportoRata" ColumnName="ImportoRata" />
+          <ScalarProperty Name="NumeroRate" ColumnName="NumeroRate" />
+          <ScalarProperty Name="Anno" ColumnName="Anno" />
+          <ScalarProperty Name="IdEnte" ColumnName="IdEnte" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SoggettiImportAppoggio">
+      <EntityTypeMapping TypeName="AmministrazioneAsdepModel.SoggettiImportAppoggio">
+        <MappingFragment StoreEntitySet="SoggettiImportAppoggio">
+          <ScalarProperty Name="DataCessazione" ColumnName="DataCessazione" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Iban" ColumnName="Iban" />
+          <ScalarProperty Name="CapResidenza" ColumnName="CapResidenza" />
+          <ScalarProperty Name="SiglaProvResidenza" ColumnName="SiglaProvResidenza" />
+          <ScalarProperty Name="LocalitaResidenza" ColumnName="LocalitaResidenza" />
+          <ScalarProperty Name="IndirizzoResidenza" ColumnName="IndirizzoResidenza" />
+          <ScalarProperty Name="Effetto" ColumnName="Effetto" />
+          <ScalarProperty Name="LegameNucleo" ColumnName="LegameNucleo" />
+          <ScalarProperty Name="DataNascitaAssicurato" ColumnName="DataNascitaAssicurato" />
+          <ScalarProperty Name="LuogoNascitaAssicurato" ColumnName="LuogoNascitaAssicurato" />
+          <ScalarProperty Name="CodiceFiscaleAssicurato" ColumnName="CodiceFiscaleAssicurato" />
+          <ScalarProperty Name="CodiceFiscaleCapoNucleo" ColumnName="CodiceFiscaleCapoNucleo" />
+          <ScalarProperty Name="SecondoNome" ColumnName="SecondoNome" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="Cognome" ColumnName="Cognome" />
+          <ScalarProperty Name="Ente" ColumnName="Ente" />
+          <ScalarProperty Name="NumeroPolizza" ColumnName="NumeroPolizza" />
+          <ScalarProperty Name="EsclusioniPregresse" ColumnName="EsclusioniPregresse" />
+          <ScalarProperty Name="Categoria" ColumnName="Categoria" />
+          <ScalarProperty Name="Convenzione" ColumnName="Convenzione" />
+          <ScalarProperty Name="IdSoggetto" ColumnName="IdSoggetto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Soggetto">
+      <EntityTypeMapping TypeName="AmministrazioneAsdepModel.Soggetto">
+        <MappingFragment StoreEntitySet="Soggetto">
+          <ScalarProperty Name="CodAppl" ColumnName="CodAppl" />
+          <ScalarProperty Name="CodiceUtente" ColumnName="CodiceUtente" />
+          <ScalarProperty Name="DataAggiornamento" ColumnName="DataAggiornamento" />
+          <ScalarProperty Name="DataFine" ColumnName="DataFine" />
+          <ScalarProperty Name="DataInizio" ColumnName="DataInizio" />
+          <ScalarProperty Name="FonteModifica" ColumnName="FonteModifica" />
+          <ScalarProperty Name="Fonte" ColumnName="Fonte" />
+          <ScalarProperty Name="StatoRecord" ColumnName="StatoRecord" />
+          <ScalarProperty Name="DataCessazione" ColumnName="DataCessazione" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="IBAN" ColumnName="IBAN" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="CapResidenza" ColumnName="CapResidenza" />
+          <ScalarProperty Name="SiglaProvinciaResidenza" ColumnName="SiglaProvinciaResidenza" />
+          <ScalarProperty Name="ComuneResidenza" ColumnName="ComuneResidenza" />
+          <ScalarProperty Name="IndirizzoResidenza" ColumnName="IndirizzoResidenza" />
+          <ScalarProperty Name="DataNascita" ColumnName="DataNascita" />
+          <ScalarProperty Name="Cognome" ColumnName="Cognome" />
+          <ScalarProperty Name="SecondoNome" ColumnName="SecondoNome" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="CodiceFiscale" ColumnName="CodiceFiscale" />
+          <ScalarProperty Name="IdSoggetto" ColumnName="IdSoggetto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="AmministrazioneAsdepModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="definition" ColumnName="definition" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_TariffarioAdesioniCollettive">
+      <EntityTypeMapping TypeName="AmministrazioneAsdepModel.T_TariffarioAdesioniCollettive">
+        <MappingFragment StoreEntitySet="T_TariffarioAdesioniCollettive">
+          <ScalarProperty Name="CodAppl" ColumnName="CodAppl" />
+          <ScalarProperty Name="CodiceUtente" ColumnName="CodiceUtente" />
+          <ScalarProperty Name="DataAggiornamento" ColumnName="DataAggiornamento" />
+          <ScalarProperty Name="DataFine" ColumnName="DataFine" />
+          <ScalarProperty Name="DataInizio" ColumnName="DataInizio" />
+          <ScalarProperty Name="CoperturaNucleoNonACarico" ColumnName="CoperturaNucleoNonACarico" />
+          <ScalarProperty Name="CoperturaNucleoACarico" ColumnName="CoperturaNucleoACarico" />
+          <ScalarProperty Name="QuotaProcapite" ColumnName="QuotaProcapite" />
+          <ScalarProperty Name="CodTipoAdesione" ColumnName="CodTipoAdesione" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_TariffarioAdesioniVolontarie">
+      <EntityTypeMapping TypeName="AmministrazioneAsdepModel.T_TariffarioAdesioniVolontarie">
+        <MappingFragment StoreEntitySet="T_TariffarioAdesioniVolontarie">
+          <ScalarProperty Name="CodAppl" ColumnName="CodAppl" />
+          <ScalarProperty Name="CodiceUtente" ColumnName="CodiceUtente" />
+          <ScalarProperty Name="DataAggiornamento" ColumnName="DataAggiornamento" />
+          <ScalarProperty Name="DataFine" ColumnName="DataFine" />
+          <ScalarProperty Name="QuotaProcapiteFNAC" ColumnName="QuotaProcapiteFNAC" />
+          <ScalarProperty Name="QuotaProcapiteFAC" ColumnName="QuotaProcapiteFAC" />
+          <ScalarProperty Name="CoperturaNucleoNonACarico" ColumnName="CoperturaNucleoNonACarico" />
+          <ScalarProperty Name="CoperturaNucleoACarico" ColumnName="CoperturaNucleoACarico" />
+          <ScalarProperty Name="QuotaProcapite" ColumnName="QuotaProcapite" />
+          <ScalarProperty Name="DataInizio" ColumnName="DataInizio" />
+          <ScalarProperty Name="CodTipoSoggetto" ColumnName="CodTipoSoggetto" />
+          <ScalarProperty Name="CodTipoAdesione" ColumnName="CodTipoAdesione" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_TipiLegame">
+      <EntityTypeMapping TypeName="AmministrazioneAsdepModel.T_TipiLegame">
+        <MappingFragment StoreEntitySet="T_TipiLegame">
+          <ScalarProperty Name="CodAppl" ColumnName="CodAppl" />
+          <ScalarProperty Name="CodiceUtente" ColumnName="CodiceUtente" />
+          <ScalarProperty Name="DataAggiornamento" ColumnName="DataAggiornamento" />
+          <ScalarProperty Name="DataFine" ColumnName="DataFine" />
+          <ScalarProperty Name="DataInizio" ColumnName="DataInizio" />
+          <ScalarProperty Name="EtaMassima" ColumnName="EtaMassima" />
+          <ScalarProperty Name="EtaMinima" ColumnName="EtaMinima" />
+          <ScalarProperty Name="CodTipoCaricoExport" ColumnName="CodTipoCaricoExport" />
+          <ScalarProperty Name="CodLegameExport" ColumnName="CodLegameExport" />
+          <ScalarProperty Name="CodLegameImport" ColumnName="CodLegameImport" />
+          <ScalarProperty Name="CodTipoCarico" ColumnName="CodTipoCarico" />
+          <ScalarProperty Name="FlagCarico" ColumnName="FlagCarico" />
+          <ScalarProperty Name="DescLegame" ColumnName="DescLegame" />
+          <ScalarProperty Name="CodLegame" ColumnName="CodLegame" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_TipoAdesione">
+      <EntityTypeMapping TypeName="AmministrazioneAsdepModel.T_TipoAdesione">
+        <MappingFragment StoreEntitySet="T_TipoAdesione">
+          <ScalarProperty Name="CodAppl" ColumnName="CodAppl" />
+          <ScalarProperty Name="CodiceUtente" ColumnName="CodiceUtente" />
+          <ScalarProperty Name="DataAggiornamento" ColumnName="DataAggiornamento" />
+          <ScalarProperty Name="DataFine" ColumnName="DataFine" />
+          <ScalarProperty Name="DataInizio" ColumnName="DataInizio" />
+          <ScalarProperty Name="RifAdesioneCollettiva" ColumnName="RifAdesioneCollettiva" />
+          <ScalarProperty Name="CategoriaAdesione" ColumnName="CategoriaAdesione" />
+          <ScalarProperty Name="DescTipoAdesione" ColumnName="DescTipoAdesione" />
+          <ScalarProperty Name="DescBreve" ColumnName="DescBreve" />
+          <ScalarProperty Name="CodTipoAdesione" ColumnName="CodTipoAdesione" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_TipoSoggetto">
+      <EntityTypeMapping TypeName="AmministrazioneAsdepModel.T_TipoSoggetto">
+        <MappingFragment StoreEntitySet="T_TipoSoggetto">
+          <ScalarProperty Name="CodAppl" ColumnName="CodAppl" />
+          <ScalarProperty Name="CodiceUtente" ColumnName="CodiceUtente" />
+          <ScalarProperty Name="DataAggiornamento" ColumnName="DataAggiornamento" />
+          <ScalarProperty Name="DataFine" ColumnName="DataFine" />
+          <ScalarProperty Name="DataInizio" ColumnName="DataInizio" />
+          <ScalarProperty Name="Opzione" ColumnName="Opzione" />
+          <ScalarProperty Name="DescTipoSoggetto" ColumnName="DescTipoSoggetto" />
+          <ScalarProperty Name="CodTipoSoggetto" ColumnName="CodTipoSoggetto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TipologiaEnte">
+      <EntityTypeMapping TypeName="AmministrazioneAsdepModel.TipologiaEnte">
+        <MappingFragment StoreEntitySet="TipologiaEnte">
+          <ScalarProperty Name="CodAppl" ColumnName="CodAppl" />
+          <ScalarProperty Name="CodiceUtente" ColumnName="CodiceUtente" />
+          <ScalarProperty Name="DataAggiornamento" ColumnName="DataAggiornamento" />
+          <ScalarProperty Name="DataFine" ColumnName="DataFine" />
+          <ScalarProperty Name="DataInizio" ColumnName="DataInizio" />
+          <ScalarProperty Name="QuotaAssociativa" ColumnName="QuotaAssociativa" />
+          <ScalarProperty Name="NumeroDipendenti" ColumnName="NumeroDipendenti" />
+          <ScalarProperty Name="EnteFondatore" ColumnName="EnteFondatore" />
+          <ScalarProperty Name="IdEnte" ColumnName="IdEnte" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TracciaturaExport">
+      <EntityTypeMapping TypeName="AmministrazioneAsdepModel.TracciaturaExport">
+        <MappingFragment StoreEntitySet="TracciaturaExport">
+          <ScalarProperty Name="FlagFullExport" ColumnName="FlagFullExport" />
+          <ScalarProperty Name="DataExport" ColumnName="DataExport" />
+          <ScalarProperty Name="NomeFile" ColumnName="NomeFile" />
+          <ScalarProperty Name="IdExport" ColumnName="IdExport" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

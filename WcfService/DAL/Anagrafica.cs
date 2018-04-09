@@ -10,6 +10,14 @@ namespace WcfService.DAL
     [KnownType(typeof(Anagrafica))]
     public class Anagrafica
     {
+        private long _idSoggetto;
+
+        public long IdSoggetto
+        {
+            get { return _idSoggetto; }
+            set { _idSoggetto = value; }
+        } 
+
         private string _convenzione;
 
         [DataMember]

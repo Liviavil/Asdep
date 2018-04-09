@@ -9,7 +9,9 @@ namespace MvcWebApp
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+                        "~/Scripts/jquery-{version}.js",
+                        "~/Scripts/IWT.min.js",
+                        "~/Scripts/DataTable/dataTables.editor.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/custom").Include(
                         "~/Scripts/CustomScript/GestioneAnagrafica.js"));
@@ -20,6 +22,7 @@ namespace MvcWebApp
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.unobtrusive*",
                         "~/Scripts/jquery.validate*"));
+                        
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
@@ -28,8 +31,10 @@ namespace MvcWebApp
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                 //"~/Content/site.css", 
-                "~/Content/build.css")
-                );
+                "~/Content/build.css",
+                //"~/Content/DataTable/dataTableDownload.min.css",
+                "~/Content/DataTable/editor.dataTable.css"));
+                
 
             bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(
                         "~/Content/themes/base/jquery.ui.core.css",

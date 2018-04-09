@@ -1,0 +1,214 @@
+﻿@model MvcWebApp.Models.SoggImportAppoggioSearchResults
+<!--inizio risultati trovati-->
+<script>table();</script>
+<link type="text/css" rel="stylesheet" href="~/Content/DataTable/template-editor.css" />
+
+<style>
+    table.dataTable tbody th, table.dataTable tbody td {
+        padding: 1em;
+    }
+
+    table.dataTable, table.dataTable th, table.dataTable td {
+        box-sizing: initial;
+    }
+
+        table.dataTable.no-footer {
+            border-bottom: none;
+        }
+</style>
+
+<div class="u-layout-r-withGutter">
+    <div class="Prose Alert Alert--info u-padding-r-right u-padding-r-left" role="alert">
+
+        <p class="u-text-p">
+            Risultati trovati: 
+            <strong>@Model.CountResults </strong>
+        </p>
+    </div>
+</div>
+
+
+@if (Model.CountResults != 0)
+{
+
+    <!--fine risultati trovati-->    
+
+    <!--inizio tabella risultati-->
+     
+    <div class="u-layout-r-withGutter u-padding-bottom-l u-margin-bottom-l u-margin-top-l">
+
+
+        <table id="example" class="Table Table--striped Table--hover Table--withBorder">
+            <thead>
+                <tr class="u-border-bottom-xs">
+                    <th scope="col" class="u-textLeft"></th>
+                    <th scope="col" class="u-textLeft">Nome</th>
+                    <th scope="col" class="u-textLeft">Categoria</th>
+                    <th scope="col" class="u-textLeft">Numero Polizza</th>
+                    <th scope="col" class="u-textLeft">Codice Fiscale Assicurato</th>
+                    <th scope="col" class="u-textLeft">Codice Fiscale CapoNucleo</th>
+                </tr>
+            </thead>
+        </table>
+
+    </div>
+    
+    
+    
+    <div id="usersForm">
+        @*<form class="Form Form--spaced u-layout-r-withGutter u-padding-top-xxl u-text-r-xs">*@
+            <fieldset class="Form-fieldset">
+                <legend class="Form-legend color-primo">Scheda posizione assicurativa</legend>
+                <section class="Grid Grid--withGutter">
+                    <div class="Grid-cell u-md-size1of4 u-lg-size1of4 u-margin-top-l ">
+                        <div class="Form-field">
+                            <div data-editor-template="Cognome" ></div>
+                        </div>
+                        <div class="Form-field">
+                            <div data-editor-template="Nome"></div>
+                        </div>
+                    </div>
+                    <div class="Grid-cell u-md-size1of4 u-lg-size1of4 u-margin-top-l">
+                        <div class="Form-field">
+                            <div data-editor-template="Ente" ></div>
+                        </div>
+                        <div class="Form-field">
+                           <div data-editor-template="CodiceFiscaleAssicurato"></div>
+                        </div>
+                    </div>
+                    <div class="Grid-cell u-md-size1of4 u-lg-size1of4 u-margin-top-l">
+                        <div class="Form-field">
+                            <div data-editor-template="LegameNucleo" ></div>
+                        </div>
+                        <div class="Form-field">
+                            <div data-editor-template="LuogoNascitaAssicurato" ></div>
+                        </div>
+                    </div>
+                    <div class="Grid-cell u-md-size1of4 u-lg-size1of4 u-margin-top-l">
+
+                        <div class="Form-field">
+                            <div data-editor-template="DataNascitaAssicurato" ></div>
+                        </div>
+
+                        <div class="Form-field">
+                            <div data-editor-template="CodiceFiscaleCapoNucleo" ></div>
+                        </div>
+
+                    </div>
+                </section>
+
+            </fieldset>
+
+        @*</form>*@
+
+        <!--form edit 2-->
+
+        @*<form class="Form Form--spaced u-layout-r-withGutter u-padding-top-xxl u-text-r-xs">*@
+            <fieldset class="Form-fieldset">
+                <legend class="Form-legend color-primo">Riferimenti assicurato</legend>
+
+                <section class="Grid Grid--withGutter">
+                    <div class="Grid-cell u-md-size1of4 u-lg-size1of4 u-margin-top-l ">
+
+                        <div class="Form-field">
+                            <div data-editor-template="IndirizzoResidenza" ></div>
+                        </div>
+
+                        <div class="Form-field">
+                           <div data-editor-template="LocalitaResidenza" ></div>
+                        </div>
+
+                    </div>
+
+                    <div class="Grid-cell u-md-size1of4 u-lg-size1of4 u-margin-top-l">
+                        <div class="Form-field">
+                           <div data-editor-template="SiglaProvResidenza" ></div>
+                        </div>
+
+                        <div class="Form-field">
+                            <div data-editor-template="CapResidenza" ></div>
+                        </div>
+                    </div>
+                    <div class="Grid-cell u-md-size1of4 u-lg-size1of4 u-margin-top-l">
+
+                        <div class="Form-field">
+                            <div data-editor-template="Iban" ></div>
+                        </div>
+
+                        <div class="Form-field">
+                            <div data-editor-template="Email" ></div>
+                        </div>
+
+                    </div>
+
+                    <div class="Grid-cell u-md-size1of4 u-lg-size1of4 u-margin-top-l">
+
+                        <div class="Form-field">
+                            <div data-editor-template="Telefono" ></div>
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </fieldset>
+
+        @*</form>*@
+
+        <!--form edit 3-->
+
+        @*<form class="Form Form--spaced u-layout-r-withGutter u-padding-top-xxl u-text-r-xs">*@
+            <fieldset class="Form-fieldset">
+                <legend class="Form-legend color-primo">Dati lavorazione polizza</legend>
+
+                <section class="Grid Grid--withGutter">
+                    <div class="Grid-cell u-md-size1of4 u-lg-size1of4 u-margin-top-l ">
+
+                        <div class="Form-field">
+                            <div data-editor-template="Effetto" ></div>
+                        </div>
+
+                        @*<div class="Form-field">
+                            <editor-field name="Cognome" class="Form-input u-text-r-s u-borderRadius-m"></editor-field>
+                        </div>*@
+
+                    </div>
+
+                    @*<div class="Grid-cell u-md-size1of4 u-lg-size1of4 u-margin-top-l">
+                        <div class="Form-field">
+                            <editor-field name="Cognome" class="Form-input u-text-r-s u-borderRadius-m"></editor-field>
+                        </div>
+
+                        <div class="Form-field">
+                            <editor-field name="Cognome" class="Form-input u-text-r-s u-borderRadius-m"></editor-field>
+                        </div>
+                    </div>
+
+                    <div class="Grid-cell u-md-size1of4 u-lg-size1of4 u-margin-top-l">
+
+                        <div class="Form-field">
+                            <editor-field name="Cognome" class="Form-input u-text-r-s u-borderRadius-m"></editor-field>
+                        </div>
+
+                        <div class="Form-field">
+                            <editor-field name="Cognome" class="Form-input u-text-r-s u-borderRadius-m"></editor-field>
+                        </div>
+
+                    </div>
+
+                    <div class="Grid-cell u-md-size1of4 u-lg-size1of4 u-margin-top-l">
+
+                        <div class="Form-field">
+                            <editor-field name="Cognome" class="Form-input u-text-r-s u-borderRadius-m"></editor-field>
+                        </div>
+                    </div>*@
+
+                </section>
+
+            </fieldset>
+
+        @*</form>*@
+    </div>
+
+}
+<!--fine tabella risultati-->

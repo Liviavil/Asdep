@@ -67,12 +67,8 @@
     <Compile Include="AsdepWcf.svc.cs">
       <DependentUpon>AsdepWcf.svc</DependentUpon>
     </Compile>
-    <Compile Include="DAL\ContribuzioneEnte.cs" />
     <Compile Include="DAL\Ente.cs" />
-    <Compile Include="DAL\EnteAppartenenza.cs" />
     <Compile Include="DAL\Soggetto.cs" />
-    <Compile Include="DAL\TipologiaEnte.cs" />
-    <Compile Include="DAL\T_TipoAdesione.cs" />
     <Compile Include="IAsdepWcf.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -80,6 +76,7 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Properties\PublishProfiles\WCF_ASDEP.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

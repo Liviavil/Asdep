@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b7d319bcc8de4439b9076a2ea6506bde" Name="Diagram1">
+        <EntityTypeShape EntityType="AmministrazioneAsdepModel.Adesione" Width="1.5" PointX="2.3675435084698462" PointY="26.918453020471357" />
+        <EntityTypeShape EntityType="AmministrazioneAsdepModel.ContribuzioneEnte" Width="1.5" PointX="5.1649783855141038" PointY="24.979628410646519" />
+        <EntityTypeShape EntityType="AmministrazioneAsdepModel.Ente" Width="1.5" PointX="7.829349851156282" PointY="29.817073046144596" />
+        <EntityTypeShape EntityType="AmministrazioneAsdepModel.EnteAppartenenza" Width="1.5" PointX="6.2404676797988214" PointY="17.850928940740847" />
+        <EntityTypeShape EntityType="AmministrazioneAsdepModel.ErroriIO" Width="1.5" PointX="8.578731172056278" PointY="26.873301101323822" />
+        <EntityTypeShape EntityType="AmministrazioneAsdepModel.ModalitaPagamentoEnte" Width="1.5" PointX="2.616098794441716" PointY="21.743534172765695" />
+        <EntityTypeShape EntityType="AmministrazioneAsdepModel.SoggettiImportAppoggio" Width="1.5" PointX="3.4508856904929903" PointY="12.445932051374545" />
+        <EntityTypeShape EntityType="AmministrazioneAsdepModel.Soggetto" Width="1.5" PointX="4.3165049479885518" PointY="19.843799168171266" />
+        <EntityTypeShape EntityType="AmministrazioneAsdepModel.sysdiagrams" Width="1.5" PointX="4.2712757123034795" PointY="10.469471519100233" />
+        <EntityTypeShape EntityType="AmministrazioneAsdepModel.T_TariffarioAdesioniCollettive" Width="1.5" PointX="8.7132140252335066" PointY="31.377432018228543" />
+        <EntityTypeShape EntityType="AmministrazioneAsdepModel.T_TariffarioAdesioniVolontarie" Width="1.5" PointX="7.8725532646628817" PointY="27.355696705801272" />
+        <EntityTypeShape EntityType="AmministrazioneAsdepModel.T_TipiLegame" Width="1.5" PointX="6.7145587628309418" PointY="7.4777223949682536" />
+        <EntityTypeShape EntityType="AmministrazioneAsdepModel.T_TipoAdesione" Width="1.5" PointX="3.3758133870436877" PointY="21.433808128085829" />
+        <EntityTypeShape EntityType="AmministrazioneAsdepModel.T_TipoSoggetto" Width="1.5" PointX="10.615583074565782" PointY="7.5472516750671206" />
+        <EntityTypeShape EntityType="AmministrazioneAsdepModel.TipologiaEnte" Width="1.5" PointX="4.5484158362021745" PointY="20.74837633443455" />
+        <EntityTypeShape EntityType="AmministrazioneAsdepModel.TracciaturaExport" Width="1.5" PointX="6.9387685875123211" PointY="1.4377812302847306" />
+        <AssociationConnector Association="AmministrazioneAsdepModel.FK_Adesione_Soggetto" />
+        <AssociationConnector Association="AmministrazioneAsdepModel.FK_Adesione_Soggetto_02" />
+        <AssociationConnector Association="AmministrazioneAsdepModel.FK_Adesione_TipiLegame" />
+        <AssociationConnector Association="AmministrazioneAsdepModel.FK_Adesione_TipoAdesione" />
+        <AssociationConnector Association="AmministrazioneAsdepModel.FK_Adesione_TipoSoggetto" />
+        <AssociationConnector Association="AmministrazioneAsdepModel.FK_ContribuzioneEnte_Ente" />
+        <AssociationConnector Association="AmministrazioneAsdepModel.FK_ContribuzioneEnte_TipoAdesione" />
+        <AssociationConnector Association="AmministrazioneAsdepModel.FK_EnteAppartenenza_Ente" />
+        <AssociationConnector Association="AmministrazioneAsdepModel.FK_TipologiaEnte_Ente" />
+        <AssociationConnector Association="AmministrazioneAsdepModel.FK_EnteAppartenenza_Soggetto" />
+        <AssociationConnector Association="AmministrazioneAsdepModel.FK_TariffarioAdesioniCollettive_TipoAdesione" />
+        <AssociationConnector Association="AmministrazioneAsdepModel.FK_TariffarioAdesioniVolontarie_TipoAdesione" />
+        <AssociationConnector Association="AmministrazioneAsdepModel.FK_TariffarioAdesioniVolontarie_TipoSoggetto" />
+        <AssociationConnector Association="AmministrazioneAsdepModel.FK_TipoAdesione_TipoAdesione" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

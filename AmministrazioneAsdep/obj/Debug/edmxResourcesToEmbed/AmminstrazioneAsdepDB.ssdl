@@ -1,0 +1,543 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AmministrazioneAsdepModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="AmministrazioneAsdepModelStoreContainer">
+    <EntitySet Name="Adesione" EntityType="AmministrazioneAsdepModel.Store.Adesione" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ContribuzioneEnte" EntityType="AmministrazioneAsdepModel.Store.ContribuzioneEnte" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Ente" EntityType="AmministrazioneAsdepModel.Store.Ente" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="EnteAppartenenza" EntityType="AmministrazioneAsdepModel.Store.EnteAppartenenza" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ErroriIO" EntityType="AmministrazioneAsdepModel.Store.ErroriIO" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ModalitaPagamentoEnte" EntityType="AmministrazioneAsdepModel.Store.ModalitaPagamentoEnte" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SoggettiImportAppoggio" EntityType="AmministrazioneAsdepModel.Store.SoggettiImportAppoggio" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Soggetto" EntityType="AmministrazioneAsdepModel.Store.Soggetto" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="sysdiagrams" EntityType="AmministrazioneAsdepModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="T_TariffarioAdesioniCollettive" EntityType="AmministrazioneAsdepModel.Store.T_TariffarioAdesioniCollettive" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="T_TariffarioAdesioniVolontarie" EntityType="AmministrazioneAsdepModel.Store.T_TariffarioAdesioniVolontarie" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="T_TipiLegame" EntityType="AmministrazioneAsdepModel.Store.T_TipiLegame" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="T_TipoAdesione" EntityType="AmministrazioneAsdepModel.Store.T_TipoAdesione" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="T_TipoSoggetto" EntityType="AmministrazioneAsdepModel.Store.T_TipoSoggetto" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TipologiaEnte" EntityType="AmministrazioneAsdepModel.Store.TipologiaEnte" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TracciaturaExport" EntityType="AmministrazioneAsdepModel.Store.TracciaturaExport" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_Adesione_Soggetto" Association="AmministrazioneAsdepModel.Store.FK_Adesione_Soggetto">
+      <End Role="Soggetto" EntitySet="Soggetto" />
+      <End Role="Adesione" EntitySet="Adesione" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Adesione_Soggetto_02" Association="AmministrazioneAsdepModel.Store.FK_Adesione_Soggetto_02">
+      <End Role="Soggetto" EntitySet="Soggetto" />
+      <End Role="Adesione" EntitySet="Adesione" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Adesione_TipiLegame" Association="AmministrazioneAsdepModel.Store.FK_Adesione_TipiLegame">
+      <End Role="T_TipiLegame" EntitySet="T_TipiLegame" />
+      <End Role="Adesione" EntitySet="Adesione" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Adesione_TipoAdesione" Association="AmministrazioneAsdepModel.Store.FK_Adesione_TipoAdesione">
+      <End Role="T_TipoAdesione" EntitySet="T_TipoAdesione" />
+      <End Role="Adesione" EntitySet="Adesione" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Adesione_TipoSoggetto" Association="AmministrazioneAsdepModel.Store.FK_Adesione_TipoSoggetto">
+      <End Role="T_TipoSoggetto" EntitySet="T_TipoSoggetto" />
+      <End Role="Adesione" EntitySet="Adesione" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ContribuzioneEnte_Ente" Association="AmministrazioneAsdepModel.Store.FK_ContribuzioneEnte_Ente">
+      <End Role="Ente" EntitySet="Ente" />
+      <End Role="ContribuzioneEnte" EntitySet="ContribuzioneEnte" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ContribuzioneEnte_TipoAdesione" Association="AmministrazioneAsdepModel.Store.FK_ContribuzioneEnte_TipoAdesione">
+      <End Role="T_TipoAdesione" EntitySet="T_TipoAdesione" />
+      <End Role="ContribuzioneEnte" EntitySet="ContribuzioneEnte" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EnteAppartenenza_Ente" Association="AmministrazioneAsdepModel.Store.FK_EnteAppartenenza_Ente">
+      <End Role="Ente" EntitySet="Ente" />
+      <End Role="EnteAppartenenza" EntitySet="EnteAppartenenza" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EnteAppartenenza_Soggetto" Association="AmministrazioneAsdepModel.Store.FK_EnteAppartenenza_Soggetto">
+      <End Role="Soggetto" EntitySet="Soggetto" />
+      <End Role="EnteAppartenenza" EntitySet="EnteAppartenenza" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TariffarioAdesioniCollettive_TipoAdesione" Association="AmministrazioneAsdepModel.Store.FK_TariffarioAdesioniCollettive_TipoAdesione">
+      <End Role="T_TipoAdesione" EntitySet="T_TipoAdesione" />
+      <End Role="T_TariffarioAdesioniCollettive" EntitySet="T_TariffarioAdesioniCollettive" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TariffarioAdesioniVolontarie_TipoAdesione" Association="AmministrazioneAsdepModel.Store.FK_TariffarioAdesioniVolontarie_TipoAdesione">
+      <End Role="T_TipoAdesione" EntitySet="T_TipoAdesione" />
+      <End Role="T_TariffarioAdesioniVolontarie" EntitySet="T_TariffarioAdesioniVolontarie" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TariffarioAdesioniVolontarie_TipoSoggetto" Association="AmministrazioneAsdepModel.Store.FK_TariffarioAdesioniVolontarie_TipoSoggetto">
+      <End Role="T_TipoSoggetto" EntitySet="T_TipoSoggetto" />
+      <End Role="T_TariffarioAdesioniVolontarie" EntitySet="T_TariffarioAdesioniVolontarie" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TipoAdesione_TipoAdesione" Association="AmministrazioneAsdepModel.Store.FK_TipoAdesione_TipoAdesione">
+      <End Role="T_TipoAdesione" EntitySet="T_TipoAdesione" />
+      <End Role="T_TipoAdesione1" EntitySet="T_TipoAdesione" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TipologiaEnte_Ente" Association="AmministrazioneAsdepModel.Store.FK_TipologiaEnte_Ente">
+      <End Role="Ente" EntitySet="Ente" />
+      <End Role="TipologiaEnte" EntitySet="TipologiaEnte" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Adesione">
+    <Key>
+      <PropertyRef Name="IdAdesione" />
+    </Key>
+    <Property Name="IdAdesione" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="CodTipoAdesione" Type="char" Nullable="false" MaxLength="3" />
+    <Property Name="IdCaponucleo" Type="bigint" Nullable="false" />
+    <Property Name="IdSoggetto" Type="bigint" Nullable="false" />
+    <Property Name="CodTipoSoggetto" Type="char" Nullable="false" MaxLength="3" />
+    <Property Name="CodLegame" Type="varchar" Nullable="false" MaxLength="3" />
+    <Property Name="FlagPagamentoEnte" Type="char" MaxLength="1" />
+    <Property Name="FlagPagamentoSoggetto" Type="char" MaxLength="1" />
+    <Property Name="StatoAdesione" Type="char" Nullable="false" MaxLength="2" />
+    <Property Name="NumeroPratica" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="MeseDecorrenza" Type="tinyint" Nullable="false" />
+    <Property Name="MeseScadenza" Type="tinyint" Nullable="false" />
+    <Property Name="AnnoDecorrenza" Type="tinyint" Nullable="false" />
+    <Property Name="AnnoScadenza" Type="tinyint" Nullable="false" />
+    <Property Name="DataInizio" Type="date" Nullable="false" />
+    <Property Name="DataFine" Type="date" Nullable="false" />
+    <Property Name="DataAggiornamento" Type="datetime2" Nullable="false" />
+    <Property Name="CodiceUtente" Type="varchar" Nullable="false" MaxLength="16" />
+    <Property Name="CodAppl" Type="varchar" Nullable="false" MaxLength="4" />
+  </EntityType>
+  <EntityType Name="ContribuzioneEnte">
+    <Key>
+      <PropertyRef Name="IdEnte" />
+      <PropertyRef Name="CodTipoAdesione" />
+      <PropertyRef Name="DataInizioAdesione" />
+    </Key>
+    <Property Name="IdEnte" Type="bigint" Nullable="false" />
+    <Property Name="CodTipoAdesione" Type="char" Nullable="false" MaxLength="3" />
+    <Property Name="DataInizioAdesione" Type="datetime2" Nullable="false" />
+    <Property Name="PercentualeQuota" Type="decimal" Precision="7" Scale="4" />
+    <Property Name="ValoreAssolutoQuota" Type="decimal" Precision="13" Scale="4" />
+    <Property Name="NumeroPolizza" Type="varchar" MaxLength="20" />
+    <Property Name="DataFine" Type="date" Nullable="false" />
+    <Property Name="DataAggiornamento" Type="datetime2" Nullable="false" />
+    <Property Name="CodiceUtente" Type="varchar" Nullable="false" MaxLength="16" />
+    <Property Name="CodAppl" Type="varchar" Nullable="false" MaxLength="4" />
+  </EntityType>
+  <EntityType Name="Ente">
+    <Key>
+      <PropertyRef Name="IdEnte" />
+    </Key>
+    <Property Name="IdEnte" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="CodiceFiscale" Type="char" Nullable="false" MaxLength="11" />
+    <Property Name="Progressivo" Type="char" Nullable="false" MaxLength="5" />
+    <Property Name="RagioneSociale" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="CodiceEnte" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="DataInizio" Type="date" Nullable="false" />
+    <Property Name="DataFine" Type="date" Nullable="false" />
+    <Property Name="DataAggiornamento" Type="datetime2" Nullable="false" />
+    <Property Name="CodiceUtente" Type="varchar" Nullable="false" MaxLength="16" />
+    <Property Name="CodAppl" Type="varchar" Nullable="false" MaxLength="4" />
+  </EntityType>
+  <EntityType Name="EnteAppartenenza">
+    <Key>
+      <PropertyRef Name="IdEnte" />
+      <PropertyRef Name="IdSoggetto" />
+      <PropertyRef Name="DataInizio" />
+    </Key>
+    <Property Name="IdEnte" Type="bigint" Nullable="false" />
+    <Property Name="IdSoggetto" Type="bigint" Nullable="false" />
+    <Property Name="DataInizio" Type="date" Nullable="false" />
+    <Property Name="DataFine" Type="date" Nullable="false" />
+    <Property Name="DataAggiornamento" Type="datetime2" Nullable="false" />
+    <Property Name="CodiceUtente" Type="varchar" Nullable="false" MaxLength="16" />
+    <Property Name="CodAppl" Type="varchar" Nullable="false" MaxLength="4" />
+  </EntityType>
+  <EntityType Name="ErroriIO">
+    <Key>
+      <PropertyRef Name="CodTipoErrore" />
+    </Key>
+    <Property Name="CodTipoErrore" Type="char" Nullable="false" MaxLength="3" />
+    <Property Name="DescErrore" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Gravita" Type="char" Nullable="false" MaxLength="1" />
+    <Property Name="InputOutput" Type="char" Nullable="false" MaxLength="1" />
+    <Property Name="DataInizio" Type="date" Nullable="false" />
+    <Property Name="DataFine" Type="date" Nullable="false" />
+    <Property Name="DataAggiornamento" Type="datetime2" Nullable="false" />
+    <Property Name="CodiceUtente" Type="varchar" Nullable="false" MaxLength="16" />
+    <Property Name="CodAppl" Type="varchar" Nullable="false" MaxLength="4" />
+  </EntityType>
+  <EntityType Name="ModalitaPagamentoEnte">
+    <Key>
+      <PropertyRef Name="IdEnte" />
+      <PropertyRef Name="Anno" />
+    </Key>
+    <Property Name="IdEnte" Type="bigint" Nullable="false" />
+    <Property Name="Anno" Type="tinyint" Nullable="false" />
+    <Property Name="NumeroRate" Type="tinyint" Nullable="false" />
+    <Property Name="ImportoRata" Type="decimal" Nullable="false" Precision="13" Scale="4" />
+  </EntityType>
+  <EntityType Name="SoggettiImportAppoggio">
+    <Key>
+      <PropertyRef Name="IdSoggetto" />
+    </Key>
+    <Property Name="IdSoggetto" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Convenzione" Type="varchar(max)" />
+    <Property Name="Categoria" Type="varchar(max)" />
+    <Property Name="EsclusioniPregresse" Type="nvarchar" MaxLength="2" />
+    <Property Name="NumeroPolizza" Type="nvarchar" MaxLength="50" />
+    <Property Name="Ente" Type="varchar(max)" />
+    <Property Name="Cognome" Type="varchar" MaxLength="50" />
+    <Property Name="Nome" Type="varchar" MaxLength="50" />
+    <Property Name="SecondoNome" Type="varchar" MaxLength="50" />
+    <Property Name="CodiceFiscaleCapoNucleo" Type="varchar" MaxLength="16" />
+    <Property Name="CodiceFiscaleAssicurato" Type="varchar" MaxLength="16" />
+    <Property Name="LuogoNascitaAssicurato" Type="varchar" MaxLength="50" />
+    <Property Name="DataNascitaAssicurato" Type="datetime" />
+    <Property Name="LegameNucleo" Type="varchar" MaxLength="10" />
+    <Property Name="Effetto" Type="datetime" />
+    <Property Name="IndirizzoResidenza" Type="varchar(max)" />
+    <Property Name="LocalitaResidenza" Type="varchar(max)" />
+    <Property Name="SiglaProvResidenza" Type="varchar" MaxLength="2" />
+    <Property Name="CapResidenza" Type="varchar" MaxLength="10" />
+    <Property Name="Iban" Type="varchar" MaxLength="27" />
+    <Property Name="Email" Type="nvarchar" MaxLength="100" />
+    <Property Name="Telefono" Type="varchar" MaxLength="15" />
+    <Property Name="DataCessazione" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Soggetto">
+    <Key>
+      <PropertyRef Name="IdSoggetto" />
+    </Key>
+    <Property Name="IdSoggetto" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="CodiceFiscale" Type="varchar" Nullable="false" MaxLength="16" />
+    <Property Name="Nome" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="SecondoNome" Type="varchar" MaxLength="50" />
+    <Property Name="Cognome" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="DataNascita" Type="date" Nullable="false" />
+    <Property Name="IndirizzoResidenza" Type="nvarchar(max)" />
+    <Property Name="ComuneResidenza" Type="varchar" MaxLength="50" />
+    <Property Name="SiglaProvinciaResidenza" Type="varchar" Nullable="false" MaxLength="5" />
+    <Property Name="CapResidenza" Type="varchar" MaxLength="5" />
+    <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="IBAN" Type="varchar" MaxLength="27" />
+    <Property Name="Telefono" Type="varchar" MaxLength="15" />
+    <Property Name="DataCessazione" Type="date" />
+    <Property Name="StatoRecord" Type="char" Nullable="false" MaxLength="2" />
+    <Property Name="Fonte" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="FonteModifica" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="DataInizio" Type="datetime2" Nullable="false" />
+    <Property Name="DataFine" Type="date" Nullable="false" />
+    <Property Name="DataAggiornamento" Type="datetime2" />
+    <Property Name="CodiceUtente" Type="varchar" Nullable="false" MaxLength="16" />
+    <Property Name="CodAppl" Type="varchar" MaxLength="4" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="T_TariffarioAdesioniCollettive">
+    <Key>
+      <PropertyRef Name="CodTipoAdesione" />
+    </Key>
+    <Property Name="CodTipoAdesione" Type="char" Nullable="false" MaxLength="3" />
+    <Property Name="QuotaProcapite" Type="decimal" Nullable="false" Precision="13" Scale="4" />
+    <Property Name="CoperturaNucleoACarico" Type="char" Nullable="false" MaxLength="1" />
+    <Property Name="CoperturaNucleoNonACarico" Type="char" Nullable="false" MaxLength="1" />
+    <Property Name="DataInizio" Type="date" Nullable="false" />
+    <Property Name="DataFine" Type="date" Nullable="false" />
+    <Property Name="DataAggiornamento" Type="datetime2" Nullable="false" />
+    <Property Name="CodiceUtente" Type="varchar" Nullable="false" MaxLength="16" />
+    <Property Name="CodAppl" Type="varchar" Nullable="false" MaxLength="4" />
+  </EntityType>
+  <EntityType Name="T_TariffarioAdesioniVolontarie">
+    <Key>
+      <PropertyRef Name="CodTipoAdesione" />
+      <PropertyRef Name="CodTipoSoggetto" />
+      <PropertyRef Name="DataInizio" />
+    </Key>
+    <Property Name="CodTipoAdesione" Type="char" Nullable="false" MaxLength="3" />
+    <Property Name="CodTipoSoggetto" Type="char" Nullable="false" MaxLength="3" />
+    <Property Name="DataInizio" Type="datetime2" Nullable="false" />
+    <Property Name="QuotaProcapite" Type="decimal" Nullable="false" Precision="13" Scale="4" />
+    <Property Name="CoperturaNucleoACarico" Type="char" Nullable="false" MaxLength="1" />
+    <Property Name="CoperturaNucleoNonACarico" Type="char" Nullable="false" MaxLength="1" />
+    <Property Name="QuotaProcapiteFAC" Type="decimal" Precision="13" Scale="4" />
+    <Property Name="QuotaProcapiteFNAC" Type="decimal" Precision="13" Scale="4" />
+    <Property Name="DataFine" Type="date" Nullable="false" />
+    <Property Name="DataAggiornamento" Type="datetime2" Nullable="false" />
+    <Property Name="CodiceUtente" Type="varchar" Nullable="false" MaxLength="16" />
+    <Property Name="CodAppl" Type="varchar" Nullable="false" MaxLength="4" />
+  </EntityType>
+  <EntityType Name="T_TipiLegame">
+    <Key>
+      <PropertyRef Name="CodLegame" />
+    </Key>
+    <Property Name="CodLegame" Type="varchar" Nullable="false" MaxLength="3" />
+    <Property Name="DescLegame" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="FlagCarico" Type="char" MaxLength="1" />
+    <Property Name="CodTipoCarico" Type="varchar" MaxLength="20" />
+    <Property Name="CodLegameImport" Type="varchar" MaxLength="5" />
+    <Property Name="CodLegameExport" Type="varchar" MaxLength="5" />
+    <Property Name="CodTipoCaricoExport" Type="varchar" MaxLength="20" />
+    <Property Name="EtaMinima" Type="tinyint" />
+    <Property Name="EtaMassima" Type="tinyint" />
+    <Property Name="DataInizio" Type="date" Nullable="false" />
+    <Property Name="DataFine" Type="date" Nullable="false" />
+    <Property Name="DataAggiornamento" Type="datetime2" Nullable="false" />
+    <Property Name="CodiceUtente" Type="varchar" Nullable="false" MaxLength="16" />
+    <Property Name="CodAppl" Type="varchar" Nullable="false" MaxLength="4" />
+  </EntityType>
+  <EntityType Name="T_TipoAdesione">
+    <Key>
+      <PropertyRef Name="CodTipoAdesione" />
+    </Key>
+    <Property Name="CodTipoAdesione" Type="char" Nullable="false" MaxLength="3" />
+    <Property Name="DescBreve" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="DescTipoAdesione" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="CategoriaAdesione" Type="char" Nullable="false" MaxLength="2" />
+    <Property Name="RifAdesioneCollettiva" Type="char" MaxLength="3" />
+    <Property Name="DataInizio" Type="date" Nullable="false" />
+    <Property Name="DataFine" Type="date" Nullable="false" />
+    <Property Name="DataAggiornamento" Type="datetime2" Nullable="false" />
+    <Property Name="CodiceUtente" Type="varchar" Nullable="false" MaxLength="16" />
+    <Property Name="CodAppl" Type="varchar" Nullable="false" MaxLength="4" />
+  </EntityType>
+  <EntityType Name="T_TipoSoggetto">
+    <Key>
+      <PropertyRef Name="CodTipoSoggetto" />
+    </Key>
+    <Property Name="CodTipoSoggetto" Type="char" Nullable="false" MaxLength="3" />
+    <Property Name="DescTipoSoggetto" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="Opzione" Type="nvarchar" MaxLength="50" />
+    <Property Name="DataInizio" Type="date" Nullable="false" />
+    <Property Name="DataFine" Type="date" Nullable="false" />
+    <Property Name="DataAggiornamento" Type="datetime2" Nullable="false" />
+    <Property Name="CodiceUtente" Type="varchar" Nullable="false" MaxLength="16" />
+    <Property Name="CodAppl" Type="varchar" Nullable="false" MaxLength="4" />
+  </EntityType>
+  <EntityType Name="TipologiaEnte">
+    <Key>
+      <PropertyRef Name="IdEnte" />
+    </Key>
+    <Property Name="IdEnte" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="EnteFondatore" Type="char" Nullable="false" MaxLength="1" />
+    <Property Name="NumeroDipendenti" Type="smallint" Nullable="false" />
+    <Property Name="QuotaAssociativa" Type="decimal" Nullable="false" Precision="13" Scale="4" />
+    <Property Name="DataInizio" Type="date" Nullable="false" />
+    <Property Name="DataFine" Type="date" Nullable="false" />
+    <Property Name="DataAggiornamento" Type="datetime2" Nullable="false" />
+    <Property Name="CodiceUtente" Type="varchar" Nullable="false" MaxLength="16" />
+    <Property Name="CodAppl" Type="varchar" Nullable="false" MaxLength="4" />
+  </EntityType>
+  <EntityType Name="TracciaturaExport">
+    <Key>
+      <PropertyRef Name="IdExport" />
+    </Key>
+    <Property Name="IdExport" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="NomeFile" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="DataExport" Type="datetime2" Nullable="false" />
+    <Property Name="FlagFullExport" Type="char" Nullable="false" MaxLength="1" />
+  </EntityType>
+  <Association Name="FK_Adesione_Soggetto">
+    <End Role="Soggetto" Type="AmministrazioneAsdepModel.Store.Soggetto" Multiplicity="1" />
+    <End Role="Adesione" Type="AmministrazioneAsdepModel.Store.Adesione" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Soggetto">
+        <PropertyRef Name="IdSoggetto" />
+      </Principal>
+      <Dependent Role="Adesione">
+        <PropertyRef Name="IdSoggetto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Adesione_Soggetto_02">
+    <End Role="Soggetto" Type="AmministrazioneAsdepModel.Store.Soggetto" Multiplicity="1" />
+    <End Role="Adesione" Type="AmministrazioneAsdepModel.Store.Adesione" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Soggetto">
+        <PropertyRef Name="IdSoggetto" />
+      </Principal>
+      <Dependent Role="Adesione">
+        <PropertyRef Name="IdCaponucleo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Adesione_TipiLegame">
+    <End Role="T_TipiLegame" Type="AmministrazioneAsdepModel.Store.T_TipiLegame" Multiplicity="1" />
+    <End Role="Adesione" Type="AmministrazioneAsdepModel.Store.Adesione" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_TipiLegame">
+        <PropertyRef Name="CodLegame" />
+      </Principal>
+      <Dependent Role="Adesione">
+        <PropertyRef Name="CodLegame" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Adesione_TipoAdesione">
+    <End Role="T_TipoAdesione" Type="AmministrazioneAsdepModel.Store.T_TipoAdesione" Multiplicity="1" />
+    <End Role="Adesione" Type="AmministrazioneAsdepModel.Store.Adesione" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_TipoAdesione">
+        <PropertyRef Name="CodTipoAdesione" />
+      </Principal>
+      <Dependent Role="Adesione">
+        <PropertyRef Name="CodTipoAdesione" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Adesione_TipoSoggetto">
+    <End Role="T_TipoSoggetto" Type="AmministrazioneAsdepModel.Store.T_TipoSoggetto" Multiplicity="1" />
+    <End Role="Adesione" Type="AmministrazioneAsdepModel.Store.Adesione" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_TipoSoggetto">
+        <PropertyRef Name="CodTipoSoggetto" />
+      </Principal>
+      <Dependent Role="Adesione">
+        <PropertyRef Name="CodTipoSoggetto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ContribuzioneEnte_Ente">
+    <End Role="Ente" Type="AmministrazioneAsdepModel.Store.Ente" Multiplicity="1" />
+    <End Role="ContribuzioneEnte" Type="AmministrazioneAsdepModel.Store.ContribuzioneEnte" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ente">
+        <PropertyRef Name="IdEnte" />
+      </Principal>
+      <Dependent Role="ContribuzioneEnte">
+        <PropertyRef Name="IdEnte" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ContribuzioneEnte_TipoAdesione">
+    <End Role="T_TipoAdesione" Type="AmministrazioneAsdepModel.Store.T_TipoAdesione" Multiplicity="1" />
+    <End Role="ContribuzioneEnte" Type="AmministrazioneAsdepModel.Store.ContribuzioneEnte" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_TipoAdesione">
+        <PropertyRef Name="CodTipoAdesione" />
+      </Principal>
+      <Dependent Role="ContribuzioneEnte">
+        <PropertyRef Name="CodTipoAdesione" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EnteAppartenenza_Ente">
+    <End Role="Ente" Type="AmministrazioneAsdepModel.Store.Ente" Multiplicity="1" />
+    <End Role="EnteAppartenenza" Type="AmministrazioneAsdepModel.Store.EnteAppartenenza" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ente">
+        <PropertyRef Name="IdEnte" />
+      </Principal>
+      <Dependent Role="EnteAppartenenza">
+        <PropertyRef Name="IdEnte" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EnteAppartenenza_Soggetto">
+    <End Role="Soggetto" Type="AmministrazioneAsdepModel.Store.Soggetto" Multiplicity="1" />
+    <End Role="EnteAppartenenza" Type="AmministrazioneAsdepModel.Store.EnteAppartenenza" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Soggetto">
+        <PropertyRef Name="IdSoggetto" />
+      </Principal>
+      <Dependent Role="EnteAppartenenza">
+        <PropertyRef Name="IdSoggetto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TariffarioAdesioniCollettive_TipoAdesione">
+    <End Role="T_TipoAdesione" Type="AmministrazioneAsdepModel.Store.T_TipoAdesione" Multiplicity="1" />
+    <End Role="T_TariffarioAdesioniCollettive" Type="AmministrazioneAsdepModel.Store.T_TariffarioAdesioniCollettive" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="T_TipoAdesione">
+        <PropertyRef Name="CodTipoAdesione" />
+      </Principal>
+      <Dependent Role="T_TariffarioAdesioniCollettive">
+        <PropertyRef Name="CodTipoAdesione" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TariffarioAdesioniVolontarie_TipoAdesione">
+    <End Role="T_TipoAdesione" Type="AmministrazioneAsdepModel.Store.T_TipoAdesione" Multiplicity="1" />
+    <End Role="T_TariffarioAdesioniVolontarie" Type="AmministrazioneAsdepModel.Store.T_TariffarioAdesioniVolontarie" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_TipoAdesione">
+        <PropertyRef Name="CodTipoAdesione" />
+      </Principal>
+      <Dependent Role="T_TariffarioAdesioniVolontarie">
+        <PropertyRef Name="CodTipoAdesione" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TariffarioAdesioniVolontarie_TipoSoggetto">
+    <End Role="T_TipoSoggetto" Type="AmministrazioneAsdepModel.Store.T_TipoSoggetto" Multiplicity="1" />
+    <End Role="T_TariffarioAdesioniVolontarie" Type="AmministrazioneAsdepModel.Store.T_TariffarioAdesioniVolontarie" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_TipoSoggetto">
+        <PropertyRef Name="CodTipoSoggetto" />
+      </Principal>
+      <Dependent Role="T_TariffarioAdesioniVolontarie">
+        <PropertyRef Name="CodTipoSoggetto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TipoAdesione_TipoAdesione">
+    <End Role="T_TipoAdesione" Type="AmministrazioneAsdepModel.Store.T_TipoAdesione" Multiplicity="0..1" />
+    <End Role="T_TipoAdesione1" Type="AmministrazioneAsdepModel.Store.T_TipoAdesione" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_TipoAdesione">
+        <PropertyRef Name="CodTipoAdesione" />
+      </Principal>
+      <Dependent Role="T_TipoAdesione1">
+        <PropertyRef Name="RifAdesioneCollettiva" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TipologiaEnte_Ente">
+    <End Role="Ente" Type="AmministrazioneAsdepModel.Store.Ente" Multiplicity="1" />
+    <End Role="TipologiaEnte" Type="AmministrazioneAsdepModel.Store.TipologiaEnte" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Ente">
+        <PropertyRef Name="IdEnte" />
+      </Principal>
+      <Dependent Role="TipologiaEnte">
+        <PropertyRef Name="IdEnte" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <!--Errors Found During Generation:
+      warning 6013: The table/view 'AmministrazioneAsdep.dbo.LimitiDiEtà' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+      
+      <EntityType Name="LimitiDiEtà">
+        <Property Name="xx" Type="bigint" />
+      </EntityType>
+      Errors Found During Generation:
+      warning 6013: The table/view 'AmministrazioneAsdep.dbo.PagamentiEnte' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+      
+      <EntityType Name="PagamentiEnte">
+        <Property Name="xx" Type="bigint" />
+      </EntityType>
+      Errors Found During Generation:
+      warning 6013: The table/view 'AmministrazioneAsdep.dbo.PagamentiVolontarie' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+      
+      <EntityType Name="PagamentiVolontarie">
+        <Property Name="xx" Type="bigint" />
+      </EntityType>
+      Errors Found During Generation:
+      warning 6013: The table/view 'AmministrazioneAsdep.dbo.RecapitiEnte' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+      
+      <EntityType Name="RecapitiEnte">
+        <Property Name="xx" Type="bigint" />
+      </EntityType>
+      Errors Found During Generation:
+      warning 6013: The table/view 'AmministrazioneAsdep.dbo.Storico' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+      
+      <EntityType Name="Storico">
+        <Property Name="xx" Type="bigint" />
+      </EntityType>
+      Errors Found During Generation:
+      warning 6013: The table/view 'AmministrazioneAsdep.dbo.TracciaturaOperazioni' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+      
+      <EntityType Name="TracciaturaOperazioni">
+        <Property Name="xx" Type="bigint" />
+      </EntityType>-->
+</Schema>

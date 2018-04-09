@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <LastUsedBuildConfiguration>Release</LastUsedBuildConfiguration>
+    <LastUsedPlatform>Any CPU</LastUsedPlatform>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="AsdepWcf.svc">
+      <publishTime>03/27/2018 16:21:09</publishTime>
+    </File>
+    <File Include="bin/AmministrazioneAsdep.dll">
+      <publishTime>04/09/2018 15:28:05</publishTime>
+    </File>
+    <File Include="bin/AsdepGestioneAnagraficheBLL.dll">
+      <publishTime>04/09/2018 15:28:05</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.dll">
+      <publishTime>03/27/2018 12:47:17</publishTime>
+    </File>
+    <File Include="bin/WcfService.dll">
+      <publishTime>04/09/2018 15:29:55</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>04/09/2018 15:42:25</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

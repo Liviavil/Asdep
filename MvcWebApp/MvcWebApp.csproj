@@ -200,6 +200,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\build.css" />
+    <Content Include="Content\DataTable\dataTableDownload.min.css" />
+    <Content Include="Content\DataTable\datatables.css" />
+    <Content Include="Content\DataTable\editor.dataTables.css" />
+    <Content Include="Content\DataTable\template-editor.css" />
     <Content Include="Content\images\12.png" />
     <Content Include="Content\images\13.png" />
     <Content Include="Content\images\14.png" />
@@ -286,8 +290,16 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </Content>
+    <Content Include="Content\assets\5d3ff71c.eot" />
+    <Content Include="Content\assets\80f3eca6.woff" />
+    <Content Include="Content\assets\602e9d03.ttf" />
+    <None Include="Properties\PublishProfiles\IIS_Local.pubxml" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Scripts\CustomScript\GestioneAnagrafica.js" />
+    <Content Include="Scripts\DataTable\dataTableDownload.min.js" />
+    <Content Include="Scripts\DataTable\dataTables.editor.js" />
+    <Content Include="Scripts\DataTable\datatables.js" />
+    <Content Include="Scripts\IWT.min.js" />
     <Content Include="Scripts\jquery-1.7.1.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -350,6 +362,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\images\DataTable\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

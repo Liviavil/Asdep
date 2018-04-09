@@ -1,0 +1,50 @@
+﻿#usersForm input {
+    font:inherit;
+}
+
+#usersForm .DTE_Label {
+    color: inherit;
+    display: inline-block;
+    font-size: inherit;
+    font-weight: 700;
+    margin: 0;
+    padding-left: 12px;
+}
+
+#usersForm .DTE_Label_Info {
+}
+
+#usersForm .DTE_Field_Input {
+    margin-top: .4rem !important;
+    font-size: 2.1rem !important;
+    letter-spacing: .005em !important;
+    
+    box-sizing: border-box;
+    color: inherit;
+    display: block;
+    font-family: inherit;
+    margin: 0;
+    padding: .5em;
+    width: 100%;
+}
+
+#usersForm .DTE_Field_InputControl {
+    border-radius: 4px !important;
+    border: 1px solid #ccc;
+}
+
+div.DTED_Lightbox_Wrapper {
+    position: fixed;
+    top: 0;
+    left: 33%;
+    width: 90%;
+    height: 100%;
+    z-index: 11;
+}
+
+div.DTE_Body div.DTE_Body_Content div.DTE_Field > label {
+    width:100% !important;
+}
+div.DTE_Body div.DTE_Body_Content div.DTE_Field {
+    padding:5px 5px !important;
+}

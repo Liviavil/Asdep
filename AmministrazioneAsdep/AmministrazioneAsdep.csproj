@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6EC09EDF-E363-4250-ACFA-8ADFBB5DA70C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AmministrazioneAsdep</RootNamespace>
+    <AssemblyName>AmministrazioneAsdep</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Adesione.cs">
+      <DependentUpon>AmminstrazioneAsdepDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AmminstrazioneAsdepDB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AmminstrazioneAsdepDB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AmminstrazioneAsdepDB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AmminstrazioneAsdepDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AmminstrazioneAsdepDB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AmminstrazioneAsdepDB.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\EnteProvider.cs" />
+    <Compile Include="DAL\IProvider.cs" />
+    <Compile Include="DAL\SoggettiImportAppoggioProvider.cs" />
+    <Compile Include="ContribuzioneEnte.cs">
+      <DependentUpon>AmminstrazioneAsdepDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Ente.cs">
+      <DependentUpon>AmminstrazioneAsdepDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EnteAppartenenza.cs">
+      <DependentUpon>AmminstrazioneAsdepDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ErroriIO.cs">
+      <DependentUpon>AmminstrazioneAsdepDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModalitaPagamentoEnte.cs">
+      <DependentUpon>AmminstrazioneAsdepDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SoggettiImportAppoggio.cs">
+      <DependentUpon>AmminstrazioneAsdepDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Soggetto.cs">
+      <DependentUpon>AmminstrazioneAsdepDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>AmminstrazioneAsdepDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TipologiaEnte.cs">
+      <DependentUpon>AmminstrazioneAsdepDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TracciaturaExport.cs">
+      <DependentUpon>AmminstrazioneAsdepDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T_TariffarioAdesioniCollettive.cs">
+      <DependentUpon>AmminstrazioneAsdepDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T_TariffarioAdesioniVolontarie.cs">
+      <DependentUpon>AmminstrazioneAsdepDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T_TipiLegame.cs">
+      <DependentUpon>AmminstrazioneAsdepDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T_TipoAdesione.cs">
+      <DependentUpon>AmminstrazioneAsdepDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T_TipoSoggetto.cs">
+      <DependentUpon>AmminstrazioneAsdepDB.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="AmminstrazioneAsdepDB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>AmminstrazioneAsdepDB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="AmminstrazioneAsdepDB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>AmminstrazioneAsdepDB.edmx</DependentUpon>
+      <LastGenOutput>AmminstrazioneAsdepDB.Context.cs</LastGenOutput>
+    </None>
+    <None Include="AmminstrazioneAsdepDB.edmx.diagram">
+      <DependentUpon>AmminstrazioneAsdepDB.edmx</DependentUpon>
+    </None>
+    <None Include="AmminstrazioneAsdepDB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>AmminstrazioneAsdepDB.edmx</DependentUpon>
+      <LastGenOutput>AmminstrazioneAsdepDB.cs</LastGenOutput>
+    </None>
+    <None Include="App.Config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
