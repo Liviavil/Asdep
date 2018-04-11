@@ -15,7 +15,7 @@
 
                     <div class="Grid-cell u-sizeFull u-md-size1of1 u-lg-size1of1 u-text-r-s">
                         <h2 class=" u-text-h3 u-color-grey-50">Anagrafiche in lavorazione
-                    </h2>
+                        </h2>
 
                     </div>
                 </div>
@@ -43,7 +43,7 @@
                 <div class="Grid-cell u-md-size1of2 u-lg-size1of2">
                     <div class="Form-field">
                         <label class="Form-label is-required" for="provincia">Ente</label>
-                        @Html.DropDownListFor(m => m.selectedId, Model.ListItemEnti, new { @class = "Form-input u-text-r-s u-borderRadius-m"  })
+                        @Html.DropDownListFor(m => m.selectedId, Model.ListItemEnti, new { @class = "Form-input u-text-r-s u-borderRadius-m" })
                     </div>
 
                 </div>
@@ -58,7 +58,15 @@
     </div>
     
     <div id="risultati">
-        @{ Html.RenderPartial("RisultatiSoggettiImportati", Model.SearchResults);}
+        @*@{ Model.SearchResults.Selected = Request.QueryString["enteQuerystring"];}*@
+        @if (string.IsNullOrEmpty(Request.QueryString["enteQuerystring"]))
+        {
+             Html.RenderPartial("RisultatiSoggettiImportati", Model.SearchResults);
+        }
+        else
+        {
+            var m = new MvcWebApp.Models.SoggImportAppoggio {selectedId = Request.QueryString["enteQuerystring"] };
+            Html.RenderAction("RisultatiSoggettiImportati", "GestioneAnagrafica", new { modello = m });
+        }
     </div>
-};
-
+}

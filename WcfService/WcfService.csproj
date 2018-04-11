@@ -68,7 +68,10 @@
       <DependentUpon>AsdepWcf.svc</DependentUpon>
     </Compile>
     <Compile Include="DAL\Ente.cs" />
+    <Compile Include="DAL\Errore.cs" />
     <Compile Include="DAL\Soggetto.cs" />
+    <Compile Include="DAL\TipoLegame.cs" />
+    <Compile Include="Extra\HelperWcf.cs" />
     <Compile Include="IAsdepWcf.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

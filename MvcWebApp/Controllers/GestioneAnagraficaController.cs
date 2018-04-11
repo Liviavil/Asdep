@@ -13,10 +13,11 @@ namespace MvcWebApp.Controllers
 {
     public class GestioneAnagraficaController : Controller
     {
-
         public ActionResult Carica(HttpPostedFileBase file)
         {
+            string ente = "INAIL";
             if (file != null && file.ContentLength > 0)
+            {
                 try
                 {
                     string path = //Path.Combine(Server.MapPath("~/"),
@@ -27,30 +28,32 @@ namespace MvcWebApp.Controllers
 
                     //SoggImportAppoggio soggetto = new SoggImportAppoggio();
                     //soggetto.selectedId = ente;
-                    //RedirectToAction("RisultatiSoggettiImportati", soggetto);
-
                     //file.SaveAs(path);
                     ViewBag.Message = "File caricato con successo";
+
                 }
                 catch (Exception ex)
                 {
                     ViewBag.Message = "ERROR:" + ex.Message.ToString();
                 }
+                return RedirectToAction("InLavorazione", "GestioneAnagrafica", new { enteQuerystring = ente });
+            }
             else
             {
                 ViewBag.Message = "You have not specified a file.";
+                return View();
             }
-            return View();
         }
 
-        public ActionResult InLavorazione()
+        [HttpGet]
+        public ActionResult InLavorazione(string enteQuerystring)
         {
             SoggImportAppoggio soggetto = new SoggImportAppoggio();
+            SoggImportAppoggioSearchResults results = new SoggImportAppoggioSearchResults();
 
             //Impostare i risultati di ricerca come ancora non trovati è il primo caricamento
-            SoggImportAppoggioSearchResults results = new SoggImportAppoggioSearchResults();
-            results.CountResults = 0;
 
+            results.CountResults = 0;
 
             //Utilizzo del servizio wcf per recuperare i dati dal db
             using (HelperService help = new HelperService())
@@ -69,10 +72,14 @@ namespace MvcWebApp.Controllers
                 }
 
                 soggetto.ListItemEnti = new SelectList(list, "Value", "Text", 0);
-                soggetto.SearchResults = results;
 
+                if (!string.IsNullOrEmpty(enteQuerystring))
+                {
+                    results.Selected = enteQuerystring;
+                    soggetto.selectedId = enteQuerystring;
+                }
             }
-
+            soggetto.SearchResults = results;
             return View(soggetto);
         }
 
@@ -87,6 +94,23 @@ namespace MvcWebApp.Controllers
 
                 foreach (WcfService.DAL.Anagrafica _anag in _anagrafiche)
                 {
+                    ErrorsList listaErrori = new ErrorsList();
+
+                    List<Errore> _errore = new List<Errore>();
+                    foreach (WcfService.DAL.Errore errore in _anag.Errori)
+                    {
+                        Errore _e = new Errore 
+                        { 
+                            ColumnName = errore.ColumnName, 
+                            Description = errore.Description, 
+                            Exists = errore.Exists ,
+                            ErrorLevel= Enum.Parse(errore.ErrorLevel.GetType(),errore.ErrorLevel.ToString()).ToString()
+                        };
+                        _errore.Add(_e);
+                    }
+                    listaErrori.ListaErrori = _errore;
+                    listaErrori.AllWarnings = _errore.Where(x => x.ErrorLevel.Equals("Warning")).ToList().Count == _errore.Count;
+
                     SoggImportAppoggio _sia = new SoggImportAppoggio
                     {
                         #region _soggetto
@@ -112,7 +136,8 @@ namespace MvcWebApp.Controllers
                         NumeroPolizza = _anag.NumeroPolizza,
                         SecondoNome = _anag.SecondoNome,
                         SiglaProvResidenza = _anag.SiglaProvResidenza,
-                        Telefono = _anag.Telefono
+                        Telefono = _anag.Telefono,
+                        Errori = listaErrori
                         #endregion
                     };
 

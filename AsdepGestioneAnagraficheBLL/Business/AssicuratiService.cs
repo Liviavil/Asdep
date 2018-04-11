@@ -1,9 +1,11 @@
 ﻿using AmministrazioneAsdep;
 using AmministrazioneAsdep.DAL;
+using AsdepGestioneAnagraficheBLL.Extra;
 using AsdepGestioneAnagraficheBLL.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -129,6 +131,7 @@ namespace AsdepGestioneAnagraficheBLL.Business
         {
             List<SoggettiImportatiAppoggioBL> _soggettiBL = new List<SoggettiImportatiAppoggioBL>();
             List<SoggettiImportAppoggio> _soggettiOrigin = new List<SoggettiImportAppoggio>();
+            List<SoggettiImportatiAppoggioBL> _soggettiBLValidi = new List<SoggettiImportatiAppoggioBL>();
 
             using (db = new AmministrazioneAsdepEntities ())
             {
@@ -162,9 +165,12 @@ namespace AsdepGestioneAnagraficheBLL.Business
                     NumeroPolizza = _soggetto.NumeroPolizza,
                     SecondoNome = _soggetto.SecondoNome,
                     SiglaProvResidenza = _soggetto.SiglaProvResidenza,
-                    Telefono = _soggetto.Telefono 
+                    Telefono = _soggetto.Telefono
                     #endregion
                 };
+
+                _soggBL.Errori = _soggBL.ValidaSoggetto().Where(x=>x.Exist==true).ToList();
+
                 _soggettiBL.Add(_soggBL);
             }
 

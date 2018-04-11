@@ -46,9 +46,13 @@
   <ItemGroup>
     <Compile Include="Business\AssicuratiService.cs" />
     <Compile Include="Business\EnteService.cs" />
+    <Compile Include="Business\T_TipoLegameService.cs" />
+    <Compile Include="Extra\Helper.cs" />
     <Compile Include="IServiceAsdep.cs" />
     <Compile Include="Model\EnteBL.cs" />
+    <Compile Include="Model\Errori.cs" />
     <Compile Include="Model\SoggettiImportatiAppoggioBL.cs" />
+    <Compile Include="Model\T_TipoLegameBL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -5,3 +5,4 @@ C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\Amministraz
 C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\AmministrazioneAsdep\bin\Debug\EntityFramework.xml
 C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\AmministrazioneAsdep\obj\Debug\AmministrazioneAsdep.dll
 C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\AmministrazioneAsdep\obj\Debug\AmministrazioneAsdep.pdb
+C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\AmministrazioneAsdep\obj\Debug\AmministrazioneAsdep.csprojResolveAssemblyReference.cache

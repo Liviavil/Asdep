@@ -70,6 +70,7 @@
     <Compile Include="ContribuzioneEnte.cs">
       <DependentUpon>AmminstrazioneAsdepDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="DAL\TipoLegameProvider.cs" />
     <Compile Include="Ente.cs">
       <DependentUpon>AmminstrazioneAsdepDB.tt</DependentUpon>
     </Compile>

@@ -5,7 +5,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 -->
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <LastUsedBuildConfiguration>Release</LastUsedBuildConfiguration>
+    <LastUsedBuildConfiguration>Debug</LastUsedBuildConfiguration>
     <LastUsedPlatform>Any CPU</LastUsedPlatform>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
   </PropertyGroup>
@@ -14,19 +14,28 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/27/2018 16:21:09</publishTime>
     </File>
     <File Include="bin/AmministrazioneAsdep.dll">
-      <publishTime>04/09/2018 15:28:05</publishTime>
+      <publishTime>04/09/2018 19:06:45</publishTime>
+    </File>
+    <File Include="bin/AmministrazioneAsdep.pdb">
+      <publishTime>04/09/2018 19:06:45</publishTime>
     </File>
     <File Include="bin/AsdepGestioneAnagraficheBLL.dll">
-      <publishTime>04/09/2018 15:28:05</publishTime>
+      <publishTime>04/09/2018 19:06:45</publishTime>
+    </File>
+    <File Include="bin/AsdepGestioneAnagraficheBLL.pdb">
+      <publishTime>04/09/2018 19:06:45</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>03/27/2018 12:47:17</publishTime>
     </File>
     <File Include="bin/WcfService.dll">
-      <publishTime>04/09/2018 15:29:55</publishTime>
+      <publishTime>04/09/2018 19:06:46</publishTime>
+    </File>
+    <File Include="bin/WcfService.pdb">
+      <publishTime>04/09/2018 19:06:46</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>04/09/2018 15:42:25</publishTime>
+      <publishTime>04/10/2018 11:19:42</publishTime>
     </File>
   </ItemGroup>
 </Project>

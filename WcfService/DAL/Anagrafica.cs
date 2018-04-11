@@ -198,5 +198,9 @@ namespace WcfService.DAL
         
         [DataMember]
         public string SecondoNome { get; set; }
+
+        [DataMember]
+        public List<Errore>Errori { get; set; }
+
     }
 }

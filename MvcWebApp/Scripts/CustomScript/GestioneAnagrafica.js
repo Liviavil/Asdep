@@ -168,7 +168,24 @@ function table() {
             {
                 targets: 0,
                 createdCell: function (td, cellData, rowData, row, col) {
-                    $(td).addClass("Icon-file");
+                    if (rowData.Errori.ListaErrori.length > 0)
+                    {
+                        if (!rowData.Errori.AllWarnings) {
+                            $(td).addClass("Prose Alert Alert--error Alert--withIcon u-layout-prose u-padding-r-bottom u-padding-r-right   u-margin-r-bottom");
+                        }
+                        else
+                        {
+                            $(td).addClass("Prose Alert Alert--warning Alert--withIcon u-layout-prose u-padding-r-bottom u-padding-r-right   u-margin-r-bottom");
+                        }
+                        $.each(rowData.Errori.ListaErrori, function (index, val)
+                        {
+                            $(td).html("<div class='tooltiptext'>" + val.ColumnName + ": " + val.Description + "<br>");
+                        });
+                    }
+                    else
+                    {
+                        $(td).addClass("Icon-file");
+                    }
                 }
             }
         ],

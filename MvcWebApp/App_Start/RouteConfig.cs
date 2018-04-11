@@ -18,6 +18,16 @@ namespace MvcWebApp
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+            routes.MapRoute(
+                name: "LavoraEnte",
+                url: "{controller}/{action}/{enteQuerystring}",
+                defaults: new { controller = "GestioneAnagrafica", action = "InLavorazione", enteQuerystring = UrlParameter.Optional }
+            );
+            routes.MapRoute(
+                name: "SoggettiByEnte",
+                url: "{controller}/{action}/{modello}",
+                defaults: new { controller = "GestioneAnagrafica", action = "InLavorazione", modello = UrlParameter.Optional }
+            );
         }
     }
 }

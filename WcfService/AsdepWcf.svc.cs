@@ -10,6 +10,7 @@ using System.Text;
 using WcfService.DAL;
 using AmministrazioneAsdep;
 using AsdepGestioneAnagraficheBLL.Business;
+using WcfService.Extra;
 
 namespace WcfService
 {
@@ -145,6 +146,18 @@ namespace WcfService
 
                 foreach(SoggettiImportatiAppoggioBL _soggBL in _soggettiFromBL)
                 {
+                    List<DAL.Errore> errori = new List<DAL.Errore>();
+                    foreach (AsdepGestioneAnagraficheBLL.Model.Errore _err in _soggBL.Errori) 
+                    {
+                        DAL.Errore errore = new DAL.Errore { 
+                            ColumnName = _err.ColumnName, 
+                            Description = _err.Description, 
+                            Exists = _err.Exist,
+                            ErrorLevel = (WcfService.DAL.Errore.Level)Enum.Parse(typeof(WcfService.DAL.Errore.Level), _err.ErrorLevel.ToString())
+                        };
+                        errori.Add(errore);
+                    }
+                    
                     Anagrafica _soggetto = new Anagrafica 
                     {
                         #region _soggetto
@@ -170,7 +183,8 @@ namespace WcfService
                         NumeroPolizza = _soggBL.NumeroPolizza,
                         SecondoNome = _soggBL.SecondoNome,
                         SiglaProvResidenza = _soggBL.SiglaProvResidenza,
-                        Telefono = _soggBL.Telefono 
+                        Telefono = _soggBL.Telefono,
+                        Errori = errori
                         #endregion
                     };
 
@@ -227,6 +241,22 @@ namespace WcfService
             }
             catch { }
             return result;
+        }
+
+
+        public TipoLegame GetByCode(string codice)
+        {
+            TipoLegame _tipoLegame = new TipoLegame();
+            T_TipoLegameBL _tOrigin = new T_TipoLegameBL();
+            try 
+            {
+                T_TipoLegameService _tipoLegService = new T_TipoLegameService();
+                _tOrigin = _tipoLegService.GetByCodLegame(codice);
+
+                HelperWcf.PropertyCopier<T_TipoLegameBL, TipoLegame>.Copy(_tOrigin, _tipoLegame);
+            }
+            catch { }
+            return _tipoLegame;
         }
     }
 }

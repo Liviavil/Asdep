@@ -32,6 +32,7 @@ namespace MvcWebApp.Models
         public string Email { get; set; }
         public string Telefono { get; set; }
         public DateTime? DataCessazione { get; set; }
+        public ErrorsList Errori { get; set; }
 
         public string selectedId { get; set; }
         public SelectList ListItemEnti { get; set; }
@@ -40,6 +41,21 @@ namespace MvcWebApp.Models
 
     public class SoggImportAppoggioSearchResults : Search<SoggImportAppoggio> 
     {
+    }
+
+    public class ErrorsList
+    {
+        public List<Errore> ListaErrori { get; set; }
+        public bool AllWarnings { get; set; }
+    }
+
+    public class Errore 
+    {
+        public string ColumnName { get; set; }
+        public string Description { get; set; }
+        public string ErrorLevel { get; set; }
+        public bool Exists { get; set; }
+
     }
 
 }
