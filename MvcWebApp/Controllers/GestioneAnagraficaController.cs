@@ -8,6 +8,8 @@ using MvcWebApp.CustomCode;
 using System.ServiceModel.Web;
 using WcfService;
 using System.IO;
+using Asdep.Common.DAO;
+using System.Data;
 
 namespace MvcWebApp.Controllers
 {
@@ -23,8 +25,8 @@ namespace MvcWebApp.Controllers
                     string path = //Path.Combine(Server.MapPath("~/"),
                                                Path.GetFileName(file.FileName);
                     Helper hp = new Helper();
-                    hp.InitializeWorkbook(path);
-                    hp.ConvertToDataTable();
+                    DataTable dt = hp.ConvertCSVtoDataTable(path);
+                    hp.InsertIntoTableAppoggio(dt);
 
                     //SoggImportAppoggio soggetto = new SoggImportAppoggio();
                     //soggetto.selectedId = ente;
@@ -58,16 +60,16 @@ namespace MvcWebApp.Controllers
             //Utilizzo del servizio wcf per recuperare i dati dal db
             using (HelperService help = new HelperService())
             {
-                List<WcfService.DAL.Ente> enti = help.channel.GetAllEnti();
+                List<string> enti = help.channel.GetAllEntiInLavorazione();
 
                 //Popolamento della drop down list
                 List<SelectListItem> list = new List<SelectListItem>();
                 SelectListItem listItemDefault = new SelectListItem() { Value = "0", Text = "Seleziona...", Selected = true };
                 list.Add(listItemDefault);
 
-                foreach (WcfService.DAL.Ente ente in enti)
+                foreach (string ente in enti)
                 {
-                    SelectListItem listItem = new SelectListItem() { Value = ente.CodiceEnte/*ente.IdEnte.ToString()*/, Text = ente.CodiceEnte };
+                    SelectListItem listItem = new SelectListItem() { Value = ente/*ente.IdEnte.ToString()*/, Text = ente };
                     list.Add(listItem);
                 }
 
@@ -79,6 +81,7 @@ namespace MvcWebApp.Controllers
                     soggetto.selectedId = enteQuerystring;
                 }
             }
+            Session["Ddl"] = soggetto.ListItemEnti;
             soggetto.SearchResults = results;
             return View(soggetto);
         }
@@ -87,24 +90,27 @@ namespace MvcWebApp.Controllers
         {
             Search<SoggImportAppoggio> results = new SoggImportAppoggioSearchResults();
             List<SoggImportAppoggio> soggetti = new List<SoggImportAppoggio>();
-
-            using (HelperService help = new HelperService())
+            List<SoggettiImportAppoggioDao> _anagrafiche = new List<SoggettiImportAppoggioDao>();
+            if (modello.selectedId != null)
             {
-                List<WcfService.DAL.Anagrafica> _anagrafiche = help.channel.GetSoggettiByEnte(modello.selectedId.ToString());
-
-                foreach (WcfService.DAL.Anagrafica _anag in _anagrafiche)
+                using (HelperService help = new HelperService())
                 {
-                    ErrorsList listaErrori = new ErrorsList();
+                    _anagrafiche = help.channel.GetSoggettiByEnte(modello.selectedId.ToString());
+                }
+                foreach (SoggettiImportAppoggioDao _anag in _anagrafiche)
+                {
 
+                    ErrorsList listaErrori = new ErrorsList();
                     List<Errore> _errore = new List<Errore>();
-                    foreach (WcfService.DAL.Errore errore in _anag.Errori)
+
+                    foreach (ErroreDao errore in _anag.Errori)
                     {
-                        Errore _e = new Errore 
-                        { 
-                            ColumnName = errore.ColumnName, 
-                            Description = errore.Description, 
-                            Exists = errore.Exists ,
-                            ErrorLevel= Enum.Parse(errore.ErrorLevel.GetType(),errore.ErrorLevel.ToString()).ToString()
+                        Errore _e = new Errore
+                        {
+                            ColumnName = errore.ColumnName,
+                            Description = errore.Description,
+                            Exists = errore.Exist,
+                            ErrorLevel = Enum.Parse(errore.ErrorLevel.GetType(), errore.ErrorLevel.ToString()).ToString()
                         };
                         _errore.Add(_e);
                     }
@@ -125,7 +131,7 @@ namespace MvcWebApp.Controllers
                         Effetto = _anag.Effetto,
                         Email = _anag.Email,
                         Ente = _anag.Ente,
-                        EsclusioniPregresse = _anag.Esclusioni,
+                        EsclusioniPregresse = _anag.EsclusioniPregresse,
                         Iban = _anag.Iban,
                         IndirizzoResidenza = _anag.IndirizzoResidenza,
                         IdSoggetto = _anag.IdSoggetto,
@@ -144,9 +150,15 @@ namespace MvcWebApp.Controllers
                     soggetti.Add(_sia);
                 }
                 results.CountResults = _anagrafiche.Count();
-            }
 
-            results.Results = soggetti;
+
+                results.Results = soggetti;
+            }
+            else 
+            {
+                results = modello.SearchResults;
+                soggetti = modello.SearchResults.Results;
+            }
             //ViewBag.Soggetti = soggetti;
             Session["Soggetti"] = soggetti;
             return PartialView(results);
@@ -155,6 +167,98 @@ namespace MvcWebApp.Controllers
         public ActionResult LoadTable()
         {
             return Json(Session["Soggetti"], JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult ValidaSoggettiImportati() 
+        {
+            List<SoggImportAppoggio> soggetti = (List<SoggImportAppoggio>)Session["Soggetti"];
+            List<SoggettiImportAppoggioDao> soggDao = new List<SoggettiImportAppoggioDao>();
+
+            foreach(SoggImportAppoggio _sogg in soggetti)
+            {
+                SoggettiImportAppoggioDao _dao= new SoggettiImportAppoggioDao();
+                Asdep.Common.DAO.ExtraDao.PropertyCopier<SoggImportAppoggio, SoggettiImportAppoggioDao>.Copy(_sogg, _dao);
+                soggDao.Add(_dao);
+            }
+            
+            using (HelperService _hp = new HelperService ())
+            {
+                soggDao = _hp.channel.ValidaSoggetto(soggDao);
+            }
+
+            List<SoggImportAppoggio> soggettiValidati = new List<SoggImportAppoggio>();
+            //foreach (SoggettiImportAppoggioDao _sogg in soggDao)
+            //{
+            //    SoggImportAppoggio _dao = new SoggImportAppoggio();
+            //    Asdep.Common.DAO.ExtraDao.PropertyCopier<SoggettiImportAppoggioDao, SoggImportAppoggio>.Copy(_sogg, _dao);
+            //    soggettiValidati.Add(_dao);
+            //}
+
+            foreach (SoggettiImportAppoggioDao _anag in soggDao)
+            {
+
+                ErrorsList listaErrori = new ErrorsList();
+                List<Errore> _errore = new List<Errore>();
+
+                foreach (ErroreDao errore in _anag.Errori)
+                {
+                    Errore _e = new Errore
+                    {
+                        ColumnName = errore.ColumnName,
+                        Description = errore.Description,
+                        Exists = errore.Exist,
+                        ErrorLevel = Enum.Parse(errore.ErrorLevel.GetType(), errore.ErrorLevel.ToString()).ToString()
+                    };
+                    _errore.Add(_e);
+                }
+                listaErrori.ListaErrori = _errore;
+                listaErrori.AllWarnings = _errore.Where(x => x.ErrorLevel.Equals("Warning")).ToList().Count == _errore.Count;
+
+                SoggImportAppoggio _sia = new SoggImportAppoggio
+                {
+                    #region _soggetto
+                    CapResidenza = _anag.CapResidenza,
+                    Categoria = _anag.Categoria,
+                    CodiceFiscaleAssicurato = _anag.CodiceFiscaleAssicurato,
+                    CodiceFiscaleCapoNucleo = _anag.CodiceFiscaleCapoNucleo,
+                    Cognome = _anag.Cognome,
+                    Convenzione = _anag.Convenzione,
+                    DataCessazione = _anag.DataCessazione,
+                    DataNascitaAssicurato = _anag.DataNascitaAssicurato,
+                    Effetto = _anag.Effetto,
+                    Email = _anag.Email,
+                    Ente = _anag.Ente,
+                    EsclusioniPregresse = _anag.EsclusioniPregresse,
+                    Iban = _anag.Iban,
+                    IndirizzoResidenza = _anag.IndirizzoResidenza,
+                    IdSoggetto = _anag.IdSoggetto,
+                    LegameNucleo = _anag.LegameNucleo,
+                    LocalitaResidenza = _anag.LocalitaResidenza,
+                    LuogoNascitaAssicurato = _anag.LuogoNascitaAssicurato,
+                    Nome = _anag.Nome,
+                    NumeroPolizza = _anag.NumeroPolizza,
+                    SecondoNome = _anag.SecondoNome,
+                    SiglaProvResidenza = _anag.SiglaProvResidenza,
+                    Telefono = _anag.Telefono,
+                    Errori = listaErrori
+                    #endregion
+                };
+
+                soggettiValidati.Add(_sia);
+            }
+           
+            SoggImportAppoggioSearchResults result = new SoggImportAppoggioSearchResults();
+            result.Results = soggettiValidati;
+            result.CountResults = soggettiValidati.Count;
+            result.Selected = soggettiValidati[0].Ente;
+
+             SoggImportAppoggio toSend = new SoggImportAppoggio();
+             toSend.SearchResults = result;
+             //toSend.selectedId = soggettiValidati[0].Ente;
+             toSend.ListItemEnti = (SelectList)Session["Ddl"];
+             Session["Soggetti"] = soggettiValidati;
+
+             return PartialView("RisultatiSoggettiImportati", result);
         }
 
     }

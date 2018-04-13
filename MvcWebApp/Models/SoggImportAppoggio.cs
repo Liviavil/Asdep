@@ -4,11 +4,13 @@ using System.Linq;
 using System.Web;
 using MvcWebApp.CustomCode;
 using System.Web.Mvc;
+using System.ComponentModel;
 
 namespace MvcWebApp.Models
 {
     public class SoggImportAppoggio
     {
+
         public long IdSoggetto { get; set; }
         public string Convenzione { get; set; }
         public string Categoria { get; set; }
@@ -39,7 +41,7 @@ namespace MvcWebApp.Models
         public SoggImportAppoggioSearchResults SearchResults { get; set; }
     }
 
-    public class SoggImportAppoggioSearchResults : Search<SoggImportAppoggio> 
+    public class SoggImportAppoggioSearchResults : Search<SoggImportAppoggio>
     {
     }
 
@@ -49,7 +51,7 @@ namespace MvcWebApp.Models
         public bool AllWarnings { get; set; }
     }
 
-    public class Errore 
+    public class Errore
     {
         public string ColumnName { get; set; }
         public string Description { get; set; }

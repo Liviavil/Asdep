@@ -1,6 +1,6 @@
 ﻿using AmministrazioneAsdep;
 using AmministrazioneAsdep.DAL;
-using AsdepGestioneAnagraficheBLL.Model;
+using Asdep.Common.DAO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace AsdepGestioneAnagraficheBLL.Business
 {
-    public class EnteService : IServiceAsdep<EnteBL>
+    public class EnteService : IServiceAsdep<EnteDao>
     {
         private AmministrazioneAsdepEntities db;
 
@@ -17,10 +17,10 @@ namespace AsdepGestioneAnagraficheBLL.Business
         {
             db = new AmministrazioneAsdepEntities();
         }
-        public EnteBL SelectByCodiceEnte(string name) 
+        public EnteDao SelectByCodiceEnte(string name)
         {
             Ente _ente = new Ente();
-            EnteBL _eBL = null;
+            EnteDao _eBL = null;
             using (db)
             {
                 EnteProvider provider = new EnteProvider();
@@ -29,64 +29,73 @@ namespace AsdepGestioneAnagraficheBLL.Business
 
             if (_ente != null || _ente.ToString().Equals(string.Empty))
             {
-                _eBL = new EnteBL
-                {
-                    CodAppl = _ente.CodAppl,
-                    CodiceEnte = _ente.CodiceEnte,
-                    CodiceFiscale = _ente.CodiceFiscale,
-                    CodiceUtente = _ente.CodiceUtente,
-                    ContribuzioneEnte = _ente.ContribuzioneEnte,
-                    DataAggiornamento = _ente.DataAggiornamento,
-                    DataFine = _ente.DataFine,
-                    DataInizio = _ente.DataInizio,
-                    EnteAppartenenza = _ente.EnteAppartenenza,
-                    Progressivo = _ente.Progressivo,
-                    RagioneSociale = _ente.RagioneSociale,
-                    TipologiaEnte =_ente.TipologiaEnte
-                };
+                #region comment
+                //_eBL = new EnteDao
+                //{
+                //    CodAppl = _ente.CodAppl,
+                //    CodiceEnte = _ente.CodiceEnte,
+                //    CodiceFiscale = _ente.CodiceFiscale,
+                //    CodiceUtente = _ente.CodiceUtente,
+                //    ContribuzioneEnte = _ente.ContribuzioneEnte,
+                //    DataAggiornamento = _ente.DataAggiornamento,
+                //    DataFine = _ente.DataFine,
+                //    DataInizio = _ente.DataInizio,
+                //    EnteAppartenenza = _ente.EnteAppartenenza,
+                //    Progressivo = _ente.Progressivo,
+                //    RagioneSociale = _ente.RagioneSociale,
+                //    TipologiaEnte =_ente.TipologiaEnte
+                //}; 
+                #endregion
+                _eBL = new EnteDao();
+                Asdep.Common.DAO.ExtraDao.PropertyCopier<Ente, EnteDao>.Copy(_ente, _eBL);
             }
 
             return _eBL;
         }
 
-        public int AddOne(EnteBL obj)
+        public int AddOne(EnteDao obj)
         {
             throw new NotImplementedException();
         }
 
-        public int AddMany(List<EnteBL> obj)
+        public int AddMany(List<EnteDao> obj)
         {
             throw new NotImplementedException();
         }
 
-        public List<EnteBL> GetAll()
+        public List<EnteDao> GetAll()
         {
-            List<EnteBL> _entiBL = new List<EnteBL>();
+            List<EnteDao> _entiBL = new List<EnteDao>();
             List<Ente> _enti = new List<Ente>();
-            try 
+            try
             {
                 EnteProvider provider = new EnteProvider();
                 _enti = provider.GetAll(db);
-                if (_enti.Any()) 
+                if (_enti.Any())
                 {
                     foreach (Ente _ente in _enti)
                     {
-                        EnteBL _eBL = new EnteBL
-                        {
-                            IdEnte = _ente.IdEnte,
-                            CodAppl = _ente.CodAppl,
-                            CodiceEnte = _ente.CodiceEnte,
-                            CodiceFiscale = _ente.CodiceFiscale,
-                            CodiceUtente = _ente.CodiceUtente,
-                            ContribuzioneEnte = _ente.ContribuzioneEnte,
-                            DataAggiornamento = _ente.DataAggiornamento,
-                            DataFine = _ente.DataFine,
-                            DataInizio = _ente.DataInizio,
-                            EnteAppartenenza = _ente.EnteAppartenenza,
-                            Progressivo = _ente.Progressivo,
-                            RagioneSociale = _ente.RagioneSociale,
-                            TipologiaEnte = _ente.TipologiaEnte
-                        };
+                        #region comment
+                        //EnteDao _eBL = new EnteDao
+                        //{
+                        //    IdEnte = _ente.IdEnte,
+                        //    CodAppl = _ente.CodAppl,
+                        //    CodiceEnte = _ente.CodiceEnte,
+                        //    CodiceFiscale = _ente.CodiceFiscale,
+                        //    CodiceUtente = _ente.CodiceUtente,
+                        //    ContribuzioneEnte = _ente.ContribuzioneEnte,
+                        //    DataAggiornamento = _ente.DataAggiornamento,
+                        //    DataFine = _ente.DataFine,
+                        //    DataInizio = _ente.DataInizio,
+                        //    EnteAppartenenza = _ente.EnteAppartenenza,
+                        //    Progressivo = _ente.Progressivo,
+                        //    RagioneSociale = _ente.RagioneSociale,
+                        //    TipologiaEnte = _ente.TipologiaEnte
+                        //}; 
+                        #endregion
+
+                        EnteDao _eBL = new EnteDao();
+                        Asdep.Common.DAO.ExtraDao.PropertyCopier<Ente, EnteDao>.Copy(_ente, _eBL);
                         _entiBL.Add(_eBL);
                     }
                 }
@@ -95,13 +104,26 @@ namespace AsdepGestioneAnagraficheBLL.Business
             return _entiBL;
         }
 
+        public List<string> GetAllEntiInLavorazione()
+        {
+            List<string> _entiToSend = new List<string>();
+            
+            using (db)
+            {
+                EnteProvider _provider = new EnteProvider();
+                _entiToSend = _provider.GetEntiInLavorazione(db);
+            }
+            
+            return _entiToSend;
+        }
 
-        public int DeleteOne(EnteBL obj)
+
+        public int DeleteOne(EnteDao obj)
         {
             throw new NotImplementedException();
         }
 
-        public int DeleteMany(List<EnteBL> objs)
+        public int DeleteMany(List<EnteDao> objs)
         {
             throw new NotImplementedException();
         }

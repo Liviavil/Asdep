@@ -9,3 +9,5 @@ C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\WcfService\
 C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\WcfService\obj\Debug\WcfService.csprojResolveAssemblyReference.cache
 C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\WcfService\obj\Debug\WcfService.dll
 C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\WcfService\obj\Debug\WcfService.pdb
+C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\WcfService\bin\Asdep.Common.DAO.dll
+C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\WcfService\bin\Asdep.Common.DAO.pdb

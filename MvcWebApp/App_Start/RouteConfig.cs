@@ -28,6 +28,11 @@ namespace MvcWebApp
                 url: "{controller}/{action}/{modello}",
                 defaults: new { controller = "GestioneAnagrafica", action = "InLavorazione", modello = UrlParameter.Optional }
             );
+            routes.MapRoute(
+                name: "SoggettiImportati",
+                url: "{controller}/{action}/{results}",
+                defaults: new { controller = "GestioneAnagrafica", action = "SoggettiImportati", modello = UrlParameter.Optional }
+            );
         }
     }
 }

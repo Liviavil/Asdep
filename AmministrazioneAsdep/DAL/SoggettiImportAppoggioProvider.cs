@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Design;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -37,7 +39,7 @@ namespace AmministrazioneAsdep.DAL
         public SoggettiImportAppoggio SelectById(AmministrazioneAsdepEntities db, long id)
         {
             SoggettiImportAppoggio _sogg = new SoggettiImportAppoggio();
-            try 
+            try
             {
                 _sogg = (from table in db.SoggettiImportAppoggio where table.IdSoggetto.Equals(id) select table).FirstOrDefault();
             }
@@ -104,12 +106,27 @@ namespace AmministrazioneAsdep.DAL
             int result = -1;
             try
             {
-                foreach (SoggettiImportAppoggio _ass in objs)
-                {
-                    SoggettiImportAppoggio _s = SelectById(db,_ass.IdSoggetto);
-                    db.SoggettiImportAppoggio.Remove(_s);
-                    result = db.SaveChanges();
-                }
+                db.SoggettiImportAppoggio.RemoveRange(objs);
+                //foreach (SoggettiImportAppoggio _ass in objs)
+                //{
+                //    SoggettiImportAppoggio _s = SelectById(db, _ass.IdSoggetto);
+                //    db.SoggettiImportAppoggio.Remove(_s);
+                //    result = db.SaveChanges();
+                //}
+                result = db.SaveChanges();
+            }
+            catch { }
+            return result;
+        }
+
+        public int DeleteByEnte(AmministrazioneAsdepEntities db, string ente)
+        {
+            int result = -1;
+            try
+            {
+                db.SoggettiImportAppoggio.RemoveRange(db.SoggettiImportAppoggio.Where(x=>x.Ente.Equals(ente)));
+                db.SaveChanges();
+
             }
             catch { }
             return result;

@@ -63,14 +63,9 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DAL\Anagrafica.cs" />
     <Compile Include="AsdepWcf.svc.cs">
       <DependentUpon>AsdepWcf.svc</DependentUpon>
     </Compile>
-    <Compile Include="DAL\Ente.cs" />
-    <Compile Include="DAL\Errore.cs" />
-    <Compile Include="DAL\Soggetto.cs" />
-    <Compile Include="DAL\TipoLegame.cs" />
     <Compile Include="Extra\HelperWcf.cs" />
     <Compile Include="IAsdepWcf.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -88,9 +83,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AmministrazioneAsdep\AmministrazioneAsdep.csproj">
-      <Project>{6ec09edf-e363-4250-acfa-8adfbb5da70c}</Project>
-      <Name>AmministrazioneAsdep</Name>
+    <ProjectReference Include="..\Asdep.Common.DAO\Asdep.Common.DAO.csproj">
+      <Project>{5db690d6-9d8f-428d-b69a-9eca3581a3dd}</Project>
+      <Name>Asdep.Common.DAO</Name>
     </ProjectReference>
     <ProjectReference Include="..\AsdepGestioneAnagraficheBLL\AsdepGestioneAnagraficheBLL.csproj">
       <Project>{e7d9990b-e2b6-4860-b7f1-797dcfcafcb0}</Project>

@@ -1,5 +1,5 @@
-﻿using AsdepGestioneAnagraficheBLL.Business;
-using AsdepGestioneAnagraficheBLL.Model;
+﻿using Asdep.Common.DAO;
+using AsdepGestioneAnagraficheBLL.Business;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -12,7 +12,7 @@ namespace AsdepGestioneAnagraficheBLL.Extra
     public static class Helper
     {
 
-        internal static Errore Check(string columnName, SoggettiImportatiAppoggioBL _sogg)
+        internal static ErroreDao Check(string columnName, SoggettiImportAppoggioDao _sogg)
         {
             try
             {
@@ -57,171 +57,171 @@ namespace AsdepGestioneAnagraficheBLL.Extra
                     case "Email":
                         return ValidaEmail(_sogg.Email);
                     default:
-                        return new Errore();
+                        return new ErroreDao();
 
                 }
             }
-            catch { return new Errore(); }
+            catch { return new ErroreDao(); }
         }
 
-        private static Errore ValidaEmail(string email)
+        private static ErroreDao ValidaEmail(string email)
         {
-            Errore erro = new Errore();
+            ErroreDao erro = new ErroreDao();
             bool validemail = new EmailAddressAttribute().IsValid(email);
             if (!validemail)
             {
                 erro.ColumnName = "Email";
                 erro.Description = "Formato non valido.";
-                erro.ErrorLevel = Errore.Level.High;
+                erro.ErrorLevel = ErroreDao.Level.High;
                 erro.Exist = true;
             }
             return erro;
         }
 
-        private static Errore ValidaDataCess(DateTime? nullable)
+        private static ErroreDao ValidaDataCess(DateTime? nullable)
         {
             throw new NotImplementedException();
         }
 
-        private static Errore ValidaTelefono(string p)
+        private static ErroreDao ValidaTelefono(string p)
         {
             throw new NotImplementedException();
         }
 
-        private static Errore ValidaIban(string iban)
+        private static ErroreDao ValidaIban(string iban)
         {
-            Errore erro = new Errore();
+            ErroreDao erro = new ErroreDao();
             if (string.IsNullOrEmpty(iban))
             {
                 erro.ColumnName = "Iban";
                 erro.Description = "Valore mancante";
-                erro.ErrorLevel = Errore.Level.Warning;
+                erro.ErrorLevel = ErroreDao.Level.Warning;
                 erro.Exist = true;
             }
             if (!ValidateBankAccount(iban))
             {
                 erro.ColumnName = "Iban";
                 erro.Description = "Valore non corretto";
-                erro.ErrorLevel = Errore.Level.High;
+                erro.ErrorLevel = ErroreDao.Level.High;
                 erro.Exist = true;
             }
             return erro;
         }
 
-        private static Errore ValidaCapResid(string p)
+        private static ErroreDao ValidaCapResid(string p)
         {
             throw new NotImplementedException();
         }
 
-        private static Errore ValidaSiglaProv(string p)
+        private static ErroreDao ValidaSiglaProv(string p)
         {
             throw new NotImplementedException();
         }
 
-        private static Errore ValidaLocResid(string p)
+        private static ErroreDao ValidaLocResid(string p)
         {
             throw new NotImplementedException();
         }
 
-        private static Errore ValidaIndirizzoResid(string p)
+        private static ErroreDao ValidaIndirizzoResid(string p)
         {
             throw new NotImplementedException();
         }
 
-        private static Errore ValidaEffetto(DateTime? nullable)
+        private static ErroreDao ValidaEffetto(DateTime? nullable)
         {
             throw new NotImplementedException();
         }
 
-        private static Errore ValidaLegame(string legame)
+        private static ErroreDao ValidaLegame(string legame)
         {
-            Errore erro = new Errore();
+            ErroreDao erro = new ErroreDao();
             T_TipoLegameService _eService = new T_TipoLegameService();
-            T_TipoLegameBL legameBL = _eService.GetByCodLegame(legame);
+            T_TipiLegameDao legameBL = _eService.GetByCodLegame(legame);
             if (legameBL.CodLegameImport == null)
             {
                 erro.ColumnName = "Codice Legame";
                 erro.Description = "Valore non censito dal sistema";
-                erro.ErrorLevel = Errore.Level.High;
+                erro.ErrorLevel = ErroreDao.Level.High;
                 erro.Exist = true;
             }
             return erro;
         }
 
-        private static Errore ValidaDataNascita(DateTime? nullable)
+        private static ErroreDao ValidaDataNascita(DateTime? nullable)
         {
             throw new NotImplementedException();
         }
 
-        private static Errore ValidaLuogoNascita(string p)
+        private static ErroreDao ValidaLuogoNascita(string p)
         {
             throw new NotImplementedException();
         }
 
-        private static Errore ValidaCFCapoNucleo(string p)
+        private static ErroreDao ValidaCFCapoNucleo(string p)
         {
             throw new NotImplementedException();
         }
 
-        private static Errore ValidaCategoria(string categoria)
+        private static ErroreDao ValidaCategoria(string categoria)
         {
-            Errore erro = new Errore();
+            ErroreDao erro = new ErroreDao();
             if (!categoria.ToLower().Equals("dipendenti"))
             {
                 erro.ColumnName = "Categoria";
                 erro.Description = "Valore non valido";
-                erro.ErrorLevel = Errore.Level.High;
+                erro.ErrorLevel = ErroreDao.Level.High;
                 erro.Exist = true;
             }
             return erro;
         }
 
-        private static Errore ValidaConvenzione(string p)
+        private static ErroreDao ValidaConvenzione(string p)
         {
             throw new NotImplementedException();
         }
 
-        private static Errore ValidaPolizza(string polizza)
+        private static ErroreDao ValidaPolizza(string polizza)
         {
-            Errore erro = new Errore();
+            ErroreDao erro = new ErroreDao();
             if (!polizza.ToLower().Equals("base_integrativa") || !polizza.ToLower().Equals("base") || !polizza.ToLower().Equals("integrativa"))
             {
                 erro.ColumnName = "Polizza";
                 erro.Description = "Valore non valido";
-                erro.ErrorLevel = Errore.Level.High;
+                erro.ErrorLevel = ErroreDao.Level.High;
                 erro.Exist = true;
             }
             return erro;
         }
 
-        private static Errore ValidaCFAssic(string p)
+        private static ErroreDao ValidaCFAssic(string p)
         {
             throw new NotImplementedException();
         }
 
-        private static Errore ValidaEnte(string ente)
+        private static ErroreDao ValidaEnte(string ente)
         {
-            Errore erro = new Errore();
+            ErroreDao erro = new ErroreDao();
             EnteService _eService = new EnteService();
-            EnteBL enteBL = _eService.SelectByCodiceEnte(ente);
+            EnteDao enteBL = _eService.SelectByCodiceEnte(ente);
             if (ente == null || ente.ToString().Equals(string.Empty))
             {
                 erro.ColumnName = "Ente";
                 erro.Description = "Ente non presente";
-                erro.ErrorLevel = Errore.Level.High;
+                erro.ErrorLevel = ErroreDao.Level.High;
                 erro.Exist = true;
             }
             return erro;
         }
 
-        private static Errore ValidaEsclusioni(string esclusione)
+        private static ErroreDao ValidaEsclusioni(string esclusione)
         {
-            Errore erro = new Errore();
+            ErroreDao erro = new ErroreDao();
             if (!esclusione.ToUpper().Equals("NO"))
             {
                 erro.ColumnName = "Esclusioni Pregresse";
                 erro.Description = "Valore di default errato";
-                erro.ErrorLevel = Errore.Level.High;
+                erro.ErrorLevel = ErroreDao.Level.High;
                 erro.Exist = true;
             }
             return erro;
@@ -260,28 +260,6 @@ namespace AsdepGestioneAnagraficheBLL.Extra
             }
             else
                 return false;
-        }
-
-
-        public static class PropertyCopier<TParent, TChild>
-            where TParent : class
-            where TChild : class
-        {
-            public static void Copy(TParent parent, TChild child)
-            {
-                var parentProperties = parent.GetType().GetProperties();
-                var childProperties = child.GetType().GetProperties();
-                foreach (var parentProperty in parentProperties)
-                {
-                    foreach (var childProperty in childProperties)
-                    {
-                        if (parentProperty.Name == childProperty.Name && parentProperty.PropertyType == childProperty.PropertyType)
-                        {
-                            childProperty.SetValue(child, parentProperty.GetValue(parent)); break;
-                        }
-                    }
-                }
-            }
         }
     }
 }

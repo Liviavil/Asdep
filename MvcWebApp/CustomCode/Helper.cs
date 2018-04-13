@@ -10,9 +10,9 @@ using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Web;
 using System.ServiceModel.Web;
-using WcfService.DAL;
 using WcfService;
 using System.Configuration;
+using Asdep.Common.DAO;
 
 namespace MvcWebApp.CustomCode
 {
@@ -90,19 +90,68 @@ namespace MvcWebApp.CustomCode
             dt.Rows.RemoveAt(0);
             dataSet1.Tables.Add(dt);
             
-            InsertIntoTableAppoggio(dataSet1);
+            InsertIntoTableAppoggio(dataSet1.Tables[0]);
             
         }
 
-        public int InsertIntoTableAppoggio(DataSet dataset)
+        public DataTable ConvertCSVtoDataTable(string strFilePath)
+        {
+            DataTable dt = new DataTable();
+            using (StreamReader sr = new StreamReader(strFilePath))
+            {
+                string[] headers = sr.ReadLine().Split(';');
+                //foreach (string header in headers)
+                //{
+                //    dt.Columns.Add(header);
+                //}
+                dt.Columns.Add("Convenzione");
+                dt.Columns.Add("Categoria");
+                dt.Columns.Add("EsclusioniPregresse");
+                dt.Columns.Add("NumeroPolizza");
+                dt.Columns.Add("Ente");
+                dt.Columns.Add("Cognome");
+                dt.Columns.Add("Nome");
+                dt.Columns.Add("SecondoNome");
+                dt.Columns.Add("CodiceFiscaleAssicurato");
+                dt.Columns.Add("LuogoNascitaAssicurato");
+                dt.Columns.Add("DataNascitaAssicurato");
+                dt.Columns.Add("CodiceFiscaleCapoNucleo");
+                dt.Columns.Add("LegameNucleo");
+                dt.Columns.Add("Effetto");
+                dt.Columns.Add("IndirizzoResidenza");
+                dt.Columns.Add("LocalitaResidenza");
+                dt.Columns.Add("SiglaProvResidenza");
+                dt.Columns.Add("CapResidenza");
+                dt.Columns.Add("Iban");
+                dt.Columns.Add("Email");
+                dt.Columns.Add("Telefono");
+                dt.Columns.Add("DataCessazione");
+
+                while (!sr.EndOfStream)
+                {
+                    string[] rows = sr.ReadLine().Split(';');
+                    DataRow dr = dt.NewRow();
+                    for (int i = 0; i < headers.Length; i++)
+                    {
+                        dr[i] = rows[i];
+                    }
+                    dt.Rows.Add(dr);
+                }
+
+            }
+
+
+            return dt;
+        }
+
+        public int InsertIntoTableAppoggio(DataTable dataset)
         {
             int result = -1;
-            List<Anagrafica> anagrafiche = new List<Anagrafica>();
-            List<Anagrafica> toDelete = new List<Anagrafica>();
+            List<SoggettiImportAppoggioDao> anagrafiche = new List<SoggettiImportAppoggioDao>();
+            List<SoggettiImportAppoggioDao> toDelete = new List<SoggettiImportAppoggioDao>();
             try
             {
-                DataTableCollection tables = dataset.Tables;
-                anagrafiche = Extensions.ToList<Anagrafica>(dataset.Tables[0]);
+                anagrafiche = Extensions.ToList<SoggettiImportAppoggioDao>(dataset);
                 string ente = anagrafiche.Select(x => x.Ente).FirstOrDefault();
                 int s;
                 using (HelperService service =  new HelperService ())
@@ -115,6 +164,28 @@ namespace MvcWebApp.CustomCode
             catch { }
             
             return result;
+        }
+
+    }
+
+    public static class PropertyCopier<TParent, TChild>
+        where TParent : class
+        where TChild : class
+    {
+        public static void Copy(TParent parent, TChild child)
+        {
+            var parentProperties = parent.GetType().GetProperties();
+            var childProperties = child.GetType().GetProperties();
+            foreach (var parentProperty in parentProperties)
+            {
+                foreach (var childProperty in childProperties)
+                {
+                    if (parentProperty.Name == childProperty.Name && parentProperty.PropertyType == childProperty.PropertyType)
+                    {
+                        childProperty.SetValue(child, parentProperty.GetValue(parent)); break;
+                    }
+                }
+            }
         }
     }
 

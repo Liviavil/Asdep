@@ -11,19 +11,25 @@ by editing this MSBuild file. In order to learn more about this please visit htt
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/AmministrazioneAsdep.dll">
-      <publishTime>04/09/2018 19:06:45</publishTime>
+      <publishTime>04/13/2018 19:05:38</publishTime>
     </File>
     <File Include="bin/AmministrazioneAsdep.pdb">
-      <publishTime>04/09/2018 19:06:45</publishTime>
+      <publishTime>04/13/2018 19:05:38</publishTime>
     </File>
     <File Include="bin/Antlr3.Runtime.dll">
       <publishTime>03/27/2018 12:47:23</publishTime>
     </File>
+    <File Include="bin/Asdep.Common.DAO.dll">
+      <publishTime>04/13/2018 19:05:38</publishTime>
+    </File>
+    <File Include="bin/Asdep.Common.DAO.pdb">
+      <publishTime>04/13/2018 19:05:38</publishTime>
+    </File>
     <File Include="bin/AsdepGestioneAnagraficheBLL.dll">
-      <publishTime>04/09/2018 19:06:45</publishTime>
+      <publishTime>04/13/2018 19:05:39</publishTime>
     </File>
     <File Include="bin/AsdepGestioneAnagraficheBLL.pdb">
-      <publishTime>04/09/2018 19:06:45</publishTime>
+      <publishTime>04/13/2018 19:05:39</publishTime>
     </File>
     <File Include="bin/DotNetOpenAuth.AspNet.dll">
       <publishTime>03/27/2018 12:47:22</publishTime>
@@ -44,7 +50,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/27/2018 12:47:23</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
-      <publishTime>03/27/2018 12:47:17</publishTime>
+      <publishTime>04/12/2018 15:27:43</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.SqlServer.dll">
+      <publishTime>04/12/2018 15:27:43</publishTime>
     </File>
     <File Include="bin/ICSharpCode.SharpZipLib.dll">
       <publishTime>03/29/2018 11:48:48</publishTime>
@@ -56,10 +65,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/27/2018 12:47:22</publishTime>
     </File>
     <File Include="bin/MvcWebApp.dll">
-      <publishTime>04/09/2018 19:06:54</publishTime>
+      <publishTime>04/13/2018 19:05:41</publishTime>
     </File>
     <File Include="bin/MvcWebApp.pdb">
-      <publishTime>04/09/2018 19:06:54</publishTime>
+      <publishTime>04/13/2018 19:05:41</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
       <publishTime>03/27/2018 12:47:20</publishTime>
@@ -107,10 +116,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/27/2018 12:47:21</publishTime>
     </File>
     <File Include="bin/WcfService.dll">
-      <publishTime>04/09/2018 19:06:46</publishTime>
+      <publishTime>04/13/2018 19:05:39</publishTime>
     </File>
     <File Include="bin/WcfService.pdb">
-      <publishTime>04/09/2018 19:06:46</publishTime>
+      <publishTime>04/13/2018 19:05:39</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
       <publishTime>03/27/2018 12:47:23</publishTime>
@@ -434,13 +443,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/27/2018 15:09:46</publishTime>
     </File>
     <File Include="packages.config">
-      <publishTime>03/29/2018 11:51:02</publishTime>
+      <publishTime>04/12/2018 15:32:09</publishTime>
     </File>
     <File Include="Properties/Settings.settings">
       <publishTime>04/03/2018 16:34:26</publishTime>
     </File>
     <File Include="Scripts/CustomScript/GestioneAnagrafica.js">
-      <publishTime>04/09/2018 12:20:21</publishTime>
+      <publishTime>04/13/2018 10:23:28</publishTime>
     </File>
     <File Include="Scripts/DataTable/dataTableDownload.min.js">
       <publishTime>04/06/2018 10:10:13</publishTime>
@@ -530,10 +539,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/05/2018 16:03:29</publishTime>
     </File>
     <File Include="Views/GestioneAnagrafica/InLavorazione.cshtml">
-      <publishTime>04/09/2018 13:29:08</publishTime>
+      <publishTime>04/13/2018 17:23:35</publishTime>
     </File>
     <File Include="Views/GestioneAnagrafica/RisultatiSoggettiImportati.cshtml">
-      <publishTime>04/09/2018 11:54:42</publishTime>
+      <publishTime>04/13/2018 18:41:00</publishTime>
     </File>
     <File Include="Views/Home/About.cshtml">
       <publishTime>03/27/2018 15:09:46</publishTime>
@@ -551,7 +560,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/03/2018 19:49:12</publishTime>
     </File>
     <File Include="Views/Shared/_LayoutAsdep.cshtml">
-      <publishTime>04/09/2018 16:31:25</publishTime>
+      <publishTime>04/10/2018 13:32:05</publishTime>
     </File>
     <File Include="Views/Shared/_LoginPartial.cshtml">
       <publishTime>03/27/2018 15:09:46</publishTime>
@@ -563,7 +572,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/29/2018 16:01:58</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>04/10/2018 11:19:55</publishTime>
+      <publishTime>04/13/2018 19:05:51</publishTime>
     </File>
   </ItemGroup>
 </Project>

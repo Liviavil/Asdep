@@ -71,5 +71,17 @@ namespace AmministrazioneAsdep.DAL
         {
             throw new NotImplementedException();
         }
+
+        public List<string> GetEntiInLavorazione(AmministrazioneAsdepEntities db)
+        {
+            List<string> _enti = new List<string>();
+            try 
+            {
+                _enti = (from table in db.SoggettiImportAppoggio select table.Ente).Distinct().ToList(); 
+
+            }
+            catch { }
+            return _enti;
+        }
     }
 }

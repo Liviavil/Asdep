@@ -31,12 +31,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -47,12 +49,9 @@
     <Compile Include="Business\AssicuratiService.cs" />
     <Compile Include="Business\EnteService.cs" />
     <Compile Include="Business\T_TipoLegameService.cs" />
+    <Compile Include="Extra\Valida.cs" />
     <Compile Include="Extra\Helper.cs" />
     <Compile Include="IServiceAsdep.cs" />
-    <Compile Include="Model\EnteBL.cs" />
-    <Compile Include="Model\Errori.cs" />
-    <Compile Include="Model\SoggettiImportatiAppoggioBL.cs" />
-    <Compile Include="Model\T_TipoLegameBL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -63,6 +62,10 @@
     <ProjectReference Include="..\AmministrazioneAsdep\AmministrazioneAsdep.csproj">
       <Project>{6ec09edf-e363-4250-acfa-8adfbb5da70c}</Project>
       <Name>AmministrazioneAsdep</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Asdep.Common.DAO\Asdep.Common.DAO.csproj">
+      <Project>{5db690d6-9d8f-428d-b69a-9eca3581a3dd}</Project>
+      <Name>Asdep.Common.DAO</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

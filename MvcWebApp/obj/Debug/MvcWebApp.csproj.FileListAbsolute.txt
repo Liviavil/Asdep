@@ -59,3 +59,7 @@ C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\MvcWebApp\b
 C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\MvcWebApp\obj\Debug\MvcWebApp.csprojResolveAssemblyReference.cache
 C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\MvcWebApp\obj\Debug\MvcWebApp.dll
 C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\MvcWebApp\obj\Debug\MvcWebApp.pdb
+C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\MvcWebApp\bin\Asdep.Common.DAO.dll
+C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\MvcWebApp\bin\Asdep.Common.DAO.pdb
+C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\MvcWebApp\bin\EntityFramework.SqlServer.dll
+C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\MvcWebApp\bin\EntityFramework.SqlServer.xml

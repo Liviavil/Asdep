@@ -509,42 +509,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--Errors Found During Generation:
-      warning 6013: The table/view 'AmministrazioneAsdep.dbo.LimitiDiEtà' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-      
-      <EntityType Name="LimitiDiEtà">
-        <Property Name="xx" Type="bigint" />
-      </EntityType>
-      Errors Found During Generation:
-      warning 6013: The table/view 'AmministrazioneAsdep.dbo.PagamentiEnte' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-      
-      <EntityType Name="PagamentiEnte">
-        <Property Name="xx" Type="bigint" />
-      </EntityType>
-      Errors Found During Generation:
-      warning 6013: The table/view 'AmministrazioneAsdep.dbo.PagamentiVolontarie' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-      
-      <EntityType Name="PagamentiVolontarie">
-        <Property Name="xx" Type="bigint" />
-      </EntityType>
-      Errors Found During Generation:
-      warning 6013: The table/view 'AmministrazioneAsdep.dbo.RecapitiEnte' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-      
-      <EntityType Name="RecapitiEnte">
-        <Property Name="xx" Type="bigint" />
-      </EntityType>
-      Errors Found During Generation:
-      warning 6013: The table/view 'AmministrazioneAsdep.dbo.Storico' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-      
-      <EntityType Name="Storico">
-        <Property Name="xx" Type="bigint" />
-      </EntityType>
-      Errors Found During Generation:
-      warning 6013: The table/view 'AmministrazioneAsdep.dbo.TracciaturaOperazioni' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-      
-      <EntityType Name="TracciaturaOperazioni">
-        <Property Name="xx" Type="bigint" />
-      </EntityType>-->
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>

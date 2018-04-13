@@ -1,7 +1,7 @@
 ﻿using AmministrazioneAsdep;
 using AmministrazioneAsdep.DAL;
+using Asdep.Common.DAO;
 using AsdepGestioneAnagraficheBLL.Extra;
-using AsdepGestioneAnagraficheBLL.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,46 +10,46 @@ using System.Threading.Tasks;
 
 namespace AsdepGestioneAnagraficheBLL.Business
 {
-    public class T_TipoLegameService: IServiceAsdep<T_TipoLegameBL>
+    public class T_TipoLegameService: IServiceAsdep<T_TipiLegameDao>
     {
 
-        public T_TipoLegameBL GetByCodLegame(string codice) 
+        public T_TipiLegameDao GetByCodLegame(string codice) 
         {
-            T_TipoLegameBL _tipoLegame = new T_TipoLegameBL();
+            T_TipiLegameDao _tipoLegame = new T_TipiLegameDao();
             try 
             {
                 using (AmministrazioneAsdepEntities db = new AmministrazioneAsdepEntities())
                 {
                     TipoLegameProvider service = new TipoLegameProvider ();
                     T_TipiLegame _tipoDAL = service.GetByCodLegameImport(db, codice);
-                    Helper.PropertyCopier<T_TipiLegame, T_TipoLegameBL>.Copy(_tipoDAL, _tipoLegame);
+                    Asdep.Common.DAO.ExtraDao.PropertyCopier<T_TipiLegame, T_TipiLegameDao>.Copy(_tipoDAL, _tipoLegame);
                 }
             }
             catch { }
             return _tipoLegame;
         }
 
-        public int AddOne(T_TipoLegameBL obj)
+        public int AddOne(T_TipiLegameDao obj)
         {
             throw new NotImplementedException();
         }
 
-        public int AddMany(List<T_TipoLegameBL> obj)
+        public int AddMany(List<T_TipiLegameDao> obj)
         {
             throw new NotImplementedException();
         }
 
-        public List<T_TipoLegameBL> GetAll()
+        public List<T_TipiLegameDao> GetAll()
         {
             throw new NotImplementedException();
         }
 
-        public int DeleteOne(T_TipoLegameBL obj)
+        public int DeleteOne(T_TipiLegameDao obj)
         {
             throw new NotImplementedException();
         }
 
-        public int DeleteMany(List<T_TipoLegameBL> objs)
+        public int DeleteMany(List<T_TipiLegameDao> objs)
         {
             throw new NotImplementedException();
         }

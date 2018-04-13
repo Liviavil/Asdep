@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
-using WcfService.DAL;
+using Asdep.Common.DAO;
 
 namespace WcfService
 {
@@ -20,7 +20,7 @@ namespace WcfService
 
         [OperationContract]
         [WebInvoke(Method = "POST", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "CaricaAnagrafica/")]
-        int CaricaAnagrafica(Anagrafica anagrafica);
+        int CaricaAnagrafica(SoggettiImportAppoggioDao anagrafica);
 
         [OperationContract]
         [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "ValidaAnagrafica")]
@@ -28,27 +28,31 @@ namespace WcfService
 
         [OperationContract]
         [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "GetAnagrafica")]
-        Anagrafica GetAnagrafica();
+        SoggettiImportAppoggioDao GetAnagrafica();
 
         [OperationContract]
         [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "GetSoggettiImportAnagrafica")]
-        Anagrafica GetSoggettiImportAnagrafica();
+        SoggettiImportAppoggioDao GetSoggettiImportAnagrafica();
 
         [OperationContract]
         [WebInvoke(Method = "POST", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "InsertSoggettoAppoggio/")]
-        int InsertSoggettoAppoggio(Anagrafica anagrafica);
+        int InsertSoggettoAppoggio(SoggettiImportAppoggioDao anagrafica);
 
         [OperationContract]
         [WebInvoke(Method = "POST", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "InsertSoggettiAppoggio/")]
-        int InsertSoggettiAppoggio(List<Anagrafica> anagrafiche);
+        int InsertSoggettiAppoggio(List<SoggettiImportAppoggioDao> anagrafiche);
 
         [OperationContract]
         [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "GetEnti/")]
-        List<Ente> GetAllEnti();
+        List<EnteDao> GetAllEnti();
+
+        [OperationContract]
+        [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "GetAllEntiInLavorazione/")]
+        List<string> GetAllEntiInLavorazione();
 
         [OperationContract]
         [WebInvoke(Method = "POST", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "GetSoggettiByEnte/")]
-        List<Anagrafica> GetSoggettiByEnte(string ente);
+        List<SoggettiImportAppoggioDao> GetSoggettiByEnte(string ente);
 
         [OperationContract]
         [WebInvoke(Method = "POST", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "DeleteAnagraficaByEnte/")]
@@ -56,7 +60,11 @@ namespace WcfService
 
         [OperationContract]
         [WebInvoke(Method = "POST", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "GetTipoLegameByCodiceIn/")]
-        TipoLegame GetByCode(string codice);
+        T_TipiLegameDao GetByCode(string codice);
+
+        [OperationContract]
+        [WebInvoke(Method = "POST", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "ValidaSoggetto/")]
+        List<SoggettiImportAppoggioDao> ValidaSoggetto(List<SoggettiImportAppoggioDao> soggetto);
        
     }
 }
