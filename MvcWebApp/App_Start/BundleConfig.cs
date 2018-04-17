@@ -9,9 +9,10 @@ namespace MvcWebApp
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js",
-                        "~/Scripts/IWT.min.js",
-                        "~/Scripts/DataTable/dataTables.editor.js"));
+                        "~/Scripts/jquery-{version}.js"));
+                       
+                        //"~/Scripts/DataTable/dataTables.editor.js"
+                       
 
             bundles.Add(new ScriptBundle("~/bundles/custom").Include(
                         "~/Scripts/CustomScript/GestioneAnagrafica.js"));
@@ -31,9 +32,10 @@ namespace MvcWebApp
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                 //"~/Content/site.css", 
-                "~/Content/build.css",
+                "~/Content/build.css"));
                 //"~/Content/DataTable/dataTableDownload.min.css",
-                "~/Content/DataTable/editor.dataTable.css"));
+                //"~/Content/DataTable/editor.dataTable.css"
+
                 
 
             bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(

@@ -34,6 +34,7 @@ namespace Asdep.Common.DAO
         public Nullable<System.DateTime> DataCessazione { get; set; }
 
         public List<ErroreDao> Errori { get; set; }
+        public bool AllWarnings { get; set; }
 
         
     }

@@ -1,6 +1,7 @@
 C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\MvcWebApp\bin\MvcWebApp.dll
 C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\MvcWebApp\bin\MvcWebApp.pdb
 C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\MvcWebApp\bin\Antlr3.Runtime.dll
+C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\MvcWebApp\bin\Asdep.Common.DAO.dll
 C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\MvcWebApp\bin\AsdepGestioneAnagraficheBLL.dll
 C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\MvcWebApp\bin\DotNetOpenAuth.AspNet.dll
 C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\MvcWebApp\bin\DotNetOpenAuth.Core.dll
@@ -9,6 +10,7 @@ C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\MvcWebApp\b
 C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\MvcWebApp\bin\DotNetOpenAuth.OpenId.dll
 C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\MvcWebApp\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
 C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\MvcWebApp\bin\EntityFramework.dll
+C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\MvcWebApp\bin\EntityFramework.SqlServer.dll
 C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\MvcWebApp\bin\ICSharpCode.SharpZipLib.dll
 C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\MvcWebApp\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\MvcWebApp\bin\Microsoft.Web.WebPages.OAuth.dll
@@ -32,10 +34,12 @@ C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\MvcWebApp\b
 C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\MvcWebApp\bin\WebMatrix.Data.dll
 C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\MvcWebApp\bin\WebMatrix.WebData.dll
 C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\MvcWebApp\bin\AmministrazioneAsdep.dll
+C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\MvcWebApp\bin\Asdep.Common.DAO.pdb
 C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\MvcWebApp\bin\AsdepGestioneAnagraficheBLL.pdb
 C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\MvcWebApp\bin\WcfService.pdb
-C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\MvcWebApp\bin\NPOI.xml
 C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\MvcWebApp\bin\EntityFramework.xml
+C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\MvcWebApp\bin\EntityFramework.SqlServer.xml
+C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\MvcWebApp\bin\NPOI.xml
 C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\MvcWebApp\bin\Newtonsoft.Json.xml
 C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\MvcWebApp\bin\System.Net.Http.Formatting.xml
 C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\MvcWebApp\bin\System.Web.Helpers.xml
@@ -59,7 +63,3 @@ C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\MvcWebApp\b
 C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\MvcWebApp\obj\Debug\MvcWebApp.csprojResolveAssemblyReference.cache
 C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\MvcWebApp\obj\Debug\MvcWebApp.dll
 C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\MvcWebApp\obj\Debug\MvcWebApp.pdb
-C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\MvcWebApp\bin\Asdep.Common.DAO.dll
-C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\MvcWebApp\bin\Asdep.Common.DAO.pdb
-C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\MvcWebApp\bin\EntityFramework.SqlServer.dll
-C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\MvcWebApp\bin\EntityFramework.SqlServer.xml

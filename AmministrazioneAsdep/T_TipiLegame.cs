@@ -17,17 +17,15 @@ namespace AmministrazioneAsdep
         public T_TipiLegame()
         {
             this.Adesione = new HashSet<Adesione>();
+            this.T_LimitiEta = new HashSet<T_LimitiEta>();
         }
     
         public string CodLegame { get; set; }
         public string DescLegame { get; set; }
         public string FlagCarico { get; set; }
-        public string CodTipoCarico { get; set; }
         public string CodLegameImport { get; set; }
         public string CodLegameExport { get; set; }
         public string CodTipoCaricoExport { get; set; }
-        public Nullable<byte> EtaMinima { get; set; }
-        public Nullable<byte> EtaMassima { get; set; }
         public System.DateTime DataInizio { get; set; }
         public System.DateTime DataFine { get; set; }
         public System.DateTime DataAggiornamento { get; set; }
@@ -35,5 +33,6 @@ namespace AmministrazioneAsdep
         public string CodAppl { get; set; }
     
         public virtual ICollection<Adesione> Adesione { get; set; }
+        public virtual ICollection<T_LimitiEta> T_LimitiEta { get; set; }
     }
 }

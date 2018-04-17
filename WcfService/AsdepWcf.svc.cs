@@ -275,6 +275,7 @@ namespace WcfService
                 foreach(SoggettiImportAppoggioDao _sogg in soggetto)
                 {
                     _sogg.Errori = _service.ValidaAdesioneCollettiva(_sogg);
+                    _sogg.AllWarnings = _sogg.Errori.Where(x => x.ErrorLevel.Equals("Warning")).ToList().Count == _sogg.Errori.Count;
                 }
                 
             }

@@ -27,19 +27,24 @@ namespace AmministrazioneAsdep
     
         public DbSet<Adesione> Adesione { get; set; }
         public DbSet<ContribuzioneEnte> ContribuzioneEnte { get; set; }
+        public DbSet<DatiEnte> DatiEnte { get; set; }
         public DbSet<Ente> Ente { get; set; }
         public DbSet<EnteAppartenenza> EnteAppartenenza { get; set; }
-        public DbSet<ErroriIO> ErroriIO { get; set; }
         public DbSet<ModalitaPagamentoEnte> ModalitaPagamentoEnte { get; set; }
         public DbSet<SoggettiImportAppoggio> SoggettiImportAppoggio { get; set; }
         public DbSet<Soggetto> Soggetto { get; set; }
-        public DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public DbSet<StoricoAdesione> StoricoAdesione { get; set; }
+        public DbSet<StoricoSoggetto> StoricoSoggetto { get; set; }
+        public DbSet<T_CategoriaAdesione> T_CategoriaAdesione { get; set; }
+        public DbSet<T_ErroriIO> T_ErroriIO { get; set; }
+        public DbSet<T_LimitiEta> T_LimitiEta { get; set; }
+        public DbSet<T_StatoAdesione> T_StatoAdesione { get; set; }
+        public DbSet<T_StatoSoggetto> T_StatoSoggetto { get; set; }
         public DbSet<T_TariffarioAdesioniCollettive> T_TariffarioAdesioniCollettive { get; set; }
         public DbSet<T_TariffarioAdesioniVolontarie> T_TariffarioAdesioniVolontarie { get; set; }
         public DbSet<T_TipiLegame> T_TipiLegame { get; set; }
         public DbSet<T_TipoAdesione> T_TipoAdesione { get; set; }
         public DbSet<T_TipoSoggetto> T_TipoSoggetto { get; set; }
-        public DbSet<TipologiaEnte> TipologiaEnte { get; set; }
         public DbSet<TracciaturaExport> TracciaturaExport { get; set; }
     }
 }

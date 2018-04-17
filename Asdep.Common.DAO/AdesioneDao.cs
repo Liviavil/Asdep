@@ -22,6 +22,7 @@ namespace Asdep.Common.DAO
         public byte MeseScadenza { get; set; }
         public byte AnnoDecorrenza { get; set; }
         public byte AnnoScadenza { get; set; }
+        public System.DateTime DataCessazione { get; set; }
         public System.DateTime DataInizio { get; set; }
         public System.DateTime DataFine { get; set; }
         public System.DateTime DataAggiornamento { get; set; }

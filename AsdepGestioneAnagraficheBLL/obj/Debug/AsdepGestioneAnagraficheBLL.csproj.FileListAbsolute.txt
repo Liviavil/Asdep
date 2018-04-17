@@ -2,13 +2,13 @@ C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\AsdepGestio
 C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\AsdepGestioneAnagraficheBLL\bin\Debug\AsdepGestioneAnagraficheBLL.dll
 C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\AsdepGestioneAnagraficheBLL\bin\Debug\AsdepGestioneAnagraficheBLL.pdb
 C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\AsdepGestioneAnagraficheBLL\bin\Debug\AmministrazioneAsdep.dll
+C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\AsdepGestioneAnagraficheBLL\bin\Debug\Asdep.Common.DAO.dll
 C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\AsdepGestioneAnagraficheBLL\bin\Debug\EntityFramework.dll
+C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\AsdepGestioneAnagraficheBLL\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\AsdepGestioneAnagraficheBLL\bin\Debug\AmministrazioneAsdep.pdb
+C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\AsdepGestioneAnagraficheBLL\bin\Debug\Asdep.Common.DAO.pdb
 C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\AsdepGestioneAnagraficheBLL\bin\Debug\EntityFramework.xml
+C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\AsdepGestioneAnagraficheBLL\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\AsdepGestioneAnagraficheBLL\obj\Debug\AsdepGestioneAnagraficheBLL.csprojResolveAssemblyReference.cache
 C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\AsdepGestioneAnagraficheBLL\obj\Debug\AsdepGestioneAnagraficheBLL.dll
 C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\AsdepGestioneAnagraficheBLL\obj\Debug\AsdepGestioneAnagraficheBLL.pdb
-C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\AsdepGestioneAnagraficheBLL\bin\Debug\Asdep.Common.DAO.dll
-C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\AsdepGestioneAnagraficheBLL\bin\Debug\Asdep.Common.DAO.pdb
-C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\AsdepGestioneAnagraficheBLL\bin\Debug\EntityFramework.SqlServer.dll
-C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\AsdepGestioneAnagraficheBLL\bin\Debug\EntityFramework.SqlServer.xml

@@ -18,5 +18,10 @@ namespace AmministrazioneAsdep
         public byte Anno { get; set; }
         public byte NumeroRate { get; set; }
         public decimal ImportoRata { get; set; }
+        public System.DateTime DataInizio { get; set; }
+        public System.DateTime DataFine { get; set; }
+        public System.DateTime DataAggiornamento { get; set; }
+        public string CodiceUtente { get; set; }
+        public string CodAppl { get; set; }
     }
 }

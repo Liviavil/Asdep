@@ -1,0 +1,184 @@
+﻿@model IEnumerable<Asdep.Common.DAO.SoggettiImportAppoggioDao>
+
+@{
+    ViewBag.Title = "SoggettiImportatiAppoggio";
+}
+
+@*<h2>SoggettiImportatiAppoggio</h2>*@
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+
+ @Ajax.ActionLink("Valida","ValidaSoggettiImportati","GestioneAnagrafica",null, new AjaxOptions { UpdateTargetId = "risultati", HttpMethod = "POST" }, new { @class = "Button Button--default Button--shadow u-text-m" })
+<div class="u-layout-r-withGutter u-padding-bottom-l u-margin-bottom-l u-margin-top-l">
+<table class="Table Table--striped Table--hover Table--withBorder">
+   <tr class="u-border-bottom-xs">
+       @* <th>
+            @Html.DisplayNameFor(model => model.IdSoggetto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Convenzione)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Categoria)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EsclusioniPregresse)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumeroPolizza)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ente)
+        </th>*@
+        <th scope="col" class="u-textLeft"></th>
+        <th scope="col" class="u-textLeft">
+            @Html.DisplayNameFor(model => model.Cognome)
+        </th>
+        <th scope="col" class="u-textLeft">
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th scope="col" class="u-textLeft">
+            @Html.DisplayNameFor(model => model.SecondoNome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CodiceFiscaleCapoNucleo)
+        </th>
+        <th scope="col" class="u-textLeft">
+            @Html.DisplayNameFor(model => model.CodiceFiscaleAssicurato)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.LuogoNascitaAssicurato)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataNascitaAssicurato)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LegameNucleo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Effetto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IndirizzoResidenza)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LocalitaResidenza)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SiglaProvResidenza)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CapResidenza)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Iban)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Telefono)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataCessazione)
+        </th>*@
+        <th scope="col" class="u-textLeft"></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.IdSoggetto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Convenzione)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Categoria)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EsclusioniPregresse)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumeroPolizza)
+        </td>
+        <td class="u-textLeft">
+            @Html.DisplayFor(modelItem => item.Ente)
+        </td>*@
+        @if(item.Errori.Any())
+        {
+             <td class="Prose Alert Alert--error Alert--withIcon u-layout-prose u-padding-r-bottom u-padding-r-right   u-margin-r-bottom" role="alert">
+                <div class="tooltiptext">
+                    @foreach(var errore in item.Errori)
+                    {
+                       <label><strong>@errore.ColumnName :</strong></label> <label>@errore.Description</label>   <br>
+                    }
+                </div>
+            </td>
+        }else
+        {
+             <td class="u-textLeft"></td>
+        }
+        <td class="u-textLeft">
+            @Html.DisplayFor(modelItem => item.Cognome)
+        </td>
+        <td class="u-textLeft">
+            @Html.DisplayFor(modelItem => item.Nome)
+        </td>
+        <td class="u-textLeft">
+            @Html.DisplayFor(modelItem => item.SecondoNome)
+        </td>
+        <td class="u-textLeft">
+            @Html.DisplayFor(modelItem => item.CodiceFiscaleCapoNucleo)
+        </td>
+        <td class="u-textLeft">
+            @Html.DisplayFor(modelItem => item.CodiceFiscaleAssicurato)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.LuogoNascitaAssicurato)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DataNascitaAssicurato)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LegameNucleo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Effetto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IndirizzoResidenza)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LocalitaResidenza)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SiglaProvResidenza)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CapResidenza)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Iban)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Telefono)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DataCessazione)
+        </td>*@
+        <td class="u-textLeft">
+            @Html.ActionLink("Edit", "EditSoggettoImportato", new {  id=item.IdSoggetto }) |
+            @Html.ActionLink("Details", "DetailsSoggetto", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "DeleteSoggetto", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>
+    </div>

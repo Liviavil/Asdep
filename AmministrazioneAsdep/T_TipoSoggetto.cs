@@ -17,6 +17,7 @@ namespace AmministrazioneAsdep
         public T_TipoSoggetto()
         {
             this.Adesione = new HashSet<Adesione>();
+            this.T_LimitiEta = new HashSet<T_LimitiEta>();
             this.T_TariffarioAdesioniVolontarie = new HashSet<T_TariffarioAdesioniVolontarie>();
         }
     
@@ -30,6 +31,7 @@ namespace AmministrazioneAsdep
         public string CodAppl { get; set; }
     
         public virtual ICollection<Adesione> Adesione { get; set; }
+        public virtual ICollection<T_LimitiEta> T_LimitiEta { get; set; }
         public virtual ICollection<T_TariffarioAdesioniVolontarie> T_TariffarioAdesioniVolontarie { get; set; }
     }
 }

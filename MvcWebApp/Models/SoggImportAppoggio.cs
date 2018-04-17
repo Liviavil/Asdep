@@ -35,14 +35,15 @@ namespace MvcWebApp.Models
         public string Telefono { get; set; }
         public DateTime? DataCessazione { get; set; }
         public ErrorsList Errori { get; set; }
-
-        public string selectedId { get; set; }
-        public SelectList ListItemEnti { get; set; }
-        public SoggImportAppoggioSearchResults SearchResults { get; set; }
+        
+        //public SoggImportAppoggioSearchResults SearchResults { get; set; }
     }
 
     public class SoggImportAppoggioSearchResults : Search<SoggImportAppoggio>
     {
+        public string selectedId { get; set; }
+        public SelectList ListItemEnti { get; set; }
+        public string NumPage { get; set; }
     }
 
     public class ErrorsList

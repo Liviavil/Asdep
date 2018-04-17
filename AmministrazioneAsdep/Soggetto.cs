@@ -19,6 +19,7 @@ namespace AmministrazioneAsdep
             this.Adesione = new HashSet<Adesione>();
             this.Adesione1 = new HashSet<Adesione>();
             this.EnteAppartenenza = new HashSet<EnteAppartenenza>();
+            this.Soggetto1 = new HashSet<Soggetto>();
         }
     
         public long IdSoggetto { get; set; }
@@ -34,7 +35,8 @@ namespace AmministrazioneAsdep
         public string Email { get; set; }
         public string IBAN { get; set; }
         public string Telefono { get; set; }
-        public Nullable<System.DateTime> DataCessazione { get; set; }
+        public Nullable<System.DateTime> DataModificaOpzione { get; set; }
+        public Nullable<long> IdDanteCausa { get; set; }
         public string StatoRecord { get; set; }
         public string Fonte { get; set; }
         public string FonteModifica { get; set; }
@@ -47,5 +49,8 @@ namespace AmministrazioneAsdep
         public virtual ICollection<Adesione> Adesione { get; set; }
         public virtual ICollection<Adesione> Adesione1 { get; set; }
         public virtual ICollection<EnteAppartenenza> EnteAppartenenza { get; set; }
+        public virtual ICollection<Soggetto> Soggetto1 { get; set; }
+        public virtual Soggetto Soggetto2 { get; set; }
+        public virtual T_StatoSoggetto T_StatoSoggetto { get; set; }
     }
 }

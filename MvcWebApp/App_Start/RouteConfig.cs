@@ -20,8 +20,8 @@ namespace MvcWebApp
             );
             routes.MapRoute(
                 name: "LavoraEnte",
-                url: "{controller}/{action}/{enteQuerystring}",
-                defaults: new { controller = "GestioneAnagrafica", action = "InLavorazione", enteQuerystring = UrlParameter.Optional }
+                url: "{controller}/{action}/{enteQuerystring}/{page}",
+                defaults: new { controller = "GestioneAnagrafica", action = "InLavorazione", enteQuerystring = UrlParameter.Optional, page=UrlParameter.Optional }
             );
             routes.MapRoute(
                 name: "SoggettiByEnte",
@@ -33,6 +33,16 @@ namespace MvcWebApp
                 url: "{controller}/{action}/{results}",
                 defaults: new { controller = "GestioneAnagrafica", action = "SoggettiImportati", modello = UrlParameter.Optional }
             );
+            routes.MapRoute(
+               name: "EditSoggetto",
+               url: "{GestioneAnagrafica}/{EditSoggettoImportato}/{id}/{page}",
+               defaults: new { controller = "GestioneAnagrafica", action = "EditSoggettoImportato", id =UrlParameter.Optional, page = ""}
+           );
+            routes.MapRoute(
+              name: "Modifica",
+              url: "{GestioneAnagrafica}/{Modifica}",
+              defaults: new { controller = "GestioneAnagrafica", action = "EditSoggettoImportato" }
+          );
         }
     }
 }

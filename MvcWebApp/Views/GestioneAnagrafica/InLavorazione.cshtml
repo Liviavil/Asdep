@@ -1,4 +1,4 @@
-﻿@model MvcWebApp.Models.SoggImportAppoggio
+﻿@model MvcWebApp.Models.SoggImportAppoggioSearchResults
 @{
     ViewBag.Title = "Anagrafiche in lavorazione";
 }
@@ -61,17 +61,18 @@
         @*@{ Model.SearchResults.Selected = Request.QueryString["enteQuerystring"];}*@
         @if (string.IsNullOrEmpty(Request.QueryString["enteQuerystring"]))
         {
-            var m = new MvcWebApp.Models.SoggImportAppoggio();
-            m.SearchResults = Model.SearchResults;
-            m.SearchResults.CountResults = Model.SearchResults.CountResults;
+            var m = new MvcWebApp.Models.SoggImportAppoggioSearchResults();
+            m.Results = Model.Results;
+            m.CountResults = Model.CountResults;
             m.selectedId = Model.selectedId;
             Html.RenderAction("RisultatiSoggettiImportati", "GestioneAnagrafica", new { modello = m });
         }
         else
         {
-            var m = new MvcWebApp.Models.SoggImportAppoggio {selectedId = Request.QueryString["enteQuerystring"] };
-            m.SearchResults = Model.SearchResults;
-            m.SearchResults.CountResults = Model.SearchResults.CountResults;
+            var m = new MvcWebApp.Models.SoggImportAppoggioSearchResults {selectedId = Request.QueryString["enteQuerystring"] };
+            m.Results = Model.Results;
+            m.CountResults = Model.CountResults;
+            m.NumPage = Request.QueryString["page"] != null? Request.QueryString["page"].ToString() : "0";
             Html.RenderAction("RisultatiSoggettiImportati", "GestioneAnagrafica", new { modello = m });
         }
     </div>

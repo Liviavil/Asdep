@@ -28,6 +28,7 @@ namespace AmministrazioneAsdep
         public byte MeseScadenza { get; set; }
         public byte AnnoDecorrenza { get; set; }
         public byte AnnoScadenza { get; set; }
+        public System.DateTime DataCessazione { get; set; }
         public System.DateTime DataInizio { get; set; }
         public System.DateTime DataFine { get; set; }
         public System.DateTime DataAggiornamento { get; set; }
@@ -36,6 +37,7 @@ namespace AmministrazioneAsdep
     
         public virtual Soggetto Soggetto { get; set; }
         public virtual Soggetto Soggetto1 { get; set; }
+        public virtual T_StatoAdesione T_StatoAdesione { get; set; }
         public virtual T_TipiLegame T_TipiLegame { get; set; }
         public virtual T_TipoAdesione T_TipoAdesione { get; set; }
         public virtual T_TipoSoggetto T_TipoSoggetto { get; set; }

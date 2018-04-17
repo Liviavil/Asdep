@@ -75,13 +75,13 @@
       <DependentUpon>AmminstrazioneAsdepDB.tt</DependentUpon>
     </Compile>
     <Compile Include="DAL\TipoLegameProvider.cs" />
+    <Compile Include="DatiEnte.cs">
+      <DependentUpon>AmminstrazioneAsdepDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Ente.cs">
       <DependentUpon>AmminstrazioneAsdepDB.tt</DependentUpon>
     </Compile>
     <Compile Include="EnteAppartenenza.cs">
-      <DependentUpon>AmminstrazioneAsdepDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ErroriIO.cs">
       <DependentUpon>AmminstrazioneAsdepDB.tt</DependentUpon>
     </Compile>
     <Compile Include="ModalitaPagamentoEnte.cs">
@@ -94,13 +94,28 @@
     <Compile Include="Soggetto.cs">
       <DependentUpon>AmminstrazioneAsdepDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="sysdiagrams.cs">
+    <Compile Include="StoricoAdesione.cs">
       <DependentUpon>AmminstrazioneAsdepDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="TipologiaEnte.cs">
+    <Compile Include="StoricoSoggetto.cs">
       <DependentUpon>AmminstrazioneAsdepDB.tt</DependentUpon>
     </Compile>
     <Compile Include="TracciaturaExport.cs">
+      <DependentUpon>AmminstrazioneAsdepDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T_CategoriaAdesione.cs">
+      <DependentUpon>AmminstrazioneAsdepDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T_ErroriIO.cs">
+      <DependentUpon>AmminstrazioneAsdepDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T_LimitiEta.cs">
+      <DependentUpon>AmminstrazioneAsdepDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T_StatoAdesione.cs">
+      <DependentUpon>AmminstrazioneAsdepDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T_StatoSoggetto.cs">
       <DependentUpon>AmminstrazioneAsdepDB.tt</DependentUpon>
     </Compile>
     <Compile Include="T_TariffarioAdesioniCollettive.cs">

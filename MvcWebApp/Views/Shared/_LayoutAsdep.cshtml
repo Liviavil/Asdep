@@ -19,7 +19,8 @@
 
 
     <title>@ViewBag.Title</title>
-    <link rel="preload" href="~/Scripts/IWT.min.js" as="script">
+      @*<script type="text/javascript" src="~/Scripts/IWT.min.js"></script>*@
+    @*<link rel="preload" href="~/Scripts/IWT.min.js" as="script">*@
     <!--
     In alternativa a WebFontLoader è possibile caricare il font direttamente da Google
       <link href='//fonts.googleapis.com/css?family=Titillium+Web:400,400italic,700,' rel='stylesheet' type='text/css' />
@@ -40,11 +41,12 @@
             s.parentNode.insertBefore(wf, s);
         })();
     </script>
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jqc-1.12.3/dt-1.10.16/b-1.5.1/sl-1.2.5/datatables.min.css" />
-    <link rel="stylesheet" type="text/css" href="~/Content/DataTable/editor.dataTables.css">
+   
 
-    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jqc-1.12.3/dt-1.10.16/b-1.5.1/sl-1.2.5/datatables.min.js"></script>
-    <script type="text/javascript" src="~/Scripts/DataTable/dataTables.editor.js"></script>
+    <script type="text/javascript" src="~/Scripts/IWT.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.css"/>
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.js"></script>
+
 
 </head>
 
@@ -235,7 +237,7 @@
     </a>
 
     <script>__PUBLIC_PATH__ = '~/Scripts/'</script>
-    <script src="/Scripts/IWT.min.js"></script>
+  
     
     <!--[if IE 8]>
     <script src="script/vendor/respond.min.js"></script>
@@ -248,7 +250,6 @@
     <![endif]-->
     <!-- sostituire questo percorso con quello degli assets javascript nel proprio sito web:
       è il percorso, relativo alla webroot, della directory che contiene il file IWT.min.js e i file *.chunk.js -->
-
 </body>
 
 

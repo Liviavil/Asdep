@@ -18,6 +18,7 @@ namespace AmministrazioneAsdep
         {
             this.Adesione = new HashSet<Adesione>();
             this.ContribuzioneEnte = new HashSet<ContribuzioneEnte>();
+            this.T_LimitiEta = new HashSet<T_LimitiEta>();
             this.T_TariffarioAdesioniVolontarie = new HashSet<T_TariffarioAdesioniVolontarie>();
             this.T_TipoAdesione1 = new HashSet<T_TipoAdesione>();
         }
@@ -35,6 +36,8 @@ namespace AmministrazioneAsdep
     
         public virtual ICollection<Adesione> Adesione { get; set; }
         public virtual ICollection<ContribuzioneEnte> ContribuzioneEnte { get; set; }
+        public virtual T_CategoriaAdesione T_CategoriaAdesione { get; set; }
+        public virtual ICollection<T_LimitiEta> T_LimitiEta { get; set; }
         public virtual T_TariffarioAdesioniCollettive T_TariffarioAdesioniCollettive { get; set; }
         public virtual ICollection<T_TariffarioAdesioniVolontarie> T_TariffarioAdesioniVolontarie { get; set; }
         public virtual ICollection<T_TipoAdesione> T_TipoAdesione1 { get; set; }

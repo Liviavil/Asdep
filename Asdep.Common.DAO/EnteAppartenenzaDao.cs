@@ -8,5 +8,12 @@ namespace Asdep.Common.DAO
 {
     public class EnteAppartenenzaDao
     {
+        public long IdEnte { get; set; }
+        public long IdSoggetto { get; set; }
+        public System.DateTime DataInizio { get; set; }
+        public System.DateTime DataFine { get; set; }
+        public System.DateTime DataAggiornamento { get; set; }
+        public string CodiceUtente { get; set; }
+        public string CodAppl { get; set; }
     }
 }

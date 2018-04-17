@@ -32,7 +32,7 @@ namespace AmministrazioneAsdep
         public string CodAppl { get; set; }
     
         public virtual ICollection<ContribuzioneEnte> ContribuzioneEnte { get; set; }
+        public virtual DatiEnte DatiEnte { get; set; }
         public virtual ICollection<EnteAppartenenza> EnteAppartenenza { get; set; }
-        public virtual TipologiaEnte TipologiaEnte { get; set; }
     }
 }

@@ -27,7 +27,7 @@ namespace AsdepGestioneAnagraficheBLL.Business
                 _ente = provider.SelectByEnte(db, name);
             }
 
-            if (_ente != null || _ente.ToString().Equals(string.Empty))
+            if (_ente != null)
             {
                 #region comment
                 //_eBL = new EnteDao

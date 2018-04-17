@@ -48,9 +48,8 @@ namespace MvcWebApp.Controllers
         }
 
         [HttpGet]
-        public ActionResult InLavorazione(string enteQuerystring)
+        public ActionResult InLavorazione(string enteQuerystring, string page)
         {
-            SoggImportAppoggio soggetto = new SoggImportAppoggio();
             SoggImportAppoggioSearchResults results = new SoggImportAppoggioSearchResults();
 
             //Impostare i risultati di ricerca come ancora non trovati è il primo caricamento
@@ -73,95 +72,107 @@ namespace MvcWebApp.Controllers
                     list.Add(listItem);
                 }
 
-                soggetto.ListItemEnti = new SelectList(list, "Value", "Text", 0);
+                results.ListItemEnti = new SelectList(list, "Value", "Text", 0);
 
                 if (!string.IsNullOrEmpty(enteQuerystring))
                 {
                     results.Selected = enteQuerystring;
-                    soggetto.selectedId = enteQuerystring;
+                    results.selectedId = enteQuerystring;
                 }
             }
-            Session["Ddl"] = soggetto.ListItemEnti;
-            soggetto.SearchResults = results;
-            return View(soggetto);
+            Session["Ddl"] = results.ListItemEnti;
+            results.NumPage = page;
+            //soggetto.SearchResults = results;
+            return View(results);
         }
 
-        public ActionResult RisultatiSoggettiImportati(SoggImportAppoggio modello)
+        public ActionResult RisultatiSoggettiImportati(SoggImportAppoggioSearchResults modello)
         {
             Search<SoggImportAppoggio> results = new SoggImportAppoggioSearchResults();
-            List<SoggImportAppoggio> soggetti = new List<SoggImportAppoggio>();
+            //List<SoggImportAppoggio> soggetti = new List<SoggImportAppoggio>();
             List<SoggettiImportAppoggioDao> _anagrafiche = new List<SoggettiImportAppoggioDao>();
             if (modello.selectedId != null)
             {
-                using (HelperService help = new HelperService())
+                _anagrafiche = (List<SoggettiImportAppoggioDao>)Session["Soggetti"];
+                if (!_anagrafiche.Any())
                 {
-                    _anagrafiche = help.channel.GetSoggettiByEnte(modello.selectedId.ToString());
-                }
-                foreach (SoggettiImportAppoggioDao _anag in _anagrafiche)
-                {
-
-                    ErrorsList listaErrori = new ErrorsList();
-                    List<Errore> _errore = new List<Errore>();
-
-                    foreach (ErroreDao errore in _anag.Errori)
+                    using (HelperService help = new HelperService())
                     {
-                        Errore _e = new Errore
-                        {
-                            ColumnName = errore.ColumnName,
-                            Description = errore.Description,
-                            Exists = errore.Exist,
-                            ErrorLevel = Enum.Parse(errore.ErrorLevel.GetType(), errore.ErrorLevel.ToString()).ToString()
-                        };
-                        _errore.Add(_e);
+                        _anagrafiche = help.channel.GetSoggettiByEnte(modello.selectedId.ToString());
                     }
-                    listaErrori.ListaErrori = _errore;
-                    listaErrori.AllWarnings = _errore.Where(x => x.ErrorLevel.Equals("Warning")).ToList().Count == _errore.Count;
-
-                    SoggImportAppoggio _sia = new SoggImportAppoggio
-                    {
-                        #region _soggetto
-                        CapResidenza = _anag.CapResidenza,
-                        Categoria = _anag.Categoria,
-                        CodiceFiscaleAssicurato = _anag.CodiceFiscaleAssicurato,
-                        CodiceFiscaleCapoNucleo = _anag.CodiceFiscaleCapoNucleo,
-                        Cognome = _anag.Cognome,
-                        Convenzione = _anag.Convenzione,
-                        DataCessazione = _anag.DataCessazione,
-                        DataNascitaAssicurato = _anag.DataNascitaAssicurato,
-                        Effetto = _anag.Effetto,
-                        Email = _anag.Email,
-                        Ente = _anag.Ente,
-                        EsclusioniPregresse = _anag.EsclusioniPregresse,
-                        Iban = _anag.Iban,
-                        IndirizzoResidenza = _anag.IndirizzoResidenza,
-                        IdSoggetto = _anag.IdSoggetto,
-                        LegameNucleo = _anag.LegameNucleo,
-                        LocalitaResidenza = _anag.LocalitaResidenza,
-                        LuogoNascitaAssicurato = _anag.LuogoNascitaAssicurato,
-                        Nome = _anag.Nome,
-                        NumeroPolizza = _anag.NumeroPolizza,
-                        SecondoNome = _anag.SecondoNome,
-                        SiglaProvResidenza = _anag.SiglaProvResidenza,
-                        Telefono = _anag.Telefono,
-                        Errori = listaErrori
-                        #endregion
-                    };
-
-                    soggetti.Add(_sia);
                 }
+                else 
+                {
+                    _anagrafiche = (List<SoggettiImportAppoggioDao>)Session["Soggetti"];
+                }
+                #region old
+                //foreach (SoggettiImportAppoggioDao _anag in _anagrafiche)
+                //{
+
+                //    ErrorsList listaErrori = new ErrorsList();
+                //    List<Errore> _errore = new List<Errore>();
+
+                //    foreach (ErroreDao errore in _anag.Errori)
+                //    {
+                //        Errore _e = new Errore
+                //        {
+                //            ColumnName = errore.ColumnName,
+                //            Description = errore.Description,
+                //            Exists = errore.Exist,
+                //            ErrorLevel = Enum.Parse(errore.ErrorLevel.GetType(), errore.ErrorLevel.ToString()).ToString()
+                //        };
+                //        _errore.Add(_e);
+                //    }
+                //    listaErrori.ListaErrori = _errore;
+                //    listaErrori.AllWarnings = _errore.Where(x => x.ErrorLevel.Equals("Warning")).ToList().Count == _errore.Count;
+
+                //    SoggImportAppoggio _sia = new SoggImportAppoggio
+                //    {
+                //        #region _soggetto
+                //        CapResidenza = _anag.CapResidenza,
+                //        Categoria = _anag.Categoria,
+                //        CodiceFiscaleAssicurato = _anag.CodiceFiscaleAssicurato,
+                //        CodiceFiscaleCapoNucleo = _anag.CodiceFiscaleCapoNucleo,
+                //        Cognome = _anag.Cognome,
+                //        Convenzione = _anag.Convenzione,
+                //        DataCessazione = _anag.DataCessazione,
+                //        DataNascitaAssicurato = _anag.DataNascitaAssicurato,
+                //        Effetto = _anag.Effetto,
+                //        Email = _anag.Email,
+                //        Ente = _anag.Ente,
+                //        EsclusioniPregresse = _anag.EsclusioniPregresse,
+                //        Iban = _anag.Iban,
+                //        IndirizzoResidenza = _anag.IndirizzoResidenza,
+                //        IdSoggetto = _anag.IdSoggetto,
+                //        LegameNucleo = _anag.LegameNucleo,
+                //        LocalitaResidenza = _anag.LocalitaResidenza,
+                //        LuogoNascitaAssicurato = _anag.LuogoNascitaAssicurato,
+                //        Nome = _anag.Nome,
+                //        NumeroPolizza = _anag.NumeroPolizza,
+                //        SecondoNome = _anag.SecondoNome,
+                //        SiglaProvResidenza = _anag.SiglaProvResidenza,
+                //        Telefono = _anag.Telefono,
+                //        Errori = listaErrori
+                //        #endregion
+                //    };
+
+                //    soggetti.Add(_sia);
+                //} 
+                #endregion
                 results.CountResults = _anagrafiche.Count();
 
 
-                results.Results = soggetti;
+                //results.Results = soggetti;
             }
             else 
             {
-                results = modello.SearchResults;
-                soggetti = modello.SearchResults.Results;
+                results = modello;
+                //soggetti = modello.Results;
             }
             //ViewBag.Soggetti = soggetti;
-            Session["Soggetti"] = soggetti;
-            return PartialView(results);
+            Session["Soggetti"] = _anagrafiche;
+            ViewBag.Page = modello.NumPage;
+            return PartialView(_anagrafiche);
         }
 
         public ActionResult LoadTable()
@@ -171,95 +182,119 @@ namespace MvcWebApp.Controllers
 
         public ActionResult ValidaSoggettiImportati() 
         {
-            List<SoggImportAppoggio> soggetti = (List<SoggImportAppoggio>)Session["Soggetti"];
-            List<SoggettiImportAppoggioDao> soggDao = new List<SoggettiImportAppoggioDao>();
+            //List<SoggImportAppoggio> soggetti = (List<SoggImportAppoggio>)Session["Soggetti"];
+            List<SoggettiImportAppoggioDao> soggDao = (List<SoggettiImportAppoggioDao>)Session["Soggetti"]; //new List<SoggettiImportAppoggioDao>();
 
-            foreach(SoggImportAppoggio _sogg in soggetti)
-            {
-                SoggettiImportAppoggioDao _dao= new SoggettiImportAppoggioDao();
-                Asdep.Common.DAO.ExtraDao.PropertyCopier<SoggImportAppoggio, SoggettiImportAppoggioDao>.Copy(_sogg, _dao);
-                soggDao.Add(_dao);
-            }
-            
-            using (HelperService _hp = new HelperService ())
-            {
-                soggDao = _hp.channel.ValidaSoggetto(soggDao);
-            }
-
-            List<SoggImportAppoggio> soggettiValidati = new List<SoggImportAppoggio>();
-            //foreach (SoggettiImportAppoggioDao _sogg in soggDao)
+            #region old
+            //foreach(SoggImportAppoggio _sogg in soggetti)
             //{
-            //    SoggImportAppoggio _dao = new SoggImportAppoggio();
-            //    Asdep.Common.DAO.ExtraDao.PropertyCopier<SoggettiImportAppoggioDao, SoggImportAppoggio>.Copy(_sogg, _dao);
-            //    soggettiValidati.Add(_dao);
-            //}
+            //SoggettiImportAppoggioDao _dao= new SoggettiImportAppoggioDao();
+            //    Asdep.Common.DAO.ExtraDao.PropertyCopier<SoggImportAppoggio, SoggettiImportAppoggioDao>.Copy(_sogg, _dao);
+            //    soggDao.Add(_dao);
+            //} 
+            #endregion
 
-            foreach (SoggettiImportAppoggioDao _anag in soggDao)
-            {
-
-                ErrorsList listaErrori = new ErrorsList();
-                List<Errore> _errore = new List<Errore>();
-
-                foreach (ErroreDao errore in _anag.Errori)
+                using (HelperService _hp = new HelperService())
                 {
-                    Errore _e = new Errore
-                    {
-                        ColumnName = errore.ColumnName,
-                        Description = errore.Description,
-                        Exists = errore.Exist,
-                        ErrorLevel = Enum.Parse(errore.ErrorLevel.GetType(), errore.ErrorLevel.ToString()).ToString()
-                    };
-                    _errore.Add(_e);
+                    soggDao = _hp.channel.ValidaSoggetto(soggDao);
                 }
-                listaErrori.ListaErrori = _errore;
-                listaErrori.AllWarnings = _errore.Where(x => x.ErrorLevel.Equals("Warning")).ToList().Count == _errore.Count;
 
-                SoggImportAppoggio _sia = new SoggImportAppoggio
-                {
-                    #region _soggetto
-                    CapResidenza = _anag.CapResidenza,
-                    Categoria = _anag.Categoria,
-                    CodiceFiscaleAssicurato = _anag.CodiceFiscaleAssicurato,
-                    CodiceFiscaleCapoNucleo = _anag.CodiceFiscaleCapoNucleo,
-                    Cognome = _anag.Cognome,
-                    Convenzione = _anag.Convenzione,
-                    DataCessazione = _anag.DataCessazione,
-                    DataNascitaAssicurato = _anag.DataNascitaAssicurato,
-                    Effetto = _anag.Effetto,
-                    Email = _anag.Email,
-                    Ente = _anag.Ente,
-                    EsclusioniPregresse = _anag.EsclusioniPregresse,
-                    Iban = _anag.Iban,
-                    IndirizzoResidenza = _anag.IndirizzoResidenza,
-                    IdSoggetto = _anag.IdSoggetto,
-                    LegameNucleo = _anag.LegameNucleo,
-                    LocalitaResidenza = _anag.LocalitaResidenza,
-                    LuogoNascitaAssicurato = _anag.LuogoNascitaAssicurato,
-                    Nome = _anag.Nome,
-                    NumeroPolizza = _anag.NumeroPolizza,
-                    SecondoNome = _anag.SecondoNome,
-                    SiglaProvResidenza = _anag.SiglaProvResidenza,
-                    Telefono = _anag.Telefono,
-                    Errori = listaErrori
-                    #endregion
-                };
+                #region old
+                //List<SoggImportAppoggio> soggettiValidati = new List<SoggImportAppoggio>();
+                //foreach (SoggettiImportAppoggioDao _sogg in soggDao)
+                //{
+                //    SoggImportAppoggio _dao = new SoggImportAppoggio();
+                //    Asdep.Common.DAO.ExtraDao.PropertyCopier<SoggettiImportAppoggioDao, SoggImportAppoggio>.Copy(_sogg, _dao);
+                //    soggettiValidati.Add(_dao);
+                //}
 
-                soggettiValidati.Add(_sia);
-            }
-           
-            SoggImportAppoggioSearchResults result = new SoggImportAppoggioSearchResults();
-            result.Results = soggettiValidati;
-            result.CountResults = soggettiValidati.Count;
-            result.Selected = soggettiValidati[0].Ente;
+                //foreach (SoggettiImportAppoggioDao _anag in soggDao)
+                //{
 
-             SoggImportAppoggio toSend = new SoggImportAppoggio();
-             toSend.SearchResults = result;
-             //toSend.selectedId = soggettiValidati[0].Ente;
-             toSend.ListItemEnti = (SelectList)Session["Ddl"];
-             Session["Soggetti"] = soggettiValidati;
+                //    ErrorsList listaErrori = new ErrorsList();
+                //    List<Errore> _errore = new List<Errore>();
 
-             return PartialView("RisultatiSoggettiImportati", result);
+                //    foreach (ErroreDao errore in _anag.Errori)
+                //    {
+                //        Errore _e = new Errore
+                //        {
+                //            ColumnName = errore.ColumnName,
+                //            Description = errore.Description,
+                //            Exists = errore.Exist,
+                //            ErrorLevel = Enum.Parse(errore.ErrorLevel.GetType(), errore.ErrorLevel.ToString()).ToString()
+                //        };
+                //        _errore.Add(_e);
+                //    }
+                //    listaErrori.ListaErrori = _errore;
+                //    listaErrori.AllWarnings = _errore.Where(x => x.ErrorLevel.Equals("Warning")).ToList().Count == _errore.Count;
+
+                //    SoggImportAppoggio _sia = new SoggImportAppoggio
+                //    {
+                //        #region _soggetto
+                //        CapResidenza = _anag.CapResidenza,
+                //        Categoria = _anag.Categoria,
+                //        CodiceFiscaleAssicurato = _anag.CodiceFiscaleAssicurato,
+                //        CodiceFiscaleCapoNucleo = _anag.CodiceFiscaleCapoNucleo,
+                //        Cognome = _anag.Cognome,
+                //        Convenzione = _anag.Convenzione,
+                //        DataCessazione = _anag.DataCessazione,
+                //        DataNascitaAssicurato = _anag.DataNascitaAssicurato,
+                //        Effetto = _anag.Effetto,
+                //        Email = _anag.Email,
+                //        Ente = _anag.Ente,
+                //        EsclusioniPregresse = _anag.EsclusioniPregresse,
+                //        Iban = _anag.Iban,
+                //        IndirizzoResidenza = _anag.IndirizzoResidenza,
+                //        IdSoggetto = _anag.IdSoggetto,
+                //        LegameNucleo = _anag.LegameNucleo,
+                //        LocalitaResidenza = _anag.LocalitaResidenza,
+                //        LuogoNascitaAssicurato = _anag.LuogoNascitaAssicurato,
+                //        Nome = _anag.Nome,
+                //        NumeroPolizza = _anag.NumeroPolizza,
+                //        SecondoNome = _anag.SecondoNome,
+                //        SiglaProvResidenza = _anag.SiglaProvResidenza,
+                //        Telefono = _anag.Telefono,
+                //        Errori = listaErrori
+                //        #endregion
+                //    };
+
+                //    soggettiValidati.Add(_sia);
+                //}
+
+                //SoggImportAppoggioSearchResults result = new SoggImportAppoggioSearchResults();
+                //result.Results = soggettiValidati;
+                //result.CountResults = soggettiValidati.Count;
+                //result.Selected = soggettiValidati[0].Ente;
+
+                //SoggImportAppoggio toSend = new SoggImportAppoggio();
+                //toSend.SearchResults = result;
+                ////toSend.selectedId = soggettiValidati[0].Ente;
+                //toSend.ListItemEnti = (SelectList)Session["Ddl"]; 
+                #endregion
+             Session["Soggetti"] = soggDao;
+
+             return PartialView("RisultatiSoggettiImportati",soggDao);
         }
+
+         [HttpGet]
+        public ActionResult EditSoggettoImportato(string id) 
+        {
+
+            SoggettiImportAppoggioDao soggDao = (from soggetti in (List<SoggettiImportAppoggioDao>)Session["Soggetti"] where soggetti.IdSoggetto.Equals(long.Parse(id)) select soggetti).FirstOrDefault();
+            return View(soggDao);
+        }
+
+         [HttpPost]
+         public ActionResult Modifica(SoggettiImportAppoggioDao modello) 
+         {
+             string ente = "INAIL";
+
+             return RedirectToAction("InLavorazione", "GestioneAnagrafica", new { enteQuerystring = ente, page = Session["page"].ToString() });
+         }
+         public ActionResult Back() 
+         {
+             return RedirectToAction("InLavorazione", "GestioneAnagrafica", new { enteQuerystring = Session["ente"].ToString(), page = Session["page"].ToString() });
+         }
 
     }
 }

@@ -1,13 +1,13 @@
 C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\WcfService\bin\WcfService.dll
 C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\WcfService\bin\WcfService.pdb
-C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\WcfService\bin\AmministrazioneAsdep.dll
+C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\WcfService\bin\Asdep.Common.DAO.dll
 C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\WcfService\bin\AsdepGestioneAnagraficheBLL.dll
+C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\WcfService\bin\AmministrazioneAsdep.dll
 C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\WcfService\bin\EntityFramework.dll
-C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\WcfService\bin\AmministrazioneAsdep.pdb
+C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\WcfService\bin\Asdep.Common.DAO.pdb
 C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\WcfService\bin\AsdepGestioneAnagraficheBLL.pdb
+C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\WcfService\bin\AmministrazioneAsdep.pdb
 C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\WcfService\bin\EntityFramework.xml
 C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\WcfService\obj\Debug\WcfService.csprojResolveAssemblyReference.cache
 C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\WcfService\obj\Debug\WcfService.dll
 C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\WcfService\obj\Debug\WcfService.pdb
-C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\WcfService\bin\Asdep.Common.DAO.dll
-C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\WcfService\bin\Asdep.Common.DAO.pdb
