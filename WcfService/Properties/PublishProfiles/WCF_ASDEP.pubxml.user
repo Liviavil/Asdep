@@ -14,34 +14,34 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/27/2018 16:21:09</publishTime>
     </File>
     <File Include="bin/AmministrazioneAsdep.dll">
-      <publishTime>04/13/2018 19:02:31</publishTime>
+      <publishTime>04/18/2018 20:42:26</publishTime>
     </File>
     <File Include="bin/AmministrazioneAsdep.pdb">
-      <publishTime>04/13/2018 19:02:31</publishTime>
+      <publishTime>04/18/2018 20:42:26</publishTime>
     </File>
     <File Include="bin/Asdep.Common.DAO.dll">
-      <publishTime>04/13/2018 18:45:12</publishTime>
+      <publishTime>04/18/2018 20:42:26</publishTime>
     </File>
     <File Include="bin/Asdep.Common.DAO.pdb">
-      <publishTime>04/13/2018 18:45:12</publishTime>
+      <publishTime>04/18/2018 20:42:26</publishTime>
     </File>
     <File Include="bin/AsdepGestioneAnagraficheBLL.dll">
-      <publishTime>04/13/2018 19:02:32</publishTime>
+      <publishTime>04/18/2018 20:42:27</publishTime>
     </File>
     <File Include="bin/AsdepGestioneAnagraficheBLL.pdb">
-      <publishTime>04/13/2018 19:02:32</publishTime>
+      <publishTime>04/18/2018 20:42:27</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>04/12/2018 15:27:43</publishTime>
     </File>
     <File Include="bin/WcfService.dll">
-      <publishTime>04/13/2018 19:03:11</publishTime>
+      <publishTime>04/18/2018 20:42:27</publishTime>
     </File>
     <File Include="bin/WcfService.pdb">
-      <publishTime>04/13/2018 19:03:11</publishTime>
+      <publishTime>04/18/2018 20:42:27</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>04/13/2018 19:05:29</publishTime>
+      <publishTime>04/19/2018 09:58:19</publishTime>
     </File>
   </ItemGroup>
 </Project>

@@ -38,7 +38,7 @@ namespace MvcWebApp.Controllers
                 {
                     ViewBag.Message = "ERROR:" + ex.Message.ToString();
                 }
-                return RedirectToAction("InLavorazione", "GestioneAnagrafica", new { enteQuerystring = ente });
+                return RedirectToAction("InLavorazione", "GestioneAnagrafica", new { en = ente });
             }
             else
             {
@@ -48,7 +48,8 @@ namespace MvcWebApp.Controllers
         }
 
         [HttpGet]
-        public ActionResult InLavorazione(string enteQuerystring, string page)
+       
+        public ActionResult InLavorazione(string en , string page)
         {
             SoggImportAppoggioSearchResults results = new SoggImportAppoggioSearchResults();
 
@@ -74,10 +75,10 @@ namespace MvcWebApp.Controllers
 
                 results.ListItemEnti = new SelectList(list, "Value", "Text", 0);
 
-                if (!string.IsNullOrEmpty(enteQuerystring))
+                if (!string.IsNullOrEmpty(en))
                 {
-                    results.Selected = enteQuerystring;
-                    results.selectedId = enteQuerystring;
+                    results.Selected = en;
+                    results.selectedId = en;
                 }
             }
             Session["Ddl"] = results.ListItemEnti;
@@ -289,11 +290,11 @@ namespace MvcWebApp.Controllers
          {
              string ente = "INAIL";
 
-             return RedirectToAction("InLavorazione", "GestioneAnagrafica", new { enteQuerystring = ente, page = Session["page"].ToString() });
+             return RedirectToAction("InLavorazione", "GestioneAnagrafica", new { en = ente, page = Session["page"].ToString() });
          }
          public ActionResult Back() 
          {
-             return RedirectToAction("InLavorazione", "GestioneAnagrafica", new { enteQuerystring = Session["ente"].ToString(), page = Session["page"].ToString() });
+             return RedirectToAction("InLavorazione", "GestioneAnagrafica", new { en = Session["ente"].ToString(), page = Session["page"].ToString() });
          }
 
     }

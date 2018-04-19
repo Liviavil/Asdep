@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace AsdepGestioneAnagraficheBLL.Extra
@@ -12,221 +13,102 @@ namespace AsdepGestioneAnagraficheBLL.Extra
     public static class Helper
     {
 
-        internal static ErroreDao Check(string columnName, SoggettiImportAppoggioDao _sogg)
+        public static bool IsFiscalCodeOk(string fiscalCode)
         {
-            try
-            {
-                switch (columnName)
-                {
-                    case "EsclusioniPregresse":
-                        return ValidaEsclusioni(_sogg.EsclusioniPregresse);
-                    case "Ente":
-                        return ValidaEnte(_sogg.Ente);
-                    case "CodiceFiscaleAssicurato":
-                        return ValidaCFAssic(_sogg.CodiceFiscaleAssicurato);
-                    case "NumeroPolizza":
-                        return ValidaPolizza(_sogg.NumeroPolizza);
-                    case "Convenzione":
-                        return ValidaConvenzione(_sogg.Convenzione);
-                    case "Categoria":
-                        return ValidaCategoria(_sogg.Categoria);
-                    case "CodiceFiscaleCapoNucleo":
-                        return ValidaCFCapoNucleo(_sogg.CodiceFiscaleCapoNucleo);
-                    case "LuogoNascitaAssicurato":
-                        return ValidaLuogoNascita(_sogg.LuogoNascitaAssicurato);
-                    case "DataNascitaAssicurato":
-                        return ValidaDataNascita(_sogg.DataNascitaAssicurato);
-                    case "LegameNucleo":
-                        return ValidaLegame(_sogg.LegameNucleo);
-                    case "Effetto":
-                        return ValidaEffetto(_sogg.Effetto);
-                    case "IndirizzoResidenza":
-                        return ValidaIndirizzoResid(_sogg.IndirizzoResidenza);
-                    case "LocalitaResidenza":
-                        return ValidaLocResid(_sogg.LocalitaResidenza);
-                    case "SiglaProvResidenza":
-                        return ValidaSiglaProv(_sogg.SiglaProvResidenza);
-                    case "CapResidenza":
-                        return ValidaCapResid(_sogg.CapResidenza);
-                    case "Iban":
-                        return ValidaIban(_sogg.Iban);
-                    case "Telefono":
-                        return ValidaTelefono(_sogg.Telefono);
-                    case "DataCessazione":
-                        return ValidaDataCess(_sogg.DataCessazione);
-                    case "Email":
-                        return ValidaEmail(_sogg.Email);
-                    default:
-                        return new ErroreDao();
+            const string regex = @"/^(?:(?:[B-DF-HJ-NP-TV-Z]|[AEIOU])[AEIOU][AEIOUX]|[B-DF-HJ-NP-TV-Z]{2}[A-Z]){2}[\dLMNP-V]{2}(?:[A-EHLMPR-T](?:[04LQ][1-9MNP-V]|[1256LMRS][\dLMNP-V])|[DHPS][37PT][0L]|[ACELMRT][37PT][01LM])(?:[A-MZ][1-9MNP-V][\dLMNP-V]{2}|[A-M][0L](?:[1-9MNP-V][\dLMNP-V]|[0L][1-9MNP-V]))[A-Z]$/i";//@"[\dLMNP-V]{2}(?:[A-EHLMPR-T](?:[04LQ][1-9MNP-V]|[1256LMRS][\dLMNP-V])|[DHPS][37PT][0L]|[ACELMRT][37PT][01LM])(?:[A-MZ][1-9MNP-V][\dLMNP-V]{2}|[A-M][0L](?:[1-9MNP-V][\dLMNP-V]|[0L][1-9MNP-V]))";//@"/^(?:[B-DF-HJ-NP-TV-Z](?:[AEIOU]{2}|[AEIOU]X)|[AEIOU]{2}X|[B-DF-HJ-NP-TV-Z]{2}[A-Z]){2}[\dLMNP-V]{2}(?:[A-EHLMPR-T](?:[04LQ][1-9MNP-V]|[1256LMRS][\dLMNP-V])|[DHPS][37PT][0L]|[ACELMRT][37PT][01LM])(?:[A-MZ][1-9MNP-V][\dLMNP-V]{2}|[A-M][0L](?:[\dLMNP-V][1-9MNP-V]|[1-9MNP-V][0L]))[A-Z]$/i";
+            if (!Regex.IsMatch(fiscalCode, regex))
+                return false;
 
-                }
-            }
-            catch { return new ErroreDao(); }
+            #region static maps
+
+            var oddMap = new Dictionary<char, int>() {
+				{'0', 1},
+				{'1', 0},
+				{'2', 5},
+				{'3', 7},
+				{'4', 9},
+				{'5', 13},
+				{'6', 15},
+				{'7', 17},
+				{'8', 19},
+				{'9', 21},
+				{'A', 1},
+				{'B', 0},
+				{'C', 5},
+				{'D', 7},
+				{'E', 9},
+				{'F', 13},
+				{'G', 15},
+				{'H', 17},
+				{'I', 19},
+				{'J', 21},
+				{'K', 2},
+				{'L', 4},
+				{'M', 18},
+				{'N', 20},
+				{'O', 11},
+				{'P', 3},
+				{'Q', 6},
+				{'R', 8},
+				{'S', 12},
+				{'T', 14},
+				{'U', 16},
+				{'V', 10},
+				{'W', 22},
+				{'X', 25},
+				{'Y', 24},
+				{'Z', 23}
+			};
+
+            var evenMap = new Dictionary<char, int>() {
+				{'0', 0},
+				{'1', 1},
+				{'2', 2},
+				{'3', 3},
+				{'4', 4},
+				{'5', 5},
+				{'6', 6},
+				{'7', 7},
+				{'8', 8},
+				{'9', 9},
+				{'A', 0},
+				{'B', 1},
+				{'C', 2},
+				{'D', 3},
+				{'E', 4},
+				{'F', 5},
+				{'G', 6},
+				{'H', 7},
+				{'I', 8},
+				{'J', 9},
+				{'K', 10},
+				{'L', 11},
+				{'M', 12},
+				{'N', 13},
+				{'O', 14},
+				{'P', 15},
+				{'Q', 16},
+				{'R', 17},
+				{'S', 18},
+				{'T', 19},
+				{'U', 20},
+				{'V', 21},
+				{'W', 22},
+				{'X', 23},
+				{'Y', 24},
+				{'Z', 25}
+			};
+
+            #endregion static maps
+
+            int total = 0;
+            for (int i = 0; i < 15; i += 2)
+                total += oddMap[fiscalCode[i]];
+            for (int i = 1; i < 15; i += 2)
+                total += evenMap[fiscalCode[i]];
+
+            return fiscalCode[15] == (char)('A' + total % 26);
         }
-
-        private static ErroreDao ValidaEmail(string email)
-        {
-            ErroreDao erro = new ErroreDao();
-            bool validemail = new EmailAddressAttribute().IsValid(email);
-            if (!validemail)
-            {
-                erro.ColumnName = "Email";
-                erro.Description = "Formato non valido.";
-                erro.ErrorLevel = ErroreDao.Level.High;
-                erro.Exist = true;
-            }
-            return erro;
-        }
-
-        private static ErroreDao ValidaDataCess(DateTime? nullable)
-        {
-            throw new NotImplementedException();
-        }
-
-        private static ErroreDao ValidaTelefono(string p)
-        {
-            throw new NotImplementedException();
-        }
-
-        private static ErroreDao ValidaIban(string iban)
-        {
-            ErroreDao erro = new ErroreDao();
-            if (string.IsNullOrEmpty(iban))
-            {
-                erro.ColumnName = "Iban";
-                erro.Description = "Valore mancante";
-                erro.ErrorLevel = ErroreDao.Level.Warning;
-                erro.Exist = true;
-            }
-            if (!ValidateBankAccount(iban))
-            {
-                erro.ColumnName = "Iban";
-                erro.Description = "Valore non corretto";
-                erro.ErrorLevel = ErroreDao.Level.High;
-                erro.Exist = true;
-            }
-            return erro;
-        }
-
-        private static ErroreDao ValidaCapResid(string p)
-        {
-            throw new NotImplementedException();
-        }
-
-        private static ErroreDao ValidaSiglaProv(string p)
-        {
-            throw new NotImplementedException();
-        }
-
-        private static ErroreDao ValidaLocResid(string p)
-        {
-            throw new NotImplementedException();
-        }
-
-        private static ErroreDao ValidaIndirizzoResid(string p)
-        {
-            throw new NotImplementedException();
-        }
-
-        private static ErroreDao ValidaEffetto(DateTime? nullable)
-        {
-            throw new NotImplementedException();
-        }
-
-        private static ErroreDao ValidaLegame(string legame)
-        {
-            ErroreDao erro = new ErroreDao();
-            T_TipoLegameService _eService = new T_TipoLegameService();
-            T_TipiLegameDao legameBL = _eService.GetByCodLegame(legame);
-            if (legameBL.CodLegameImport == null)
-            {
-                erro.ColumnName = "Codice Legame";
-                erro.Description = "Valore non censito dal sistema";
-                erro.ErrorLevel = ErroreDao.Level.High;
-                erro.Exist = true;
-            }
-            return erro;
-        }
-
-        private static ErroreDao ValidaDataNascita(DateTime? nullable)
-        {
-            throw new NotImplementedException();
-        }
-
-        private static ErroreDao ValidaLuogoNascita(string p)
-        {
-            throw new NotImplementedException();
-        }
-
-        private static ErroreDao ValidaCFCapoNucleo(string p)
-        {
-            throw new NotImplementedException();
-        }
-
-        private static ErroreDao ValidaCategoria(string categoria)
-        {
-            ErroreDao erro = new ErroreDao();
-            if (!categoria.ToLower().Equals("dipendenti"))
-            {
-                erro.ColumnName = "Categoria";
-                erro.Description = "Valore non valido";
-                erro.ErrorLevel = ErroreDao.Level.High;
-                erro.Exist = true;
-            }
-            return erro;
-        }
-
-        private static ErroreDao ValidaConvenzione(string p)
-        {
-            throw new NotImplementedException();
-        }
-
-        private static ErroreDao ValidaPolizza(string polizza)
-        {
-            ErroreDao erro = new ErroreDao();
-            if (!polizza.ToLower().Equals("base_integrativa") || !polizza.ToLower().Equals("base") || !polizza.ToLower().Equals("integrativa"))
-            {
-                erro.ColumnName = "Polizza";
-                erro.Description = "Valore non valido";
-                erro.ErrorLevel = ErroreDao.Level.High;
-                erro.Exist = true;
-            }
-            return erro;
-        }
-
-        private static ErroreDao ValidaCFAssic(string p)
-        {
-            throw new NotImplementedException();
-        }
-
-        private static ErroreDao ValidaEnte(string ente)
-        {
-            ErroreDao erro = new ErroreDao();
-            EnteService _eService = new EnteService();
-            EnteDao enteBL = _eService.SelectByCodiceEnte(ente);
-            if (ente == null || ente.ToString().Equals(string.Empty))
-            {
-                erro.ColumnName = "Ente";
-                erro.Description = "Ente non presente";
-                erro.ErrorLevel = ErroreDao.Level.High;
-                erro.Exist = true;
-            }
-            return erro;
-        }
-
-        private static ErroreDao ValidaEsclusioni(string esclusione)
-        {
-            ErroreDao erro = new ErroreDao();
-            if (!esclusione.ToUpper().Equals("NO"))
-            {
-                erro.ColumnName = "Esclusioni Pregresse";
-                erro.Description = "Valore di default errato";
-                erro.ErrorLevel = ErroreDao.Level.High;
-                erro.Exist = true;
-            }
-            return erro;
-        }
-
 
         public static bool ValidateBankAccount(string bankAccount)
         {

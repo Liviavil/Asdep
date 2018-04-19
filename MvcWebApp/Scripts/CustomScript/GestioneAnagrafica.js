@@ -24,59 +24,72 @@ function tableCreate() {
             url: '/GestioneAnagrafica/LoadTable',
             dataSrc: ''
         },
-        pageLength: 1,
+        //pageLength: 1,
         //page : 2,
         //paging: { page: 2},
         columnDefs: [
-            {
-                className: "u-textLeft scarta",
-                targets: 0,
-            },
-             {
-                 className: "u-textLeft salva",
-                 targets: 1,
-             },
               {
+                  width:"auto",
                   className: "u-textLeft",
                   targets: '_all',
               },
             {
-                targets: 2,
+                targets: 0,
                 createdCell: function (td, cellData, rowData, row, col) {
                     if (rowData.Errori.length > 0)
                     {
-                        if (!rowData.AllWarnings) {
-                            $(td).addClass("Prose Alert Alert--error Alert--withIcon u-layout-prose u-padding-r-bottom u-padding-r-right   u-margin-r-bottom");
-                        }
-                        else
-                        {
-                            $(td).addClass("Prose Alert Alert--warning Alert--withIcon u-layout-prose u-padding-r-bottom u-padding-r-right   u-margin-r-bottom");
-                        }
-                        var htmlToInsert = "<div class='tooltiptext'>";
+                        var htmlErrori = "";
+                        //if (!rowData.AllWarnings) {
+                        //    //$(td).addClass("Prose Alert Alert--error Alert--withIcon u-layout-prose u-padding-r-bottom u-padding-r-right   u-margin-r-bottom");
+                        //}
+                        //else
+                        //{
+                        //    $(td).addClass("Prose Alert Alert--warning Alert--withIcon u-layout-prose u-padding-r-bottom u-padding-r-right   u-margin-r-bottom");
+                        //}
+                        var htmlErrori = '<a title="salva" class="salva u-md-margin color-primo u-textClean-Icon u-text-m" >';
+                        htmlErrori+= '      <span class="far fa-save" aria-hidden="true"></span>';
+                        htmlErrori+=   '    <span class="u-hiddenVisually">salva</span>';
+                        htmlErrori+='    </a>';
+                        htmlErrori+='   <a title="cancella" class="cancella u-md-margin color-primo u-textClean-Icon u-text-m" >';
+                        htmlErrori+='       <span class="far fa-trash-alt" aria-hidden="true"></span>';
+                        htmlErrori+='       <span class="u-hiddenVisually">cancella</span>';
+                        htmlErrori+='   </a>';
+                        htmlErrori+='   <div class="fas fa-exclamation-circle u-color-red u-textClean-Icon u-text-m">';
+                        htmlErrori+='       <span class="tooltiptext">';
+                        htmlErrori+='           <a title="modifica" class="modifica color-primo u-textClean-Icon u-text-m" >';
+                        htmlErrori+='               <span class="far fa-edit  u-margin-bottom-xs" aria-hidden="true"></span>';
+                        htmlErrori += '             <span class="u-hiddenVisually">modifica</span>';
+                        htmlErrori+='           </a><br>';
                        
                         $.each(rowData.Errori, function (index, val)
                         {
                             //$(td).html("<div class='tooltiptext'>" + val.ColumnName + ": " + val.Description + "<br>");
-                            htmlToInsert += "<strong>" + val.ColumnName + "</strong>: " + val.Description + "<br>"
+                            htmlErrori += "<strong>" + val.ColumnName + "</strong>: " + val.Description + "<br>"
                         });
-                        htmlToInsert += "</div>";
-                        $(td).html(htmlToInsert);
+                        htmlErrori += "</span></div>";
+                        $(td).html(htmlErrori);
                     }
                     else
                     {
-                        $(td).addClass("Icon-file");
+                        var htmlToInsert = '<a title="salva" class="salva u-md-margin color-primo u-textClean-Icon u-text-m">';
+                        htmlToInsert+='      <span class="far fa-save" aria-hidden="true"></span>';
+                        htmlToInsert+='      <span class="u-hiddenVisually">salva</span>';
+                        htmlToInsert+='     </a>';
+                        htmlToInsert+='     <a title="cancella" class=" cancella u-md-margin color-primo u-textClean-Icon u-text-m">';
+                        htmlToInsert+='         <span class="far fa-trash-alt" aria-hidden="true"></span>';
+                        htmlToInsert+='         <span class="u-hiddenVisually">cancella</span>';
+                        htmlToInsert+=      '</a>';
+                        htmlToInsert+=      '<a title="modifica" class="modifica color-primo u-textClean-Icon u-text-m" >';
+                        htmlToInsert+=       ' <span class="far fa-edit" aria-hidden="true"></span>';
+                        htmlToInsert+=        '<span class="u-hiddenVisually">modifica</span>';
+                        htmlToInsert+=      '</a>';
+                        //$(td).addClass("Icon-file");
+                        $(td).html(htmlToInsert);
                     }
                 }
             }
         ],
-        //data: data,
         columns: [
-            {
-                data: null, defaultContent: "", orderable: false
-            },
-             {
-                 data: null, defaultContent: "", orderable: false
-             },
             {
                 data: null, defaultContent: "", orderable: false
             },
@@ -94,37 +107,15 @@ function tableCreate() {
 
         ],
         order: [3, 'asc']
-        //select: true
-        //buttons: [
-        //    //{
-        //    //    extend: "create", editor: editor, formButtons: [
-        //    //      {
-        //    //          label: 'Crea',
-        //    //          fn: function () { this.close(); }
-        //    //      },
-        //    //      'Create new row'
-        //    //    ]
-        //    //},
-        //    { extend: "edit",  editor: editor,
-        //        //formButtons:
-        //        //    [
-        //        //        {
-        //        //            label: 'Modifica',
-        //        //            //fn: function () { this.close(); }
-        //        //        },
-        //        //        'Modifica'
-        //        //    ]
-        //    }
-        //    //,{ extend: "remove", editor: editor }
-        //]
+       
     }).on('stateLoaded.dt', function (e, settings, data) {
         var data = data;
         // $('#myInput').val(data.myCustomValue);
     });
 
-    $('#example tbody').on('click', 'td.u-textLeft.Icon-file, td.u-textLeft.Prose', function () {
+    $('#example tbody').on('click', 'a.modifica', function () {
         var data = table.row($(this).parents('tr')).data();  
-        window.location.href = "/GestioneAnagrafica/EditSoggettoImportato?id=" + data.IdSoggetto + "&page="+ table.page().toString() ;
+        $(this)[0].href = "/GestioneAnagrafica/EditSoggettoImportato?id=" + data.IdSoggetto + "&page=" + table.page().toString();
         //$.ajax({
         //    // edit to add steve's suggestion.
         //    url: "/GestioneAnagrafica/EditSoggettoImportato/" + data.IdSoggetto,
@@ -136,24 +127,20 @@ function tableCreate() {
         //    }
         //});
     });
-    $('#example tbody').on('click', 'td.u-textLeft.scarta', function () {
+    $('#example tbody').on('click', 'a.cancella', function () {
         var data = table.row($(this).parents('tr')).data();
     });
-    $('#example tbody').on('click', 'td.u-textLeft.salva', function () {
+    $('#example tbody').on('click', 'a.salva', function () {
         var data = table.row($(this).parents('tr')).data();
     });
 
-   
 }
 function changePage(p)
 {
     numPage = p;
 }
 
-$(document).ready(function ()
-{
-    table.page(numPage).draw(false);
-});
+
 
 
 

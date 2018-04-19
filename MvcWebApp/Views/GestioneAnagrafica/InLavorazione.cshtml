@@ -58,8 +58,8 @@
     </div>
     
     <div id="risultati">
-        @*@{ Model.SearchResults.Selected = Request.QueryString["enteQuerystring"];}*@
-        @if (string.IsNullOrEmpty(Request.QueryString["enteQuerystring"]))
+        @*@{ Model.SearchResults.Selected = Request.QueryString["en"];}*@
+        @if (string.IsNullOrEmpty(Request.QueryString["en"]))
         {
             var m = new MvcWebApp.Models.SoggImportAppoggioSearchResults();
             m.Results = Model.Results;
@@ -69,11 +69,12 @@
         }
         else
         {
-            var m = new MvcWebApp.Models.SoggImportAppoggioSearchResults {selectedId = Request.QueryString["enteQuerystring"] };
+            var m = new MvcWebApp.Models.SoggImportAppoggioSearchResults {selectedId = Request.QueryString["en"] };
             m.Results = Model.Results;
             m.CountResults = Model.CountResults;
-            m.NumPage = Request.QueryString["page"] != null? Request.QueryString["page"].ToString() : "0";
+            m.NumPage = Model.NumPage;//Request.QueryString["page"] != null? Request.QueryString["page"].ToString() : "0";
             Html.RenderAction("RisultatiSoggettiImportati", "GestioneAnagrafica", new { modello = m });
         }
     </div>
 }
+

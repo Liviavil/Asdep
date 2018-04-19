@@ -52,6 +52,10 @@
       <Project>{5db690d6-9d8f-428d-b69a-9eca3581a3dd}</Project>
       <Name>Asdep.Common.DAO</Name>
     </ProjectReference>
+    <ProjectReference Include="..\AsdepGestioneAnagraficheBLL\AsdepGestioneAnagraficheBLL.csproj">
+      <Project>{e7d9990b-e2b6-4860-b7f1-797dcfcafcb0}</Project>
+      <Name>AsdepGestioneAnagraficheBLL</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

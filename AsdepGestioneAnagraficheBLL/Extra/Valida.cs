@@ -202,7 +202,7 @@ namespace AsdepGestioneAnagraficheBLL.Extra
         {
             EnteService _eService = new EnteService();
             EnteDao enteBL = _eService.SelectByCodiceEnte(soggetto.Ente);
-            if (soggetto.Ente == null || soggetto.Ente.ToString().Equals(string.Empty))
+            if (enteBL.CodiceEnte == null)
             {
                 Errore.ColumnName = "Ente";
                 Errore.Description = "Ente non presente";

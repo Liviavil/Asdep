@@ -49,6 +49,7 @@
     <Compile Include="Business\AssicuratiService.cs" />
     <Compile Include="Business\EnteService.cs" />
     <Compile Include="Business\T_TipoLegameService.cs" />
+    <Compile Include="Extra\CodiceFiscale.cs" />
     <Compile Include="Extra\Valida.cs" />
     <Compile Include="Extra\Helper.cs" />
     <Compile Include="IServiceAsdep.cs" />

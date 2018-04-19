@@ -18,10 +18,10 @@ namespace MvcWebApp
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
-            routes.MapRoute(
+            routes.MapRoute( 
                 name: "LavoraEnte",
-                url: "{controller}/{action}/{enteQuerystring}/{page}",
-                defaults: new { controller = "GestioneAnagrafica", action = "InLavorazione", enteQuerystring = UrlParameter.Optional, page=UrlParameter.Optional }
+                url: "{controller}/{action}/{en}/{page}", 
+                defaults: new { controller = "GestioneAnagrafica", action = "InLavorazione", en = UrlParameter.Optional, page=UrlParameter.Optional }
             );
             routes.MapRoute(
                 name: "SoggettiByEnte",

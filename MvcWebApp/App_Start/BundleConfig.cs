@@ -31,10 +31,12 @@ namespace MvcWebApp
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                //"~/Content/site.css", 
-                "~/Content/build.css"));
-                //"~/Content/DataTable/dataTableDownload.min.css",
-                //"~/Content/DataTable/editor.dataTable.css"
+               // "~/Content/build-styleguide.css",
+                "~/Content/build.css",
+                "~/Content/fa-regular.css",
+                "~/Content/fa-solid.css",
+                "~/Content/font.css",
+                "~/Content/fontawesome.css"));
 
                 
 

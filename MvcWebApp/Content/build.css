@@ -302,6 +302,13 @@ ol, ul {
     .Arrange--withGutter > .Arrange-row > .Arrange-sizeFill, .Arrange--withGutter > .Arrange-row > .Arrange-sizeFit, .Arrange--withGutter > .Arrange-sizeFill, .Arrange--withGutter > .Arrange-sizeFit {
         padding: 0 5px;
     }
+	
+	
+a{
+	text-decoration:none !important;}
+	
+a:hover{
+	text-decoration:none !important;}
 
 .Button {
     background: transparent;
@@ -355,12 +362,21 @@ ol, ul {
 	 -webkit-box-shadow: 0 2px 4px 0 #bdbdbd;
     box-shadow: 0 2px 4px 0 #bdbdbd;
 	border: 1px solid #9A9A9A;
+	font-size: 16px;
+    font-weight: 400;
+	font-family: 'Titillium Web';
+	line-height: 1.20;
+	 left: 2% !important;
 	
 
 	}
 	
 	
-	.Alert--withIcon:hover .tooltiptext{
+.border-search{
+	    border: 1px solid #3E6384 !important;}
+	
+	
+.fa-exclamation-circle:hover .tooltiptext{
 		 visibility: visible;
 		 }
 
@@ -3763,6 +3779,10 @@ ol, ul {
     color: #65dcdf !important;
 }
 
+.u-color-red {
+    color: #EF0003 !important;
+}
+
 .u-background-teal-50 {
     background-color: #65dcdf !important;
 }
@@ -4099,6 +4119,12 @@ ol, ul {
     .Header-owner, .Megamenu--default > .Megamenu-list, .u-layout-wide {
         max-width: 128rem !important;
     }
+}
+
+@media only screen and (min-width : 992px){
+.u-md-margin {
+	margin-right:0.8rem !important;}
+
 }
 
 .u-layout-wider {
@@ -4914,7 +4940,7 @@ ol, ul {
 }
 
 .Headroom--pinned.Headroom--not-top, .js .Headroom--fixed, .Megamenu-list, .u-zindex-40 {
-    z-index: 10;
+    z-index: 40;
 }
 
 .Offcanvas--modal.is-active:after, .Offcanvas--modal:target:after, .Spid-menu, .u-zindex-50 {
@@ -6354,6 +6380,14 @@ option:hover {
     .Table td, .Table th {
         text-align: left;
     }
+	
+	
+	.Table th {
+    background-color: #3E6384!important;
+    color: #FFFFFF!important;
+    font-weight: 600;
+
+	}
 
 .Table--fixed {
     table-layout: fixed;
@@ -6372,7 +6406,7 @@ option:hover {
 }
 
 .Table--withBorder tr {
-    border-bottom: 1px solid #d6dce3;
+    
 }
 
 .Table--withBorder th {
@@ -6563,6 +6597,8 @@ option:hover {
         padding-left: 1.6rem !important;
     }
 }
+
+
 
 .Header-titleLink a {
     color: #4C6F96;
@@ -6963,5 +6999,8 @@ body {
 }
 
 a:hover {
-    text-decoration: underline !important;
+    text-decoration: none !important;
+}
+.salva, .modifica, .cancella {
+    cursor:pointer;
 }

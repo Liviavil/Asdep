@@ -305,7 +305,7 @@ namespace AsdepGestioneAnagraficheBLL.Business
             _validazione = new ValidaEnte();
             errori.Add(_validazione.Esegui(sogg));
 
-            return errori;
+            return errori.Where(e => e.Description != null).ToList();
             #region old
             //List<ErroreDao> errori = new List<ErroreDao>();
             //const BindingFlags flags = BindingFlags.Public | BindingFlags.Instance;
