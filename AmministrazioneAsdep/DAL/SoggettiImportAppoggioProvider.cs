@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.Entity.Design;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
@@ -103,7 +104,8 @@ namespace AmministrazioneAsdep.DAL
             int result = -1;
             try
             {
-                db.SoggettiImportAppoggio.Remove(obj);
+                db.Entry(obj).State = EntityState.Deleted;
+                //db.SoggettiImportAppoggio.Remove(obj);
                 result = db.SaveChanges();
             }
             catch { }

@@ -347,5 +347,17 @@ namespace WcfService
             catch { }
             return _eDao;
         }
+
+
+        public void DeleteSoggettoImportato(long id)
+        {
+            try 
+            {
+                AssicuratiService _service = new AssicuratiService();
+                SoggettiImportAppoggioDao soggetto= _service.SelectById(id);
+                _service.DeleteOne(soggetto);
+            }
+            catch { }
+        }
     }
 }

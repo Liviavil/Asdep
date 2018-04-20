@@ -43,6 +43,11 @@ namespace MvcWebApp
               url: "{GestioneAnagrafica}/{Modifica}",
               defaults: new { controller = "GestioneAnagrafica", action = "EditSoggettoImportato" }
           );
+            routes.MapRoute(
+              name: "Scarta",
+              url: "{GestioneAnagrafica}/{Scarta}/{id}",
+              defaults: new { controller = "GestioneAnagrafica", action = "Scarta",id=UrlParameter.Optional }
+          );
         }
     }
 }

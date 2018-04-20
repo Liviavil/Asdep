@@ -1,6 +1,8 @@
 ﻿@model MvcWebApp.Models.SoggImportAppoggioSearchResults
 @{
     ViewBag.Title = "Anagrafiche in lavorazione";
+    Session["ente"] = Model.selectedId;
+    Session["page"] = Request.QueryString["page"] != null ? Request.QueryString["page"].ToString() : "0";
 }
 
 

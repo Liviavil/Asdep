@@ -132,6 +132,7 @@ function tableCreate() {
     });
     $('#example tbody').on('click', 'a.cancella', function () {
         var data = table.row($(this).parents('tr')).data();
+        $(this)[0].href = "/GestioneAnagrafica/Scarta?id=" + data.IdSoggetto + "&page=" + table.page().toString();
     });
     $('#example tbody').on('click', 'a.salva', function () {
         var data = table.row($(this).parents('tr')).data();

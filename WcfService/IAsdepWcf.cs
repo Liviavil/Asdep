@@ -81,6 +81,10 @@ namespace WcfService
         [OperationContract]
         [WebInvoke(Method = "POST", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "GetContribuzionEnteByNome/")]
         ContribuzioneEnteDao GetContribuzionEnteByNome(string nome);
+
+        [OperationContract]
+        [WebInvoke(Method = "POST", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "DeleteSoggettoImportato/")]
+        void DeleteSoggettoImportato(long id);
        
     }
 }
