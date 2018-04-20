@@ -13,89 +13,165 @@
     @Html.ValidationSummary(true)
     
     <!--form edit 1-->
-        
 
+   @Html.HiddenFor(t=> t.IdSoggetto)
 
     <div class="Form Form--spaced u-layout-r-withGutter u-padding-top-xxl u-text-r-xs">
         <fieldset class="Form-fieldset">
             <legend class="Form-legend color-primo">Scheda posizione assicurativa: @Model.Cognome @Model.Nome</legend>
 
             <section class="Grid Grid--withGutter">
-                <div class="Grid-cell u-md-size1of4 u-lg-size1of4 u-margin-top-l ">
-
-                    <div class="Form-field">
-                        <label class="Form-label is-required" for="cognome">Cognome</label>
-                        <input class="Form-input u-text-r-s u-borderRadius-m" id="Cognome" aria-required="true" required name="Cognome" value="@Model.Cognome">
-                    </div>
-
-                    <div class="Form-field">
-                        <label class="Form-label is-required" for="nome">Nome</label>
-                        <input class="Form-input u-text-r-s u-borderRadius-m" id="Nome" aria-required="true" required name="Nome" value="@Model.Nome">
-                    </div>
-
-
-                </div>
-
+<!-- Ente-->
                 <div class="Grid-cell u-md-size1of4 u-lg-size1of4 u-margin-top-l">
                     <div class="Form-field">
                         <label class="Form-label is-required" for="ente">Ente</label>
-                        <input class="Form-input u-text-r-s u-borderRadius-m" id="Ente" aria-required="true" required name="Ente" value="@Model.Ente">
-                        @*<select class="Form-input u-text-r-s u-borderRadius-m" id="provincia" aria-required="true" required>
-                            <option disabled selected>seleziona</option>
-                            <option>MO</option>
-                            <option>MI</option>
-                            <option>ME</option>
-                            <option>MB</option>
-                        </select>*@
-                    </div>
-
-                    <div class="Form-field">
-                        <label class="Form-label is-required" for="provincia">Codice fiscale</label>
-                        <input class="Form-input u-text-r-s u-borderRadius-m" id="CodiceFiscaleAssicurato" aria-required="true" required name="CodiceFiscaleAssicurato" value="@Model.CodiceFiscaleAssicurato">
+                        @{ string descrErroreEnte = Model.Errori.Where(x => x.NomeColonna.Equals("Ente")).FirstOrDefault() != null ? Model.Errori.Where(x => x.NomeColonna.Equals("Ente")).FirstOrDefault().DescErrore : null;
+                           if (!string.IsNullOrEmpty(descrErroreEnte))
+                           {
+                            <input class="Form-input u-text-r-s u-borderRadius-m border-color-red" id="Ente" aria-required="true" required name="Ente" value="@Model.Ente">
+                            <span class="u-color-red">@descrErroreEnte</span>
+                           }
+                           else
+                           {
+                            <input class="Form-input u-text-r-s u-borderRadius-m" id="Ente" aria-required="true" required name="Ente" value="@Model.Ente">
+                           }}
                     </div>
                 </div>
-
-
+<!-- Codice Fiscale Assicurato-->
                 <div class="Grid-cell u-md-size1of4 u-lg-size1of4 u-margin-top-l">
-
                     <div class="Form-field">
-                        <label class="Form-label is-required" for="nome">Descrizione legame</label>
-                        <input class="Form-input u-text-r-s u-borderRadius-m" id="LegameNucleo" aria-required="true" name="LegameNucleo" required value="@Model.LegameNucleo">
+                        <label class="Form-label is-required" for="CodiceFiscaleAssicurato">Codice fiscale</label>
+                        @{ string descrErroreCodiceFiscaleAssicurato = Model.Errori.Where(x => x.NomeColonna.Equals("CodiceFiscaleAssicurato")).FirstOrDefault() != null ? Model.Errori.Where(x => x.NomeColonna.Equals("CodiceFiscaleAssicurato")).FirstOrDefault().DescErrore : null;
+                           if (!string.IsNullOrEmpty(descrErroreCodiceFiscaleAssicurato))
+                           {
+                            <input class="Form-input u-text-r-s u-borderRadius-m border-color-red" id="CodiceFiscaleAssicurato" aria-required="true" required name="CodiceFiscaleAssicurato" value="@Model.CodiceFiscaleAssicurato">
+                            <span class="u-color-red">@descrErroreCodiceFiscaleAssicurato</span>  
+                           }
+                           else
+                           {
+                            <input class="Form-input u-text-r-s u-borderRadius-m" id="CodiceFiscaleAssicurato" aria-required="true" required name="CodiceFiscaleAssicurato" value="@Model.CodiceFiscaleAssicurato">
+                           }}
                     </div>
-
-                    <div class="Form-field">
-                        <label class="Form-label is-required" for="cognome">Luogo di nascita</label>
-                        <input class="Form-input u-text-r-s u-borderRadius-m" id="LuogoNascitaAssicurato" aria-required="true" required name="LuogoNascitaAssicurato" value="@Model.LuogoNascitaAssicurato">
-                    </div>
-
-
-
                 </div>
 
-                <div class="Grid-cell u-md-size1of4 u-lg-size1of4 u-margin-top-l">
+                <div class="Grid-cell u-md-size1of4 u-lg-size1of4 u-margin-top-l ">
+                    <div class="Form-field">
+                        <label class="Form-label is-required" for="Cognome">Cognome</label>
+                        @{ string descrErroreCognome = Model.Errori.Where(x => x.NomeColonna.Equals("Cognome")).FirstOrDefault() != null ? Model.Errori.Where(x => x.NomeColonna.Equals("Cognome")).FirstOrDefault().DescErrore : null;
+                           if (!string.IsNullOrEmpty(descrErroreCognome))
+                           {
+                            <input class="Form-input u-text-r-s u-borderRadius-m border-color-red" id="Cognome" aria-required="true" required name="Cognome" value="@Model.Cognome">
+                            <span class="u-color-red">@descrErroreCognome</span>
+                           }
+                           else
+                           {
+                            <input class="Form-input u-text-r-s u-borderRadius-m" id="Cognome" aria-required="true" required name="Cognome" value="@Model.Cognome">
+                           }
+                        }
+                    </div>
+                </div>
+                <div class="Grid-cell u-md-size1of4 u-lg-size1of4 u-margin-top-l ">
+                    <div class="Form-field">
+                        <label class="Form-label is-required" for="Nome">Nome</label>
+                        @{ string descrErroreNome = Model.Errori.Where(x => x.NomeColonna.Equals("Nome")).FirstOrDefault() != null ? Model.Errori.Where(x => x.NomeColonna.Equals("Nome")).FirstOrDefault().DescErrore : null;
+                           if (!string.IsNullOrEmpty(descrErroreNome))
+                           {
+                            <input class="Form-input u-text-r-s u-borderRadius-m border-color-red" id="Nome" aria-required="true" required name="Nome" value="@Model.Nome">
+                            <span class="u-color-red">@descrErroreNome</span>
+                           }
+                           else
+                           {
+                            <input class="Form-input u-text-r-s u-borderRadius-m" id="Nome" aria-required="true" required name="Nome" value="@Model.Nome">
+                           }}
+                    </div>
+                </div>
+                
+                <div class="Grid-cell u-md-size1of4 u-lg-size1of4">
 
                     <div class="Form-field">
-                        <label class="Form-label is-required" for="nome">Data di nascita</label>
-                        <input class="Form-input u-text-r-s u-borderRadius-m" id="DataNascitaAssicurato" aria-required="true" name="DataNascitaAssicurato" required value="@Model.DataNascitaAssicurato">
+                        <label class="Form-label" for="SecondoNome">Secondo nome</label>
+                        @{ string descrSecondoNome = Model.Errori.Where(x => x.NomeColonna.Equals("SecondoNome")).FirstOrDefault() != null ? Model.Errori.Where(x => x.NomeColonna.Equals("SecondoNome")).FirstOrDefault().DescErrore : null;
+                           if (!string.IsNullOrEmpty(descrSecondoNome))
+                           {
+                            <input class="Form-input u-text-r-s u-borderRadius-m border-color-red" id="SecondoNome" name="SecondoNome" value="@Model.SecondoNome">
+                            <span class="u-color-red">@descrSecondoNome</span>  
+                           }
+                           else
+                           {
+                            <input class="Form-input u-text-r-s u-borderRadius-m" id="SecondoNome" name="SecondoNome" value="@Model.SecondoNome">
+                           }}
                     </div>
-
-                    <div class="Form-field">
-                        <label class="Form-label is-required" for="cognome">C.F. capo nucleo</label>
-                        <input class="Form-input u-text-r-s u-borderRadius-m" id="CodiceFiscaleCapoNucleo" aria-required="true" required name="CodiceFiscaleCapoNucleo"  value="@Model.CodiceFiscaleCapoNucleo">
-                    </div>
-
-
-
                 </div>
 
+                <div class="Grid-cell u-md-size1of4 u-lg-size1of4">
+                    <div class="Form-field">
+                        <label class="Form-label" for="LuogoNascitaAssicurato">Luogo di nascita</label>
+                        @{ string descrLuogoNascitaAssicurato = Model.Errori.Where(x => x.NomeColonna.Equals("LuogoNascitaAssicurato")).FirstOrDefault() != null ? Model.Errori.Where(x => x.NomeColonna.Equals("LuogoNascitaAssicurato")).FirstOrDefault().DescErrore : null;
+                           if (!string.IsNullOrEmpty(descrLuogoNascitaAssicurato))
+                           {
+                            <input class="Form-input u-text-r-s u-borderRadius-m border-color-red" id="LuogoNascitaAssicurato"  name="LuogoNascitaAssicurato" value="@Model.LuogoNascitaAssicurato">
+                            <span class="u-color-red">@descrLuogoNascitaAssicurato</span>  
+                           }
+                           else
+                           { 
+                            <input class="Form-input u-text-r-s u-borderRadius-m" id="LuogoNascitaAssicurato" name="LuogoNascitaAssicurato" value="@Model.LuogoNascitaAssicurato">
+                           }}
+                    </div>
+                </div>
+                <div class="Grid-cell u-md-size1of4 u-lg-size1of4">
 
+                    <div class="Form-field">
+                        <label class="Form-label" for="DataNascitaAssicurato">Data di nascita</label>
+                        @{ string descrDataNascitaAssicurato = Model.Errori.Where(x => x.NomeColonna.Equals("DataNascitaAssicurato")).FirstOrDefault() != null ? Model.Errori.Where(x => x.NomeColonna.Equals("DataNascitaAssicurato")).FirstOrDefault().DescErrore : null;
+                           if (!string.IsNullOrEmpty(descrLuogoNascitaAssicurato))
+                           {
+                            <input class="Form-input u-text-r-s u-borderRadius-m border-color-red" id="DataNascitaAssicurato"  name="DataNascitaAssicurato" value="@Model.DataNascitaAssicurato">
+                            <span class="u-color-red">@descrDataNascitaAssicurato</span>  
+                           }
+                           else
+                           {  
+                            <input class="Form-input u-text-r-s u-borderRadius-m" id="DataNascitaAssicurato"  name="DataNascitaAssicurato" value="@Model.DataNascitaAssicurato">
+                           }}
+                    </div>
+                </div>
+                
+                <div class="Grid-cell u-md-size1of4 u-lg-size1of4">
+                    <div class="Form-field">
+                        <label class="Form-label is-required" for="CodiceFiscaleCapoNucleo">C.F. capo nucleo</label>
+                        @{ string descrCodiceFiscaleCapoNucleo = Model.Errori.Where(x => x.NomeColonna.Equals("CodiceFiscaleCapoNucleo")).FirstOrDefault() != null ? Model.Errori.Where(x => x.NomeColonna.Equals("CodiceFiscaleCapoNucleo")).FirstOrDefault().DescErrore : null;
+                           if (!string.IsNullOrEmpty(descrLuogoNascitaAssicurato))
+                           {
+                            <input class="Form-input u-text-r-s u-borderRadius-m border-color-red" id="CodiceFiscaleCapoNucleo" aria-required="true" required name="CodiceFiscaleCapoNucleo"  value="@Model.CodiceFiscaleCapoNucleo">
+                            <span class="u-color-red">@descrCodiceFiscaleCapoNucleo</span>  
+                           }
+                           else
+                           {
+                            <input class="Form-input u-text-r-s u-borderRadius-m" id="CodiceFiscaleCapoNucleo" aria-required="true" required name="CodiceFiscaleCapoNucleo"  value="@Model.CodiceFiscaleCapoNucleo">  
+                           }}
+                    </div>
+                </div>
+                <div class="Grid-cell u-md-size1of4 u-lg-size1of4">
+
+                    <div class="Form-field">
+                        <label class="Form-label is-required" for="LegameNucleo">Descrizione legame</label>
+                        @{ string descrLegameNucleo = Model.Errori.Where(x => x.NomeColonna.Equals("LegameNucleo")).FirstOrDefault() != null ? Model.Errori.Where(x => x.NomeColonna.Equals("LegameNucleo")).FirstOrDefault().DescErrore : null;
+                           if (!string.IsNullOrEmpty(descrLegameNucleo))
+                           {
+                            <input class="Form-input u-text-r-s u-borderRadius-m border-color-red" id="LegameNucleo" aria-required="true" name="LegameNucleo" required value="@Model.LegameNucleo">
+                            <span class="u-color-red">@descrLegameNucleo</span>  
+                           }
+                           else
+                           {
+                            <input class="Form-input u-text-r-s u-borderRadius-m" id="LegameNucleo" aria-required="true" name="LegameNucleo" required value="@Model.LegameNucleo">
+                           }}
+                    </div>
+                </div>
+                
+                
+                
             </section>
-
         </fieldset>
-
     </div>
-    
-
 
     <!--form edit 2-->
         
@@ -109,73 +185,132 @@
                 <div class="Grid-cell u-md-size1of4 u-lg-size1of4 u-margin-top-l ">
 
                     <div class="Form-field">
-                        <label class="Form-label is-required" for="cognome">Residenza</label>
-                        <input class="Form-input u-text-r-s u-borderRadius-m" id="IndirizzoResidenza" aria-required="true" name="IndirizzoResidenza" required value="@Model.IndirizzoResidenza">
+                        <label class="Form-label" for="IndirizzoResidenza">Residenza</label>
+                        @{ string descrIndirizzoResidenza = Model.Errori.Where(x => x.NomeColonna.Equals("IndirizzoResidenza")).FirstOrDefault() != null ? Model.Errori.Where(x => x.NomeColonna.Equals("IndirizzoResidenza")).FirstOrDefault().DescErrore : null;
+                           if (!string.IsNullOrEmpty(descrLuogoNascitaAssicurato))
+                           {
+                            <input class="Form-input u-text-r-s u-borderRadius-m border-color-red" id="IndirizzoResidenza" name="IndirizzoResidenza" value="@Model.IndirizzoResidenza">
+                            <span class="u-color-red">@descrIndirizzoResidenza</span>  
+                           }
+                           else
+                           { 
+                            <input class="Form-input u-text-r-s u-borderRadius-m" id="IndirizzoResidenza" name="IndirizzoResidenza"  value="@Model.IndirizzoResidenza">
+                           }
+                        }
                     </div>
 
-                   @* <div class="Form-field">
-                        <label class="Form-label is-required" for="nome">Domicilio</label>
-                        <input class="Form-input u-text-r-s u-borderRadius-m" id="domicilio" aria-required="true" required>
-                    </div>*@
+                </div>
+                <div class="Grid-cell u-md-size1of4 u-lg-size1of4 u-margin-top-l">
 
-
+                    <div class="Form-field">
+                        <label class="Form-label" for="LocalitaResidenza">Località Residenza</label>
+                        @{ string descrLocalitaResidenza = Model.Errori.Where(x => x.NomeColonna.Equals("LocalitaResidenza")).FirstOrDefault() != null ? Model.Errori.Where(x => x.NomeColonna.Equals("LocalitaResidenza")).FirstOrDefault().DescErrore : null;
+                           if (!string.IsNullOrEmpty(descrLocalitaResidenza))
+                           {
+                            <input class="Form-input u-text-r-s u-borderRadius-m border-color-red" id="LocalitaResidenza"  name="LocalitaResidenza" value="@Model.LocalitaResidenza">
+                            <span class="u-color-red">@descrLocalitaResidenza</span>  
+                           }
+                           else
+                           {
+                            <input class="Form-input u-text-r-s u-borderRadius-m" id="LocalitaResidenza"   name="LocalitaResidenza" value="@Model.LocalitaResidenza">
+                           }
+                        }
+                    </div>
                 </div>
 
                 <div class="Grid-cell u-md-size1of4 u-lg-size1of4 u-margin-top-l">
                     <div class="Form-field">
-                        <label class="Form-label is-required" for="ente">Provincia</label>
-                        <input class="Form-input u-text-r-s u-borderRadius-m" id="SiglaProvResidenza" aria-required="true" name="SiglaProvResidenza" required value="@Model.SiglaProvResidenza">
+                        <label class="Form-label is-required" for="SiglaProvResidenza">Provincia</label>
+                        @{ string descrSiglaProvResidenza = Model.Errori.Where(x => x.NomeColonna.Equals("SiglaProvResidenza")).FirstOrDefault() != null ? Model.Errori.Where(x => x.NomeColonna.Equals("SiglaProvResidenza")).FirstOrDefault().DescErrore : null;
+                           if (!string.IsNullOrEmpty(descrSiglaProvResidenza))
+                           {
+                            <input class="Form-input u-text-r-s u-borderRadius-m border-color-red" id="SiglaProvResidenza" aria-required="true" name="SiglaProvResidenza" required value="@Model.SiglaProvResidenza">
+                            <span class="u-color-red">@descrSiglaProvResidenza</span>  
+                           }
+                           else
+                           {
+                            <input class="Form-input u-text-r-s u-borderRadius-m" id="SiglaProvResidenza" aria-required="true" name="SiglaProvResidenza" required value="@Model.SiglaProvResidenza">
+                           }
+                        }
                     </div>
-
-                    <div class="Form-field">
-                        <label class="Form-label is-required" for="provincia">Cap</label>
-                        <input class="Form-input u-text-r-s u-borderRadius-m" id="CapResidenza" aria-required="true" required  name="CapResidenza" value="@Model.CapResidenza">
-                    </div>
-                </div>
-
-
+</div>
                 <div class="Grid-cell u-md-size1of4 u-lg-size1of4 u-margin-top-l">
+                    <div class="Form-field">
+                        <label class="Form-label" for="CapResidenza">Cap</label>
+                        @{ string descrCapResidenza = Model.Errori.Where(x => x.NomeColonna.Equals("CapResidenza")).FirstOrDefault() != null ? Model.Errori.Where(x => x.NomeColonna.Equals("CapResidenza")).FirstOrDefault().DescErrore : null;
+                           if (!string.IsNullOrEmpty(descrCapResidenza))
+                           {
+                            <input class="Form-input u-text-r-s u-borderRadius-m border-color-red" id="CapResidenza"  name="CapResidenza" value="@Model.CapResidenza">
+                            <span class="u-color-red">@descrCapResidenza</span>  
+                           }
+                           else
+                           {
+                            <input class="Form-input u-text-r-s u-borderRadius-m" id="CapResidenza"  name="CapResidenza" value="@Model.CapResidenza">
+                           }
+                        }
+                    </div>
+                </div>
+                
+                <div class="Grid-cell u-md-size1of4 u-lg-size1of4">
 
                     <div class="Form-field">
-                        <label class="Form-label is-required" for="nome">Iban</label>
-                        <input class="Form-input u-text-r-s u-borderRadius-m" id="Iban" aria-required="true" name="Iban" required value="@Model.Iban">
+                        <label class="Form-label" for="Iban">Iban</label>
+                        @{ string descrIban = Model.Errori.Where(x => x.NomeColonna.Equals("Iban")).FirstOrDefault() != null ? Model.Errori.Where(x => x.NomeColonna.Equals("Iban")).FirstOrDefault().DescErrore : null;
+                           if (!string.IsNullOrEmpty(descrIban))
+                           {
+                            <input class="Form-input u-text-r-s u-borderRadius-m border-color-red" id="Iban"  name="Iban"  value="@Model.Iban">
+                            <span class="u-color-red">@descrIban</span>  
+                           }
+                           else
+                           {
+                            <input class="Form-input u-text-r-s u-borderRadius-m" id="Iban" name="Iban" value="@Model.Iban">
+                           }
+                        }
+                    </div>
                     </div>
 
+                <div class="Grid-cell u-md-size1of4 u-lg-size1of4">
                     <div class="Form-field">
-                        <label class="Form-label is-required" for="cognome">Email</label>
-                        <input class="Form-input u-text-r-s u-borderRadius-m" id="Email" aria-required="true" required name="Email" value="@Model.Email">
+                        <label class="Form-label" for="Email">Email</label>
+                        @{ string descrEmail = Model.Errori.Where(x => x.NomeColonna.Equals("Email")).FirstOrDefault() != null ? Model.Errori.Where(x => x.NomeColonna.Equals("Email")).FirstOrDefault().DescErrore : null;
+                           if (!string.IsNullOrEmpty(descrEmail))
+                           {
+                            <input class="Form-input u-text-r-s u-borderRadius-m border-color-red" id="Email" name="Email" value="@Model.Email">
+                            <span class="u-color-red">@descrEmail</span>  
+                           }
+                           else
+                           {
+                            <input class="Form-input u-text-r-s u-borderRadius-m" id="Email" name="Email" value="@Model.Email">
+                           }
+                        }
                     </div>
-
-
 
                 </div>
-
-                <div class="Grid-cell u-md-size1of4 u-lg-size1of4 u-margin-top-l">
+                <div class="Grid-cell u-md-size1of4 u-lg-size1of4">
 
                     <div class="Form-field">
-                        <label class="Form-label is-required" for="nome">Telefono</label>
-                        <input class="Form-input u-text-r-s u-borderRadius-m" id="Telefono" aria-required="true" required name="Telefono" value="@Model.Telefono">
+                        <label class="Form-label" for="Telefono">Telefono</label>
+                        @{ string descrTelefono = Model.Errori.Where(x => x.NomeColonna.Equals("Telefono")).FirstOrDefault() != null ? Model.Errori.Where(x => x.NomeColonna.Equals("Telefono")).FirstOrDefault().DescErrore : null;
+                           if (!string.IsNullOrEmpty(descrTelefono))
+                           {
+                            <input class="Form-input u-text-r-s u-borderRadius-m border-color-red" id="Telefono" name="Telefono" value="@Model.Telefono">
+                            <span class="u-color-red">@descrTelefono</span>  
+                           }
+                           else
+                           {
+                            <input class="Form-input u-text-r-s u-borderRadius-m" id="Telefono" name="Telefono" value="@Model.Telefono">
+                           }
+                        }
                     </div>
-
-
-
-
                 </div>
 
-
+                
             </section>
 
         </fieldset>
-
     </div>
-    
-
 
     <!--form edit 3-->
-    
-    
-
-
 
     <div class="Form Form--spaced u-layout-r-withGutter u-padding-top-xxl u-text-r-xs">
         <fieldset class="Form-fieldset">
@@ -183,80 +318,118 @@
 
             <section class="Grid Grid--withGutter">
                 <div class="Grid-cell u-md-size1of4 u-lg-size1of4 u-margin-top-l ">
-
                     <div class="Form-field">
-                        <label class="Form-label is-required" for="cognome">Data effetto</label>
-                        <input class="Form-input u-text-r-s u-borderRadius-m" id="Effetto" aria-required="true" required name="Effetto" value="@Model.Effetto.ToString().Split(' ')[0]">
+                        <label class="Form-label is-required" for="Effetto">Data effetto</label>
+                        @{ string descrEffetto = Model.Errori.Where(x => x.NomeColonna.Equals("Effetto")).FirstOrDefault() != null ? Model.Errori.Where(x => x.NomeColonna.Equals("Effetto")).FirstOrDefault().DescErrore : null;
+                           if (!string.IsNullOrEmpty(descrEffetto))
+                           {
+                            <input class="Form-input u-text-r-s u-borderRadius-m border-color-red" id="Effetto" aria-required="true" required name="Effetto" value="@Model.Effetto.ToString().Split(' ')[0]">
+                            <span class="u-color-red">@descrEffetto</span>  
+                           }
+                           else
+                           {
+                            <input class="Form-input u-text-r-s u-borderRadius-m" id="Effetto" aria-required="true" required name="Effetto" value="@Model.Effetto.ToString().Split(' ')[0]">
+                           }
+                        }
                     </div>
-
-                    @*<div class="Form-field">
-                        <label class="Form-label is-required" for="nome">Data inserimento</label>
-                        <input class="Form-input u-text-r-s u-borderRadius-m" id="data inserimento" aria-required="true" required>
-                    </div>*@
-
-
                 </div>
 
-               @* <div class="Grid-cell u-md-size1of4 u-lg-size1of4 u-margin-top-l">
+                 <div class="Grid-cell u-md-size1of4 u-lg-size1of4 u-margin-top-l ">
                     <div class="Form-field">
-                        <label class="Form-label is-required" for="ente">Ultimo aggiornamento</label>
-                        <input class="Form-input u-text-r-s u-borderRadius-m" id="aggiornamento" aria-required="true" required>
+                        <label class="Form-label" for="DataCessazione">Data cessazione</label>
+                        @{ string descrDataCessazione = Model.Errori.Where(x => x.NomeColonna.Equals("DataCessazione")).FirstOrDefault() != null ? Model.Errori.Where(x => x.NomeColonna.Equals("DataCessazione")).FirstOrDefault().DescErrore : null;
+                           if (!string.IsNullOrEmpty(descrDataCessazione))
+                           {
+                            <input class="Form-input u-text-r-s u-borderRadius-m border-color-red" id="DataCessazione" name="DataCessazione" value="@Model.DataCessazione.ToString().Split(' ')[0]">
+                            <span class="u-color-red">@descrDataCessazione</span>  
+                           }
+                           else
+                           {
+                            <input class="Form-input u-text-r-s u-borderRadius-m" id="DataCessazione" name="DataCessazione" value="@Model.DataCessazione.ToString().Split(' ')[0]">
+                           }
+                        }
                     </div>
+                </div>
 
+                <div class="Grid-cell u-md-size1of4 u-lg-size1of4 u-margin-top-l ">
                     <div class="Form-field">
-                        <label class="Form-label is-required" for="provincia">Età</label>
-                        <input class="Form-input u-text-r-s u-borderRadius-m" id="eta-2" aria-required="true" required>
+                        <label class="Form-label is-required" for="Convenzione">Convenzione</label>
+                        @{ string descrConvenzione = Model.Errori.Where(x => x.NomeColonna.Equals("Convenzione")).FirstOrDefault() != null ? Model.Errori.Where(x => x.NomeColonna.Equals("Convenzione")).FirstOrDefault().DescErrore : null;
+                           if (!string.IsNullOrEmpty(descrConvenzione))
+                           {
+                            <input class="Form-input u-text-r-s u-borderRadius-m border-color-red" id="Convenzione" aria-required="true" required name="Convenzione" value="@Model.Convenzione">
+                            <span class="u-color-red">@descrConvenzione</span>  
+                           }
+                           else
+                           {
+                            <input class="Form-input u-text-r-s u-borderRadius-m" id="Convenzione" aria-required="true" required name="Convenzione" value="@Model.Convenzione">
+                           }
+                        }
                     </div>
-                </div>*@
+                </div>
 
-
-                @*<div class="Grid-cell u-md-size1of4 u-lg-size1of4 u-margin-top-l">
-
+                <div class="Grid-cell u-md-size1of4 u-lg-size1of4 u-margin-top-l ">
                     <div class="Form-field">
-                        <label class="Form-label is-required" for="nome">Premio vita</label>
-                        <input class="Form-input u-text-r-s u-borderRadius-m" id="premio vita" aria-required="true" required>
+                        <label class="Form-label is-required" for="Categoria">Categoria</label>
+                        @{ string descrCategoria = Model.Errori.Where(x => x.NomeColonna.Equals("Categoria")).FirstOrDefault() != null ? Model.Errori.Where(x => x.NomeColonna.Equals("Categoria")).FirstOrDefault().DescErrore : null;
+                           if (!string.IsNullOrEmpty(descrCategoria))
+                           {
+                            <input class="Form-input u-text-r-s u-borderRadius-m border-color-red" id="Categoria" aria-required="true" required name="Categoria" value="@Model.Categoria">
+                            <span class="u-color-red">@descrCategoria</span>  
+                           }
+                           else
+                           {
+                            <input class="Form-input u-text-r-s u-borderRadius-m" id="Categoria" aria-required="true" required name="Categoria" value="@Model.Categoria">
+                           }
+                        }
                     </div>
+                </div>
 
+                <div class="Grid-cell u-md-size1of4 u-lg-size1of4">
                     <div class="Form-field">
-                        <label class="Form-label is-required" for="cognome">Premio LTC</label>
-                        <input class="Form-input u-text-r-s u-borderRadius-m" id="premio-2" aria-required="true" required>
+                        <label class="Form-label is-required" for="EsclusioniPregresse">Esclusioni pregresse</label>
+                        @{ string descrEsclusioniPregresse = Model.Errori.Where(x => x.NomeColonna.Equals("EsclusioniPregresse")).FirstOrDefault() != null ? Model.Errori.Where(x => x.NomeColonna.Equals("EsclusioniPregresse")).FirstOrDefault().DescErrore : null;
+                           if (!string.IsNullOrEmpty(descrEsclusioniPregresse))
+                           {
+                            <input class="Form-input u-text-r-s u-borderRadius-m border-color-red" id="EsclusioniPregresse" aria-required="true" required name="EsclusioniPregresse" value="@Model.EsclusioniPregresse">
+                            <span class="u-color-red">@descrEsclusioniPregresse</span>  
+                           }
+                           else
+                           {
+                            <input class="Form-input u-text-r-s u-borderRadius-m" id="EsclusioniPregresse" aria-required="true" required name="EsclusioniPregresse" value="@Model.EsclusioniPregresse">
+                           }
+                        }
                     </div>
+                </div>
 
-
-
-                </div>*@
-
-                @*<div class="Grid-cell u-md-size1of4 u-lg-size1of4 u-margin-top-l">
-
+                <div class="Grid-cell u-md-size1of4 u-lg-size1of4">
                     <div class="Form-field">
-                        <label class="Form-label is-required" for="nome">Premio RSMO</label>
-                        <input class="Form-input u-text-r-s u-borderRadius-m" id="premio-3" aria-required="true" required>
+                        <label class="Form-label is-required" for="NumeroPolizza">Polizza</label>
+                        @{ string descrNumeroPolizza = Model.Errori.Where(x => x.NomeColonna.Equals("NumeroPolizza")).FirstOrDefault() != null ? Model.Errori.Where(x => x.NomeColonna.Equals("NumeroPolizza")).FirstOrDefault().DescErrore : null;
+                           if (!string.IsNullOrEmpty(descrNumeroPolizza))
+                           {
+                            <input class="Form-input u-text-r-s u-borderRadius-m border-color-red" id="NumeroPolizza" aria-required="true" required name="NumeroPolizza" value="@Model.NumeroPolizza">
+                            <span class="u-color-red">@descrNumeroPolizza</span>  
+                           }
+                           else
+                           {
+                            <input class="Form-input u-text-r-s u-borderRadius-m" id="NumeroPolizza" aria-required="true" required name="NumeroPolizza" value="@Model.NumeroPolizza">
+                           }
+                        }
                     </div>
-
-
-
-
-                </div>*@
-
-
+                </div>
             </section>
-
         </fieldset>
-
 
         <div class="Form-field Grid-cell u-textRight">
             @*<button type="button" class="Button Button--default Button--shadow u-text-m u-margin-all-xs">AZZERA</button>*@
-            <input type="submit" class="Button Button--default Button--shadow u-text-m u-margin-all-xs" value="SALVA"/>
+            <input type="submit" class="Button Button--default Button--shadow u-text-m u-margin-all-xs" value="Valida modifica" />
         </div>
     </div>
-    
-
-
     <!--fine form ricerca-->
-    
 }
 
 <div>
-    @Html.ActionLink("TORNA ALLA LISTA", "Back", null, new { @class ="Button Button--default Button--shadow u-text-m u-margin-all-xs"})
+    @Html.ActionLink("TORNA ALLA LISTA", "Back", null, new { @class = "Button Button--default Button--shadow u-text-m u-margin-all-xs" })
 </div>
 

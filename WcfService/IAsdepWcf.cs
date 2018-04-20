@@ -64,7 +64,23 @@ namespace WcfService
 
         [OperationContract]
         [WebInvoke(Method = "POST", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "ValidaSoggetto/")]
-        List<SoggettiImportAppoggioDao> ValidaSoggetto(List<SoggettiImportAppoggioDao> soggetto);
+        void ValidaSoggetto(List<SoggettiImportAppoggioDao> soggetto);
+
+        [OperationContract]
+        [WebInvoke(Method = "POST", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "UpdateSoggImportato/")]
+        void UpdateSoggImportato(SoggettiImportAppoggioDao sogg, List<T_ErroriIODao> errori);
+
+        [OperationContract]
+        [WebInvoke(Method = "POST", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "ValidaSoggettoSingolo/")]
+        void ValidaSoggettoSingolo(SoggettiImportAppoggioDao soggetto);
+
+        [OperationContract]
+        [WebInvoke(Method = "POST", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "SelectById/")]
+        SoggettiImportAppoggioDao SelectById(long id);
+
+        [OperationContract]
+        [WebInvoke(Method = "POST", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "GetContribuzionEnteByNome/")]
+        ContribuzioneEnteDao GetContribuzionEnteByNome(string nome);
        
     }
 }

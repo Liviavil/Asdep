@@ -187,7 +187,19 @@ namespace AsdepGestioneAnagraficheBLL.Business
                 SoggettiImportAppoggioDao _soggBL = new SoggettiImportAppoggioDao();
                 Asdep.Common.DAO.ExtraDao.PropertyCopier<SoggettiImportAppoggio, SoggettiImportAppoggioDao>.Copy(_soggetto, _soggBL);
 
-                _soggBL.Errori = new List<ErroreDao>();//ValidaAdesioneCollettiva(_soggBL).Where(x => x.Exist == true).ToList();
+                List<T_ErroriIODao> erroriList = new List<T_ErroriIODao>();
+                string [] errori = _soggetto.Errori!=null? _soggetto.Errori.Split(',') : new string[0];
+                foreach (string _e in errori) 
+                {
+                    if (!string.IsNullOrEmpty(_e))
+                    {
+                        T_ErroriIODao newErrore = new T_ErroriIODao();
+                        ErroriIOService serviceE = new ErroriIOService();
+                        newErrore = serviceE.GetById(_e);
+                        erroriList.Add(newErrore);
+                    }
+                }
+                _soggBL.Errori = erroriList;//ValidaAdesioneCollettiva(_soggBL).Where(x => x.Exist == true).ToList();
 
                 _soggettiBL.Add(_soggBL);
             }
@@ -295,38 +307,66 @@ namespace AsdepGestioneAnagraficheBLL.Business
         }
         #endregion
 
-
-        public List<ErroreDao> ValidaAdesioneCollettiva(SoggettiImportAppoggioDao sogg)
+        public SoggettiImportAppoggioDao GetSoggettoCapoNucleo(string codicefiscale)
         {
-            List<ErroreDao> errori = new List<ErroreDao>();
+            SoggettiImportAppoggio _soggetto = new SoggettiImportAppoggio();
+            SoggettiImportAppoggioDao _soDao = new SoggettiImportAppoggioDao();
+            using (db = new AmministrazioneAsdepEntities())
+            {
+                _soggetto = provider.GetSoggettoCapoNucleo(db, codicefiscale);
+                Asdep.Common.DAO.ExtraDao.PropertyCopier<SoggettiImportAppoggio, SoggettiImportAppoggioDao>.Copy(_soggetto, _soDao);
 
-            IValida _validazione = new ValidaIban();
-            errori.Add(_validazione.Esegui(sogg));
-            _validazione = new ValidaEnte();
-            errori.Add(_validazione.Esegui(sogg));
+            }
+            return _soDao;
+        }
 
-            return errori.Where(e => e.Description != null).ToList();
-            #region old
-            //List<ErroreDao> errori = new List<ErroreDao>();
-            //const BindingFlags flags = BindingFlags.Public | BindingFlags.Instance;
+        public void UpdateOne(SoggettiImportAppoggioDao soggetti, List<T_ErroriIODao> errori)
+        {
+            string err = "";
 
-            //var objFieldNames = typeof(SoggettiImportAppoggioDao).GetProperties(flags).Cast<PropertyInfo>().
-            //   Select(item => new
-            //   {
-            //       Name = item.Name,
-            //       Type = Nullable.GetUnderlyingType(item.PropertyType) ?? item.PropertyType
-            //   }).ToList();
+            SoggettiImportAppoggio _soggBL = new SoggettiImportAppoggio();
+            Asdep.Common.DAO.ExtraDao.PropertyCopier<SoggettiImportAppoggioDao, SoggettiImportAppoggio>.Copy(soggetti, _soggBL);
+            foreach (T_ErroriIODao e in errori)
+            {
+                err += e.CodTipoErrore + ",";
+            }
+            if(!string.IsNullOrEmpty(err))
+                err = err.Remove(err.Length-1);
+            _soggBL.Errori = err;
 
-            //errori = new List<ErroreDao>();
-            //foreach (var obj in objFieldNames)
-            //{
-            //    ErroreDao errore = new ErroreDao();
-            //    errore = Helper.Check(obj.Name, sogg);
-            //    errori.Add(errore);
-            //}
+            provider.Update(db, _soggBL, err);
 
-            //return errori; 
-            #endregion
+        }
+
+        public SoggettiImportAppoggioDao SelectById(long id) 
+        {
+            SoggettiImportAppoggio _sogg = new SoggettiImportAppoggio();
+            SoggettiImportAppoggioDao _soggDao = new SoggettiImportAppoggioDao();
+            try 
+            {
+                using (db=new AmministrazioneAsdepEntities ())
+                {
+                   _sogg =  provider.SelectById(db, id);
+                }
+                Asdep.Common.DAO.ExtraDao.PropertyCopier<SoggettiImportAppoggio, SoggettiImportAppoggioDao>.Copy(_sogg, _soggDao);
+
+                List<T_ErroriIODao> erroriList = new List<T_ErroriIODao>();
+                string[] errori = _sogg.Errori != null ? _sogg.Errori.Split(',') : new string[0];
+                foreach (string _e in errori)
+                {
+                    if (!string.IsNullOrEmpty(_e))
+                    {
+                        T_ErroriIODao newErrore = new T_ErroriIODao();
+                        ErroriIOService serviceE = new ErroriIOService();
+                        newErrore = serviceE.GetById(_e);
+                        erroriList.Add(newErrore);
+                    }
+                }
+                _soggDao.Errori = erroriList;//ValidaAdesioneCollettiva(_soggBL).Where(x => x.Exist == true).ToList();
+                
+            }
+            catch{}
+            return _soggDao;
         }
     }
 }

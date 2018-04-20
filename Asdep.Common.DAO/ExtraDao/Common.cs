@@ -8,7 +8,16 @@ namespace Asdep.Common.DAO.ExtraDao
 {
     public static class Common
     {
-        
+        public static string ToCustomString(this List<T_ErroriIODao> errori)
+        {
+            string result = "";
+
+            foreach (T_ErroriIODao e in errori)
+            {
+                result += e.CodTipoErrore + ",";
+            }
+            return result;
+        }
     }
 
     public static class PropertyCopier<TParent, TChild>

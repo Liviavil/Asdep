@@ -105,6 +105,7 @@
     <EntitySetMapping Name="SoggettiImportAppoggio">
       <EntityTypeMapping TypeName="AmministrazioneAsdepModel.SoggettiImportAppoggio">
         <MappingFragment StoreEntitySet="SoggettiImportAppoggio">
+          <ScalarProperty Name="Errori" ColumnName="Errori" />
           <ScalarProperty Name="DataCessazione" ColumnName="DataCessazione" />
           <ScalarProperty Name="Telefono" ColumnName="Telefono" />
           <ScalarProperty Name="Email" ColumnName="Email" />
@@ -241,6 +242,8 @@
           <ScalarProperty Name="InputOutput" ColumnName="InputOutput" />
           <ScalarProperty Name="Gravita" ColumnName="Gravita" />
           <ScalarProperty Name="DescErrore" ColumnName="DescErrore" />
+          <ScalarProperty Name="Colonna" ColumnName="Colonna" />
+          <ScalarProperty Name="NomeColonna" ColumnName="NomeColonna" />
           <ScalarProperty Name="CodTipoErrore" ColumnName="CodTipoErrore" />
         </MappingFragment>
       </EntityTypeMapping>

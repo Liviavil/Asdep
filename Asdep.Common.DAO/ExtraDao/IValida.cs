@@ -8,6 +8,6 @@ namespace Asdep.Common.DAO.ExtraDao
 {
     public interface IValida
     {
-        ErroreDao Esegui(SoggettiImportAppoggioDao soggetto);
+        T_ErroriIODao Esegui(string valore);
     }
 }

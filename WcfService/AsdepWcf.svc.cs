@@ -9,7 +9,7 @@ using System.Text;
 using AsdepGestioneAnagraficheBLL.Business;
 using WcfService.Extra;
 using Asdep.Common.DAO;
-	
+
 
 namespace WcfService
 {
@@ -96,7 +96,7 @@ namespace WcfService
                 //    }
                 //} 
                 #endregion
-                
+
                 IServiceAsdep<SoggettiImportAppoggioDao> interfaceService = new AssicuratiService();
                 result = interfaceService.AddMany(anagrafiche);
             }
@@ -143,12 +143,12 @@ namespace WcfService
         {
             List<SoggettiImportAppoggioDao> _anagrafiche = new List<SoggettiImportAppoggioDao>();
             //List<SoggettiImportatiAppoggioBL> _soggettiFromBL = new List<SoggettiImportatiAppoggioBL>();
-            try 
+            try
             {
                 AssicuratiService serviceBL = new AssicuratiService();
                 _anagrafiche = serviceBL.GetByEnte(ente);
-#region comment
-		                //foreach(SoggettiImportatiAppoggioBL _soggBL in _soggettiFromBL)
+                #region comment
+                //foreach(SoggettiImportatiAppoggioBL _soggBL in _soggettiFromBL)
                 //{
                 //    List<DAL.Errore> errori = new List<DAL.Errore>();
                 //    foreach (AsdepGestioneAnagraficheBLL.Model.Errore _err in _soggBL.Errori) 
@@ -161,7 +161,7 @@ namespace WcfService
                 //        };
                 //        errori.Add(errore);
                 //    }
-                    
+
                 //    Anagrafica _soggetto = new Anagrafica 
                 //    {
                 //        #region _soggetto
@@ -195,7 +195,7 @@ namespace WcfService
                 //    _anagrafiche.Add(_soggetto); 
 
                 //}
-            	#endregion
+                #endregion
             }
             catch { }
             return _anagrafiche;
@@ -204,7 +204,7 @@ namespace WcfService
         public int DeleteAnagraficaByEnte(string ente)
         {
             int result = -1;
-            try 
+            try
             {
                 //List<SoggettiImportAppoggioDao> anagrafiche = GetSoggettiByEnte(ente);
                 #region comment
@@ -255,7 +255,7 @@ namespace WcfService
         {
             T_TipiLegameDao _tipoLegame = new T_TipiLegameDao();
             //T_TipoLegameBL _tOrigin = new T_TipoLegameBL();
-            try 
+            try
             {
                 T_TipoLegameService _tipoLegService = new T_TipoLegameService();
                 _tipoLegame = _tipoLegService.GetByCodLegame(codice);
@@ -267,33 +267,85 @@ namespace WcfService
         }
 
 
-        public List<SoggettiImportAppoggioDao> ValidaSoggetto(List<SoggettiImportAppoggioDao> soggetto)
+        public void ValidaSoggetto(List<SoggettiImportAppoggioDao> soggetto)
         {
-            try 
+            List<T_ErroriIODao> erroriIO = new List<T_ErroriIODao>();
+            try
             {
-                AssicuratiService _service = new AssicuratiService();
-                foreach(SoggettiImportAppoggioDao _sogg in soggetto)
+                ErroriIOService _service = new ErroriIOService();
+                foreach (SoggettiImportAppoggioDao _sogg in soggetto)
                 {
-                    _sogg.Errori = _service.ValidaAdesioneCollettiva(_sogg);
-                    _sogg.AllWarnings = _sogg.Errori.Where(x => x.ErrorLevel.Equals("Warning")).ToList().Count == _sogg.Errori.Count;
+                    //_sogg.Errori = _service.ValidaAdesioneCollettiva(_sogg);
+                    //_sogg.AllWarnings = _sogg.Errori.Where(x => x.ErrorLevel.Equals("Warning")).ToList().Count == _sogg.Errori.Count;
+                    erroriIO = _service.ValidaAdesioneCollettiva(_sogg);
+                    UpdateSoggImportato(_sogg, erroriIO);
                 }
-                
+
             }
             catch { }
-            return soggetto;
         }
 
+        public void ValidaSoggettoSingolo(SoggettiImportAppoggioDao soggetto)
+        {
+            List<T_ErroriIODao> erroriIO = new List<T_ErroriIODao>();
+            try
+            {
+                ErroriIOService _service = new ErroriIOService();
+
+                //_sogg.Errori = _service.ValidaAdesioneCollettiva(_sogg);
+                //_sogg.AllWarnings = _sogg.Errori.Where(x => x.ErrorLevel.Equals("Warning")).ToList().Count == _sogg.Errori.Count;
+                erroriIO = _service.ValidaAdesioneCollettiva(soggetto);
+                UpdateSoggImportato(soggetto, erroriIO);
+
+            }
+            catch { }
+        }
+
+        public void UpdateSoggImportato(SoggettiImportAppoggioDao sogg, List<T_ErroriIODao> errori)
+        {
+            try
+            {
+                AssicuratiService _service = new AssicuratiService();
+                _service.UpdateOne(sogg, errori);
+            }
+            catch { }
+        }
 
         public List<string> GetAllEntiInLavorazione()
         {
             List<string> _enti = new List<string>();
-            try 
+            try
             {
                 EnteService _service = new EnteService();
                 _enti = _service.GetAllEntiInLavorazione();
             }
             catch { }
             return _enti;
+        }
+
+        public SoggettiImportAppoggioDao SelectById(long id) 
+        {
+            SoggettiImportAppoggioDao _sogg = new SoggettiImportAppoggioDao();
+            try 
+            {
+                AssicuratiService _service = new AssicuratiService();
+                _sogg = _service.SelectById(id);
+            }
+            catch { }
+            return _sogg;
+        }
+
+
+        public ContribuzioneEnteDao GetContribuzionEnteByNome(string nome)
+        {
+            ContribuzioneEnteDao _eDao = new ContribuzioneEnteDao();
+            try 
+            {
+                ContribuzioneEnteService _service = new ContribuzioneEnteService();
+                _eDao = _service.SelectByNomeEnte(nome);
+            }
+            catch { }
+            return _eDao;
         }
     }
 }

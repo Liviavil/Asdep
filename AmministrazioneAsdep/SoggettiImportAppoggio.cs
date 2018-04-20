@@ -37,5 +37,6 @@ namespace AmministrazioneAsdep
         public string Email { get; set; }
         public string Telefono { get; set; }
         public Nullable<System.DateTime> DataCessazione { get; set; }
+        public string Errori { get; set; }
     }
 }

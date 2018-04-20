@@ -46,11 +46,11 @@ function tableCreate() {
                         //{
                         //    $(td).addClass("Prose Alert Alert--warning Alert--withIcon u-layout-prose u-padding-r-bottom u-padding-r-right   u-margin-r-bottom");
                         //}
-                        var htmlErrori = '<a title="salva" class="salva u-md-margin color-primo u-textClean-Icon u-text-m" >';
-                        htmlErrori+= '      <span class="far fa-save" aria-hidden="true"></span>';
-                        htmlErrori+=   '    <span class="u-hiddenVisually">salva</span>';
-                        htmlErrori+='    </a>';
-                        htmlErrori+='   <a title="cancella" class="cancella u-md-margin color-primo u-textClean-Icon u-text-m" >';
+                        //var htmlErrori = '<a title="salva" class="salva u-md-margin color-primo u-textClean-Icon u-text-m" >';
+                        //htmlErrori+= '      <span class="far fa-save" aria-hidden="true"></span>';
+                        //htmlErrori+=   '    <span class="u-hiddenVisually">salva</span>';
+                        //htmlErrori+='    </a>';
+                    var htmlErrori ='   <a title="cancella" class="cancella u-md-margin color-primo u-textClean-Icon u-text-m" >';
                         htmlErrori+='       <span class="far fa-trash-alt" aria-hidden="true"></span>';
                         htmlErrori+='       <span class="u-hiddenVisually">cancella</span>';
                         htmlErrori+='   </a>';
@@ -64,17 +64,20 @@ function tableCreate() {
                         $.each(rowData.Errori, function (index, val)
                         {
                             //$(td).html("<div class='tooltiptext'>" + val.ColumnName + ": " + val.Description + "<br>");
-                            htmlErrori += "<strong>" + val.ColumnName + "</strong>: " + val.Description + "<br>"
+                            htmlErrori += "<strong>" + val.Colonna + "</strong>: " + val.DescErrore + "<br>"
                         });
                         htmlErrori += "</span></div>";
                         $(td).html(htmlErrori);
                     }
                     else
                     {
-                        var htmlToInsert = '<a title="salva" class="salva u-md-margin color-primo u-textClean-Icon u-text-m">';
-                        htmlToInsert+='      <span class="far fa-save" aria-hidden="true"></span>';
-                        htmlToInsert+='      <span class="u-hiddenVisually">salva</span>';
-                        htmlToInsert+='     </a>';
+                        var htmlToInsert = "";
+                        if (rowData.CodiceFiscaleAssicurato == rowData.CodiceFiscaleCapoNucleo) {
+                            htmlToInsert = '<a title="salva" class="salva u-md-margin color-primo u-textClean-Icon u-text-m">';
+                            htmlToInsert += '      <span class="far fa-save" aria-hidden="true"></span>';
+                            htmlToInsert += '      <span class="u-hiddenVisually">salva</span>';
+                            htmlToInsert += '     </a>';
+                        }
                         htmlToInsert+='     <a title="cancella" class=" cancella u-md-margin color-primo u-textClean-Icon u-text-m">';
                         htmlToInsert+='         <span class="far fa-trash-alt" aria-hidden="true"></span>';
                         htmlToInsert+='         <span class="u-hiddenVisually">cancella</span>';

@@ -84,9 +84,18 @@ namespace AmministrazioneAsdep.DAL
             catch (Exception ex) { return -1; }
         }
 
-        public int Update(AmministrazioneAsdepEntities db, SoggettiImportAppoggio obj)
+        public int Update(AmministrazioneAsdepEntities db, SoggettiImportAppoggio obj, string errori)
         {
-            throw new NotImplementedException();
+            int result = -1;
+            using (db = new AmministrazioneAsdepEntities ())
+            {
+                SoggettiImportAppoggio soggetto = db.SoggettiImportAppoggio.FirstOrDefault(x => x.IdSoggetto.Equals(obj.IdSoggetto));
+                Asdep.Common.DAO.ExtraDao.PropertyCopier<SoggettiImportAppoggio, SoggettiImportAppoggio>.Copy(obj, soggetto);
+                soggetto.Errori = errori;
+                
+                db.SaveChanges();
+            }
+            return result;
         }
 
         public int DeleteOne(AmministrazioneAsdepEntities db, SoggettiImportAppoggio obj)
@@ -130,6 +139,23 @@ namespace AmministrazioneAsdep.DAL
             }
             catch { }
             return result;
+        }
+
+        public SoggettiImportAppoggio GetSoggettoCapoNucleo(AmministrazioneAsdepEntities db, string codicefiscale) 
+        {
+            SoggettiImportAppoggio _s = new SoggettiImportAppoggio();
+            try 
+            {
+                _s = db.SoggettiImportAppoggio.Where(s => s.CodiceFiscaleAssicurato.Equals(s.CodiceFiscaleCapoNucleo).Equals(codicefiscale)).FirstOrDefault(); 
+            }
+            catch { }
+            return _s;
+        }
+
+
+        public int Update(AmministrazioneAsdepEntities db, SoggettiImportAppoggio obj)
+        {
+            throw new NotImplementedException();
         }
     }
 }

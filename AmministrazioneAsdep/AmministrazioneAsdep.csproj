@@ -68,7 +68,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AmminstrazioneAsdepDB.edmx</DependentUpon>
     </Compile>
+    <Compile Include="DAL\ContribuzioneEnteProvider.cs" />
     <Compile Include="DAL\EnteProvider.cs" />
+    <Compile Include="DAL\ErroriIOProvider.cs" />
     <Compile Include="DAL\IProvider.cs" />
     <Compile Include="DAL\SoggettiImportAppoggioProvider.cs" />
     <Compile Include="ContribuzioneEnte.cs">
@@ -159,6 +161,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Asdep.Common.DAO\Asdep.Common.DAO.csproj">
+      <Project>{5db690d6-9d8f-428d-b69a-9eca3581a3dd}</Project>
+      <Name>Asdep.Common.DAO</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -33,7 +33,7 @@ namespace Asdep.Common.DAO
         public string Telefono { get; set; }
         public Nullable<System.DateTime> DataCessazione { get; set; }
 
-        public List<ErroreDao> Errori { get; set; }
+        public List<T_ErroriIODao> Errori { get; set; }
         public bool AllWarnings { get; set; }
 
         

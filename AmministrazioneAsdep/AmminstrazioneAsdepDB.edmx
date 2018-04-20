@@ -132,6 +132,7 @@
           <Property Name="Email" Type="nvarchar" MaxLength="100" />
           <Property Name="Telefono" Type="varchar" MaxLength="15" />
           <Property Name="DataCessazione" Type="datetime" />
+          <Property Name="Errori" Type="nvarchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="Soggetto">
           <Key>
@@ -233,6 +234,8 @@
             <PropertyRef Name="CodTipoErrore" />
           </Key>
           <Property Name="CodTipoErrore" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="NomeColonna" Type="varchar" MaxLength="50" />
+          <Property Name="Colonna" Type="varchar" MaxLength="50" />
           <Property Name="DescErrore" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Gravita" Type="char" MaxLength="1" Nullable="false" />
           <Property Name="InputOutput" Type="char" MaxLength="1" Nullable="false" />
@@ -981,6 +984,7 @@
           <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Telefono" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="DataCessazione" Type="DateTime" Precision="3" />
+          <Property Name="Errori" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Soggetto">
           <Key>
@@ -1089,6 +1093,8 @@
             <PropertyRef Name="CodTipoErrore" />
           </Key>
           <Property Name="CodTipoErrore" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="NomeColonna" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Colonna" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="DescErrore" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Gravita" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="InputOutput" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
@@ -1609,6 +1615,7 @@
           <EntitySetMapping Name="SoggettiImportAppoggio">
             <EntityTypeMapping TypeName="AmministrazioneAsdepModel.SoggettiImportAppoggio">
               <MappingFragment StoreEntitySet="SoggettiImportAppoggio">
+                <ScalarProperty Name="Errori" ColumnName="Errori" />
                 <ScalarProperty Name="DataCessazione" ColumnName="DataCessazione" />
                 <ScalarProperty Name="Telefono" ColumnName="Telefono" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
@@ -1745,6 +1752,8 @@
                 <ScalarProperty Name="InputOutput" ColumnName="InputOutput" />
                 <ScalarProperty Name="Gravita" ColumnName="Gravita" />
                 <ScalarProperty Name="DescErrore" ColumnName="DescErrore" />
+                <ScalarProperty Name="Colonna" ColumnName="Colonna" />
+                <ScalarProperty Name="NomeColonna" ColumnName="NomeColonna" />
                 <ScalarProperty Name="CodTipoErrore" ColumnName="CodTipoErrore" />
               </MappingFragment>
             </EntityTypeMapping>

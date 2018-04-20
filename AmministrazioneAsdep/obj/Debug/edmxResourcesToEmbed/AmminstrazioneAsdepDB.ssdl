@@ -127,6 +127,7 @@
     <Property Name="Email" Type="nvarchar" MaxLength="100" />
     <Property Name="Telefono" Type="varchar" MaxLength="15" />
     <Property Name="DataCessazione" Type="datetime" />
+    <Property Name="Errori" Type="nvarchar" MaxLength="250" />
   </EntityType>
   <EntityType Name="Soggetto">
     <Key>
@@ -228,6 +229,8 @@
       <PropertyRef Name="CodTipoErrore" />
     </Key>
     <Property Name="CodTipoErrore" Type="char" MaxLength="3" Nullable="false" />
+    <Property Name="NomeColonna" Type="varchar" MaxLength="50" />
+    <Property Name="Colonna" Type="varchar" MaxLength="50" />
     <Property Name="DescErrore" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Gravita" Type="char" MaxLength="1" Nullable="false" />
     <Property Name="InputOutput" Type="char" MaxLength="1" Nullable="false" />

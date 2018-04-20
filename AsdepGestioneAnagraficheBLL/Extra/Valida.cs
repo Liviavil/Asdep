@@ -12,9 +12,9 @@ namespace AsdepGestioneAnagraficheBLL.Extra
 {
     public class Valida
     {
-        private ErroreDao _errore;
+        private T_ErroriIODao _errore;
 
-        public ErroreDao Errore
+        public T_ErroriIODao Errore
         {
             get { return _errore; }
             set { _errore = value; }
@@ -22,29 +22,97 @@ namespace AsdepGestioneAnagraficheBLL.Extra
 
         public Valida()
         {
-            Errore = new ErroreDao();
+            Errore = new T_ErroriIODao();
         }
     }
 
     public class ValidaEmail : Valida, IValida
     {
-        public Asdep.Common.DAO.ErroreDao Esegui(Asdep.Common.DAO.SoggettiImportAppoggioDao soggetto)
+        public Asdep.Common.DAO.T_ErroriIODao Esegui(string valore)
         {
-            bool validemail = new EmailAddressAttribute().IsValid(soggetto.Email);
+            bool validemail = new EmailAddressAttribute().IsValid(valore);
             if (!validemail)
             {
-                Errore.ColumnName = "Email";
-                Errore.Description = "Formato non valido.";
-                Errore.ErrorLevel = ErroreDao.Level.High;
-                Errore.Exist = true;
+                ErroriIOService _service = new ErroriIOService();
+                Errore = _service.GetById("005");
+
             }
             return Errore;
         }
     }
 
+    public class ValidaNome : Valida, IValida 
+    {
+
+        public T_ErroriIODao Esegui(string codiceFiscale, string valore)
+        {
+            try 
+            {
+                if (string.IsNullOrEmpty(valore)) 
+                {
+                    ErroriIOService _service = new ErroriIOService();
+                    Errore = _service.GetById("019");
+                    return Errore;
+                }
+                if (!string.IsNullOrEmpty(codiceFiscale) ) 
+                {
+                    string nomeCF = codiceFiscale.Substring(3, 3);
+                    string calcolato = CodiceFiscale.CalcolaCodiceNome(valore);
+                    if (!nomeCF.Equals(calcolato)) 
+                    {
+                        ErroriIOService _service = new ErroriIOService();
+                        Errore = _service.GetById("015");
+                        return Errore;
+                    }
+                }
+            }
+            catch { }
+            return Errore;
+        }
+
+        public T_ErroriIODao Esegui(string valore)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class ValidaCognome : Valida, IValida
+    {
+        public T_ErroriIODao Esegui(string codiceFiscale, string cognome) 
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(cognome))
+                {
+                    ErroriIOService _service = new ErroriIOService();
+                    Errore = _service.GetById("020");
+                    return Errore;
+                }
+                if (!string.IsNullOrEmpty(codiceFiscale))
+                {
+                    string cognomeCF = codiceFiscale.Substring(0, 3);
+                    string calcolato = CodiceFiscale.CalcolaCodiceCognome(cognome);
+                    if (!cognomeCF.Equals(calcolato))
+                    {
+                        ErroriIOService _service = new ErroriIOService();
+                        Errore = _service.GetById("016");
+                        return Errore;
+                    }
+                }
+            }
+            catch { }
+            return Errore;
+        }
+
+        public T_ErroriIODao Esegui(string valore)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
     public class ValidaDataCessazione : Valida, IValida
     {
-        public Asdep.Common.DAO.ErroreDao Esegui(Asdep.Common.DAO.SoggettiImportAppoggioDao soggetto)
+        public Asdep.Common.DAO.T_ErroriIODao Esegui(string valore)
         {
             throw new NotImplementedException();
         }
@@ -52,7 +120,7 @@ namespace AsdepGestioneAnagraficheBLL.Extra
 
     public class ValidaTelefono : Valida, IValida
     {
-        public Asdep.Common.DAO.ErroreDao Esegui(Asdep.Common.DAO.SoggettiImportAppoggioDao soggetto)
+        public Asdep.Common.DAO.T_ErroriIODao Esegui(string valore)
         {
             throw new NotImplementedException();
         }
@@ -60,30 +128,28 @@ namespace AsdepGestioneAnagraficheBLL.Extra
 
     public class ValidaIban : Valida, IValida
     {
-        public Asdep.Common.DAO.ErroreDao Esegui(Asdep.Common.DAO.SoggettiImportAppoggioDao soggetto)
+        public Asdep.Common.DAO.T_ErroriIODao Esegui(string valore)
         {
-            if (string.IsNullOrEmpty(soggetto.Iban)) 
+            if (string.IsNullOrEmpty(valore)) 
             {
-                Errore.ColumnName = "Iban";
-                Errore.Description = "Valore mancante";
-                Errore.ErrorLevel = ErroreDao.Level.Warning;
-                Errore.Exist = true;
-            }          
-            if (!Helper.ValidateBankAccount(soggetto.Iban)) 
-            {
-                Errore.ColumnName = "Iban";
-                Errore.Description = "Valore non corretto";
-                Errore.ErrorLevel = ErroreDao.Level.High;
-                Errore.Exist = true;
+                ErroriIOService _service = new ErroriIOService();
+                Errore = _service.GetById("007");
+                return Errore;
             }
-                
+            if (!Helper.ValidateBankAccount(valore)) 
+            {
+                ErroriIOService _service = new ErroriIOService();
+                Errore = _service.GetById("006");
+                return Errore;
+            }
             return Errore;
+            
         }
     }
 
     public class ValidaCapResid : Valida, IValida
     {
-        public Asdep.Common.DAO.ErroreDao Esegui(Asdep.Common.DAO.SoggettiImportAppoggioDao soggetto)
+        public Asdep.Common.DAO.T_ErroriIODao Esegui(string valore)
         {
             throw new NotImplementedException();
         }
@@ -91,139 +157,234 @@ namespace AsdepGestioneAnagraficheBLL.Extra
 
     public class ValidaSiglaProv : Valida, IValida
     {
-        public Asdep.Common.DAO.ErroreDao Esegui(Asdep.Common.DAO.SoggettiImportAppoggioDao soggetto)
+        public Asdep.Common.DAO.T_ErroriIODao Esegui(string valore)
         {
             throw new NotImplementedException();
         }
     }
     public class ValidaLocResid : Valida, IValida
     {
-        public Asdep.Common.DAO.ErroreDao Esegui(Asdep.Common.DAO.SoggettiImportAppoggioDao soggetto)
+        public Asdep.Common.DAO.T_ErroriIODao Esegui(string valore)
         {
             throw new NotImplementedException();
         }
     }
     public class ValidaIndirizzoResid : Valida, IValida
     {
-        public Asdep.Common.DAO.ErroreDao Esegui(Asdep.Common.DAO.SoggettiImportAppoggioDao soggetto)
+        public Asdep.Common.DAO.T_ErroriIODao Esegui(string valore)
         {
             throw new NotImplementedException();
         }
     }
+
     public class ValidaEffetto : Valida, IValida
     {
-        public Asdep.Common.DAO.ErroreDao Esegui(Asdep.Common.DAO.SoggettiImportAppoggioDao soggetto)
+        public Asdep.Common.DAO.T_ErroriIODao Esegui(DateTime? valore, string ente)
+        {
+            try 
+            {
+                if (string.IsNullOrEmpty(valore.ToString())) 
+                {
+                    ErroriIOService _service = new ErroriIOService();
+                    Errore = _service.GetById("021");
+                    return Errore;
+                }
+                if (!Helper.CheckDataEffettoDataContrEnte(valore, ente))
+                {
+                    ErroriIOService _service = new ErroriIOService();
+                    Errore = _service.GetById("022");
+                    return Errore;
+                }
+            }
+            catch { }
+            return Errore;
+        }
+
+        public T_ErroriIODao Esegui(string valore)
         {
             throw new NotImplementedException();
         }
     }
     public class ValidaLegame : Valida, IValida
     {
-        public Asdep.Common.DAO.ErroreDao Esegui(Asdep.Common.DAO.SoggettiImportAppoggioDao soggetto)
+        public Asdep.Common.DAO.T_ErroriIODao Esegui(string valore)
         {
             T_TipoLegameService _eService = new T_TipoLegameService();
-            T_TipiLegameDao legameBL = _eService.GetByCodLegame(soggetto.LegameNucleo);
+            T_TipiLegameDao legameBL = _eService.GetByCodLegame(valore);
             if (legameBL.CodLegameImport == null)
             {
-                Errore.ColumnName = "Codice Legame";
-                Errore.Description = "Valore non censito dal sistema";
-                Errore.ErrorLevel = ErroreDao.Level.High;
-                Errore.Exist = true;
+                ErroriIOService _service = new ErroriIOService();
+                Errore = _service.GetById("008");
             }
             return Errore;
         }
     }
+
     public class ValidaDataNascita : Valida, IValida
     {
-        public Asdep.Common.DAO.ErroreDao Esegui(Asdep.Common.DAO.SoggettiImportAppoggioDao soggetto)
+        public Asdep.Common.DAO.T_ErroriIODao Esegui(string codiceFiscale, DateTime? valore)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(valore.ToString()))
+                {
+
+                    if (!string.IsNullOrEmpty(codiceFiscale))
+                    {
+                        string calcolato = CodiceFiscale.GetDateFromFiscalCode(codiceFiscale);
+                        if (!valore.Equals(calcolato))
+                        {
+                            ErroriIOService _service = new ErroriIOService();
+                            Errore = _service.GetById("017");
+                            return Errore;
+                        }
+                    }
+                }
+            }
+            catch { }
+            return Errore;
+        }
+
+        public T_ErroriIODao Esegui(string valore)
         {
             throw new NotImplementedException();
         }
     }
     public class ValidaLuogoNascita : Valida, IValida
     {
-        public Asdep.Common.DAO.ErroreDao Esegui(Asdep.Common.DAO.SoggettiImportAppoggioDao soggetto)
+        public Asdep.Common.DAO.T_ErroriIODao Esegui(string valore)
         {
             throw new NotImplementedException();
         }
     }
     public class ValidaCFCapoNucleo : Valida, IValida
     {
-        public Asdep.Common.DAO.ErroreDao Esegui(Asdep.Common.DAO.SoggettiImportAppoggioDao soggetto)
+        public Asdep.Common.DAO.T_ErroriIODao Esegui(string valore)
         {
-            throw new NotImplementedException();
-        }
-    }
-    public class ValidaCategoria : Valida, IValida
-    {
-        public Asdep.Common.DAO.ErroreDao Esegui(Asdep.Common.DAO.SoggettiImportAppoggioDao soggetto)
-        {
-            if (!soggetto.Categoria.ToLower().Equals("dipendenti"))
+            if (string.IsNullOrEmpty(valore)) 
             {
-                Errore.ColumnName = "Categoria";
-                Errore.Description = "Valore non valido";
-                Errore.ErrorLevel = ErroreDao.Level.High;
-                Errore.Exist = true;
+                ErroriIOService _service = new ErroriIOService();
+                Errore = _service.GetById("014");
+                return Errore;
+            }
+            if (!Extra.CodiceFiscale.ControlloFormaleOK(valore))
+            {
+                ErroriIOService _service = new ErroriIOService();
+                Errore = _service.GetById("009");
+                return Errore;
             }
             return Errore;
         }
     }
+    public class ValidaCategoria : Valida, IValida
+    {
+        public Asdep.Common.DAO.T_ErroriIODao Esegui(string valore)
+        {
+            if (!valore.ToLower().Equals("dipendenti"))
+            {
+                ErroriIOService _service = new ErroriIOService();
+                Errore = _service.GetById("010");
+            }
+            return Errore;
+        }
+    }
+
     public class ValidaConvenzione : Valida, IValida
     {
-        public Asdep.Common.DAO.ErroreDao Esegui(Asdep.Common.DAO.SoggettiImportAppoggioDao soggetto)
+        public Asdep.Common.DAO.T_ErroriIODao Esegui(string valore)
         {
             throw new NotImplementedException();
         }
     }
     public class ValidaPolizza : Valida, IValida
     {
-        public Asdep.Common.DAO.ErroreDao Esegui(Asdep.Common.DAO.SoggettiImportAppoggioDao soggetto)
+        public Asdep.Common.DAO.T_ErroriIODao Esegui(string valore)
         {
-            if (!soggetto.NumeroPolizza.ToLower().Equals("base_integrativa") || !soggetto.NumeroPolizza.ToLower().Equals("base"))
+            if (!(valore.ToLower().Equals("base_integrativa") || valore.ToLower().Equals("base")))
             {
-                Errore.ColumnName = "Polizza";
-                Errore.Description = "Valore non valido";
-                Errore.ErrorLevel = ErroreDao.Level.High;
-                Errore.Exist = true;
+                ErroriIOService _service = new ErroriIOService();
+                Errore = _service.GetById("011");
             }
             return Errore;
         }
     }
     public class ValidaCFAssic : Valida, IValida
     {
-        public Asdep.Common.DAO.ErroreDao Esegui(Asdep.Common.DAO.SoggettiImportAppoggioDao soggetto)
+        public Asdep.Common.DAO.T_ErroriIODao Esegui(string valore)
         {
-            throw new NotImplementedException();
+            if (string.IsNullOrEmpty(valore))
+            {
+                ErroriIOService _service = new ErroriIOService();
+                Errore = _service.GetById("013");
+                return Errore;
+            }
+            if (!Extra.CodiceFiscale.ControlloFormaleOK(valore))
+            {
+                ErroriIOService _service = new ErroriIOService();
+                Errore = _service.GetById("012");
+                return Errore;
+            }
+            return Errore;
         }
     }
     public class ValidaEnte : Valida, IValida
     {
-        public Asdep.Common.DAO.ErroreDao Esegui(Asdep.Common.DAO.SoggettiImportAppoggioDao soggetto)
+        public Asdep.Common.DAO.T_ErroriIODao Esegui(string valore)
         {
             EnteService _eService = new EnteService();
-            EnteDao enteBL = _eService.SelectByCodiceEnte(soggetto.Ente);
+            EnteDao enteBL = _eService.SelectByCodiceEnte(valore);
             if (enteBL.CodiceEnte == null)
             {
-                Errore.ColumnName = "Ente";
-                Errore.Description = "Ente non presente";
-                Errore.ErrorLevel = ErroreDao.Level.High;
-                Errore.Exist = true;
+                ErroriIOService _service = new ErroriIOService();
+                Errore = _service.GetById("003");
             }
             return Errore;
         }
     }
     public class ValidaEsclusioni : Valida, IValida
     {
-        public Asdep.Common.DAO.ErroreDao Esegui(Asdep.Common.DAO.SoggettiImportAppoggioDao soggetto)
+        public Asdep.Common.DAO.T_ErroriIODao Esegui(string valore)
         {
-            if (!soggetto.EsclusioniPregresse.ToUpper().Equals("NO"))
+            if (!valore.ToUpper().Equals("NO"))
             {
-                Errore.ColumnName = "Esclusioni Pregresse";
-                Errore.Description = "Valore di default errato";
-                Errore.ErrorLevel = ErroreDao.Level.High;
-                Errore.Exist = true;
+                ErroriIOService _service = new ErroriIOService();
+                Errore = _service.GetById("004");
             }
             return Errore;
+        }
+    }
+
+    public class ValidaCapoNucleo : Valida, IValida 
+    {
+        public T_ErroriIODao Esegui(string cfcn, string cfca)
+        {
+            //caso in cui soggetto.codicefiscaleassicurato = soggetto.codicefiscalecaponucleo
+            //allora ho già trovato il caponucleo
+
+            if (cfcn.Equals(cfca))
+                return Errore;
+
+
+            //caso in cui codicefiscaleassicurato e codicefiscale caponucleo siano diversi
+            //devo cercare un soggetto per cui cfcn e cfca coincidano
+
+            else 
+            {
+                AssicuratiService _service = new AssicuratiService();
+                SoggettiImportAppoggioDao cn = _service.GetSoggettoCapoNucleo(cfcn);
+                if (cn == null) 
+                {
+                    ErroriIOService _serviceE = new ErroriIOService();
+                    Errore = _serviceE.GetById("001");
+                }
+            }
+
+            return Errore;
+        }
+
+        public T_ErroriIODao Esegui(string valore)
+        {
+            throw new NotImplementedException();
         }
     }
 

@@ -153,7 +153,7 @@ namespace AsdepGestioneAnagraficheBLL.Extra
         /// </summary>
         /// <param name="s">Il cognome della persona</param>
         /// <returns>Le 3 lettere che saranno utilizzate per il calcolo del Codice Fiscale</returns>
-        private static string CalcolaCodiceCognome(string s)
+        public static string CalcolaCodiceCognome(string s)
         {
             s = Normalize(s, true);
             string code = string.Empty;
@@ -189,7 +189,7 @@ namespace AsdepGestioneAnagraficheBLL.Extra
         /// </summary>
         /// <param name="s">Il nome della persona</param>
         /// <returns>Le 3 lettere che saranno utilizzate per il calcolo del Codice Fiscale</returns>
-        private static string CalcolaCodiceNome(string s)
+        public static string CalcolaCodiceNome(string s)
         {
             s = Normalize(s, true);
             string code = string.Empty;

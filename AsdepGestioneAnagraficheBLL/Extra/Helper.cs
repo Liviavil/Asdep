@@ -115,6 +115,8 @@ namespace AsdepGestioneAnagraficheBLL.Extra
             bankAccount = bankAccount.ToUpper(); //IN ORDER TO COPE WITH THE REGEX BELOW
             if (String.IsNullOrEmpty(bankAccount))
                 return false;
+            if (bankAccount.Length != 27)
+                return false;
             else if (System.Text.RegularExpressions.Regex.IsMatch(bankAccount, "^[A-Z0-9]"))
             {
                 bankAccount = bankAccount.Replace(" ", String.Empty);
@@ -142,6 +144,27 @@ namespace AsdepGestioneAnagraficheBLL.Extra
             }
             else
                 return false;
+        }
+
+        internal static bool CheckDataEffettoDataContrEnte(DateTime? valore, string ente)
+        {
+            bool result = false;
+            try 
+            {
+                ContribuzioneEnteService _service = new ContribuzioneEnteService();
+                ContribuzioneEnteDao _ce = _service.SelectByNomeEnte(ente);
+                if(_ce!=null  && !_ce.DataFine.ToString().Equals(string.Empty))
+                {
+                    DateTime _ceData = DateTime.Parse(_ce.DataFine.ToString());
+                    DateTime _data = DateTime.Parse(valore.ToString());
+                    if (_data.CompareTo(_ceData) < 0 ) 
+                    {
+                        result = true;
+                    }
+                }
+            }
+            catch { }
+            return result;
         }
     }
 }
