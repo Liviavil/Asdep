@@ -85,6 +85,10 @@ namespace WcfService
         [OperationContract]
         [WebInvoke(Method = "POST", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "DeleteSoggettoImportato/")]
         void DeleteSoggettoImportato(long id);
+
+        [OperationContract]
+        [WebInvoke(Method = "POST", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "InviaAdesione/")]
+        bool InviaAdesioneSoggettiImportati(long id);
        
     }
 }

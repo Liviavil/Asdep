@@ -368,5 +368,54 @@ namespace AsdepGestioneAnagraficheBLL.Business
             catch{}
             return _soggDao;
         }
+
+        public SoggettiImportAppoggioDao GetCapoNucleo(long id) 
+        {
+            List<SoggettiImportAppoggioDao> famiglia = new List<SoggettiImportAppoggioDao>();
+            SoggettiImportAppoggioDao _capoNucleo = SelectById(id);
+            if(_capoNucleo.CodiceFiscaleCapoNucleo.Equals(_capoNucleo.CodiceFiscaleAssicurato))
+                return _capoNucleo;
+            return null;
+            
+        }
+
+        public List<SoggettiImportAppoggioDao> GetNucleoByCapo(string codiceFiscaleCN)
+        {
+            List<SoggettiImportAppoggioDao> nucleo = new List<SoggettiImportAppoggioDao>();
+            List<SoggettiImportAppoggio> _soggettiImport = new List<SoggettiImportAppoggio>();
+            try 
+            {
+                _soggettiImport = provider.GetNucleoByCN(db,codiceFiscaleCN);
+
+                foreach (SoggettiImportAppoggio _s in _soggettiImport) 
+                {
+                    SoggettiImportAppoggioDao _sDao = new SoggettiImportAppoggioDao();
+                    Asdep.Common.DAO.ExtraDao.PropertyCopier<SoggettiImportAppoggio, SoggettiImportAppoggioDao>.Copy(_s, _sDao);
+                    nucleo.Add(_sDao);
+                }
+            }
+            catch { }
+            return nucleo;
+        }
+
+        public void FormalizzaAdesioneSoggettiImportati(SoggettiImportAppoggioDao _capoNucleo, List<SoggettiImportAppoggioDao> famiglia)
+        {
+            try 
+            {
+                SoggettiImportAppoggio _cn = new SoggettiImportAppoggio();
+                Asdep.Common.DAO.ExtraDao.PropertyCopier<SoggettiImportAppoggioDao, SoggettiImportAppoggio>.Copy(_capoNucleo, _cn);
+
+                List<SoggettiImportAppoggio> _nucleo = new List<SoggettiImportAppoggio>();
+                foreach (SoggettiImportAppoggioDao _sdao in famiglia) 
+                {
+                    SoggettiImportAppoggio _s = new SoggettiImportAppoggio();
+                    Asdep.Common.DAO.ExtraDao.PropertyCopier<SoggettiImportAppoggioDao, SoggettiImportAppoggio>.Copy(_sdao, _s);
+                    _nucleo.Add(_s);
+                }
+
+                provider.FormalizzaAdesione(db, _cn, _nucleo);
+            }
+            catch { }
+        }
     }
 }

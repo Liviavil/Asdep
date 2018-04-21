@@ -123,7 +123,7 @@
           <Property Name="LuogoNascitaAssicurato" Type="varchar" MaxLength="50" />
           <Property Name="DataNascitaAssicurato" Type="datetime" />
           <Property Name="LegameNucleo" Type="varchar" MaxLength="10" />
-          <Property Name="Effetto" Type="datetime" />
+          <Property Name="Effetto" Type="datetime" Nullable="false" />
           <Property Name="IndirizzoResidenza" Type="varchar(max)" />
           <Property Name="LocalitaResidenza" Type="varchar(max)" />
           <Property Name="SiglaProvResidenza" Type="varchar" MaxLength="2" />
@@ -975,7 +975,7 @@
           <Property Name="LuogoNascitaAssicurato" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="DataNascitaAssicurato" Type="DateTime" Precision="3" />
           <Property Name="LegameNucleo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="Effetto" Type="DateTime" Precision="3" />
+          <Property Name="Effetto" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="IndirizzoResidenza" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="LocalitaResidenza" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="SiglaProvResidenza" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />

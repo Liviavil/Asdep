@@ -323,10 +323,10 @@ namespace WcfService
             return _enti;
         }
 
-        public SoggettiImportAppoggioDao SelectById(long id) 
+        public SoggettiImportAppoggioDao SelectById(long id)
         {
             SoggettiImportAppoggioDao _sogg = new SoggettiImportAppoggioDao();
-            try 
+            try
             {
                 AssicuratiService _service = new AssicuratiService();
                 _sogg = _service.SelectById(id);
@@ -339,7 +339,7 @@ namespace WcfService
         public ContribuzioneEnteDao GetContribuzionEnteByNome(string nome)
         {
             ContribuzioneEnteDao _eDao = new ContribuzioneEnteDao();
-            try 
+            try
             {
                 ContribuzioneEnteService _service = new ContribuzioneEnteService();
                 _eDao = _service.SelectByNomeEnte(nome);
@@ -351,11 +351,26 @@ namespace WcfService
 
         public void DeleteSoggettoImportato(long id)
         {
-            try 
+            try
             {
                 AssicuratiService _service = new AssicuratiService();
-                SoggettiImportAppoggioDao soggetto= _service.SelectById(id);
+                SoggettiImportAppoggioDao soggetto = _service.SelectById(id);
                 _service.DeleteOne(soggetto);
+            }
+            catch { }
+        }
+
+
+        public bool InviaAdesioneSoggettiImportati(long id)
+        {
+            try
+            {
+                List<SoggettiImportAppoggioDao> famiglia = new List<SoggettiImportAppoggioDao>();
+                SoggettiImportAppoggioDao _capoNucleo = new SoggettiImportAppoggioDao();
+                AssicuratiService _service = new AssicuratiService();
+                _capoNucleo = _service.GetCapoNucleo(id);
+                famiglia = _service.GetNucleoByCapo(_capoNucleo.CodiceFiscaleCapoNucleo);
+                _service.FormalizzaAdesioneSoggettiImportati(_capoNucleo, famiglia);
             }
             catch { }
         }

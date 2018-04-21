@@ -68,7 +68,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AmminstrazioneAsdepDB.edmx</DependentUpon>
     </Compile>
+    <Compile Include="DAL\AdesioniProvider.cs" />
     <Compile Include="DAL\ContribuzioneEnteProvider.cs" />
+    <Compile Include="DAL\EnteAppartenenzaProvider.cs" />
     <Compile Include="DAL\EnteProvider.cs" />
     <Compile Include="DAL\ErroriIOProvider.cs" />
     <Compile Include="DAL\IProvider.cs" />
@@ -76,6 +78,7 @@
     <Compile Include="ContribuzioneEnte.cs">
       <DependentUpon>AmminstrazioneAsdepDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="DAL\SoggettiProvider.cs" />
     <Compile Include="DAL\TipoLegameProvider.cs" />
     <Compile Include="DatiEnte.cs">
       <DependentUpon>AmminstrazioneAsdepDB.tt</DependentUpon>
