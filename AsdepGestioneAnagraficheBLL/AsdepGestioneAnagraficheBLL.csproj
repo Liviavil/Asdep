@@ -50,7 +50,10 @@
     <Compile Include="Business\ContribuzioneEnteService.cs" />
     <Compile Include="Business\EnteService.cs" />
     <Compile Include="Business\ErroriIOService.cs" />
+    <Compile Include="Business\T_CategoriaAdesioneService.cs" />
+    <Compile Include="Business\T_TipoAdesioneService.cs" />
     <Compile Include="Business\T_TipoLegameService.cs" />
+    <Compile Include="Business\T_TipoSoggettoService.cs" />
     <Compile Include="Extra\CodiceFiscale.cs" />
     <Compile Include="Extra\Valida.cs" />
     <Compile Include="Extra\Helper.cs" />

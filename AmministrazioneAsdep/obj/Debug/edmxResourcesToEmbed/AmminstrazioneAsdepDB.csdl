@@ -11,6 +11,7 @@
     <EntitySet Name="Soggetto" EntityType="AmministrazioneAsdepModel.Soggetto" />
     <EntitySet Name="StoricoAdesione" EntityType="AmministrazioneAsdepModel.StoricoAdesione" />
     <EntitySet Name="StoricoSoggetto" EntityType="AmministrazioneAsdepModel.StoricoSoggetto" />
+    <EntitySet Name="sysdiagrams" EntityType="AmministrazioneAsdepModel.sysdiagrams" />
     <EntitySet Name="T_CategoriaAdesione" EntityType="AmministrazioneAsdepModel.T_CategoriaAdesione" />
     <EntitySet Name="T_ErroriIO" EntityType="AmministrazioneAsdepModel.T_ErroriIO" />
     <EntitySet Name="T_LimitiEta" EntityType="AmministrazioneAsdepModel.T_LimitiEta" />
@@ -239,7 +240,7 @@
     <Property Name="LuogoNascitaAssicurato" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="DataNascitaAssicurato" Type="DateTime" Precision="3" />
     <Property Name="LegameNucleo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-    <Property Name="Effetto" Type="DateTime" Precision="3" />
+    <Property Name="Effetto" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="IndirizzoResidenza" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="LocalitaResidenza" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="SiglaProvResidenza" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
@@ -260,6 +261,7 @@
     <Property Name="SecondoNome" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Cognome" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="DataNascita" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="LuogoNascita" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
     <Property Name="IndirizzoResidenza" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="ComuneResidenza" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="SiglaProvinciaResidenza" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
@@ -338,6 +340,16 @@
     <Property Name="DataAggiornamento" Type="DateTime" Precision="7" />
     <Property Name="CodiceUtente" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
     <Property Name="CodAppl" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
   <EntityType Name="T_CategoriaAdesione">
     <Key>
@@ -481,6 +493,7 @@
     <Property Name="DataInizio" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="DataFine" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="DataAggiornamento" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="Selezionabile" Type="Boolean" />
     <Property Name="CodiceUtente" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
     <Property Name="CodAppl" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Adesione" Relationship="AmministrazioneAsdepModel.FK_Adesione_TipoAdesione" FromRole="T_TipoAdesione" ToRole="Adesione" />
@@ -512,7 +525,7 @@
     <Key>
       <PropertyRef Name="IdExport" />
     </Key>
-    <Property Name="IdExport" Type="Int64" Nullable="false" />
+    <Property Name="IdExport" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="NomeFile" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="DataExport" Type="DateTime" Nullable="false" Precision="7" />
     <Property Name="FlagFullExport" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />

@@ -136,7 +136,7 @@ function tableCreate() {
     });
     $('#example tbody').on('click', 'a.salva', function () {
         var data = table.row($(this).parents('tr')).data();
-        $(this)[0].href = "/GestioneAnagrafica/InviaAdesione?id=" + data.IdSoggetto + "&page=" + table.page().toString();
+        $(this)[0].href = "/GestioneAnagrafica/InviaAdesione?id=" + data.CodiceFiscaleCapoNucleo + "&page=" + table.page().toString();
     });
 
 }

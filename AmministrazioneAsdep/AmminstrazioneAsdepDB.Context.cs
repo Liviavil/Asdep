@@ -35,6 +35,7 @@ namespace AmministrazioneAsdep
         public DbSet<Soggetto> Soggetto { get; set; }
         public DbSet<StoricoAdesione> StoricoAdesione { get; set; }
         public DbSet<StoricoSoggetto> StoricoSoggetto { get; set; }
+        public DbSet<sysdiagrams> sysdiagrams { get; set; }
         public DbSet<T_CategoriaAdesione> T_CategoriaAdesione { get; set; }
         public DbSet<T_ErroriIO> T_ErroriIO { get; set; }
         public DbSet<T_LimitiEta> T_LimitiEta { get; set; }

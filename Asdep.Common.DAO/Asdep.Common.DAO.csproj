@@ -47,11 +47,14 @@
     <Compile Include="ExtraDao\Attribute.cs" />
     <Compile Include="ExtraDao\Common.cs" />
     <Compile Include="ExtraDao\IValida.cs" />
+    <Compile Include="T_TipoAdesioneDao.cs" />
+    <Compile Include="T_CategoriaAdesioneDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SoggettiImportAppoggioDao.cs" />
     <Compile Include="SoggettoDao.cs" />
     <Compile Include="T_ErroriIO.cs" />
     <Compile Include="T_TipiLegameDao.cs" />
+    <Compile Include="T_TipoSoggettoDao.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

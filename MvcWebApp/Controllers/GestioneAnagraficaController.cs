@@ -317,16 +317,26 @@ namespace MvcWebApp.Controllers
             return RedirectToAction("InLavorazione", "GestioneAnagrafica", new { en = Session["ente"].ToString(), page = Session["page"].ToString() });
         }
 
-        public ActionResult InviaAdesione(string id) 
+        public ActionResult InviaAdesione(string cf) 
         {
             SoggettiImportAppoggioDao soggetto = new SoggettiImportAppoggioDao();
             using (HelperService _hp = new HelperService())
             {
-               _hp.channel.InviaAdesioneSoggettiImportati(long.Parse(id));
+               _hp.channel.InviaAdesioneSoggettiImportati(cf);
             }
 
 
             return RedirectToAction("InLavorazione", "GestioneAnagrafica", new { en = Session["ente"].ToString(), page = Session["page"].ToString() });
+        }
+
+        public ActionResult CaricaEsclusioni(HttpPostedFileBase file) 
+        {
+            return View();
+        }
+
+        public ActionResult CaricaInclusioni(HttpPostedFileBase file)
+        {
+            return View();
         }
     }
 }

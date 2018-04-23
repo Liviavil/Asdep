@@ -398,12 +398,10 @@ namespace AsdepGestioneAnagraficheBLL.Business
             return nucleo;
         }
 
-        public void FormalizzaAdesioneSoggettiImportati(SoggettiImportAppoggioDao _capoNucleo, List<SoggettiImportAppoggioDao> famiglia)
+        public void FormalizzaAdesioneSoggettiImportati(List<SoggettiImportAppoggioDao> famiglia)
         {
             try 
             {
-                SoggettiImportAppoggio _cn = new SoggettiImportAppoggio();
-                Asdep.Common.DAO.ExtraDao.PropertyCopier<SoggettiImportAppoggioDao, SoggettiImportAppoggio>.Copy(_capoNucleo, _cn);
 
                 List<SoggettiImportAppoggio> _nucleo = new List<SoggettiImportAppoggio>();
                 foreach (SoggettiImportAppoggioDao _sdao in famiglia) 
@@ -413,7 +411,7 @@ namespace AsdepGestioneAnagraficheBLL.Business
                     _nucleo.Add(_s);
                 }
 
-                provider.FormalizzaAdesione(db, _cn, _nucleo);
+                provider.FormalizzaAdesione(db, _nucleo);
             }
             catch { }
         }

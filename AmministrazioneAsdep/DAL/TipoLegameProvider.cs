@@ -22,7 +22,13 @@ namespace AmministrazioneAsdep.DAL
 
         public List<T_TipiLegame> GetAll(AmministrazioneAsdepEntities db)
         {
-            throw new NotImplementedException();
+            List<T_TipiLegame> _tipiLegame = new List<T_TipiLegame>();
+            try 
+            {
+                _tipiLegame = (from LegameTable in db.T_TipiLegame select LegameTable).ToList();
+            }
+            catch { }
+            return _tipiLegame;
         }
 
         public T_TipiLegame SelectById(AmministrazioneAsdepEntities db, long id)

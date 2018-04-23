@@ -167,16 +167,15 @@ namespace AmministrazioneAsdep.DAL
             {
                 soggetti = (from table in db.SoggettiImportAppoggio
                             where table.CodiceFiscaleCapoNucleo.Equals(codiceFiscaleCN)
-                                && !table.CodiceFiscaleAssicurato.Equals(table.CodiceFiscaleCapoNucleo)
                             select table).ToList();
             }
             catch { }
             return soggetti;
         }
 
-        public void FormalizzaAdesione(AmministrazioneAsdepEntities db, SoggettiImportAppoggio _capoNucleo, List<SoggettiImportAppoggio> famiglia)
+        public void FormalizzaAdesione(AmministrazioneAsdepEntities db, List<SoggettiImportAppoggio> famiglia)
         {
-            List<string> codiciAdesioneCollettive = new List<string> { "001", "002", "003", "004", "005" };
+            List<string> codiciAdesioneCollettive = new List<string> { "004", "005" };
             try
             {
                 using (db = new AmministrazioneAsdepEntities())
@@ -185,145 +184,147 @@ namespace AmministrazioneAsdep.DAL
                     {
                         try
                         {
-                            Soggetto _soggCN = new Soggetto();
+                            SoggettiImportAppoggio _soggCN = famiglia.Where(x => x.CodiceFiscaleAssicurato.Equals(x.CodiceFiscaleCapoNucleo)).SingleOrDefault();
+                            //Soggetto _cn = new Soggetto();
 
+                            /*commentato*/
                             #region Esiste il soggetto capo nucleo importato nella tabella Soggetto
 
-                            //Trovare il capo nucleo nella tabella Soggetto (CF, Nome, Cognome)
-                            _soggCN = (from SoggTable in db.Soggetto
-                                       where SoggTable.CodiceFiscale.Equals(_capoNucleo.CodiceFiscaleAssicurato)
-                                           && SoggTable.Nome.Equals(_capoNucleo.Nome) && SoggTable.Cognome.Equals(_capoNucleo.Cognome)
-                                           && SoggTable.IdDanteCausa == null
-                                       select SoggTable).FirstOrDefault();
+                            ////Trovare il capo nucleo nella tabella Soggetto (CF, Nome, Cognome)
+                            //_cn = (from SoggTable in db.Soggetto
+                            //           where SoggTable.CodiceFiscale.Equals(_soggCN.CodiceFiscaleAssicurato)
+                            //               && SoggTable.Nome.Equals(_soggCN.Nome) && SoggTable.Cognome.Equals(_soggCN.Cognome)
+                            //               && SoggTable.IdDanteCausa == null
+                            //           select SoggTable).FirstOrDefault();
 
-                            /*******  Soggetto esistente, aggiorno i dati   *******/
-                            if (_soggCN != null)
-                            {
-                                #region Soggetto esistente
-                                _soggCN.IdDanteCausa = _soggCN.IdSoggetto;
-                                if (_capoNucleo.DataNascitaAssicurato != null)
-                                {
-                                    _soggCN.DataNascita = DateTime.Parse(_capoNucleo.DataNascitaAssicurato.ToString());
-                                }
-                                _soggCN.IndirizzoResidenza = _capoNucleo.IndirizzoResidenza;
-                                _soggCN.SiglaProvinciaResidenza = _capoNucleo.SiglaProvResidenza;
-                                _soggCN.CapResidenza = _capoNucleo.CapResidenza;
-                                _soggCN.Email = _capoNucleo.Email;
-                                _soggCN.IBAN = _capoNucleo.Iban;
-                                _soggCN.Telefono = _capoNucleo.Telefono;
-                                #endregion
-                            }
-                            else
-                            {
-                                /****        Nuovo record nella tabella soggetti           ***/
+                            ///*******  Soggetto esistente, aggiorno i dati   *******/
+                            //if (_cn != null)
+                            //{
+                            //    #region Soggetto esistente
+                            //    _cn.IdDanteCausa = _soggCN.IdSoggetto;
+                            //    if (_soggCN.DataNascitaAssicurato != null)
+                            //    {
+                            //        _cn.DataNascita = DateTime.Parse(_soggCN.DataNascitaAssicurato.ToString());
+                            //    }
+                            //    _cn.IndirizzoResidenza = _soggCN.IndirizzoResidenza;
+                            //    _cn.SiglaProvinciaResidenza = _soggCN.SiglaProvResidenza;
+                            //    _cn.CapResidenza = _soggCN.CapResidenza;
+                            //    _cn.Email = _soggCN.Email;
+                            //    _cn.IBAN = _soggCN.Iban;
+                            //    _cn.Telefono = _soggCN.Telefono;
+                            //    #endregion
+                            //}
+                            //else
+                            //{
+                            //    /****        Nuovo record nella tabella soggetti           ***/
 
-                                #region Nuovo soggetto
-                                _soggCN.CodiceFiscale = _capoNucleo.CodiceFiscaleAssicurato;
-                                _soggCN.Nome = _capoNucleo.Nome;
-                                _soggCN.CodiceFiscale = _capoNucleo.Cognome;
-                                if (_capoNucleo.DataNascitaAssicurato != null)
-                                {
-                                    _soggCN.DataNascita = DateTime.Parse(_capoNucleo.DataNascitaAssicurato.ToString());
-                                }
-                                _soggCN.IndirizzoResidenza = _capoNucleo.IndirizzoResidenza;
-                                _soggCN.SiglaProvinciaResidenza = _capoNucleo.SiglaProvResidenza;
-                                _soggCN.CapResidenza = _capoNucleo.CapResidenza;
-                                _soggCN.Email = _capoNucleo.Email;
-                                _soggCN.IBAN = _capoNucleo.Iban;
-                                _soggCN.Telefono = _capoNucleo.Telefono;
-                                #endregion
+                            //    #region Nuovo soggetto
+                            //    _soggCN.CodiceFiscale = _capoNucleo.CodiceFiscaleAssicurato;
+                            //    _soggCN.Nome = _capoNucleo.Nome;
+                            //    _soggCN.CodiceFiscale = _capoNucleo.Cognome;
+                            //    if (_capoNucleo.DataNascitaAssicurato != null)
+                            //    {
+                            //        _soggCN.DataNascita = DateTime.Parse(_capoNucleo.DataNascitaAssicurato.ToString());
+                            //    }
+                            //    _soggCN.IndirizzoResidenza = _capoNucleo.IndirizzoResidenza;
+                            //    _soggCN.SiglaProvinciaResidenza = _capoNucleo.SiglaProvResidenza;
+                            //    _soggCN.CapResidenza = _capoNucleo.CapResidenza;
+                            //    _soggCN.Email = _capoNucleo.Email;
+                            //    _soggCN.IBAN = _capoNucleo.Iban;
+                            //    _soggCN.Telefono = _capoNucleo.Telefono;
+                            //    #endregion
 
-                                db.Soggetto.Add(_soggCN);
-                            }
+                            //    db.Soggetto.Add(_soggCN);
+                            //}
                             #endregion
 
-                            EnteAppartenenza _soggCapo = new EnteAppartenenza();
-                            EnteAppartenenza _enteApp = new EnteAppartenenza();
-
+                            //EnteAppartenenza _soggCapo = new EnteAppartenenza();
+                            //EnteAppartenenza _enteApp = new EnteAppartenenza();
+                            /*commentato*/
                             #region Tabella EnteAppartenenza
-                            //Verificare presenza del record Soggetto Capo nucleo nella tabella ente appartenenza
-                            _soggCapo = (from EnteApp in db.EnteAppartenenza
-                                         where
-                                             EnteApp.IdSoggetto.Equals(_soggCN.IdSoggetto)
-                                             && EnteApp.DataInizio < _capoNucleo.Effetto
-                                             && _capoNucleo.Effetto < EnteApp.DataFine
-                                         select EnteApp).SingleOrDefault();
+                            ////Verificare presenza del record Soggetto Capo nucleo nella tabella ente appartenenza
+                            //_soggCapo = (from EnteApp in db.EnteAppartenenza
+                            //             where
+                            //                 EnteApp.IdSoggetto.Equals(_soggCN.IdSoggetto)
+                            //                 && EnteApp.DataInizio < _capoNucleo.Effetto
+                            //                 && _capoNucleo.Effetto < EnteApp.DataFine
+                            //             select EnteApp).SingleOrDefault();
 
-                            if (_soggCapo != null)
-                            {
-                                /***  Se il record è presente controllare il valore dell'Ente che sia congruente con il valore del soggetto importato     *  
-                                 *    altrimenti significa che lo stesso soggetto ha cambiato ente di appartenenza e vanno aggiornate alcune info         ***/
+                            //if (_soggCapo != null)
+                            //{
+                            //    /***  Se il record è presente controllare il valore dell'Ente che sia congruente con il valore del soggetto importato     *  
+                            //     *    altrimenti significa che lo stesso soggetto ha cambiato ente di appartenenza e vanno aggiornate alcune info         ***/
 
-                                string ente = (from EnteApp in db.EnteAppartenenza join EnteT in db.Ente on EnteApp.IdEnte equals EnteT.IdEnte select EnteT.CodiceEnte).ToString();
+                            //    string ente = (from EnteApp in db.EnteAppartenenza join EnteT in db.Ente on EnteApp.IdEnte equals EnteT.IdEnte select EnteT.CodiceEnte).ToString();
 
-                                if (!ente.Equals(_capoNucleo.Ente))
-                                {
-                                    /***** Chiudere occorrenza esistente aggiornare data effetto,inserire nuovo record in EnteApp per il nuovo ente , aggiornare adesioni collettive    *****/
-                                    _soggCapo.DataFine = _capoNucleo.Effetto.Subtract(new TimeSpan(1, 0, 0, 0));
+                            //    if (!ente.Equals(_capoNucleo.Ente))
+                            //    {
+                            //        /***** Chiudere occorrenza esistente aggiornare data effetto,inserire nuovo record in EnteApp per il nuovo ente , aggiornare adesioni collettive    *****/
+                            //        _soggCapo.DataFine = _capoNucleo.Effetto.Subtract(new TimeSpan(1, 0, 0, 0));
 
-                                    /***Aggiungo nuova occorrenza Ente Appartenenza per il nuovo ente**/
+                            //        /***Aggiungo nuova occorrenza Ente Appartenenza per il nuovo ente**/
 
-                                    _enteApp.IdEnte = long.Parse((from EnteTab in db.Ente where EnteTab.CodiceEnte.Equals(_capoNucleo.Ente) select EnteTab.IdEnte).ToString());
-                                    _enteApp.IdSoggetto = _soggCN.IdSoggetto;
-                                    _enteApp.DataInizio = _capoNucleo.Effetto;
-                                    _enteApp.DataFine = _capoNucleo.Effetto.AddDays(1).AddYears(1);
-                                    db.EnteAppartenenza.Add(_enteApp);
+                            //        _enteApp.IdEnte = long.Parse((from EnteTab in db.Ente where EnteTab.CodiceEnte.Equals(_capoNucleo.Ente) select EnteTab.IdEnte).ToString());
+                            //        _enteApp.IdSoggetto = _soggCN.IdSoggetto;
+                            //        _enteApp.DataInizio = _capoNucleo.Effetto;
+                            //        _enteApp.DataFine = _capoNucleo.Effetto.AddDays(1).AddYears(1);
+                            //        db.EnteAppartenenza.Add(_enteApp);
 
 
 
-                                    List<Adesione> adesioniSoggetti = (from AdesioniTable in db.Adesione
-                                                                       where
-                                                                           AdesioniTable.IdCaponucleo.Equals(_soggCN.IdSoggetto)
-                                                                           && codiciAdesioneCollettive.Contains(AdesioniTable.CodTipoAdesione)
-                                                                           && AdesioniTable.DataInizio < _capoNucleo.Effetto
-                                                                           && _capoNucleo.Effetto < AdesioniTable.DataFine
-                                                                       select AdesioniTable
-                                                                       ).ToList();
+                            //        List<Adesione> adesioniSoggetti = (from AdesioniTable in db.Adesione
+                            //                                           where
+                            //                                               AdesioniTable.IdCaponucleo.Equals(_soggCN.IdSoggetto)
+                            //                                               && codiciAdesioneCollettive.Contains(AdesioniTable.CodTipoAdesione)
+                            //                                               && AdesioniTable.DataInizio < _capoNucleo.Effetto
+                            //                                               && _capoNucleo.Effetto < AdesioniTable.DataFine
+                            //                                           select AdesioniTable
+                            //                                           ).ToList();
 
-                                    foreach (Adesione Ad in adesioniSoggetti)
-                                    {
-                                        Ad.DataCessazione = _capoNucleo.Effetto.Subtract(new TimeSpan(1, 0, 0, 0));
-                                        Ad.DataFine = _capoNucleo.Effetto.Subtract(new TimeSpan(1, 0, 0, 0));
-                                    }
+                            //        foreach (Adesione Ad in adesioniSoggetti)
+                            //        {
+                            //            Ad.DataCessazione = _capoNucleo.Effetto.Subtract(new TimeSpan(1, 0, 0, 0));
+                            //            Ad.DataFine = _capoNucleo.Effetto.Subtract(new TimeSpan(1, 0, 0, 0));
+                            //        }
 
-                                }
+                            //    }
 
-                            }
+                            //}
                             #endregion
 
-                            Adesione _nuovaAdesione = new Adesione();
-
+                            //Adesione _nuovaAdesione = new Adesione();
+                            /*commentato*/
                             #region Adesione caponucelo
                             //*** adesione del capo nucleo    ***///
-                            Adesione adesioniSoggetto = (from AdesioniTable in db.Adesione
-                                                         where
-                                                             AdesioniTable.IdSoggetto.Equals(_soggCN.IdSoggetto)
-                                                             && codiciAdesioneCollettive.Contains(AdesioniTable.CodTipoAdesione)
-                                                             && AdesioniTable.DataInizio < _capoNucleo.Effetto
-                                                             && _capoNucleo.Effetto < AdesioniTable.DataFine
-                                                         select AdesioniTable
-                                                               ).FirstOrDefault();
+                            //Adesione adesioniSoggetto = (from AdesioniTable in db.Adesione
+                            //                             where
+                            //                                 AdesioniTable.IdSoggetto.Equals(_soggCN.IdSoggetto)
+                            //                                 && codiciAdesioneCollettive.Contains(AdesioniTable.CodTipoAdesione)
+                            //                                 && AdesioniTable.DataInizio < _capoNucleo.Effetto
+                            //                                 && _capoNucleo.Effetto < AdesioniTable.DataFine
+                            //                             select AdesioniTable
+                            //                                   ).FirstOrDefault();
 
 
-                            if (adesioniSoggetto != null)
-                            {
-                                adesioniSoggetto.DataCessazione = new DateTime(2019, 7, 1);//_capoNucleo.Effetto.Subtract(new TimeSpan(1, 0, 0, 0));
-                                adesioniSoggetto.DataFine = new DateTime(2019, 7, 1);//_capoNucleo.Effetto.Subtract(new TimeSpan(1, 0, 0, 0));
-                            }
-                            else
-                            {
-                                _nuovaAdesione.IdCaponucleo = _soggCN.IdSoggetto;
-                                _nuovaAdesione.IdSoggetto = _soggCN.IdSoggetto;
-                                _nuovaAdesione.CodTipoAdesione = (from TipoAdesione in db.T_TipoAdesione
-                                                                  where TipoAdesione.DescBreve.ToUpper().Equals(_capoNucleo.NumeroPolizza.ToUpper())
-                                                                  select TipoAdesione.CodTipoAdesione).ToString();
-                                _nuovaAdesione.DataCessazione = new DateTime(2019, 7, 1);//_capoNucleo.Effetto.Subtract(new TimeSpan(1, 0, 0, 0));
-                                _nuovaAdesione.DataFine = new DateTime(2019, 7, 1);//_capoNucleo.Effetto.Subtract(new TimeSpan(1, 0, 0, 0));
-                                _nuovaAdesione.DataInizio = _capoNucleo.Effetto;
-                                db.Adesione.Add(_nuovaAdesione);
-                            }
+                            //if (adesioniSoggetto != null)
+                            //{
+                            //    adesioniSoggetto.DataCessazione = new DateTime(2019, 7, 1);//_capoNucleo.Effetto.Subtract(new TimeSpan(1, 0, 0, 0));
+                            //    adesioniSoggetto.DataFine = new DateTime(2019, 7, 1);//_capoNucleo.Effetto.Subtract(new TimeSpan(1, 0, 0, 0));
+                            //}
+                            //else
+                            //{
+                            //    _nuovaAdesione.IdCaponucleo = _soggCN.IdSoggetto;
+                            //    _nuovaAdesione.IdSoggetto = _soggCN.IdSoggetto;
+                            //    _nuovaAdesione.CodTipoAdesione = (from TipoAdesione in db.T_TipoAdesione
+                            //                                      where TipoAdesione.DescBreve.ToUpper().Equals(_capoNucleo.NumeroPolizza.ToUpper())
+                            //                                      select TipoAdesione.CodTipoAdesione).ToString();
+                            //    _nuovaAdesione.DataCessazione = new DateTime(2019, 7, 1);//_capoNucleo.Effetto.Subtract(new TimeSpan(1, 0, 0, 0));
+                            //    _nuovaAdesione.DataFine = new DateTime(2019, 7, 1);//_capoNucleo.Effetto.Subtract(new TimeSpan(1, 0, 0, 0));
+                            //    _nuovaAdesione.DataInizio = _capoNucleo.Effetto;
+                            //    db.Adesione.Add(_nuovaAdesione);
+                            //}
                             #endregion
-                            //******STORICO ADESIONI capo nucleo*****//
+                            //****** inserire STORICO ADESIONI capo nucleo*****//
 
                             /*******************    Ciclo per i famigliari           **********************/
 
@@ -331,10 +332,12 @@ namespace AmministrazioneAsdep.DAL
                             foreach (SoggettiImportAppoggio _fami in famiglia)
                             {
                                 Soggetto _famigliare = new Soggetto();
+                                Soggetto _capoNucleo = new Soggetto();
+
                                 #region Tabella Soggetto
                                 _famigliare = (from SoggTable in db.Soggetto
                                                where SoggTable.CodiceFiscale.Equals(_fami.CodiceFiscaleAssicurato)
-                                               && SoggTable.Nome.Equals(_capoNucleo.Nome) && SoggTable.Cognome.Equals(_fami.Cognome)
+                                               && SoggTable.Nome.Equals(_fami.Nome) && SoggTable.Cognome.Equals(_fami.Cognome)
                                                && SoggTable.IdDanteCausa == _soggCN.IdSoggetto
                                                select SoggTable).FirstOrDefault();
 
@@ -350,44 +353,116 @@ namespace AmministrazioneAsdep.DAL
                                 }
                                 #endregion
 
+                                if (_famigliare.IdDanteCausa == null || _famigliare.IdDanteCausa.Equals(_famigliare.IdSoggetto))
+                                {
+                                    //trovato il soggetto capo nucleo
+                                    _capoNucleo = _famigliare;
+
+                                    #region CapoNucleo
+                                    EnteAppartenenza _soggCapo = new EnteAppartenenza();
+                                    EnteAppartenenza _enteApp = new EnteAppartenenza();
+
+                                    #region Tabella EnteAppartenenza
+                                    //Verificare presenza del record Soggetto Capo nucleo nella tabella ente appartenenza
+                                    _soggCapo = (from EnteApp in db.EnteAppartenenza
+                                                 where
+                                                     EnteApp.IdSoggetto.Equals(_famigliare.IdSoggetto)
+                                                     && EnteApp.DataInizio < _fami.Effetto
+                                                     && _fami.Effetto < EnteApp.DataFine
+                                                 select EnteApp).SingleOrDefault();
+
+                                    if (_soggCapo != null)
+                                    {
+                                        /***  Se il record è presente controllare il valore dell'Ente che sia congruente con il valore del soggetto importato     *  
+                                         *    altrimenti significa che lo stesso soggetto ha cambiato ente di appartenenza e vanno aggiornate alcune info         ***/
+
+                                        string ente = (from EnteApp in db.EnteAppartenenza join EnteT in db.Ente on EnteApp.IdEnte equals EnteT.IdEnte select EnteT.CodiceEnte).ToString();
+
+                                        if (!ente.Equals(_fami.Ente))
+                                        {
+                                            /***** Chiudere occorrenza esistente aggiornare data effetto,inserire nuovo record in EnteApp per il nuovo ente , aggiornare adesioni collettive    *****/
+                                            _soggCapo.DataFine = _fami.Effetto.Subtract(new TimeSpan(1, 0, 0, 0));
+
+                                            /***Aggiungo nuova occorrenza Ente Appartenenza per il nuovo ente**/
+
+                                            _enteApp.IdEnte = long.Parse((from EnteTab in db.Ente where EnteTab.CodiceEnte.Equals(_fami.Ente) select EnteTab.IdEnte).ToString());
+                                            _enteApp.IdSoggetto = _soggCN.IdSoggetto;
+                                            _enteApp.DataInizio = _fami.Effetto;
+                                            _enteApp.DataFine = _fami.Effetto.AddDays(1).AddYears(1);
+                                            db.EnteAppartenenza.Add(_enteApp);
+
+                                            List<Adesione> adesioniSoggetti = (from AdesioniTable in db.Adesione
+                                                                               join SoggTable in db.Soggetto
+                                                                               on AdesioniTable.IdSoggetto
+                                                                               equals SoggTable.IdSoggetto
+                                                                               where
+                                                                               SoggTable.IdDanteCausa.Equals(_soggCapo.IdSoggetto)
+
+                                                                               #region old
+                                                                               /*  AdesioniTable.IdCaponucleo.Equals(_soggCN.IdSoggetto)
+                                                                                   && codiciAdesioneCollettive.Contains(AdesioniTable.CodTipoAdesione)
+                                                                                   && AdesioniTable.DataInizio < _fami.Effetto
+                                                                                   && _fami.Effetto < AdesioniTable.DataFine */
+                                                                               #endregion
+                                                                               select AdesioniTable
+                                                                               ).ToList();
+
+                                            foreach (Adesione Ad in adesioniSoggetti)
+                                            {
+                                                Ad.DataCessazione = _fami.Effetto.Subtract(new TimeSpan(1, 0, 0, 0));
+                                                Ad.DataFine = _fami.Effetto.Subtract(new TimeSpan(1, 0, 0, 0));
+                                            }
+
+                                        }
+
+                                    }
+                                    #endregion
+
+                                    #endregion
+                                }
+
                                 #region Tabella Adesione
 
                                 Adesione adesioniSoggettoFami = (from AdesioniTable in db.Adesione
                                                                  where
-                                                                     AdesioniTable.IdSoggetto.Equals(_famigliare.IdSoggetto)
+                                                                 AdesioniTable.IdSoggetto.Equals(_famigliare.IdSoggetto)
+                                                                 && AdesioniTable.IdCaponucleo.Equals(_capoNucleo.IdSoggetto)
+                                                                 #region old
+                                                                     /*AdesioniTable.IdSoggetto.Equals(_fami.IdSoggetto)
                                                                      && codiciAdesioneCollettive.Contains(AdesioniTable.CodTipoAdesione)
-                                                                     && AdesioniTable.DataInizio < _capoNucleo.Effetto
-                                                                     && _capoNucleo.Effetto < AdesioniTable.DataFine
+                                                                     && AdesioniTable.DataInizio < _fami.Effetto
+                                                                     && _fami.Effetto < AdesioniTable.DataFine */
+                                                                 #endregion
                                                                  select AdesioniTable
                                                                 ).FirstOrDefault();
 
 
-                                if (adesioniSoggetto != null)
+                                if (adesioniSoggettoFami != null)
                                 {
-                                    adesioniSoggetto.DataCessazione = new DateTime(2019, 7, 1);//_capoNucleo.Effetto.Subtract(new TimeSpan(1, 0, 0, 0));
-                                    adesioniSoggetto.DataFine = new DateTime(2019, 7, 1);//_capoNucleo.Effetto.Subtract(new TimeSpan(1, 0, 0, 0));
+                                    adesioniSoggettoFami.DataCessazione = new DateTime(2019, 7, 1);//_capoNucleo.Effetto.Subtract(new TimeSpan(1, 0, 0, 0));
+                                    adesioniSoggettoFami.DataFine = new DateTime(2019, 7, 1);//_capoNucleo.Effetto.Subtract(new TimeSpan(1, 0, 0, 0));
                                 }
                                 else
                                 {
-                                    _nuovaAdesione.IdCaponucleo = _soggCN.IdSoggetto;
-                                    _nuovaAdesione.IdSoggetto = _famigliare.IdSoggetto;
-                                    _nuovaAdesione.CodTipoAdesione = (from TipoAdesione in db.T_TipoAdesione
-                                                                      where TipoAdesione.DescBreve.ToUpper().Equals(_fami.NumeroPolizza.ToUpper())
-                                                                      select TipoAdesione.CodTipoAdesione).ToString();
-                                    _nuovaAdesione.DataCessazione = new DateTime(2019, 7, 1);//_capoNucleo.Effetto.Subtract(new TimeSpan(1, 0, 0, 0));
-                                    _nuovaAdesione.DataFine = new DateTime(2019, 7, 1);//_capoNucleo.Effetto.Subtract(new TimeSpan(1, 0, 0, 0));
-                                    _nuovaAdesione.DataInizio = _fami.Effetto;
-                                    db.Adesione.Add(_nuovaAdesione);
+                                    adesioniSoggettoFami.IdCaponucleo = _soggCN.IdSoggetto;
+                                    adesioniSoggettoFami.IdSoggetto = _famigliare.IdSoggetto;
+                                    adesioniSoggettoFami.CodTipoAdesione = (from TipoAdesione in db.T_TipoAdesione
+                                                                            where TipoAdesione.DescBreve.ToUpper().Equals(_fami.NumeroPolizza.ToUpper())
+                                                                            select TipoAdesione.CodTipoAdesione).ToString();
+                                    adesioniSoggettoFami.DataCessazione = new DateTime(2019, 7, 1);//_capoNucleo.Effetto.Subtract(new TimeSpan(1, 0, 0, 0));
+                                    adesioniSoggettoFami.DataFine = new DateTime(2019, 7, 1);//_capoNucleo.Effetto.Subtract(new TimeSpan(1, 0, 0, 0));
+                                    adesioniSoggettoFami.DataInizio = _fami.Effetto;
+                                    db.Adesione.Add(adesioniSoggettoFami);
                                 }
                                 #endregion
-                            } 
+                            }
                             #endregion
 
 
                             db.SaveChanges();
                             transaction.Commit();
                         }
-                        catch 
+                        catch
                         {
                             transaction.Rollback();
                         }
@@ -395,7 +470,7 @@ namespace AmministrazioneAsdep.DAL
                 }
 
             }
-            catch(Exception e) 
+            catch (Exception e)
             {
             }
         }

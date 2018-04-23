@@ -1,0 +1,115 @@
+﻿@model MvcWebApp.Models.SearchAdesioniModel
+
+@{
+    ViewBag.Title = "Index";
+    Model.Results = Session["Adesioni"] != null ? Session["Adesioni"] as List<MvcWebApp.Models.AdesioneModel> : new List<MvcWebApp.Models.AdesioneModel>();
+}
+
+<div id="main">
+    @* <div class="u-layout-wide u-layoutCenter u-text-r-xl u-layout-r-withGutter u-padding-r-top">
+        <nav aria-label="sei qui:" role="navigation">
+            <ul class="Breadcrumb">
+                <li class="Breadcrumb-item"><a class="Breadcrumb-link color-primo" href="#">Home</a></li>
+                <li class="Breadcrumb-item"><a class="Breadcrumb-link color-primo" href="#">Area riservata amministrazione</a></li>
+                <li class="Breadcrumb-item"><a class="Breadcrumb-link color-primo u-textWeight-200" href="#">Verifica adesioni volantarie</a></li>
+
+            </ul>
+        </nav>
+
+    </div>*@
+
+    <div class="u-layout-wide u-layoutCenter u-text-r-xl u-layout-r-withGutter u-padding-r-top">
+        <section class="u-layout-wide">
+            <div class="Grid Grid--withGutter">
+                <div class="Grid-cell u-md-size3of3 u-lg-size3of3">
+                    <div class="Grid">
+
+                        <div class="Grid-cell u-sizeFull u-md-size1of1 u-lg-size1of1 u-text-r-s">
+                            <h2 class=" u-text-h3 u-color-grey-50">Ricerca adesioni
+                            </h2>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </div>
+
+    <!--form di ricerca-->
+    @using (Ajax.BeginForm("RisultatiAdesioni", "AdesioneCollettiva", new AjaxOptions
+  {
+      UpdateTargetId = "risultati",
+      InsertionMode = InsertionMode.Replace,
+      HttpMethod = "POST"
+
+  }))
+    {
+        <div class="Form Form--spaced u-layout-r-withGutter u-padding-top-l u-text-r-xs">
+            <fieldset class="Form-fieldset">
+                <legend class="Form-legend">Cerca adesioni</legend>
+
+                <section class="Grid Grid--withGutter">
+                    <div class="Grid-cell u-md-size1of2 u-lg-size1of2 ">
+
+                        <div class="Form-field">
+                            <label class="Form-label" for="nome">Nome</label>
+                            <input class="Form-input u-text-r-s u-borderRadius-m" id="nome"name="Nome" value="@Model.Nome">
+                        </div>
+
+                    </div>
+                     <div class="Grid-cell u-md-size1of2 u-lg-size1of2 ">
+
+                        <div class="Form-field">
+                            <label class="Form-label" for="nome">Cognome</label>
+                            <input class="Form-input u-text-r-s u-borderRadius-m" id="Cognome" name="Cognome" value="@Model.Cognome">
+                        </div>
+
+                    </div>
+
+                    <div class="Grid-cell u-md-size1of2 u-lg-size1of2">
+                        <div class="Form-field">
+                            <label class="Form-label is-required" for="ente">Ente</label>
+                            @Html.DropDownListFor(m => m.selectedEnte, Model.ListItemEnti, new { @class = "Form-input u-text-r-s u-borderRadius-m" })
+                        </div>
+                    </div>
+
+                    <div class="Grid-cell u-md-size1of2 u-lg-size1of2">
+                        <div class="Form-field">
+                            <label class="Form-label is-required" for="categoria">Categoria</label>
+                            @Html.DropDownListFor(m => m.selectedTipoSoggetto, Model.ListItemTipoSoggetto, new { @class = "Form-input u-text-r-s u-borderRadius-m" })
+                        </div>
+                    </div>
+
+                    <div class="Grid-cell u-md-size1of2 u-lg-size1of2 ">
+
+                        <div class="Form-field">
+                            <label class="Form-label" for="LegamiFamiliari">Legami familiari</label>
+                             @Html.DropDownListFor(m => m.selectedLegami, Model.ListItemLegami, new { @class = "Form-input u-text-r-s u-borderRadius-m" })
+                        </div>
+
+                    </div>
+                    <div class="Grid-cell u-md-size1of2 u-lg-size1of2 ">
+
+                        <div class="Form-field">
+                            <label class="Form-label" for="LegamiFamiliari">Tipo Polizza</label>
+                             @Html.DropDownListFor(m => m.selectedTipoAdesione, Model.ListItemTipoAdesione, new { @class = "Form-input u-text-r-s u-borderRadius-m" })
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </fieldset>
+
+            <div class="Form-field Grid-cell u-textRight">
+                <button class="Button Button--default Button--shadow u-text-m">CERCA</button>
+            </div>
+        </div>
+    }
+
+    <div id="risultati">
+        @Html.Partial("RisultatiAdesioni", Model.Results)
+    </div>
+
+</div>

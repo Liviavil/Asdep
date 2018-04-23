@@ -118,7 +118,7 @@
     <Property Name="LuogoNascitaAssicurato" Type="varchar" MaxLength="50" />
     <Property Name="DataNascitaAssicurato" Type="datetime" />
     <Property Name="LegameNucleo" Type="varchar" MaxLength="10" />
-    <Property Name="Effetto" Type="datetime" />
+    <Property Name="Effetto" Type="datetime" Nullable="false" />
     <Property Name="IndirizzoResidenza" Type="varchar(max)" />
     <Property Name="LocalitaResidenza" Type="varchar(max)" />
     <Property Name="SiglaProvResidenza" Type="varchar" MaxLength="2" />
@@ -139,6 +139,7 @@
     <Property Name="SecondoNome" Type="varchar" MaxLength="50" />
     <Property Name="Cognome" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="DataNascita" Type="date" Nullable="false" />
+    <Property Name="LuogoNascita" Type="varchar" MaxLength="250" />
     <Property Name="IndirizzoResidenza" Type="nvarchar(max)" />
     <Property Name="ComuneResidenza" Type="varchar" MaxLength="50" />
     <Property Name="SiglaProvinciaResidenza" Type="varchar" MaxLength="5" Nullable="false" />
@@ -211,6 +212,16 @@
     <Property Name="DataAggiornamento" Type="datetime2" Precision="7" />
     <Property Name="CodiceUtente" Type="varchar" MaxLength="16" Nullable="false" />
     <Property Name="CodAppl" Type="varchar" MaxLength="4" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
   <EntityType Name="T_CategoriaAdesione">
     <Key>
@@ -343,6 +354,7 @@
     <Property Name="DataInizio" Type="date" Nullable="false" />
     <Property Name="DataFine" Type="date" Nullable="false" />
     <Property Name="DataAggiornamento" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="Selezionabile" Type="bit" />
     <Property Name="CodiceUtente" Type="varchar" MaxLength="16" Nullable="false" />
     <Property Name="CodAppl" Type="varchar" MaxLength="4" Nullable="false" />
   </EntityType>
@@ -363,7 +375,7 @@
     <Key>
       <PropertyRef Name="IdExport" />
     </Key>
-    <Property Name="IdExport" Type="bigint" Nullable="false" />
+    <Property Name="IdExport" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="NomeFile" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="DataExport" Type="datetime2" Precision="7" Nullable="false" />
     <Property Name="FlagFullExport" Type="char" MaxLength="1" Nullable="false" />
@@ -631,6 +643,7 @@
     <EntitySet Name="Soggetto" EntityType="Self.Soggetto" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="StoricoAdesione" EntityType="Self.StoricoAdesione" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="StoricoSoggetto" EntityType="Self.StoricoSoggetto" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="T_CategoriaAdesione" EntityType="Self.T_CategoriaAdesione" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="T_ErroriIO" EntityType="Self.T_ErroriIO" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="T_LimitiEta" EntityType="Self.T_LimitiEta" Schema="dbo" store:Type="Tables" />

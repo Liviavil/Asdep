@@ -361,18 +361,71 @@ namespace WcfService
         }
 
 
-        public bool InviaAdesioneSoggettiImportati(long id)
+        public bool InviaAdesioneSoggettiImportati(string cf)
         {
+            bool result = true;
             try
             {
                 List<SoggettiImportAppoggioDao> famiglia = new List<SoggettiImportAppoggioDao>();
-                SoggettiImportAppoggioDao _capoNucleo = new SoggettiImportAppoggioDao();
                 AssicuratiService _service = new AssicuratiService();
-                _capoNucleo = _service.GetCapoNucleo(id);
-                famiglia = _service.GetNucleoByCapo(_capoNucleo.CodiceFiscaleCapoNucleo);
-                _service.FormalizzaAdesioneSoggettiImportati(_capoNucleo, famiglia);
+                famiglia = _service.GetNucleoByCapo(cf);
+                _service.FormalizzaAdesioneSoggettiImportati(famiglia);
+            }
+            catch { result = false; }
+
+            return result;
+        }
+
+
+        public List<T_CategoriaAdesioneDao> GetCategorieAdesioni()
+        {
+            List<T_CategoriaAdesioneDao> _cate = new List<T_CategoriaAdesioneDao>();
+            try 
+            {
+                AsdepGestioneAnagraficheBLL.Business.T_CategoriaAdesioneService _service = new T_CategoriaAdesioneService();
+                _cate = _service.GetAll();
             }
             catch { }
+            return _cate;
+                
+        }
+
+
+        public List<T_TipoSoggettoDao> GetTipoSoggetti()
+        {
+            List<T_TipoSoggettoDao> _soggetti = new List<T_TipoSoggettoDao>();
+            try 
+            {
+                T_TipoSoggettoService _service = new T_TipoSoggettoService();
+                _soggetti = _service.GetAll();
+            }
+            catch { }
+            return _soggetti;
+        }
+
+
+        public List<T_TipoAdesioneDao> GetTipoAdesioni()
+        {
+            List<T_TipoAdesioneDao> _soggetti = new List<T_TipoAdesioneDao>();
+            try
+            {
+                T_TipoAdesioneService _service = new T_TipoAdesioneService();
+                _soggetti = _service.GetAllCollettiveSelezionabili();
+            }
+            catch { }
+            return _soggetti;
+        }
+
+        public List<T_TipiLegameDao> GetTipiLegame()
+        {
+            List<T_TipiLegameDao> _soggetti = new List<T_TipiLegameDao>();
+            try
+            {
+                T_TipoLegameService _service = new T_TipoLegameService();
+                _soggetti = _service.GetAll();
+            }
+            catch { }
+            return _soggetti;
         }
     }
 }

@@ -23,7 +23,7 @@ namespace Asdep.Common.DAO
         public string LuogoNascitaAssicurato { get; set; }
         public Nullable<System.DateTime> DataNascitaAssicurato { get; set; }
         public string LegameNucleo { get; set; }
-        public Nullable<System.DateTime> Effetto { get; set; }
+        public System.DateTime Effetto { get; set; }
         public string IndirizzoResidenza { get; set; }
         public string LocalitaResidenza { get; set; }
         public string SiglaProvResidenza { get; set; }

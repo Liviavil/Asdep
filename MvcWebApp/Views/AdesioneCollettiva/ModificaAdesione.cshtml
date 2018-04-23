@@ -1,0 +1,211 @@
+﻿@model MvcWebApp.Models.AdesioneModel
+@{
+    ViewBag.Title = "ModificaAdesione";
+}
+
+<!--form edit 1-->
+@using (Ajax.BeginForm("SalvaAdesione", "AdesioneCollettiva", new AjaxOptions
+  {
+      UpdateTargetId = "risultati",
+      InsertionMode = InsertionMode.Replace,
+      HttpMethod = "POST",
+      OnSuccess="",
+      OnFailure=""
+
+  }))
+{
+<div class="Form Form--spaced u-layout-r-withGutter u-padding-top-xxl u-text-r-xs">
+    <fieldset class="Form-fieldset">
+        <legend class="Form-legend color-primo">Scheda posizione assicurativa ID: 12345678</legend>
+        <section class="Grid Grid--withGutter">
+            <div class="Grid-cell u-md-size1of4 u-lg-size1of4 u-margin-top-l ">
+
+                <div class="Form-field">
+                    <label class="Form-label is-required" for="Cognome">Cognome</label>
+                    <input class="Form-input u-text-r-s u-borderRadius-m" id="Cognome" name="Soggetto.Cognome" aria-required="true" required value ="@Model.Soggetto.Cognome">
+                </div>
+            </div>
+            <div class="Grid-cell u-md-size1of4 u-lg-size1of4 u-margin-top-l">
+                <div class="Form-field">
+                    <label class="Form-label is-required" for="ente">Ente</label>
+                    <select class="Form-input u-text-r-s u-borderRadius-m" id="provincia" aria-required="true" required>
+                        <option disabled selected>seleziona</option>
+                        <option>MO</option>
+                        <option>MI</option>
+                        <option>ME</option>
+                        <option>MB</option>
+                    </select>
+                </div>
+            </div>
+            <div class="Grid-cell u-md-size1of4 u-lg-size1of4 u-margin-top-l">
+                <div>
+                    <label class="Form-label is-required" for="nome">Descrizione legame</label>
+                    <input class="Form-input u-text-r-s u-borderRadius-m" id="descrizione legame" aria-required="true" required>
+                </div>
+            </div>
+            <div class="Grid-cell u-md-size1of4 u-lg-size1of4 u-margin-top-l">
+                <div class="Form-field">
+                    <label class="Form-label is-required" for="DataNascita">Data di nascita</label>
+                    <input class="Form-input u-text-r-s u-borderRadius-m" id="DataNascita" aria-required="true" required name="Soggetto.DataNascita" value="@Model.Soggetto.DataNascita">
+                </div>
+            </div>
+            <div class="Grid-cell u-md-size1of4 u-lg-size1of4">
+                <div class="Form-field">
+                    <label class="Form-label is-required" for="Nome">Nome</label>
+                    <input class="Form-input u-text-r-s u-borderRadius-m" id="Nome" name="Soggetto.Nome" aria-required="true" required value="@Model.Soggetto.Nome">
+                </div>
+            </div>
+            <div class="Grid-cell u-md-size1of4 u-lg-size1of4">
+                <div class="Form-field">
+                    <label class="Form-label is-required" for="CodiceFiscale">Codice fiscale</label>
+                    <input class="Form-input u-text-r-s u-borderRadius-m" id="CodiceFiscale" name="Soggetto.CodiceFiscale" aria-required="true" required value="@Model.Soggetto.CodiceFiscale">
+                </div>
+            </div>
+            <div class="Grid-cell u-md-size1of4 u-lg-size1of4">
+                <div class="Form-field">
+                    <label class="Form-label is-required" for="nome">Luogo di nascita</label>
+                    <input class="Form-input u-text-r-s u-borderRadius-m" id="nascita" aria-required="true" required>
+                </div>
+            </div>
+            <div class="Grid-cell u-md-size1of4 u-lg-size1of4">
+                <div class="Form-field">
+                    <label class="Form-label is-required" for="CFCapoNucleo">CF capo nucleo</label>
+                    <input class="Form-input u-text-r-s u-borderRadius-m" id="CFCapoNucleo" name="CFCapoNucleo" aria-required="true" required value="@Model.CFCapoNucleo">
+                </div>
+            </div>
+        </section>
+    </fieldset>
+</div>
+
+<!--form edit 2-->
+
+<div class="Form Form--spaced u-layout-r-withGutter u-padding-top-xxl u-text-r-xs">
+    <fieldset class="Form-fieldset">
+        <legend class="Form-legend color-primo">Riferimenti assicurato</legend>
+        <section class="Grid Grid--withGutter">
+            <div class="Grid-cell u-md-size1of4 u-lg-size1of4 u-margin-top-l ">
+                <div class="Form-field">
+                    <label class="Form-label is-required" for="IndirizzoResidenza">Residenza</label>
+                    <input class="Form-input u-text-r-s u-borderRadius-m" id="IndirizzoResidenza" name="Soggetto.IndirizzoResidenza" aria-required="true" required value="@Model.Soggetto.IndirizzoResidenza">
+                </div>
+            </div>
+
+            <div class="Grid-cell u-md-size1of4 u-lg-size1of4 u-margin-top-l">
+                <div class="Form-field">
+                    <label class="Form-label is-required" for="SiglaProvinciaResidenza">Provincia</label>
+                    <input class="Form-input u-text-r-s u-borderRadius-m" id="SiglaProvinciaResidenza" name="Soggetto.SiglaProvinciaResidenza" aria-required="true" required value="@Model.Soggetto.SiglaProvinciaResidenza">
+                </div>
+            </div>
+
+            <div class="Grid-cell u-md-size1of4 u-lg-size1of4 u-margin-top-l">
+                <div class="Form-field">
+                    <label class="Form-label is-required" for="IBAN">Iban</label>
+                    <input class="Form-input u-text-r-s u-borderRadius-m" id="IBAN" name="Soggetto.IBAN" aria-required="true" required value="@Model.Soggetto.IBAN">
+                </div>
+            </div>
+
+            <div class="Grid-cell u-md-size1of4 u-lg-size1of4 u-margin-top-l">
+                <div class="Form-field">
+                    <label class="Form-label is-required" for="Telefono">Telefono</label>
+                    <input class="Form-input u-text-r-s u-borderRadius-m" id="Telefono" name="Soggetto.Telefono" aria-required="true" required value="@Model.Soggetto.Telefono">
+                </div>
+            </div>
+
+            @* <div class="Grid-cell u-md-size1of4 u-lg-size1of4">
+                <div class="Form-field">
+                    <label class="Form-label is-required" for="nome">Domicilio</label>
+                    <input class="Form-input u-text-r-s u-borderRadius-m" id="domicilio" aria-required="true" required>
+                </div>
+            </div>*@
+
+            <div class="Grid-cell u-md-size1of4 u-lg-size1of4">
+                <div class="Form-field">
+                    <label class="Form-label is-required" for="CapResidenza">Cap</label>
+                    <input class="Form-input u-text-r-s u-borderRadius-m" id="CapResidenza" name="Soggetto.CapResidenza" aria-required="true" required value="@Model.Soggetto.CapResidenza">
+                </div>
+            </div>
+
+            <div class="Grid-cell u-md-size1of4 u-lg-size1of4">
+                <div class="Form-field">
+                    <label class="Form-label is-required" for="Email">Email</label>
+                    <input class="Form-input u-text-r-s u-borderRadius-m" id="Email" name="Soggetto.Email" aria-required="true" required value="@Model.Soggetto.Email">
+                </div>
+            </div>
+
+            <div class="Grid-cell u-md-size1of4 u-lg-size1of4">
+                <div class="Form-field">
+                    <label class="Form-label is-required" for="Eta">Età</label>
+                    <input class="Form-input u-text-r-s u-borderRadius-m" id="Eta" name="Eta" aria-required="true" required value="@Model.Eta">
+                </div>
+            </div>
+
+        </section>
+
+    </fieldset>
+
+</div>
+
+<!--form edit 3-->
+
+
+<div class="Form Form--spaced u-layout-r-withGutter u-padding-top-xxl u-text-r-xs">
+    <fieldset class="Form-fieldset">
+        <legend class="Form-legend color-primo">Dati lavorazione polizza</legend>
+
+        <section class="Grid Grid--withGutter">
+            <div class="Grid-cell u-md-size1of4 u-lg-size1of4 u-margin-top-l ">
+                <div class="Form-field">
+                    <label class="Form-label is-required" for="DataInizio">Data effetto</label>
+                    <input class="Form-input u-text-r-s u-borderRadius-m" id="DataInizio" name="Adesione.DataInizio" aria-required="true" required value="@Model.Adesione.DataInizio">
+                </div>
+            </div>
+
+            <div class="Grid-cell u-md-size1of4 u-lg-size1of4 u-margin-top-l">
+                <div class="Form-field">
+                    <label class="Form-label is-required" for="DataAggiornamento">Ultimo aggiornamento</label>
+                    <input class="Form-input u-text-r-s u-borderRadius-m" id="DataAggiornamento" name="Adesione.DataAggiornamento" aria-required="true" required value="@Model.Adesione.DataAggiornamento">
+                </div>
+            </div>
+
+            @*<div class="Grid-cell u-md-size1of4 u-lg-size1of4 u-margin-top-l">
+                <div class="Form-field">
+                    <label class="Form-label is-required" for="nome">Premio vita</label>
+                    <input class="Form-input u-text-r-s u-borderRadius-m" id="premio vita" aria-required="true" required>
+                </div>
+            </div>
+
+            <div class="Grid-cell u-md-size1of4 u-lg-size1of4 u-margin-top-l">
+                <div class="Form-field">
+                    <label class="Form-label is-required" for="nome">Premio RSMO</label>
+                    <input class="Form-input u-text-r-s u-borderRadius-m" id="premio-3" aria-required="true" required>
+                </div>
+            </div>
+
+            <div class="Grid-cell u-md-size1of4 u-lg-size1of4">
+                <div class="Form-field">
+                    <label class="Form-label is-required" for="nome">Data inserimento</label>
+                    <input class="Form-input u-text-r-s u-borderRadius-m" id="inserimento" aria-required="true" required>
+                </div>
+            </div>*@
+
+            
+
+           @* <div class="Grid-cell u-md-size1of4 u-lg-size1of4">
+                <div class="Form-field">
+                    <label class="Form-label is-required" for="nome">Premio LTC</label>
+                    <input class="Form-input u-text-r-s u-borderRadius-m" id="premio-ltc" aria-required="true" required>
+                </div>
+            </div>*@
+        </section>
+
+    </fieldset>
+
+    <div class="Form-field Grid-cell u-textRight">
+        <button type="button" class="Button Button--default Button--shadow u-text-m u-margin-all-xs">AZZERA</button>
+        <button class="Button Button--default Button--shadow u-text-m u-margin-all-xs">SALVA</button>
+    </div>
+</div>
+
+
+}
+<!--fine form ricerca-->

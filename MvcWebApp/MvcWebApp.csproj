@@ -183,6 +183,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdesioneCollettivaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\GestioneAnagraficaController.cs" />
     <Compile Include="CustomCode\Extension.cs" />
@@ -193,6 +194,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\AdesioneModel.cs" />
+    <Compile Include="Models\SearchAdesioniModel.cs" />
     <Compile Include="Models\SoggImportAppoggio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -395,6 +398,7 @@
     <Content Include="Scripts\Agid\vendor\selectivizr.js" />
     <Content Include="Scripts\Agid\vendor\slice.js" />
     <Content Include="Scripts\Agid\webfont.js" />
+    <Content Include="Scripts\CustomScript\GestioneAdesioni.js" />
     <Content Include="Scripts\CustomScript\GestioneAnagrafica.js" />
     <Content Include="Scripts\DataTable\dataTableDownload.min.js" />
     <Content Include="Scripts\DataTable\dataTables.editor.js" />
@@ -471,6 +475,12 @@
     <Content Include="Views\GestioneAnagrafica\Carica.cshtml" />
     <Content Include="Views\GestioneAnagrafica\SoggettiImportatiAppoggio.cshtml" />
     <Content Include="Views\GestioneAnagrafica\EditSoggettoImportato.cshtml" />
+    <Content Include="Views\AdesioneCollettiva\Index.cshtml" />
+    <Content Include="Views\AdesioneCollettiva\RisultatiAdesioni.cshtml" />
+    <Content Include="Views\AdesioneCollettiva\ModificaAdesione.cshtml" />
+    <Content Include="Views\AdesioneCollettiva\CreaAdesione.cshtml" />
+    <Content Include="Views\GestioneAnagrafica\CaricaEsclusioni.cshtml" />
+    <Content Include="Views\GestioneAnagrafica\CaricaInclusioni.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

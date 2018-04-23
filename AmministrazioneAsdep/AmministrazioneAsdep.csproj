@@ -80,6 +80,10 @@
     </Compile>
     <Compile Include="DAL\SoggettiProvider.cs" />
     <Compile Include="DAL\TipoLegameProvider.cs" />
+    <Compile Include="DAL\T_CategoriaAdesioneProvider.cs" />
+    <Compile Include="DAL\T_TipoAdesioneProvider.cs" />
+    <Compile Include="DAL\T_TipoLegameProvider.cs" />
+    <Compile Include="DAL\T_TipoSoggettoProvider.cs" />
     <Compile Include="DatiEnte.cs">
       <DependentUpon>AmminstrazioneAsdepDB.tt</DependentUpon>
     </Compile>
@@ -103,6 +107,9 @@
       <DependentUpon>AmminstrazioneAsdepDB.tt</DependentUpon>
     </Compile>
     <Compile Include="StoricoSoggetto.cs">
+      <DependentUpon>AmminstrazioneAsdepDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagrams.cs">
       <DependentUpon>AmminstrazioneAsdepDB.tt</DependentUpon>
     </Compile>
     <Compile Include="TracciaturaExport.cs">

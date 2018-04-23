@@ -15,7 +15,8 @@ namespace MvcWebApp
                        
 
             bundles.Add(new ScriptBundle("~/bundles/custom").Include(
-                        "~/Scripts/CustomScript/GestioneAnagrafica.js"));
+                        "~/Scripts/CustomScript/GestioneAnagrafica.js",
+                        "~/Scripts/CustomScript/GestioneAdesioni.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
                         "~/Scripts/jquery-ui-{version}.js"));
