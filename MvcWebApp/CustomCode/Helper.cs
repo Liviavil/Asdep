@@ -90,7 +90,7 @@ namespace MvcWebApp.CustomCode
             dt.Rows.RemoveAt(0);
             dataSet1.Tables.Add(dt);
             
-            InsertIntoTableAppoggio(dataSet1.Tables[0]);
+            //InsertIntoTableAppoggio(dataSet1.Tables[0]);
             
         }
 
@@ -144,7 +144,7 @@ namespace MvcWebApp.CustomCode
             return dt;
         }
 
-        public int InsertIntoTableAppoggio(DataTable dataset)
+        public int InsertIntoTableAppoggio(DataTable dataset, string TipoTracciato)
         {
             int result = -1;
             List<SoggettiImportAppoggioDao> anagrafiche = new List<SoggettiImportAppoggioDao>();
@@ -156,8 +156,8 @@ namespace MvcWebApp.CustomCode
                 int s;
                 using (HelperService service =  new HelperService ())
                 {
-                    s = service.channel.DeleteAnagraficaByEnte(ente);
-                    s = service.channel.InsertSoggettiAppoggio(anagrafiche);
+                    s = service.channel.DeleteAnagraficaByEnte(ente, TipoTracciato);
+                    s = service.channel.InsertSoggettiAppoggio(anagrafiche, TipoTracciato);
                 }
             }
 

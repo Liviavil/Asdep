@@ -15,6 +15,7 @@ namespace AmministrazioneAsdep
     public partial class Adesione
     {
         public long IdAdesione { get; set; }
+        public long IdEnte { get; set; }
         public string CodTipoAdesione { get; set; }
         public long IdCaponucleo { get; set; }
         public long IdSoggetto { get; set; }
@@ -35,6 +36,7 @@ namespace AmministrazioneAsdep
         public string CodiceUtente { get; set; }
         public string CodAppl { get; set; }
     
+        public virtual Ente Ente { get; set; }
         public virtual Soggetto Soggetto { get; set; }
         public virtual Soggetto Soggetto1 { get; set; }
         public virtual T_StatoAdesione T_StatoAdesione { get; set; }

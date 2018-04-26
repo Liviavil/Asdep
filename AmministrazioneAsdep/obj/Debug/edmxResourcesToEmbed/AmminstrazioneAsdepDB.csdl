@@ -2,6 +2,7 @@
 <Schema Namespace="AmministrazioneAsdepModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityContainer Name="AmministrazioneAsdepEntities" p1:LazyLoadingEnabled="true">
     <EntitySet Name="Adesione" EntityType="AmministrazioneAsdepModel.Adesione" />
+    <EntitySet Name="Comuni" EntityType="AmministrazioneAsdepModel.Comuni" />
     <EntitySet Name="ContribuzioneEnte" EntityType="AmministrazioneAsdepModel.ContribuzioneEnte" />
     <EntitySet Name="DatiEnte" EntityType="AmministrazioneAsdepModel.DatiEnte" />
     <EntitySet Name="Ente" EntityType="AmministrazioneAsdepModel.Ente" />
@@ -23,6 +24,10 @@
     <EntitySet Name="T_TipoAdesione" EntityType="AmministrazioneAsdepModel.T_TipoAdesione" />
     <EntitySet Name="T_TipoSoggetto" EntityType="AmministrazioneAsdepModel.T_TipoSoggetto" />
     <EntitySet Name="TracciaturaExport" EntityType="AmministrazioneAsdepModel.TracciaturaExport" />
+    <AssociationSet Name="FK_Adesione_Ente" Association="AmministrazioneAsdepModel.FK_Adesione_Ente">
+      <End Role="Ente" EntitySet="Ente" />
+      <End Role="Adesione" EntitySet="Adesione" />
+    </AssociationSet>
     <AssociationSet Name="FK_Adesione_Soggetto" Association="AmministrazioneAsdepModel.FK_Adesione_Soggetto">
       <End Role="Soggetto" EntitySet="Soggetto" />
       <End Role="Adesione" EntitySet="Adesione" />
@@ -113,6 +118,7 @@
       <PropertyRef Name="IdAdesione" />
     </Key>
     <Property Name="IdAdesione" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdEnte" Type="Int64" Nullable="false" />
     <Property Name="CodTipoAdesione" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="false" />
     <Property Name="IdCaponucleo" Type="Int64" Nullable="false" />
     <Property Name="IdSoggetto" Type="Int64" Nullable="false" />
@@ -132,12 +138,28 @@
     <Property Name="DataAggiornamento" Type="DateTime" Nullable="false" Precision="7" />
     <Property Name="CodiceUtente" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
     <Property Name="CodAppl" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Ente" Relationship="AmministrazioneAsdepModel.FK_Adesione_Ente" FromRole="Adesione" ToRole="Ente" />
     <NavigationProperty Name="Soggetto" Relationship="AmministrazioneAsdepModel.FK_Adesione_Soggetto" FromRole="Adesione" ToRole="Soggetto" />
     <NavigationProperty Name="Soggetto1" Relationship="AmministrazioneAsdepModel.FK_Adesione_Soggetto_02" FromRole="Adesione" ToRole="Soggetto" />
     <NavigationProperty Name="T_StatoAdesione" Relationship="AmministrazioneAsdepModel.FK_Adesione_StatoAdesione" FromRole="Adesione" ToRole="T_StatoAdesione" />
     <NavigationProperty Name="T_TipiLegame" Relationship="AmministrazioneAsdepModel.FK_Adesione_TipiLegame" FromRole="Adesione" ToRole="T_TipiLegame" />
     <NavigationProperty Name="T_TipoAdesione" Relationship="AmministrazioneAsdepModel.FK_Adesione_TipoAdesione" FromRole="Adesione" ToRole="T_TipoAdesione" />
     <NavigationProperty Name="T_TipoSoggetto" Relationship="AmministrazioneAsdepModel.FK_Adesione_TipoSoggetto" FromRole="Adesione" ToRole="T_TipoSoggetto" />
+  </EntityType>
+  <EntityType Name="Comuni">
+    <Key>
+      <PropertyRef Name="IdComune" />
+    </Key>
+    <Property Name="IdComune" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CodCop" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="DescComune" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="SiglaProvincia" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="FlagEstero" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="DataInizio" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="DataFine" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="DataAggiornamento" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="CodiceUtente" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
+    <Property Name="CodAppl" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="ContribuzioneEnte">
     <Key>
@@ -182,11 +204,16 @@
     <Property Name="Progressivo" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
     <Property Name="RagioneSociale" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="CodiceEnte" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PartitaIVA" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
+    <Property Name="SiglaProvincia" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="pec" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="DataInizio" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="DataFine" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="DataAggiornamento" Type="DateTime" Nullable="false" Precision="7" />
     <Property Name="CodiceUtente" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
     <Property Name="CodAppl" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Adesione" Relationship="AmministrazioneAsdepModel.FK_Adesione_Ente" FromRole="Ente" ToRole="Adesione" />
     <NavigationProperty Name="ContribuzioneEnte" Relationship="AmministrazioneAsdepModel.FK_ContribuzioneEnte_Ente" FromRole="Ente" ToRole="ContribuzioneEnte" />
     <NavigationProperty Name="DatiEnte" Relationship="AmministrazioneAsdepModel.FK_DatiEnte_Ente" FromRole="Ente" ToRole="DatiEnte" />
     <NavigationProperty Name="EnteAppartenenza" Relationship="AmministrazioneAsdepModel.FK_EnteAppartenenza_Ente" FromRole="Ente" ToRole="EnteAppartenenza" />
@@ -250,6 +277,7 @@
     <Property Name="Telefono" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
     <Property Name="DataCessazione" Type="DateTime" Precision="3" />
     <Property Name="Errori" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="TipoTracciato" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="Soggetto">
     <Key>
@@ -490,10 +518,10 @@
     <Property Name="DescTipoAdesione" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="CategoriaAdesione" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
     <Property Name="RifAdesioneCollettiva" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+    <Property Name="FlagSelezione" Type="Boolean" />
     <Property Name="DataInizio" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="DataFine" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="DataAggiornamento" Type="DateTime" Nullable="false" Precision="7" />
-    <Property Name="Selezionabile" Type="Boolean" />
     <Property Name="CodiceUtente" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
     <Property Name="CodAppl" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Adesione" Relationship="AmministrazioneAsdepModel.FK_Adesione_TipoAdesione" FromRole="T_TipoAdesione" ToRole="Adesione" />
@@ -530,6 +558,18 @@
     <Property Name="DataExport" Type="DateTime" Nullable="false" Precision="7" />
     <Property Name="FlagFullExport" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
   </EntityType>
+  <Association Name="FK_Adesione_Ente">
+    <End Type="AmministrazioneAsdepModel.Ente" Role="Ente" Multiplicity="1" />
+    <End Type="AmministrazioneAsdepModel.Adesione" Role="Adesione" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ente">
+        <PropertyRef Name="IdEnte" />
+      </Principal>
+      <Dependent Role="Adesione">
+        <PropertyRef Name="IdEnte" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Adesione_Soggetto">
     <End Type="AmministrazioneAsdepModel.Soggetto" Role="Soggetto" Multiplicity="1" />
     <End Type="AmministrazioneAsdepModel.Adesione" Role="Adesione" Multiplicity="*" />

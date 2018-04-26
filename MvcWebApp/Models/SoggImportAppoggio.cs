@@ -44,6 +44,9 @@ namespace MvcWebApp.Models
         public string selectedId { get; set; }
         public SelectList ListItemEnti { get; set; }
         public string NumPage { get; set; }
+
+        public SelectList ListTracciati { get; set; }
+        public string selectedTracciato { get; set; }
     }
 
     public class ErrorsList

@@ -13,6 +13,10 @@ namespace Asdep.Common.DAO
         public string Progressivo { get; set; }
         public string RagioneSociale { get; set; }
         public string CodiceEnte { get; set; }
+        public string PartitaIVA { get; set; }
+        public string SiglaProvincia { get; set; }
+        public string email { get; set; }
+        public string pec { get; set; }
         public System.DateTime DataInizio { get; set; }
         public System.DateTime DataFine { get; set; }
         public System.DateTime DataAggiornamento { get; set; }

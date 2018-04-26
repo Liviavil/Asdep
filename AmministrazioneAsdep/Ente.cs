@@ -16,6 +16,7 @@ namespace AmministrazioneAsdep
     {
         public Ente()
         {
+            this.Adesione = new HashSet<Adesione>();
             this.ContribuzioneEnte = new HashSet<ContribuzioneEnte>();
             this.EnteAppartenenza = new HashSet<EnteAppartenenza>();
         }
@@ -25,12 +26,17 @@ namespace AmministrazioneAsdep
         public string Progressivo { get; set; }
         public string RagioneSociale { get; set; }
         public string CodiceEnte { get; set; }
+        public string PartitaIVA { get; set; }
+        public string SiglaProvincia { get; set; }
+        public string email { get; set; }
+        public string pec { get; set; }
         public System.DateTime DataInizio { get; set; }
         public System.DateTime DataFine { get; set; }
         public System.DateTime DataAggiornamento { get; set; }
         public string CodiceUtente { get; set; }
         public string CodAppl { get; set; }
     
+        public virtual ICollection<Adesione> Adesione { get; set; }
         public virtual ICollection<ContribuzioneEnte> ContribuzioneEnte { get; set; }
         public virtual DatiEnte DatiEnte { get; set; }
         public virtual ICollection<EnteAppartenenza> EnteAppartenenza { get; set; }

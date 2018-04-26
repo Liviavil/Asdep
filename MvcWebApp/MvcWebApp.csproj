@@ -427,6 +427,9 @@
     <Content Include="Scripts\knockout-2.1.0.debug.js" />
     <Content Include="Scripts\knockout-2.1.0.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Views\GestioneAnagrafica\EditSoggettoImportato.cshtml">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -473,8 +476,6 @@
     <Content Include="Views\GestioneAnagrafica\Index.cshtml" />
     <Content Include="Views\GestioneAnagrafica\RisultatiSoggettiImportati.cshtml" />
     <Content Include="Views\GestioneAnagrafica\Carica.cshtml" />
-    <Content Include="Views\GestioneAnagrafica\SoggettiImportatiAppoggio.cshtml" />
-    <Content Include="Views\GestioneAnagrafica\EditSoggettoImportato.cshtml" />
     <Content Include="Views\AdesioneCollettiva\Index.cshtml" />
     <Content Include="Views\AdesioneCollettiva\RisultatiAdesioni.cshtml" />
     <Content Include="Views\AdesioneCollettiva\ModificaAdesione.cshtml" />

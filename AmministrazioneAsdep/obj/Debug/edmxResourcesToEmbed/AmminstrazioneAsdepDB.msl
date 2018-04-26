@@ -23,7 +23,24 @@
           <ScalarProperty Name="IdSoggetto" ColumnName="IdSoggetto" />
           <ScalarProperty Name="IdCaponucleo" ColumnName="IdCaponucleo" />
           <ScalarProperty Name="CodTipoAdesione" ColumnName="CodTipoAdesione" />
+          <ScalarProperty Name="IdEnte" ColumnName="IdEnte" />
           <ScalarProperty Name="IdAdesione" ColumnName="IdAdesione" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Comuni">
+      <EntityTypeMapping TypeName="AmministrazioneAsdepModel.Comuni">
+        <MappingFragment StoreEntitySet="Comuni">
+          <ScalarProperty Name="CodAppl" ColumnName="CodAppl" />
+          <ScalarProperty Name="CodiceUtente" ColumnName="CodiceUtente" />
+          <ScalarProperty Name="DataAggiornamento" ColumnName="DataAggiornamento" />
+          <ScalarProperty Name="DataFine" ColumnName="DataFine" />
+          <ScalarProperty Name="DataInizio" ColumnName="DataInizio" />
+          <ScalarProperty Name="FlagEstero" ColumnName="FlagEstero" />
+          <ScalarProperty Name="SiglaProvincia" ColumnName="SiglaProvincia" />
+          <ScalarProperty Name="DescComune" ColumnName="DescComune" />
+          <ScalarProperty Name="CodCop" ColumnName="CodCop" />
+          <ScalarProperty Name="IdComune" ColumnName="IdComune" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -66,6 +83,10 @@
           <ScalarProperty Name="DataAggiornamento" ColumnName="DataAggiornamento" />
           <ScalarProperty Name="DataFine" ColumnName="DataFine" />
           <ScalarProperty Name="DataInizio" ColumnName="DataInizio" />
+          <ScalarProperty Name="pec" ColumnName="pec" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="SiglaProvincia" ColumnName="SiglaProvincia" />
+          <ScalarProperty Name="PartitaIVA" ColumnName="PartitaIVA" />
           <ScalarProperty Name="CodiceEnte" ColumnName="CodiceEnte" />
           <ScalarProperty Name="RagioneSociale" ColumnName="RagioneSociale" />
           <ScalarProperty Name="Progressivo" ColumnName="Progressivo" />
@@ -105,6 +126,7 @@
     <EntitySetMapping Name="SoggettiImportAppoggio">
       <EntityTypeMapping TypeName="AmministrazioneAsdepModel.SoggettiImportAppoggio">
         <MappingFragment StoreEntitySet="SoggettiImportAppoggio">
+          <ScalarProperty Name="TipoTracciato" ColumnName="TipoTracciato" />
           <ScalarProperty Name="Errori" ColumnName="Errori" />
           <ScalarProperty Name="DataCessazione" ColumnName="DataCessazione" />
           <ScalarProperty Name="Telefono" ColumnName="Telefono" />
@@ -357,10 +379,10 @@
         <MappingFragment StoreEntitySet="T_TipoAdesione">
           <ScalarProperty Name="CodAppl" ColumnName="CodAppl" />
           <ScalarProperty Name="CodiceUtente" ColumnName="CodiceUtente" />
-          <ScalarProperty Name="Selezionabile" ColumnName="Selezionabile" />
           <ScalarProperty Name="DataAggiornamento" ColumnName="DataAggiornamento" />
           <ScalarProperty Name="DataFine" ColumnName="DataFine" />
           <ScalarProperty Name="DataInizio" ColumnName="DataInizio" />
+          <ScalarProperty Name="FlagSelezione" ColumnName="FlagSelezione" />
           <ScalarProperty Name="RifAdesioneCollettiva" ColumnName="RifAdesioneCollettiva" />
           <ScalarProperty Name="CategoriaAdesione" ColumnName="CategoriaAdesione" />
           <ScalarProperty Name="DescTipoAdesione" ColumnName="DescTipoAdesione" />

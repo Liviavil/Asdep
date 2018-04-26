@@ -38,5 +38,6 @@ namespace AmministrazioneAsdep
         public string Telefono { get; set; }
         public Nullable<System.DateTime> DataCessazione { get; set; }
         public string Errori { get; set; }
+        public string TipoTracciato { get; set; }
     }
 }

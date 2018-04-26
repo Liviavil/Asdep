@@ -53,10 +53,10 @@ namespace AsdepGestioneAnagraficheBLL.Business
             throw new NotImplementedException();
         }
 
-        public List<T_ErroriIODao> ValidaAdesioneCollettiva(SoggettiImportAppoggioDao sogg)
+        public List<T_ErroriIODao> ValidaAdesioneCollettiva(SoggettiImportAppoggioDao sogg, string tipoTracciato)
         {
             List<T_ErroriIODao> errori = new List<T_ErroriIODao>();
-
+            
             //IValida _validazione = new ValidaIban();
             //errori.Add(_validazione.Esegui(sogg.Iban));
             IValida _validazione = new ValidaEnte();
@@ -83,6 +83,19 @@ namespace AsdepGestioneAnagraficheBLL.Business
             errori.Add(_validazioneEff.Esegui(sogg.Effetto, sogg.Ente));
             ValidaDataNascita _validazioneData = new ValidaDataNascita();
             errori.Add(_validazioneData.Esegui(sogg.CodiceFiscaleAssicurato, sogg.DataNascitaAssicurato));
+            _validazione = new ValidaSiglaProv();
+            errori.Add(_validazione.Esegui(sogg.SiglaProvResidenza));
+
+            if (tipoTracciato.Equals("Esclusioni")) 
+            {
+                _validazione = new ValidaDataCessazione();
+                  errori.Add(_validazione.Esegui(sogg.DataCessazione.ToString()));
+            }
+            if (tipoTracciato.Equals("Inclusioni"))
+            {
+                ValidaCongruenzaPolizza _val = new ValidaCongruenzaPolizza();
+                errori.Add(_val.Esegui(sogg.NumeroPolizza, sogg.Ente));
+            }
 
             return errori.Where(e => e.DescErrore != null).ToList();
             #region old
@@ -106,6 +119,36 @@ namespace AsdepGestioneAnagraficheBLL.Business
 
             //return errori; 
             #endregion
+        }
+
+        public List<T_ErroriIODao> ValidaAdesioneCollettiva(AdesioneDao adesione)
+        {
+            List<T_ErroriIODao> errori = new List<T_ErroriIODao>();
+
+            //IValida _validazione = new ValidaIban();
+            //errori.Add(_validazione.Esegui(sogg.Iban));
+           
+            IValida _validazione = new ValidaCFAssic();
+            errori.Add(_validazione.Esegui(adesione.Soggetto.CodiceFiscale));
+            _validazione = new ValidaCFCapoNucleo();
+            errori.Add(_validazione.Esegui(adesione.Soggetto1.CodiceFiscale));
+            ValidaEta _val = new ValidaEta();
+            errori.Add(_val.Esegui(adesione.Eta, adesione.CodTipoAdesione, adesione.CodTipoSoggetto, adesione.CodLegame));
+            ValidaNome _validazioneNome = new ValidaNome();
+            errori.Add(_validazioneNome.Esegui(adesione.Soggetto.CodiceFiscale, adesione.Soggetto.Nome));
+            ValidaCognome _validazioneCogn = new ValidaCognome();
+            errori.Add(_validazioneCogn.Esegui(adesione.Soggetto.CodiceFiscale, adesione.Soggetto.Cognome));
+            ValidaEffetto _validazioneEff = new ValidaEffetto();
+            errori.Add(_validazioneEff.Esegui(adesione.DataInizio, adesione.Ente.CodiceEnte));
+            ValidaDataNascita _validazioneData = new ValidaDataNascita();
+            errori.Add(_validazioneData.Esegui(adesione.Soggetto.CodiceFiscale, adesione.Soggetto.DataNascita));
+            _validazione = new ValidaSiglaProv();
+            errori.Add(_validazione.Esegui(adesione.Soggetto.SiglaProvinciaResidenza));
+            EsisteSoggCN _val1 = new EsisteSoggCN();
+            errori.Add(_val1.Esegui(adesione.Soggetto.CodiceFiscale, adesione.Soggetto1.CodiceFiscale));
+
+            return errori.Where(e => e.DescErrore != null).ToList();
+            
         }
     }
 }

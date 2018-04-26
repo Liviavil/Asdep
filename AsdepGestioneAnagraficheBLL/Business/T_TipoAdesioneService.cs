@@ -66,5 +66,12 @@ namespace AsdepGestioneAnagraficheBLL.Business
         {
             throw new NotImplementedException();
         }
+
+        public bool CongruenzaEntePolizza(string adesione, string ente) 
+        {
+            bool result = false;
+            result = provider.CongruenzaEntePolizza(db, adesione, ente);
+            return result;
+        }
     }
 }

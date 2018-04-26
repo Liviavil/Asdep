@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdesioneDao.cs" />
+    <Compile Include="ComuniDao.cs" />
     <Compile Include="ContribuzioneEnteDao.cs" />
     <Compile Include="EnteAppartenenzaDao.cs" />
     <Compile Include="EnteDao.cs" />
@@ -47,6 +48,8 @@
     <Compile Include="ExtraDao\Attribute.cs" />
     <Compile Include="ExtraDao\Common.cs" />
     <Compile Include="ExtraDao\IValida.cs" />
+    <Compile Include="T_LimitiEtaDao.cs" />
+    <Compile Include="T_StatoAdesioneDao.cs" />
     <Compile Include="T_TipoAdesioneDao.cs" />
     <Compile Include="T_CategoriaAdesioneDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

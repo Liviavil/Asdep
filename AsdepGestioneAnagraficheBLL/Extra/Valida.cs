@@ -114,7 +114,12 @@ namespace AsdepGestioneAnagraficheBLL.Extra
     {
         public Asdep.Common.DAO.T_ErroriIODao Esegui(string valore)
         {
-            throw new NotImplementedException();
+            if (string.IsNullOrEmpty(valore)) 
+            {
+                ErroriIOService _service = new ErroriIOService();
+                Errore = _service.GetById("024");
+            }
+            return Errore;
         }
     }
 
@@ -154,12 +159,43 @@ namespace AsdepGestioneAnagraficheBLL.Extra
             throw new NotImplementedException();
         }
     }
-
-    public class ValidaSiglaProv : Valida, IValida
+    public class ValidaCongruenzaPolizza : Valida, IValida 
     {
-        public Asdep.Common.DAO.T_ErroriIODao Esegui(string valore)
+        public Asdep.Common.DAO.T_ErroriIODao Esegui(string adesione, string ente)
+        {
+            T_TipoAdesioneService service = new T_TipoAdesioneService();
+            if (service.CongruenzaEntePolizza(adesione, ente))
+            {
+                ErroriIOService _service = new ErroriIOService();
+                Errore = _service.GetById("025");
+            }
+
+            return Errore;
+        }
+
+        public T_ErroriIODao Esegui(string valore)
         {
             throw new NotImplementedException();
+        }
+    }
+    public class ValidaSiglaProv : Valida, IValida
+    {
+        public T_ErroriIODao Esegui(string valore)
+        {
+            if (string.IsNullOrEmpty(valore))
+            {
+                ErroriIOService _serviceE = new ErroriIOService();
+                Errore = _serviceE.GetById("018");
+            }
+            ComuniService _service = new ComuniService();
+
+            if (_service.FindSiglaProvincia(valore))
+            {
+                ErroriIOService _serviceE = new ErroriIOService();
+                Errore = _serviceE.GetById("026");
+            }
+            
+            return Errore;
         }
     }
     public class ValidaLocResid : Valida, IValida
@@ -353,7 +389,25 @@ namespace AsdepGestioneAnagraficheBLL.Extra
             return Errore;
         }
     }
-
+    public class ValidaSoggettoEsistente : Valida, IValida 
+    {
+        public T_ErroriIODao Esegui(string valore)
+        {
+            try 
+            {
+                SoggettoDao _sogg = new SoggettoDao();
+                SoggettoService _service = new SoggettoService();
+                _sogg = _service.GetByCF(valore);
+                if (_sogg != null && _sogg.CodiceFiscale == null) 
+                {
+                    ErroriIOService _serviceE = new ErroriIOService();
+                    Errore = _serviceE.GetById("023");
+                }
+            }
+            catch { }
+            return Errore;
+        }
+    }
     public class ValidaCapoNucleo : Valida, IValida 
     {
         public T_ErroriIODao Esegui(string cfcn, string cfca)
@@ -379,6 +433,64 @@ namespace AsdepGestioneAnagraficheBLL.Extra
                 }
             }
 
+            return Errore;
+        }
+
+        public T_ErroriIODao Esegui(string valore)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class EsisteSoggCN : Valida, IValida
+    {
+        public T_ErroriIODao Esegui(string valore)
+        {
+            throw new NotImplementedException();
+        }
+        /// <summary>
+        /// Cerca soggetto capo nucleo
+        /// </summary>
+        /// <param name="cfcn">Codice fiscale capo nucleo</param>
+        /// <param name="cfca">Codice fiscale assicurato</param>
+        /// <returns></returns>
+        public T_ErroriIODao Esegui(string cfcn, string cfca)
+        {
+            //caso in cui soggetto.codicefiscaleassicurato = soggetto.codicefiscalecaponucleo
+            //allora ho già trovato il caponucleo
+
+            if (cfcn.Equals(cfca))
+                return Errore;
+
+
+            //caso in cui codicefiscaleassicurato e codicefiscale caponucleo siano diversi
+            //devo cercare un soggetto per cui cfcn e cfca coincidano
+
+            else
+            {
+                SoggettoService _service = new SoggettoService();
+                SoggettoDao cn = _service.SelectCNByCF(cfcn);
+                if (cn == null)
+                {
+                    ErroriIOService _serviceE = new ErroriIOService();
+                    Errore = _serviceE.GetById("001");
+                }
+            }
+
+            return Errore;
+        }
+    }
+
+    public class ValidaEta : Valida, IValida 
+    {
+        public T_ErroriIODao Esegui(int eta, string codTipoAdesione, string codSogg, string codLegame)
+        {
+            T_LimitiEtaService service = new T_LimitiEtaService();
+            if(!service.EtaValida(eta,codTipoAdesione,codSogg,codLegame))
+            {
+                ErroriIOService _service = new ErroriIOService();
+                Errore = _service.GetById("027");
+            }
             return Errore;
         }
 

@@ -15,7 +15,7 @@ namespace AmministrazioneAsdep.DAL
             try 
             {
                 _tipi = (from TipoAdesioneTable in db.T_TipoAdesione
-                         where TipoAdesioneTable.CategoriaAdesione.Equals("AC") && TipoAdesioneTable.Selezionabile == true
+                         where TipoAdesioneTable.FlagSelezione == true
                          select TipoAdesioneTable).ToList();
             }
             catch { }
@@ -60,6 +60,19 @@ namespace AmministrazioneAsdep.DAL
         public int DeleteMany(AmministrazioneAsdepEntities db, List<T_TipoAdesione> objs)
         {
             throw new NotImplementedException();
+        }
+
+        public bool CongruenzaEntePolizza(AmministrazioneAsdepEntities db, string descAdesione, string ente) 
+        {
+            bool result = false;
+            string polizza = (from ContrEnteTable in db.ContribuzioneEnte
+                              join
+                                  AdesioneTable in db.T_TipoAdesione on ContrEnteTable.CodTipoAdesione equals AdesioneTable.CodTipoAdesione
+                              where ContrEnteTable.Ente.CodiceEnte.Equals(ente)
+                              select AdesioneTable.DescBreve).FirstOrDefault().ToString();
+            if (polizza.Equals(descAdesione))
+                result = true;
+            return result;
         }
     }
 }

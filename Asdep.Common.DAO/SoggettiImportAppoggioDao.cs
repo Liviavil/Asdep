@@ -32,8 +32,10 @@ namespace Asdep.Common.DAO
         public string Email { get; set; }
         public string Telefono { get; set; }
         public Nullable<System.DateTime> DataCessazione { get; set; }
+        public string Errori { get; set; }
+        public string TipoTracciato { get; set; }
 
-        public List<T_ErroriIODao> Errori { get; set; }
+        public List<Asdep.Common.DAO.T_ErroriIODao> ErroriList { get; set; }
         public bool AllWarnings { get; set; }
 
         

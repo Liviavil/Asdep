@@ -46,11 +46,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Business\AdesioneService.cs" />
     <Compile Include="Business\AssicuratiService.cs" />
+    <Compile Include="Business\ComuniService.cs" />
     <Compile Include="Business\ContribuzioneEnteService.cs" />
     <Compile Include="Business\EnteService.cs" />
     <Compile Include="Business\ErroriIOService.cs" />
+    <Compile Include="Business\SoggettoService.cs" />
     <Compile Include="Business\T_CategoriaAdesioneService.cs" />
+    <Compile Include="Business\T_LimitiEtaService.cs" />
     <Compile Include="Business\T_TipoAdesioneService.cs" />
     <Compile Include="Business\T_TipoLegameService.cs" />
     <Compile Include="Business\T_TipoSoggettoService.cs" />

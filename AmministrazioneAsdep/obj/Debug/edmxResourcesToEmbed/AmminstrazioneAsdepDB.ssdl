@@ -5,6 +5,7 @@
       <PropertyRef Name="IdAdesione" />
     </Key>
     <Property Name="IdAdesione" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdEnte" Type="bigint" Nullable="false" />
     <Property Name="CodTipoAdesione" Type="char" MaxLength="3" Nullable="false" />
     <Property Name="IdCaponucleo" Type="bigint" Nullable="false" />
     <Property Name="IdSoggetto" Type="bigint" Nullable="false" />
@@ -19,6 +20,21 @@
     <Property Name="AnnoDecorrenza" Type="tinyint" Nullable="false" />
     <Property Name="AnnoScadenza" Type="tinyint" Nullable="false" />
     <Property Name="DataCessazione" Type="date" Nullable="false" />
+    <Property Name="DataInizio" Type="date" Nullable="false" />
+    <Property Name="DataFine" Type="date" Nullable="false" />
+    <Property Name="DataAggiornamento" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="CodiceUtente" Type="varchar" MaxLength="16" Nullable="false" />
+    <Property Name="CodAppl" Type="varchar" MaxLength="4" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Comuni">
+    <Key>
+      <PropertyRef Name="IdComune" />
+    </Key>
+    <Property Name="IdComune" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CodCop" Type="varchar" MaxLength="4" Nullable="false" />
+    <Property Name="DescComune" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="SiglaProvincia" Type="varchar" MaxLength="2" />
+    <Property Name="FlagEstero" Type="char" MaxLength="1" Nullable="false" />
     <Property Name="DataInizio" Type="date" Nullable="false" />
     <Property Name="DataFine" Type="date" Nullable="false" />
     <Property Name="DataAggiornamento" Type="datetime2" Precision="7" Nullable="false" />
@@ -65,6 +81,10 @@
     <Property Name="Progressivo" Type="char" MaxLength="5" Nullable="false" />
     <Property Name="RagioneSociale" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="CodiceEnte" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="PartitaIVA" Type="char" MaxLength="11" />
+    <Property Name="SiglaProvincia" Type="char" MaxLength="2" />
+    <Property Name="email" Type="nvarchar" MaxLength="100" />
+    <Property Name="pec" Type="nvarchar" MaxLength="100" />
     <Property Name="DataInizio" Type="date" Nullable="false" />
     <Property Name="DataFine" Type="date" Nullable="false" />
     <Property Name="DataAggiornamento" Type="datetime2" Precision="7" Nullable="false" />
@@ -128,6 +148,7 @@
     <Property Name="Telefono" Type="varchar" MaxLength="15" />
     <Property Name="DataCessazione" Type="datetime" />
     <Property Name="Errori" Type="nvarchar" MaxLength="250" />
+    <Property Name="TipoTracciato" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="Soggetto">
     <Key>
@@ -351,10 +372,10 @@
     <Property Name="DescTipoAdesione" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="CategoriaAdesione" Type="char" MaxLength="2" Nullable="false" />
     <Property Name="RifAdesioneCollettiva" Type="char" MaxLength="3" />
+    <Property Name="FlagSelezione" Type="bit" />
     <Property Name="DataInizio" Type="date" Nullable="false" />
     <Property Name="DataFine" Type="date" Nullable="false" />
     <Property Name="DataAggiornamento" Type="datetime2" Precision="7" Nullable="false" />
-    <Property Name="Selezionabile" Type="bit" />
     <Property Name="CodiceUtente" Type="varchar" MaxLength="16" Nullable="false" />
     <Property Name="CodAppl" Type="varchar" MaxLength="4" Nullable="false" />
   </EntityType>
@@ -380,6 +401,18 @@
     <Property Name="DataExport" Type="datetime2" Precision="7" Nullable="false" />
     <Property Name="FlagFullExport" Type="char" MaxLength="1" Nullable="false" />
   </EntityType>
+  <Association Name="FK_Adesione_Ente">
+    <End Role="Ente" Type="Self.Ente" Multiplicity="1" />
+    <End Role="Adesione" Type="Self.Adesione" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ente">
+        <PropertyRef Name="IdEnte" />
+      </Principal>
+      <Dependent Role="Adesione">
+        <PropertyRef Name="IdEnte" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Adesione_Soggetto">
     <End Role="Soggetto" Type="Self.Soggetto" Multiplicity="1" />
     <End Role="Adesione" Type="Self.Adesione" Multiplicity="*" />
@@ -634,6 +667,7 @@
   </Association>
   <EntityContainer Name="AmministrazioneAsdepModelStoreContainer">
     <EntitySet Name="Adesione" EntityType="Self.Adesione" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Comuni" EntityType="Self.Comuni" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ContribuzioneEnte" EntityType="Self.ContribuzioneEnte" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DatiEnte" EntityType="Self.DatiEnte" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Ente" EntityType="Self.Ente" Schema="dbo" store:Type="Tables" />
@@ -655,6 +689,10 @@
     <EntitySet Name="T_TipoAdesione" EntityType="Self.T_TipoAdesione" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="T_TipoSoggetto" EntityType="Self.T_TipoSoggetto" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TracciaturaExport" EntityType="Self.TracciaturaExport" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Adesione_Ente" Association="Self.FK_Adesione_Ente">
+      <End Role="Ente" EntitySet="Ente" />
+      <End Role="Adesione" EntitySet="Adesione" />
+    </AssociationSet>
     <AssociationSet Name="FK_Adesione_Soggetto" Association="Self.FK_Adesione_Soggetto">
       <End Role="Soggetto" EntitySet="Soggetto" />
       <End Role="Adesione" EntitySet="Adesione" />

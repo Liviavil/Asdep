@@ -48,7 +48,7 @@ namespace AsdepGestioneAnagraficheBLL.Business
             return lst;
         }
 
-        public int AddMany(List<SoggettiImportAppoggioDao> _assicurati)
+        public int AddMany(List<SoggettiImportAppoggioDao> _assicurati, string tipoTracciato)
         {
             int result = -1;
             try
@@ -88,6 +88,7 @@ namespace AsdepGestioneAnagraficheBLL.Business
                         #endregion
                         SoggettiImportAppoggio _sogg = new SoggettiImportAppoggio();
                         Asdep.Common.DAO.ExtraDao.PropertyCopier<SoggettiImportAppoggioDao, SoggettiImportAppoggio>.Copy(_assBL, _sogg);
+                        _sogg.TipoTracciato = tipoTracciato;
                         assToAdd.Add(_sogg);
                     }
                 }
@@ -140,7 +141,7 @@ namespace AsdepGestioneAnagraficheBLL.Business
             return result;
         }
 
-        public List<SoggettiImportAppoggioDao> GetByEnte(string ente)
+        public List<SoggettiImportAppoggioDao> GetByEnte(string ente, string tipoTracciato)
         {
             List<SoggettiImportAppoggioDao> _soggettiBL = new List<SoggettiImportAppoggioDao>();
             List<SoggettiImportAppoggio> _soggettiOrigin = new List<SoggettiImportAppoggio>();
@@ -148,7 +149,7 @@ namespace AsdepGestioneAnagraficheBLL.Business
 
             using (db = new AmministrazioneAsdepEntities())
             {
-                _soggettiOrigin = provider.GetByEnte(db, ente);
+                _soggettiOrigin = provider.GetByEnte(db, ente, tipoTracciato);
             }
 
             foreach (SoggettiImportAppoggio _soggetto in _soggettiOrigin)
@@ -188,8 +189,8 @@ namespace AsdepGestioneAnagraficheBLL.Business
                 Asdep.Common.DAO.ExtraDao.PropertyCopier<SoggettiImportAppoggio, SoggettiImportAppoggioDao>.Copy(_soggetto, _soggBL);
 
                 List<T_ErroriIODao> erroriList = new List<T_ErroriIODao>();
-                string [] errori = _soggetto.Errori!=null? _soggetto.Errori.Split(',') : new string[0];
-                foreach (string _e in errori) 
+                string[] errori = _soggetto.Errori != null ? _soggetto.Errori.Split(',') : new string[0];
+                foreach (string _e in errori)
                 {
                     if (!string.IsNullOrEmpty(_e))
                     {
@@ -199,7 +200,7 @@ namespace AsdepGestioneAnagraficheBLL.Business
                         erroriList.Add(newErrore);
                     }
                 }
-                _soggBL.Errori = erroriList;//ValidaAdesioneCollettiva(_soggBL).Where(x => x.Exist == true).ToList();
+                _soggBL.ErroriList = erroriList;//ValidaAdesioneCollettiva(_soggBL).Where(x => x.Exist == true).ToList();
 
                 _soggettiBL.Add(_soggBL);
             }
@@ -295,12 +296,12 @@ namespace AsdepGestioneAnagraficheBLL.Business
             return result;
         }
 
-        public int DeleteByEnte(string ente)
+        public int DeleteByEnte(string ente, string tipoTracciato)
         {
             int result = -1;
             using (db = new AmministrazioneAsdepEntities())
             {
-                result = provider.DeleteByEnte(db, ente);
+                result = provider.DeleteByEnte(db, ente, tipoTracciato);
             }
 
             return result;
@@ -330,23 +331,23 @@ namespace AsdepGestioneAnagraficheBLL.Business
             {
                 err += e.CodTipoErrore + ",";
             }
-            if(!string.IsNullOrEmpty(err))
-                err = err.Remove(err.Length-1);
+            if (!string.IsNullOrEmpty(err))
+                err = err.Remove(err.Length - 1);
             _soggBL.Errori = err;
 
             provider.Update(db, _soggBL, err);
 
         }
 
-        public SoggettiImportAppoggioDao SelectById(long id) 
+        public SoggettiImportAppoggioDao SelectById(long id)
         {
             SoggettiImportAppoggio _sogg = new SoggettiImportAppoggio();
             SoggettiImportAppoggioDao _soggDao = new SoggettiImportAppoggioDao();
-            try 
+            try
             {
-                using (db=new AmministrazioneAsdepEntities ())
+                using (db = new AmministrazioneAsdepEntities())
                 {
-                   _sogg =  provider.SelectById(db, id);
+                    _sogg = provider.SelectById(db, id);
                 }
                 Asdep.Common.DAO.ExtraDao.PropertyCopier<SoggettiImportAppoggio, SoggettiImportAppoggioDao>.Copy(_sogg, _soggDao);
 
@@ -362,32 +363,32 @@ namespace AsdepGestioneAnagraficheBLL.Business
                         erroriList.Add(newErrore);
                     }
                 }
-                _soggDao.Errori = erroriList;//ValidaAdesioneCollettiva(_soggBL).Where(x => x.Exist == true).ToList();
-                
+                _soggDao.ErroriList = erroriList;//ValidaAdesioneCollettiva(_soggBL).Where(x => x.Exist == true).ToList();
+
             }
-            catch{}
+            catch { }
             return _soggDao;
         }
 
-        public SoggettiImportAppoggioDao GetCapoNucleo(long id) 
+        public SoggettiImportAppoggioDao GetCapoNucleo(long id)
         {
             List<SoggettiImportAppoggioDao> famiglia = new List<SoggettiImportAppoggioDao>();
             SoggettiImportAppoggioDao _capoNucleo = SelectById(id);
-            if(_capoNucleo.CodiceFiscaleCapoNucleo.Equals(_capoNucleo.CodiceFiscaleAssicurato))
+            if (_capoNucleo.CodiceFiscaleCapoNucleo.Equals(_capoNucleo.CodiceFiscaleAssicurato))
                 return _capoNucleo;
             return null;
-            
+
         }
 
         public List<SoggettiImportAppoggioDao> GetNucleoByCapo(string codiceFiscaleCN)
         {
             List<SoggettiImportAppoggioDao> nucleo = new List<SoggettiImportAppoggioDao>();
             List<SoggettiImportAppoggio> _soggettiImport = new List<SoggettiImportAppoggio>();
-            try 
+            try
             {
-                _soggettiImport = provider.GetNucleoByCN(db,codiceFiscaleCN);
+                _soggettiImport = provider.GetNucleoByCN(db, codiceFiscaleCN);
 
-                foreach (SoggettiImportAppoggio _s in _soggettiImport) 
+                foreach (SoggettiImportAppoggio _s in _soggettiImport)
                 {
                     SoggettiImportAppoggioDao _sDao = new SoggettiImportAppoggioDao();
                     Asdep.Common.DAO.ExtraDao.PropertyCopier<SoggettiImportAppoggio, SoggettiImportAppoggioDao>.Copy(_s, _sDao);
@@ -400,11 +401,11 @@ namespace AsdepGestioneAnagraficheBLL.Business
 
         public void FormalizzaAdesioneSoggettiImportati(List<SoggettiImportAppoggioDao> famiglia)
         {
-            try 
+            try
             {
 
                 List<SoggettiImportAppoggio> _nucleo = new List<SoggettiImportAppoggio>();
-                foreach (SoggettiImportAppoggioDao _sdao in famiglia) 
+                foreach (SoggettiImportAppoggioDao _sdao in famiglia)
                 {
                     SoggettiImportAppoggio _s = new SoggettiImportAppoggio();
                     Asdep.Common.DAO.ExtraDao.PropertyCopier<SoggettiImportAppoggioDao, SoggettiImportAppoggio>.Copy(_sdao, _s);
@@ -412,6 +413,50 @@ namespace AsdepGestioneAnagraficheBLL.Business
                 }
 
                 provider.FormalizzaAdesione(db, _nucleo);
+            }
+            catch { }
+        }
+
+
+        public int AddMany(List<SoggettiImportAppoggioDao> obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public SoggettiImportAppoggioDao GetByCodiceFiscale(string cf)
+        {
+            SoggettiImportAppoggioDao _dao = new SoggettiImportAppoggioDao();
+            SoggettiImportAppoggio _sogg = new SoggettiImportAppoggio();
+            _sogg = provider.GetByCodiceFiscale(db, cf);
+            Asdep.Common.DAO.ExtraDao.PropertyCopier<SoggettiImportAppoggio, SoggettiImportAppoggioDao>.Copy(_sogg, _dao);
+            return _dao;
+        }
+
+        public void FormalizzaEsclusioniSoggettiImportati(List<SoggettiImportAppoggioDao> famiglia)
+        {
+            try
+            {
+
+                List<SoggettiImportAppoggio> _nucleo = new List<SoggettiImportAppoggio>();
+                foreach (SoggettiImportAppoggioDao _sdao in famiglia)
+                {
+                    SoggettiImportAppoggio _s = new SoggettiImportAppoggio();
+                    Asdep.Common.DAO.ExtraDao.PropertyCopier<SoggettiImportAppoggioDao, SoggettiImportAppoggio>.Copy(_sdao, _s);
+                    _nucleo.Add(_s);
+                }
+                provider.FormalizzaEsclusioniSoggettiImportati(db, _nucleo);
+            }
+            catch { }
+        }
+
+        public void FormalizzaEsclusioniSoggettiImportati(SoggettiImportAppoggioDao _soggetto)
+        {
+            try
+            {
+                SoggettiImportAppoggio _s = new SoggettiImportAppoggio();
+                Asdep.Common.DAO.ExtraDao.PropertyCopier<SoggettiImportAppoggioDao, SoggettiImportAppoggio>.Copy(_soggetto, _s);
+
+                provider.FormalizzaEsclusioniSoggettiImportati(db, _s);
             }
             catch { }
         }

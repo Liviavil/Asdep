@@ -54,7 +54,7 @@ namespace WcfService
             return result;
         }
 
-        public int InsertSoggettiAppoggio(List<SoggettiImportAppoggioDao> anagrafiche)
+        public int InsertSoggettiAppoggio(List<SoggettiImportAppoggioDao> anagrafiche, string tipoTracciato)
         {
             int result = -1;
             try
@@ -97,8 +97,8 @@ namespace WcfService
                 //} 
                 #endregion
 
-                IServiceAsdep<SoggettiImportAppoggioDao> interfaceService = new AssicuratiService();
-                result = interfaceService.AddMany(anagrafiche);
+                AssicuratiService interfaceService = new AssicuratiService();
+                result = interfaceService.AddMany(anagrafiche, tipoTracciato);
             }
             catch (Exception ex) { }
             return result;
@@ -139,14 +139,14 @@ namespace WcfService
             return _enti;
         }
 
-        public List<SoggettiImportAppoggioDao> GetSoggettiByEnte(string ente)
+        public List<SoggettiImportAppoggioDao> GetSoggettiByEnte(string ente, string tipoTracciato)
         {
             List<SoggettiImportAppoggioDao> _anagrafiche = new List<SoggettiImportAppoggioDao>();
             //List<SoggettiImportatiAppoggioBL> _soggettiFromBL = new List<SoggettiImportatiAppoggioBL>();
             try
             {
                 AssicuratiService serviceBL = new AssicuratiService();
-                _anagrafiche = serviceBL.GetByEnte(ente);
+                _anagrafiche = serviceBL.GetByEnte(ente, tipoTracciato);
                 #region comment
                 //foreach(SoggettiImportatiAppoggioBL _soggBL in _soggettiFromBL)
                 //{
@@ -201,7 +201,7 @@ namespace WcfService
             return _anagrafiche;
         }
 
-        public int DeleteAnagraficaByEnte(string ente)
+        public int DeleteAnagraficaByEnte(string ente, string TipoTracciato)
         {
             int result = -1;
             try
@@ -244,7 +244,7 @@ namespace WcfService
                 #endregion
 
                 AssicuratiService serviceBL = new AssicuratiService();
-                result = serviceBL.DeleteByEnte(ente);
+                result = serviceBL.DeleteByEnte(ente, TipoTracciato);
 
             }
             catch { }
@@ -266,8 +266,7 @@ namespace WcfService
             return _tipoLegame;
         }
 
-
-        public void ValidaSoggetto(List<SoggettiImportAppoggioDao> soggetto)
+        public void ValidaSoggetto(List<SoggettiImportAppoggioDao> soggetto, string tipoTracciato)
         {
             List<T_ErroriIODao> erroriIO = new List<T_ErroriIODao>();
             try
@@ -277,7 +276,7 @@ namespace WcfService
                 {
                     //_sogg.Errori = _service.ValidaAdesioneCollettiva(_sogg);
                     //_sogg.AllWarnings = _sogg.Errori.Where(x => x.ErrorLevel.Equals("Warning")).ToList().Count == _sogg.Errori.Count;
-                    erroriIO = _service.ValidaAdesioneCollettiva(_sogg);
+                    erroriIO = _service.ValidaAdesioneCollettiva(_sogg, tipoTracciato);
                     UpdateSoggImportato(_sogg, erroriIO);
                 }
 
@@ -285,7 +284,7 @@ namespace WcfService
             catch { }
         }
 
-        public void ValidaSoggettoSingolo(SoggettiImportAppoggioDao soggetto)
+        public void ValidaSoggettoSingolo(SoggettiImportAppoggioDao soggetto, string tipoTracciato)
         {
             List<T_ErroriIODao> erroriIO = new List<T_ErroriIODao>();
             try
@@ -294,7 +293,7 @@ namespace WcfService
 
                 //_sogg.Errori = _service.ValidaAdesioneCollettiva(_sogg);
                 //_sogg.AllWarnings = _sogg.Errori.Where(x => x.ErrorLevel.Equals("Warning")).ToList().Count == _sogg.Errori.Count;
-                erroriIO = _service.ValidaAdesioneCollettiva(soggetto);
+                erroriIO = _service.ValidaAdesioneCollettiva(soggetto, tipoTracciato);
                 UpdateSoggImportato(soggetto, erroriIO);
 
             }
@@ -335,7 +334,6 @@ namespace WcfService
             return _sogg;
         }
 
-
         public ContribuzioneEnteDao GetContribuzionEnteByNome(string nome)
         {
             ContribuzioneEnteDao _eDao = new ContribuzioneEnteDao();
@@ -348,7 +346,6 @@ namespace WcfService
             return _eDao;
         }
 
-
         public void DeleteSoggettoImportato(long id)
         {
             try
@@ -360,8 +357,7 @@ namespace WcfService
             catch { }
         }
 
-
-        public bool InviaAdesioneSoggettiImportati(string cf)
+        public bool InviaAdesioneSoggettiImportati(string cf, string tipoTracciato)
         {
             bool result = true;
             try
@@ -369,13 +365,27 @@ namespace WcfService
                 List<SoggettiImportAppoggioDao> famiglia = new List<SoggettiImportAppoggioDao>();
                 AssicuratiService _service = new AssicuratiService();
                 famiglia = _service.GetNucleoByCapo(cf);
-                _service.FormalizzaAdesioneSoggettiImportati(famiglia);
+                if (tipoTracciato.Equals("Esclusioni"))
+                {
+                    SoggettiImportAppoggioDao _soggetto = _service.GetByCodiceFiscale(cf);
+                    if (_soggetto.CodiceFiscaleCapoNucleo.Equals(_soggetto.CodiceFiscaleAssicurato))
+                    {
+                        _service.FormalizzaEsclusioniSoggettiImportati(famiglia);
+                    }
+                    else 
+                    {
+                        _service.FormalizzaEsclusioniSoggettiImportati(_soggetto);
+                    }
+                }
+                else
+                {
+                    _service.FormalizzaAdesioneSoggettiImportati(famiglia);
+                }
             }
             catch { result = false; }
 
             return result;
         }
-
 
         public List<T_CategoriaAdesioneDao> GetCategorieAdesioni()
         {
@@ -390,7 +400,6 @@ namespace WcfService
                 
         }
 
-
         public List<T_TipoSoggettoDao> GetTipoSoggetti()
         {
             List<T_TipoSoggettoDao> _soggetti = new List<T_TipoSoggettoDao>();
@@ -402,7 +411,6 @@ namespace WcfService
             catch { }
             return _soggetti;
         }
-
 
         public List<T_TipoAdesioneDao> GetTipoAdesioni()
         {
@@ -426,6 +434,49 @@ namespace WcfService
             }
             catch { }
             return _soggetti;
+        }
+
+        public List<AdesioneDao> RicercaAdesioni() 
+        {
+            List<AdesioneDao> _adesioni = new List<AdesioneDao>();
+
+            AdesioneService service = new AdesioneService();
+            _adesioni = service.RicercaAdesioni();
+            return _adesioni;
+        }
+
+        public AdesioneDao GetAdesioneById(long id) 
+        {
+            AdesioneService _service = new AdesioneService ();
+            return _service.SelectById(id);
+        }
+
+        public AdesioneDao ModificaAdesione(long id) 
+        {
+            AdesioneDao _adesione = new AdesioneDao ();
+            AdesioneService _service = new AdesioneService();
+            _adesione = _service.ModificaAdesione(id);
+            return _adesione;
+        }
+
+        public int SalvaAdesione(AdesioneDao _dao) 
+        {
+            AdesioneService _service = new AdesioneService();
+            return _service.SalvaAdesione(_dao);
+        }
+
+        public int CessazioneAdesione(AdesioneDao _dao) 
+        {
+            AdesioneService _service = new AdesioneService();
+            return _service.CessazioneAdesione(_dao);
+        }
+
+        public int AggiungiAdesione(AdesioneDao _dao) 
+        {
+            int result = -1;
+            AdesioneService _Service = new AdesioneService();
+            result = _Service.AddOne(_dao);
+            return result;
         }
     }
 }

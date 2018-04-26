@@ -9,6 +9,7 @@ namespace Asdep.Common.DAO
     public class AdesioneDao
     {
         public long IdAdesione { get; set; }
+        public long IdEnte { get; set; }
         public string CodTipoAdesione { get; set; }
         public long IdCaponucleo { get; set; }
         public long IdSoggetto { get; set; }
@@ -28,5 +29,16 @@ namespace Asdep.Common.DAO
         public System.DateTime DataAggiornamento { get; set; }
         public string CodiceUtente { get; set; }
         public string CodAppl { get; set; }
+
+        public  EnteDao Ente { get; set; }
+        public  SoggettoDao Soggetto { get; set; }
+        public  SoggettoDao Soggetto1 { get; set; }
+        public  T_StatoAdesioneDao T_StatoAdesione { get; set; }
+        public  T_TipiLegameDao T_TipiLegame { get; set; }
+        public  T_TipoAdesioneDao T_TipoAdesione { get; set; }
+        public  T_TipoSoggettoDao T_TipoSoggetto { get; set; }
+
+        public int Eta { get; set; }
+        public List<Asdep.Common.DAO.T_ErroriIODao> ErroriList { get; set; }
     }
 }

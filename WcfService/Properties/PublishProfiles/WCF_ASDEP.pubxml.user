@@ -14,34 +14,34 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/27/2018 16:21:09</publishTime>
     </File>
     <File Include="bin/AmministrazioneAsdep.dll">
-      <publishTime>04/19/2018 13:06:58</publishTime>
+      <publishTime>04/23/2018 18:06:15</publishTime>
     </File>
     <File Include="bin/AmministrazioneAsdep.pdb">
-      <publishTime>04/19/2018 13:06:58</publishTime>
+      <publishTime>04/23/2018 18:06:15</publishTime>
     </File>
     <File Include="bin/Asdep.Common.DAO.dll">
-      <publishTime>04/19/2018 13:06:58</publishTime>
+      <publishTime>04/26/2018 18:33:15</publishTime>
     </File>
     <File Include="bin/Asdep.Common.DAO.pdb">
-      <publishTime>04/19/2018 13:06:58</publishTime>
+      <publishTime>04/26/2018 18:33:15</publishTime>
     </File>
     <File Include="bin/AsdepGestioneAnagraficheBLL.dll">
-      <publishTime>04/19/2018 13:06:59</publishTime>
+      <publishTime>04/26/2018 18:33:16</publishTime>
     </File>
     <File Include="bin/AsdepGestioneAnagraficheBLL.pdb">
-      <publishTime>04/19/2018 13:06:59</publishTime>
+      <publishTime>04/26/2018 18:33:16</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>04/12/2018 15:27:43</publishTime>
     </File>
     <File Include="bin/WcfService.dll">
-      <publishTime>04/19/2018 13:06:59</publishTime>
+      <publishTime>04/23/2018 18:06:16</publishTime>
     </File>
     <File Include="bin/WcfService.pdb">
-      <publishTime>04/19/2018 13:06:59</publishTime>
+      <publishTime>04/23/2018 18:06:16</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>04/19/2018 13:16:04</publishTime>
+      <publishTime>04/26/2018 18:33:16</publishTime>
     </File>
   </ItemGroup>
 </Project>

@@ -56,9 +56,6 @@ namespace AmministrazioneAsdep.DAL
             throw new NotImplementedException();
         }
 
-
-
-
         public T_ErroriIO SelectById(AmministrazioneAsdepEntities db, long id)
         {
             throw new NotImplementedException();

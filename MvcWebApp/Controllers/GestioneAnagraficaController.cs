@@ -17,39 +17,45 @@ namespace MvcWebApp.Controllers
     {
         public ActionResult Carica(HttpPostedFileBase file)
         {
-            string ente = "INAIL";
+            string ente = "";
+            string codiceEnte = "";
             if (file != null && file.ContentLength > 0)
             {
                 try
                 {
-                    string path = //Path.Combine(Server.MapPath("~/"),
-                                               Path.GetFileName(file.FileName);
-                    Helper hp = new Helper();
-                    DataTable dt = hp.ConvertCSVtoDataTable(path);
-                    hp.InsertIntoTableAppoggio(dt);
-
-                    //SoggImportAppoggio soggetto = new SoggImportAppoggio();
-                    //soggetto.selectedId = ente;
-                    //file.SaveAs(path);
-                    ViewBag.Message = "File caricato con successo";
+                    string path = Path.GetFileName(file.FileName);
+                    ente = path.Split('_')[0].ToString();
+                    using (HelperService _hp = new HelperService())
+                    {
+                        codiceEnte = _hp.channel.GetAllEnti().Where(x => x.CodiceEnte.Equals(ente)).FirstOrDefault().CodiceEnte;
+                    }
+                    if (!string.IsNullOrEmpty(codiceEnte))
+                    {
+                        Helper hp = new Helper();
+                        DataTable dt = hp.ConvertCSVtoDataTable(path);
+                        hp.InsertIntoTableAppoggio(dt, "Prima adesione/Rinnovo");
+                        ViewBag.Message = "File caricato con successo";
+                        return RedirectToAction("InLavorazione", "GestioneAnagrafica", new { en = ente, tt = "Prima adesione/Rinnovo" });
+                    }
+                    else { return View(); }
 
                 }
                 catch (Exception ex)
                 {
-                    ViewBag.Message = "ERROR:" + ex.Message.ToString();
+                    ViewBag.Message = "ERRORE:Ente non censito";
+                    return View();
                 }
-                return RedirectToAction("InLavorazione", "GestioneAnagrafica", new { en = ente });
             }
             else
             {
-                ViewBag.Message = "You have not specified a file.";
+                ViewBag.Message = "Il tracciato importato è vuoto, riprovare con un altro file.";
                 return View();
             }
         }
 
         [HttpGet]
 
-        public ActionResult InLavorazione(string en, string page)
+        public ActionResult InLavorazione(string en, string page, string tt)
         {
             SoggImportAppoggioSearchResults results = new SoggImportAppoggioSearchResults();
 
@@ -73,12 +79,26 @@ namespace MvcWebApp.Controllers
                     list.Add(listItem);
                 }
 
+                List<SelectListItem> listTracciati = new List<SelectListItem>();
+                SelectListItem listitem1 = new SelectListItem() { Value = "Prima adesione/Rinnovo", Text = "Prima adesione/Rinnovo" };
+                SelectListItem listitem2 = new SelectListItem() { Value = "Esclusioni", Text = "Esclusioni" };
+                SelectListItem listitem3 = new SelectListItem() { Value = "Inclusioni", Text = "Inclusioni" };
+                listTracciati.Add(listitem1);
+                listTracciati.Add(listitem2);
+                listTracciati.Add(listitem3);
+
+
                 results.ListItemEnti = new SelectList(list, "Value", "Text", 0);
+                results.ListTracciati = new SelectList(listTracciati, "Value", "Text", 0);
 
                 if (!string.IsNullOrEmpty(en))
                 {
                     results.Selected = en;
                     results.selectedId = en;
+                }
+                if (!string.IsNullOrEmpty(tt))
+                {
+                    results.selectedTracciato = tt;
                 }
             }
             Session["Ddl"] = results.ListItemEnti;
@@ -92,12 +112,12 @@ namespace MvcWebApp.Controllers
             Search<SoggImportAppoggio> results = new SoggImportAppoggioSearchResults();
             //List<SoggImportAppoggio> soggetti = new List<SoggImportAppoggio>();
             List<SoggettiImportAppoggioDao> _anagrafiche = new List<SoggettiImportAppoggioDao>();
-            if (modello.selectedId != null)
+            if (modello.selectedId != null && modello.selectedTracciato != null)
             {
 
                 using (HelperService help = new HelperService())
                 {
-                    _anagrafiche = help.channel.GetSoggettiByEnte(modello.selectedId.ToString());
+                    _anagrafiche = help.channel.GetSoggettiByEnte(modello.selectedId.ToString(), modello.selectedTracciato.ToString());
                 }
 
                 #region old
@@ -191,8 +211,8 @@ namespace MvcWebApp.Controllers
 
             using (HelperService _hp = new HelperService())
             {
-                _hp.channel.ValidaSoggetto(soggDao);
-                soggDao = _hp.channel.GetSoggettiByEnte(soggDao[0].Ente);
+                _hp.channel.ValidaSoggetto(soggDao, soggDao[0].TipoTracciato);
+                soggDao = _hp.channel.GetSoggettiByEnte(soggDao[0].Ente, soggDao[0].TipoTracciato);
             }
 
             #region old
@@ -288,7 +308,7 @@ namespace MvcWebApp.Controllers
             SoggettiImportAppoggioDao modelloValidato = new SoggettiImportAppoggioDao();
             using (HelperService _hp = new HelperService())
             {
-                _hp.channel.ValidaSoggettoSingolo(modello);
+                _hp.channel.ValidaSoggettoSingolo(modello,modello.TipoTracciato);
                 modelloValidato = _hp.channel.SelectById(idSoggetto);
             }
             if (!modelloValidato.Errori.Any())
@@ -306,7 +326,7 @@ namespace MvcWebApp.Controllers
         }
 
         [HttpGet]
-        public ActionResult Scarta(string id) 
+        public ActionResult Scarta(string id)
         {
             SoggettiImportAppoggioDao soggetto = new SoggettiImportAppoggioDao();
             using (HelperService _hp = new HelperService())
@@ -317,26 +337,77 @@ namespace MvcWebApp.Controllers
             return RedirectToAction("InLavorazione", "GestioneAnagrafica", new { en = Session["ente"].ToString(), page = Session["page"].ToString() });
         }
 
-        public ActionResult InviaAdesione(string cf) 
+        public ActionResult InviaAdesione(string cf, string page, string tipoTracciato)
         {
             SoggettiImportAppoggioDao soggetto = new SoggettiImportAppoggioDao();
             using (HelperService _hp = new HelperService())
             {
-               _hp.channel.InviaAdesioneSoggettiImportati(cf);
+                _hp.channel.InviaAdesioneSoggettiImportati(cf, tipoTracciato);
             }
 
 
             return RedirectToAction("InLavorazione", "GestioneAnagrafica", new { en = Session["ente"].ToString(), page = Session["page"].ToString() });
         }
 
-        public ActionResult CaricaEsclusioni(HttpPostedFileBase file) 
+        public ActionResult CaricaEsclusioni(HttpPostedFileBase file)
         {
-            return View();
+            if (file != null && file.ContentLength > 0)
+            {
+                string path = Path.GetFileName(file.FileName);
+                string ente = path.Split('_')[0].ToString();
+                using (HelperService _hp = new HelperService())
+                {
+                    string codiceEnte = _hp.channel.GetAllEnti().Where(x => x.CodiceEnte.Equals(ente)).Select(y => y.CodiceEnte).ToString();
+                    if (!string.IsNullOrEmpty(codiceEnte))
+                    {
+                        Helper hp = new Helper();
+                        DataTable dt = hp.ConvertCSVtoDataTable(path);
+                        hp.InsertIntoTableAppoggio(dt, "Esclusioni");
+                        return RedirectToAction("InLavorazione", "GestioneAnagrafica", new { en = ente });
+                    }
+                    else
+                    {
+                        ViewBag.Message = "Codice ente specificato nel tracciato non censito.";
+                        return View();
+                    }
+                }
+            }
+            else
+            {
+                ViewBag.Message = "Il tracciato caricato è vuoto.";
+                return View();
+            }
         }
 
         public ActionResult CaricaInclusioni(HttpPostedFileBase file)
         {
-            return View();
+            if (file != null && file.ContentLength > 0)
+            {
+                string path = Path.GetFileName(file.FileName);
+                string ente = path.Split('_')[0].ToString();
+                using (HelperService _hp = new HelperService())
+                {
+                    string codiceEnte = _hp.channel.GetAllEnti().Where(x => x.CodiceEnte.Equals(ente)).Select(y => y.CodiceEnte).ToString();
+                    if (!string.IsNullOrEmpty(codiceEnte))
+                    {
+                        Helper hp = new Helper();
+                        DataTable dt = hp.ConvertCSVtoDataTable(path);
+                        hp.InsertIntoTableAppoggio(dt, "Inclusioni");
+                        return RedirectToAction("InLavorazione", "GestioneAnagrafica", new { en = ente });
+                    }
+                    else
+                    {
+                        ViewBag.Message = "Codice ente specificato nel tracciato non censito.";
+                        return View();
+                    }
+                }
+            }
+            else
+            {
+                ViewBag.Message = "Il tracciato caricato è vuoto.";
+                return View();
+            }
         }
+
     }
 }

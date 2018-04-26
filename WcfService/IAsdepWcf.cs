@@ -40,7 +40,7 @@ namespace WcfService
 
         [OperationContract]
         [WebInvoke(Method = "POST", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "InsertSoggettiAppoggio/")]
-        int InsertSoggettiAppoggio(List<SoggettiImportAppoggioDao> anagrafiche);
+        int InsertSoggettiAppoggio(List<SoggettiImportAppoggioDao> anagrafiche, string tipoTracciato);
 
         [OperationContract]
         [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "GetEnti/")]
@@ -52,11 +52,11 @@ namespace WcfService
 
         [OperationContract]
         [WebInvoke(Method = "POST", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "GetSoggettiByEnte/")]
-        List<SoggettiImportAppoggioDao> GetSoggettiByEnte(string ente);
+        List<SoggettiImportAppoggioDao> GetSoggettiByEnte(string ente, string tipoTracciato);
 
         [OperationContract]
         [WebInvoke(Method = "POST", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "DeleteAnagraficaByEnte/")]
-        int DeleteAnagraficaByEnte(string ente);
+        int DeleteAnagraficaByEnte(string ente, string TipoTracciato);
 
         [OperationContract]
         [WebInvoke(Method = "POST", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "GetTipoLegameByCodiceIn/")]
@@ -64,7 +64,7 @@ namespace WcfService
 
         [OperationContract]
         [WebInvoke(Method = "POST", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "ValidaSoggetto/")]
-        void ValidaSoggetto(List<SoggettiImportAppoggioDao> soggetto);
+        void ValidaSoggetto(List<SoggettiImportAppoggioDao> soggetto, string tipoTracciato);
 
         [OperationContract]
         [WebInvoke(Method = "POST", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "UpdateSoggImportato/")]
@@ -72,7 +72,7 @@ namespace WcfService
 
         [OperationContract]
         [WebInvoke(Method = "POST", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "ValidaSoggettoSingolo/")]
-        void ValidaSoggettoSingolo(SoggettiImportAppoggioDao soggetto);
+        void ValidaSoggettoSingolo(SoggettiImportAppoggioDao soggetto, string tipoTracciato);
 
         [OperationContract]
         [WebInvoke(Method = "POST", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "SelectById/")]
@@ -88,7 +88,7 @@ namespace WcfService
 
         [OperationContract]
         [WebInvoke(Method = "POST", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "InviaAdesione/")]
-        bool InviaAdesioneSoggettiImportati(string cf);
+        bool InviaAdesioneSoggettiImportati(string cf, string tipoTracciato);
 
         [OperationContract]
         [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "GetCategorieAdesioni/")]
@@ -105,6 +105,30 @@ namespace WcfService
         [OperationContract]
         [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "GetTipiLegame/")]
         List<T_TipiLegameDao> GetTipiLegame();
-       
+
+        [OperationContract]
+        [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "RicercaAdesioni/")]
+        List<AdesioneDao> RicercaAdesioni();
+
+        [OperationContract]
+        [WebInvoke(Method = "POST", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "GetAdesioneById/")]
+        AdesioneDao GetAdesioneById(long id);
+
+        [OperationContract]
+        [WebInvoke(Method = "POST", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "ModificaAdesione/")]
+        AdesioneDao ModificaAdesione(long id);
+
+        [OperationContract]
+        [WebInvoke(Method = "POST", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "SalvaAdesione/")]
+        int SalvaAdesione(AdesioneDao _dao);
+
+        [OperationContract]
+        [WebInvoke(Method = "POST", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "CessazioneAdesione/")]
+        int CessazioneAdesione(AdesioneDao _dao);
+
+        [OperationContract]
+        [WebInvoke(Method = "POST", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "AggiungiAdesione/")]
+        int AggiungiAdesione(AdesioneDao _dao);
+
     }
 }

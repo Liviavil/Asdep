@@ -20,8 +20,8 @@ namespace MvcWebApp
             );
             routes.MapRoute( 
                 name: "LavoraEnte",
-                url: "{controller}/{action}/{en}/{page}", 
-                defaults: new { controller = "GestioneAnagrafica", action = "InLavorazione", en = UrlParameter.Optional, page=UrlParameter.Optional }
+                url: "{controller}/{action}/{en}/{page}/{tt}", 
+                defaults: new { controller = "GestioneAnagrafica", action = "InLavorazione", en = UrlParameter.Optional, page=UrlParameter.Optional, tt=UrlParameter.Optional }
             );
             routes.MapRoute(
                 name: "SoggettiByEnte",
@@ -40,14 +40,19 @@ namespace MvcWebApp
            );
             routes.MapRoute(
               name: "Modifica",
-              url: "{GestioneAnagrafica}/{Modifica}",
-              defaults: new { controller = "GestioneAnagrafica", action = "EditSoggettoImportato" }
+              url: "{GestioneAnagrafica}/{ModificaAdesione}/{id}",
+              defaults: new { controller = "AdesioneCollettiva", action = "ModificaAdesione", id = UrlParameter.Optional }
           );
             routes.MapRoute(
               name: "Scarta",
-              url: "{GestioneAnagrafica}/{Scarta}/{id}",
-              defaults: new { controller = "GestioneAnagrafica", action = "Scarta",id=UrlParameter.Optional }
+              url: "{GestioneAnagrafica}/{CancellaAdesione}/{id}",
+              defaults: new { controller = "AdesioneCollettiva", action = "CancellaAdesione", id = UrlParameter.Optional }
           );
+            routes.MapRoute(
+             name: "Invia",
+             url: "{GestioneAnagrafica}/{SalvaAdesione}/{cf}/{page}",
+             defaults: new { controller = "AdesioneCollettiva", action = "SalvaAdesione", id = UrlParameter.Optional, page = UrlParameter.Optional }
+         );
         }
     }
 }

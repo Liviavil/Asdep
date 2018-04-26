@@ -18,6 +18,26 @@ namespace Asdep.Common.DAO.ExtraDao
             }
             return result;
         }
+
+        public static int GetYear(DateTime dateTime, DateTime InizioAdesione)
+        {
+
+            int monthDate = dateTime.Month;
+            int dayDate = dateTime.DayOfYear;
+            int monthAdesione = InizioAdesione.Month;
+            int dayAdesione = InizioAdesione.DayOfYear;
+            if (monthAdesione.Equals(monthAdesione))
+            {
+                return InizioAdesione.Year + 1;
+            }
+            else 
+            {
+                if (monthDate > monthAdesione)
+                    return InizioAdesione.Year + 1;
+                else
+                    return InizioAdesione.Year;
+            }
+        }
     }
 
     public static class PropertyCopier<TParent, TChild>

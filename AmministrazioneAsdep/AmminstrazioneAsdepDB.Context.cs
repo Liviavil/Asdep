@@ -26,6 +26,7 @@ namespace AmministrazioneAsdep
         }
     
         public DbSet<Adesione> Adesione { get; set; }
+        public DbSet<Comuni> Comuni { get; set; }
         public DbSet<ContribuzioneEnte> ContribuzioneEnte { get; set; }
         public DbSet<DatiEnte> DatiEnte { get; set; }
         public DbSet<Ente> Ente { get; set; }

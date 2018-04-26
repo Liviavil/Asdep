@@ -33,18 +33,6 @@ namespace MvcWebApp.Controllers
 
             return View();
         }
-
-        public ActionResult SoggettiImportatiAppoggio() 
-        {
-            List<SoggettiImportAppoggioDao> soggs = new List<SoggettiImportAppoggioDao>();
-            using (HelperService help = new HelperService())
-            {
-                soggs = help.channel.GetSoggettiByEnte("INAIL");
-            }
-            return View(soggs);
-        }
-
-        public ActionResult SoggettiImportatiAppoggioEdit(int id)
-        { return View(); }
+      
     }
 }

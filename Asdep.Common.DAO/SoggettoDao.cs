@@ -14,6 +14,7 @@ namespace Asdep.Common.DAO
         public string SecondoNome { get; set; }
         public string Cognome { get; set; }
         public System.DateTime DataNascita { get; set; }
+        public string LuogoNascita { get; set; }
         public string IndirizzoResidenza { get; set; }
         public string ComuneResidenza { get; set; }
         public string SiglaProvinciaResidenza { get; set; }

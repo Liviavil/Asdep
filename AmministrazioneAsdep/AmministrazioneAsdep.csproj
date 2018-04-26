@@ -68,7 +68,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AmminstrazioneAsdepDB.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Comuni.cs">
+      <DependentUpon>AmminstrazioneAsdepDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="DAL\AdesioniProvider.cs" />
+    <Compile Include="DAL\ComuniProvider.cs" />
     <Compile Include="DAL\ContribuzioneEnteProvider.cs" />
     <Compile Include="DAL\EnteAppartenenzaProvider.cs" />
     <Compile Include="DAL\EnteProvider.cs" />
@@ -81,6 +85,7 @@
     <Compile Include="DAL\SoggettiProvider.cs" />
     <Compile Include="DAL\TipoLegameProvider.cs" />
     <Compile Include="DAL\T_CategoriaAdesioneProvider.cs" />
+    <Compile Include="DAL\T_LimitiEtaProvider.cs" />
     <Compile Include="DAL\T_TipoAdesioneProvider.cs" />
     <Compile Include="DAL\T_TipoLegameProvider.cs" />
     <Compile Include="DAL\T_TipoSoggettoProvider.cs" />

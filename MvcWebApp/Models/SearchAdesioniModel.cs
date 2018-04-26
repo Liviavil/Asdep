@@ -24,6 +24,6 @@ namespace MvcWebApp.Models
         public string Nome { get; set; }
         public string Cognome { get; set; }
 
-        public List<AdesioneModel> Results { get; set; }
+        public List<Asdep.Common.DAO.AdesioneDao> Results { get; set; }
     }
 }
