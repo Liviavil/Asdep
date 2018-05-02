@@ -189,7 +189,7 @@ namespace AsdepGestioneAnagraficheBLL.Extra
             }
             ComuniService _service = new ComuniService();
 
-            if (_service.FindSiglaProvincia(valore))
+            if (!_service.FindSiglaProvincia(valore))
             {
                 ErroriIOService _serviceE = new ErroriIOService();
                 Errore = _serviceE.GetById("026");
@@ -454,7 +454,7 @@ namespace AsdepGestioneAnagraficheBLL.Extra
         /// <param name="cfcn">Codice fiscale capo nucleo</param>
         /// <param name="cfca">Codice fiscale assicurato</param>
         /// <returns></returns>
-        public T_ErroriIODao Esegui(string cfcn, string cfca)
+        public T_ErroriIODao Esegui(string cfca, string cfcn)
         {
             //caso in cui soggetto.codicefiscaleassicurato = soggetto.codicefiscalecaponucleo
             //allora ho già trovato il caponucleo
@@ -473,7 +473,7 @@ namespace AsdepGestioneAnagraficheBLL.Extra
                 if (cn == null)
                 {
                     ErroriIOService _serviceE = new ErroriIOService();
-                    Errore = _serviceE.GetById("001");
+                    Errore = _serviceE.GetById("023");
                 }
             }
 

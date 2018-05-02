@@ -186,6 +186,15 @@ namespace AsdepGestioneAnagraficheBLL.Business
             return _dao;
         }
 
+        public List<T_ErroriIODao> VerificaAdesione(AdesioneDao dao) 
+        {
+            List<T_ErroriIODao> errori = new List<T_ErroriIODao>();
+            ErroriIOService service = new ErroriIOService();
+            dao.Eta = Helper.CalculateAge(dao.Soggetto.DataNascita);
+            errori = service.ValidaAdesioneCollettiva(dao);
+            return errori;
+        }
+
         public int SalvaAdesione(AdesioneDao dao)
         {
             Adesione _ad = new Adesione();

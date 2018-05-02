@@ -5,29 +5,29 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="b7d319bcc8de4439b9076a2ea6506bde" Name="Diagram1">
-        <EntityTypeShape EntityType="AmministrazioneAsdepModel.Adesione" Width="1.5" PointX="8.25" PointY="10.25" />
-        <EntityTypeShape EntityType="AmministrazioneAsdepModel.Comuni" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="AmministrazioneAsdepModel.ContribuzioneEnte" Width="1.5" PointX="5.25" PointY="16.75" />
-        <EntityTypeShape EntityType="AmministrazioneAsdepModel.DatiEnte" Width="1.5" PointX="8.25" PointY="40.875" />
-        <EntityTypeShape EntityType="AmministrazioneAsdepModel.Ente" Width="1.5" PointX="6" PointY="36.625" />
-        <EntityTypeShape EntityType="AmministrazioneAsdepModel.EnteAppartenenza" Width="1.5" PointX="8.25" PointY="29.75" />
-        <EntityTypeShape EntityType="AmministrazioneAsdepModel.ModalitaPagamentoEnte" Width="1.5" PointX="2.75" PointY="0.75" />
-        <EntityTypeShape EntityType="AmministrazioneAsdepModel.SoggettiImportAppoggio" Width="1.5" PointX="8.75" PointY="0.75" />
-        <EntityTypeShape EntityType="AmministrazioneAsdepModel.Soggetto" Width="1.5" PointX="6" PointY="21.125" />
-        <EntityTypeShape EntityType="AmministrazioneAsdepModel.StoricoAdesione" Width="1.5" PointX="10.75" PointY="0.75" />
-        <EntityTypeShape EntityType="AmministrazioneAsdepModel.StoricoSoggetto" Width="1.5" PointX="10.75" PointY="6.75" />
-        <EntityTypeShape EntityType="AmministrazioneAsdepModel.sysdiagrams" Width="1.5" PointX="12.75" PointY="0.75" />
-        <EntityTypeShape EntityType="AmministrazioneAsdepModel.T_CategoriaAdesione" Width="1.5" PointX="0.75" PointY="12.125" />
-        <EntityTypeShape EntityType="AmministrazioneAsdepModel.T_ErroriIO" Width="1.5" PointX="12.75" PointY="3.75" />
-        <EntityTypeShape EntityType="AmministrazioneAsdepModel.T_LimitiEta" Width="1.5" PointX="5.25" PointY="6.625" />
-        <EntityTypeShape EntityType="AmministrazioneAsdepModel.T_StatoAdesione" Width="1.5" PointX="6" PointY="2.75" />
-        <EntityTypeShape EntityType="AmministrazioneAsdepModel.T_StatoSoggetto" Width="1.5" PointX="3.75" PointY="23.125" />
-        <EntityTypeShape EntityType="AmministrazioneAsdepModel.T_TariffarioAdesioniCollettive" Width="1.5" PointX="5.25" PointY="31.875" />
-        <EntityTypeShape EntityType="AmministrazioneAsdepModel.T_TariffarioAdesioniVolontarie" Width="1.5" PointX="5.25" PointY="11.625" />
-        <EntityTypeShape EntityType="AmministrazioneAsdepModel.T_TipiLegame" Width="1.5" PointX="3" PointY="4.75" />
-        <EntityTypeShape EntityType="AmministrazioneAsdepModel.T_TipoAdesione" Width="1.5" PointX="3" PointY="11.125" />
-        <EntityTypeShape EntityType="AmministrazioneAsdepModel.T_TipoSoggetto" Width="1.5" PointX="3" PointY="17" />
-        <EntityTypeShape EntityType="AmministrazioneAsdepModel.TracciaturaExport" Width="1.5" PointX="12.75" PointY="7.75" />
+        <EntityTypeShape EntityType="AmministrazioneAsdepModel.Adesione" Width="1.5" PointX="5.25" PointY="11.375" />
+        <EntityTypeShape EntityType="AmministrazioneAsdepModel.Comuni" Width="1.5" PointX="8.75" PointY="1.875" />
+        <EntityTypeShape EntityType="AmministrazioneAsdepModel.ContribuzioneEnte" Width="1.5" PointX="8.25" PointY="17.875" />
+        <EntityTypeShape EntityType="AmministrazioneAsdepModel.DatiEnte" Width="1.5" PointX="5.25" PointY="26" />
+        <EntityTypeShape EntityType="AmministrazioneAsdepModel.Ente" Width="1.5" PointX="3" PointY="21.75" />
+        <EntityTypeShape EntityType="AmministrazioneAsdepModel.EnteAppartenenza" Width="1.5" PointX="5.25" PointY="18.75" />
+        <EntityTypeShape EntityType="AmministrazioneAsdepModel.ModalitaPagamentoEnte" Width="1.5" PointX="10.75" PointY="1.875" />
+        <EntityTypeShape EntityType="AmministrazioneAsdepModel.SoggettiImportAppoggio" Width="1.5" PointX="10.75" PointY="5.875" />
+        <EntityTypeShape EntityType="AmministrazioneAsdepModel.Soggetto" Width="1.5" PointX="3" PointY="3.875" />
+        <EntityTypeShape EntityType="AmministrazioneAsdepModel.StoricoAdesione" Width="1.5" PointX="10.75" PointY="12.875" />
+        <EntityTypeShape EntityType="AmministrazioneAsdepModel.StoricoSoggetto" Width="1.5" PointX="12.75" PointY="1.875" />
+        <EntityTypeShape EntityType="AmministrazioneAsdepModel.sysdiagrams" Width="1.5" PointX="12.75" PointY="8.875" />
+        <EntityTypeShape EntityType="AmministrazioneAsdepModel.T_CategoriaAdesione" Width="1.5" PointX="0.75" PointY="13.25" />
+        <EntityTypeShape EntityType="AmministrazioneAsdepModel.T_ErroriIO" Width="1.5" PointX="12.75" PointY="11.875" />
+        <EntityTypeShape EntityType="AmministrazioneAsdepModel.T_LimitiEta" Width="1.5" PointX="8.25" PointY="7.75" />
+        <EntityTypeShape EntityType="AmministrazioneAsdepModel.T_StatoAdesione" Width="1.5" PointX="3" PointY="18.5" />
+        <EntityTypeShape EntityType="AmministrazioneAsdepModel.T_StatoSoggetto" Width="1.5" PointX="0.75" PointY="6" />
+        <EntityTypeShape EntityType="AmministrazioneAsdepModel.T_TariffarioAdesioniCollettive" Width="1.5" PointX="5.25" PointY="33" />
+        <EntityTypeShape EntityType="AmministrazioneAsdepModel.T_TariffarioAdesioniVolontarie" Width="1.5" PointX="8.25" PointY="12.75" />
+        <EntityTypeShape EntityType="AmministrazioneAsdepModel.T_TipiLegame" Width="1.5" PointX="6" PointY="0.75" />
+        <EntityTypeShape EntityType="AmministrazioneAsdepModel.T_TipoAdesione" Width="1.5" PointX="3" PointY="12.25" />
+        <EntityTypeShape EntityType="AmministrazioneAsdepModel.T_TipoSoggetto" Width="1.5" PointX="6" PointY="5.875" />
+        <EntityTypeShape EntityType="AmministrazioneAsdepModel.TracciaturaExport" Width="1.5" PointX="14.75" PointY="1.875" />
         <AssociationConnector Association="AmministrazioneAsdepModel.FK_Adesione_Ente" />
         <AssociationConnector Association="AmministrazioneAsdepModel.FK_Adesione_Soggetto" />
         <AssociationConnector Association="AmministrazioneAsdepModel.FK_Adesione_Soggetto_02" />

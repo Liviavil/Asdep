@@ -1,0 +1,14 @@
+C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\ConsoleTest\bin\Debug\ConsoleTest.exe.config
+C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\ConsoleTest\bin\Debug\ConsoleTest.exe
+C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\ConsoleTest\bin\Debug\ConsoleTest.pdb
+C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\ConsoleTest\bin\Debug\Asdep.Common.DAO.dll
+C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\ConsoleTest\bin\Debug\AsdepGestioneAnagraficheBLL.dll
+C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\ConsoleTest\bin\Debug\AmministrazioneAsdep.dll
+C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\ConsoleTest\bin\Debug\EntityFramework.dll
+C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\ConsoleTest\bin\Debug\Asdep.Common.DAO.pdb
+C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\ConsoleTest\bin\Debug\AsdepGestioneAnagraficheBLL.pdb
+C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\ConsoleTest\bin\Debug\AmministrazioneAsdep.pdb
+C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\ConsoleTest\bin\Debug\EntityFramework.xml
+C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\ConsoleTest\obj\Debug\ConsoleTest.csprojResolveAssemblyReference.cache
+C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\ConsoleTest\obj\Debug\ConsoleTest.exe
+C:\Users\inps_admin\Documents\Visual Studio 2012\Projects\Inps.Asdep\ConsoleTest\obj\Debug\ConsoleTest.pdb

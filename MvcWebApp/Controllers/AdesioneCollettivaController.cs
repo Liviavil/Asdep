@@ -264,24 +264,52 @@ namespace MvcWebApp.Controllers
                 tipoLegamiList.Add(elem);
             }
 
-
+            Session["EntiList"] = entiList;
+            Session["TipiSoggList"] = soggettiList;
+            Session["TipiLegamiList"] = tipoLegamiList;
+            Session["TipiAdesList"] = tipoAdesioniList;
             ViewBag.EntiList = entiList;
             ViewBag.TipiSoggList = soggettiList;
             ViewBag.TipiLegamiList = tipoLegamiList;
             ViewBag.TipiAdesList = tipoAdesioniList;
             #endregion
 
-            return View();
+            AdesioneDao dao = new AdesioneDao();
+            dao.Soggetto=new SoggettoDao();
+            dao.Soggetto1 = new SoggettoDao();
+            dao.ErroriList = new List<T_ErroriIODao> ();
+            return View(dao);
         }
 
         public ActionResult AggiungiAdesione(AdesioneDao model)
         {
             try
             {
+                ViewBag.EntiList = Session["EntiList"];
+                ViewBag.TipiSoggList = Session["TipiSoggList"];
+                ViewBag.TipiLegamiList = Session["TipiLegamiList"];
+                ViewBag.TipiAdesList = Session["TipiAdesList"];
+
+                List<T_ErroriIODao> errori = new List<T_ErroriIODao>();
+
                 int result = -1;
+                AdesioneDao _dao = new AdesioneDao();
+                _dao.ErroriList = errori;
                 using (HelperService _hp = new HelperService())
                 {
-                    result = _hp.channel.AggiungiAdesione(model);
+                    errori = _hp.channel.VerificaAdesione(model);
+                }
+                _dao.ErroriList = errori;
+                if (_dao.ErroriList.Any())
+                {
+                    return View("CreaAdesione", _dao);
+                }
+                else
+                {
+                     using (HelperService _hp = new HelperService())
+                    {
+                        result = _hp.channel.AggiungiAdesione(model);
+                    }
                 }
                 if (result > 0) return View("CreaAdesione", model);
                 else

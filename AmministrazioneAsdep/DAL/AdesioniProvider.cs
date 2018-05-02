@@ -65,6 +65,7 @@ namespace AmministrazioneAsdep.DAL
                                 if (soggettoOld == null)
                                 {
                                     newSogg.Nome = obb.Soggetto.Nome;
+                                    newSogg.SecondoNome = obb.Soggetto.SecondoNome;
                                     newSogg.Cognome = obb.Soggetto.Cognome;
                                     newSogg.CodiceFiscale = obb.Soggetto.CodiceFiscale;
                                     newSogg.CapResidenza = obb.Soggetto.CapResidenza;
@@ -79,6 +80,11 @@ namespace AmministrazioneAsdep.DAL
                                     newSogg.SiglaProvinciaResidenza = obb.Soggetto.SiglaProvinciaResidenza;
                                     newSogg.StatoRecord = "02";
                                     newSogg.Telefono = obb.Soggetto.Telefono;
+                                    newSogg.Fonte = "AC";
+                                    newSogg.FonteModifica = "AC";
+                                    newSogg.DataInizio = obb.DataInizio;
+                                    newSogg.DataFine = obb.DataFine;
+                                    newSogg.CodiceUtente = "xxx";
                                     db.Soggetto.Add(newSogg);
                                 }
                                 else
@@ -103,7 +109,14 @@ namespace AmministrazioneAsdep.DAL
                                         newAdesione.DataInizio = obb.DataInizio;
                                         newAdesione.IdEnte = obb.IdEnte;
                                         newAdesione.StatoAdesione = "02";
-
+                                        newAdesione.IdCaponucleo = obb.Soggetto1.IdSoggetto;
+                                        newAdesione.IdSoggetto = obb.Soggetto.IdSoggetto;
+                                        newAdesione.MeseDecorrenza = 0;
+                                        newAdesione.AnnoDecorrenza = 0;
+                                        newAdesione.AnnoScadenza = 0;
+                                        newAdesione.DataFine = DateTime.Now;
+                                        newAdesione.CodiceUtente = "xxx";
+                                        newAdesione.CodAppl = "xxx";
                                         db.Adesione.Add(newAdesione);
                                     }
                                 }
@@ -113,7 +126,7 @@ namespace AmministrazioneAsdep.DAL
                                     //deve esistere l'adesione valida del caponucleo
 
                                     Adesione _adesioneCN = (from AdesioneTable in db.Adesione
-                                                            join SoggettTable in db.Soggetto on AdesioneTable.IdCaponucleo equals SoggettTable.IdSoggetto
+                                                            join SoggettTable in db.Soggetto on AdesioneTable.IdSoggetto equals SoggettTable.IdSoggetto
                                                             join StatoAdesioneTable in db.T_StatoAdesione on AdesioneTable.StatoAdesione equals StatoAdesioneTable.CodStatoAdesione
                                                             where SoggettTable.CodiceFiscale.Equals(obb.Soggetto1.CodiceFiscale) &&
                                                             AdesioneTable.DataInizio < DateTime.Now &&
@@ -131,7 +144,14 @@ namespace AmministrazioneAsdep.DAL
                                         newAdesione.DataInizio = obb.DataInizio;
                                         newAdesione.IdEnte = obb.IdEnte;
                                         newAdesione.StatoAdesione = "02";
-
+                                        newAdesione.IdCaponucleo = _adesioneCN.IdSoggetto;
+                                        newAdesione.IdSoggetto = obb.Soggetto.IdSoggetto;
+                                        newAdesione.MeseDecorrenza = 0;
+                                        newAdesione.AnnoDecorrenza = 0;
+                                        newAdesione.AnnoScadenza = 0;
+                                        newAdesione.DataFine = DateTime.Now;
+                                        newAdesione.CodiceUtente = "xxx";
+                                        newAdesione.CodAppl = "xxx";
                                         db.Adesione.Add(newAdesione);
                                     }
                                 }
@@ -294,14 +314,14 @@ namespace AmministrazioneAsdep.DAL
                         {
                             Adesione adesioneOld = (from AdesioneTable in db.Adesione where AdesioneTable.IdAdesione.Equals(_ad.IdAdesione) select AdesioneTable).FirstOrDefault();
                             adesioneOld.DataCessazione = _ad.DataCessazione;
-                            adesioneOld.DataFine = _ad.DataCessazione;
+                            adesioneOld.DataFine = DateTime.Parse(_ad.DataCessazione.ToString());
                             adesioneOld.StatoAdesione = "03";
 
                             EnteAppartenenza EnteApp = (from EnteAppTable in db.EnteAppartenenza
                                                         where EnteAppTable.IdSoggetto.Equals(_ad.IdSoggetto) &&
                                                             EnteAppTable.IdEnte.Equals(_ad.IdEnte)
                                                         select EnteAppTable).FirstOrDefault();
-                            EnteApp.DataFine = _ad.DataCessazione.Subtract(new TimeSpan(1, 0, 0, 0));
+                            EnteApp.DataFine = DateTime.Parse(_ad.DataCessazione.ToString()).Subtract(new TimeSpan(1, 0, 0, 0));
 
                             result = db.SaveChanges();
                             transaction.Commit();

@@ -24,7 +24,7 @@
           <Property Name="MeseScadenza" Type="tinyint" Nullable="false" />
           <Property Name="AnnoDecorrenza" Type="tinyint" Nullable="false" />
           <Property Name="AnnoScadenza" Type="tinyint" Nullable="false" />
-          <Property Name="DataCessazione" Type="date" Nullable="false" />
+          <Property Name="DataCessazione" Type="date" />
           <Property Name="DataInizio" Type="date" Nullable="false" />
           <Property Name="DataFine" Type="date" Nullable="false" />
           <Property Name="DataAggiornamento" Type="datetime2" Precision="7" Nullable="false" />
@@ -919,7 +919,7 @@
           <Property Name="MeseScadenza" Type="Byte" Nullable="false" />
           <Property Name="AnnoDecorrenza" Type="Byte" Nullable="false" />
           <Property Name="AnnoScadenza" Type="Byte" Nullable="false" />
-          <Property Name="DataCessazione" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DataCessazione" Type="DateTime" Precision="0" />
           <Property Name="DataInizio" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="DataFine" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="DataAggiornamento" Type="DateTime" Nullable="false" Precision="7" />

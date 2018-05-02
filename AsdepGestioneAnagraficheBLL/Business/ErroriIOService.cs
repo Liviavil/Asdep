@@ -139,7 +139,7 @@ namespace AsdepGestioneAnagraficheBLL.Business
             ValidaCognome _validazioneCogn = new ValidaCognome();
             errori.Add(_validazioneCogn.Esegui(adesione.Soggetto.CodiceFiscale, adesione.Soggetto.Cognome));
             ValidaEffetto _validazioneEff = new ValidaEffetto();
-            errori.Add(_validazioneEff.Esegui(adesione.DataInizio, adesione.Ente.CodiceEnte));
+            errori.Add(_validazioneEff.Esegui(adesione.DataInizio, adesione.IdEnte.ToString()));
             ValidaDataNascita _validazioneData = new ValidaDataNascita();
             errori.Add(_validazioneData.Esegui(adesione.Soggetto.CodiceFiscale, adesione.Soggetto.DataNascita));
             _validazione = new ValidaSiglaProv();

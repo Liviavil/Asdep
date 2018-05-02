@@ -459,6 +459,14 @@ namespace WcfService
             return _adesione;
         }
 
+        public List<T_ErroriIODao> VerificaAdesione(AdesioneDao dao) 
+        {
+            List<T_ErroriIODao> errori = new List<T_ErroriIODao>();
+            AdesioneService _service = new AdesioneService();
+            errori = _service.VerificaAdesione(dao);
+            return errori;
+        } 
+
         public int SalvaAdesione(AdesioneDao _dao) 
         {
             AdesioneService _service = new AdesioneService();

@@ -130,5 +130,8 @@ namespace WcfService
         [WebInvoke(Method = "POST", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "AggiungiAdesione/")]
         int AggiungiAdesione(AdesioneDao _dao);
 
+        [OperationContract]
+        [WebInvoke(Method = "POST", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "VerificaAdesione/")]
+        List<T_ErroriIODao> VerificaAdesione(AdesioneDao dao);
     }
 }

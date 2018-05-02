@@ -403,6 +403,9 @@ namespace AmministrazioneAsdep.DAL
                                         _enteApp.IdSoggetto = _capoNucleo.IdSoggetto;
                                         _enteApp.DataInizio = _soggCN.Effetto;
                                         _enteApp.DataFine = _soggCN.Effetto.AddDays(1).AddYears(1);
+                                        _enteApp.DataAggiornamento = DateTime.Now;
+                                        _enteApp.CodiceUtente = "xxx";
+                                        _enteApp.CodAppl = "xxx";
                                         db.EnteAppartenenza.Add(_enteApp);
                                     }
                                 }
@@ -424,7 +427,14 @@ namespace AmministrazioneAsdep.DAL
                                 _adesioneCN.IdSoggetto = _capoNucleo.IdSoggetto;
                                 _adesioneCN.IdCaponucleo = _capoNucleo.IdSoggetto;
                                 _adesioneCN.StatoAdesione = (from StatoAdesioniTable in db.T_StatoAdesione where StatoAdesioniTable.CodStatoAdesione.Equals("02") select StatoAdesioniTable).Select(x => x.CodStatoAdesione).ToString();
-
+                                _adesioneCN.IdEnte = long.Parse((from EnteTab in db.Ente where EnteTab.CodiceEnte.Equals(_soggCN.Ente) select EnteTab.IdEnte).ToString());
+                                _adesioneCN.StatoAdesione = "02";
+                                _adesioneCN.MeseDecorrenza = 0;
+                                _adesioneCN.AnnoDecorrenza = 0;
+                                _adesioneCN.AnnoScadenza = 0;
+                                _adesioneCN.CodiceUtente = "xxx";
+                                _adesioneCN.CodAppl = "xxx";
+                                db.Adesione.Add(_adesioneCN);
                             }
 
                             #endregion
@@ -449,11 +459,48 @@ namespace AmministrazioneAsdep.DAL
                                 if (_famigliare != null)
                                 {
                                     //Aggiornare
+                                    _famigliare.Nome = _fami.Nome;
+                                    _famigliare.SecondoNome = _fami.SecondoNome;
+                                    _famigliare.Cognome = _fami.Cognome;
+                                    _famigliare.CodiceFiscale = _fami.Categoria;
+                                    _famigliare.CapResidenza = _fami.CapResidenza;
+                                    _famigliare.DataAggiornamento = DateTime.Now;
+                                    _famigliare.DataNascita = DateTime.Parse(_fami.DataNascitaAssicurato.ToString());
+                                    _famigliare.Email = _fami.Email;
+                                    _famigliare.IBAN = _fami.Iban;
+                                    _famigliare.IndirizzoResidenza = _fami.IndirizzoResidenza;
+                                    _famigliare.LuogoNascita = _fami.LuogoNascitaAssicurato;
+                                    _famigliare.SiglaProvinciaResidenza = _fami.SiglaProvResidenza;
+                                    _famigliare.StatoRecord = "02";
+                                    _famigliare.Telefono = _fami.Telefono;
+                                    _famigliare.Fonte = "AC";
+                                    _famigliare.FonteModifica = "AC";
+                                    _famigliare.DataInizio = _fami.Effetto;
+                                    //_famigliare.DataFine = _fami.DataFine;
+                                    _famigliare.CodiceUtente = "xxx";
                                 }
                                 else
                                 {
                                     //Creare
-
+                                    _famigliare.Nome = _fami.Nome;
+                                    _famigliare.SecondoNome = _fami.SecondoNome;
+                                    _famigliare.Cognome = _fami.Cognome;
+                                    _famigliare.CodiceFiscale = _fami.Categoria;
+                                    _famigliare.CapResidenza = _fami.CapResidenza;
+                                    _famigliare.DataAggiornamento = DateTime.Now;
+                                    _famigliare.DataNascita = DateTime.Parse(_fami.DataNascitaAssicurato.ToString());
+                                    _famigliare.Email = _fami.Email;
+                                    _famigliare.IBAN = _fami.Iban;
+                                    _famigliare.IndirizzoResidenza = _fami.IndirizzoResidenza;
+                                    _famigliare.LuogoNascita = _fami.LuogoNascitaAssicurato;
+                                    _famigliare.SiglaProvinciaResidenza = _fami.SiglaProvResidenza;
+                                    _famigliare.StatoRecord = "02";
+                                    _famigliare.Telefono = _fami.Telefono;
+                                    _famigliare.Fonte = "AC";
+                                    _famigliare.FonteModifica = "AC";
+                                    _famigliare.DataInizio = _fami.Effetto;
+                                   // _famigliare.DataFine = _fami.DataFine;
+                                    _famigliare.CodiceUtente = "xxx";
                                     db.Soggetto.Add(_famigliare);
                                 }
                                 #endregion
