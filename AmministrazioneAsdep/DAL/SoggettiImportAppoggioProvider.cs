@@ -459,20 +459,20 @@ namespace AmministrazioneAsdep.DAL
                                 if (_famigliare != null)
                                 {
                                     //Aggiornare
-                                    _famigliare.Nome = _fami.Nome;
-                                    _famigliare.SecondoNome = _fami.SecondoNome;
-                                    _famigliare.Cognome = _fami.Cognome;
-                                    _famigliare.CodiceFiscale = _fami.Categoria;
-                                    _famigliare.CapResidenza = _fami.CapResidenza;
+                                    _famigliare.Nome = !string.IsNullOrEmpty(_fami.Nome)? _fami.Nome : _famigliare.Nome;
+                                    _famigliare.SecondoNome = !string.IsNullOrEmpty(_fami.SecondoNome) ? _fami.SecondoNome : _famigliare.SecondoNome;
+                                    _famigliare.Cognome = !string.IsNullOrEmpty(_fami.Cognome) ? _fami.Cognome : _famigliare.Cognome;
+                                    _famigliare.CodiceFiscale = !string.IsNullOrEmpty(_fami.CodiceFiscaleAssicurato) ? _fami.CodiceFiscaleAssicurato : _famigliare.CodiceFiscale;
+                                    _famigliare.CapResidenza = !string.IsNullOrEmpty(_fami.CapResidenza) ?_fami.CapResidenza : _famigliare.CapResidenza;
                                     _famigliare.DataAggiornamento = DateTime.Now;
                                     _famigliare.DataNascita = DateTime.Parse(_fami.DataNascitaAssicurato.ToString());
-                                    _famigliare.Email = _fami.Email;
-                                    _famigliare.IBAN = _fami.Iban;
-                                    _famigliare.IndirizzoResidenza = _fami.IndirizzoResidenza;
-                                    _famigliare.LuogoNascita = _fami.LuogoNascitaAssicurato;
-                                    _famigliare.SiglaProvinciaResidenza = _fami.SiglaProvResidenza;
+                                    _famigliare.Email = !string.IsNullOrEmpty(_fami.Email) ? _fami.Email : _famigliare.Email;
+                                    _famigliare.IBAN = !string.IsNullOrEmpty(_fami.Iban) ?  _fami.Iban : _famigliare.IBAN;
+                                    _famigliare.IndirizzoResidenza = !string.IsNullOrEmpty(_fami.IndirizzoResidenza) ?  _fami.IndirizzoResidenza : _famigliare.IndirizzoResidenza;
+                                    _famigliare.LuogoNascita = !string.IsNullOrEmpty(_fami.LuogoNascitaAssicurato) ?  _fami.LuogoNascitaAssicurato : _famigliare.LuogoNascita;
+                                    _famigliare.SiglaProvinciaResidenza = !string.IsNullOrEmpty(_fami.LuogoNascitaAssicurato) ? _fami.SiglaProvResidenza : _famigliare.SiglaProvinciaResidenza;
                                     _famigliare.StatoRecord = "02";
-                                    _famigliare.Telefono = _fami.Telefono;
+                                    _famigliare.Telefono = !string.IsNullOrEmpty(_fami.Telefono) ? _fami.Telefono : _famigliare.Telefono;
                                     _famigliare.Fonte = "AC";
                                     _famigliare.FonteModifica = "AC";
                                     _famigliare.DataInizio = _fami.Effetto;
@@ -540,6 +540,14 @@ namespace AmministrazioneAsdep.DAL
                                                                             where TipoAdesione.DescBreve.ToUpper().Equals(_fami.NumeroPolizza.ToUpper())
                                                                             select TipoAdesione.CodTipoAdesione).ToString();
                                     adesioniSoggettoFami.DataFine = new DateTime(2019, 7, 1);//_capoNucleo.Effetto.Subtract(new TimeSpan(1, 0, 0, 0));
+                                    adesioniSoggettoFami.IdEnte = _adesioneCN.IdEnte;
+                                    adesioniSoggettoFami.StatoAdesione = "02";
+                                    adesioniSoggettoFami.MeseDecorrenza = 0;
+                                    adesioniSoggettoFami.AnnoDecorrenza = 0;
+                                    adesioniSoggettoFami.AnnoScadenza = 0;
+                                    adesioniSoggettoFami.DataFine = DateTime.Now;
+                                    adesioniSoggettoFami.CodiceUtente = "xxx";
+                                    adesioniSoggettoFami.CodAppl = "xxx";
                                     adesioniSoggettoFami.DataInizio = _fami.Effetto;
                                     db.Adesione.Add(adesioniSoggettoFami);
                                 }
