@@ -4,6 +4,7 @@ using AsdepGestioneAnagraficheBLL.Business;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -283,7 +284,7 @@ namespace AsdepGestioneAnagraficheBLL.Extra
         {
             if (nascita.HasValue)
             {
-                if (DateTime.Parse(nascita.ToString()).CompareTo(effetto) < 0)
+                if (DateTime.Parse(nascita.ToString()).CompareTo(effetto) > 0)
                 {
                     ErroriIOService _service = new ErroriIOService();
                     Errore = _service.GetById("028");
@@ -308,7 +309,8 @@ namespace AsdepGestioneAnagraficheBLL.Extra
                     if (!string.IsNullOrEmpty(codiceFiscale))
                     {
                         string calcolato = CodiceFiscale.GetDateFromFiscalCode(codiceFiscale);
-                        if (!valore.Equals(calcolato))
+                        DateTime _calcData = DateTime.Parse(calcolato, new CultureInfo("it-IT"));
+                        if (valore.Value.CompareTo(_calcData) != 0)
                         {
                             ErroriIOService _service = new ErroriIOService();
                             Errore = _service.GetById("017");
