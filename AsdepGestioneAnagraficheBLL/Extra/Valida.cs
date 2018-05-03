@@ -231,6 +231,7 @@ namespace AsdepGestioneAnagraficheBLL.Extra
                     Errore = _service.GetById("022");
                     return Errore;
                 }
+
             }
             catch { }
             return Errore;
@@ -256,15 +257,54 @@ namespace AsdepGestioneAnagraficheBLL.Extra
         }
     }
 
+    public class ValidaCopertura : Valida, IValida
+    {
+        public T_ErroriIODao Esegui(DateTime effettoA, string codiceFiscaleCN) 
+        {
+            SoggettiImportAppoggioDao soggCN = null;
+            AssicuratiService _serviceA = new AssicuratiService();
+            soggCN = _serviceA.GetByCodiceFiscale(codiceFiscaleCN);
+            if (effettoA.CompareTo(soggCN.Effetto)> 0) 
+            {
+                ErroriIOService _service = new ErroriIOService();
+                Errore = _service.GetById("029");
+            }
+            return Errore;
+        }
+        public T_ErroriIODao Esegui(string valore)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class ValidaDataNascitaEffetto : Valida, IValida 
+    {
+        public T_ErroriIODao Esegui(DateTime? nascita, DateTime effetto) 
+        {
+            if (nascita.HasValue)
+            {
+                if (DateTime.Parse(nascita.ToString()).CompareTo(effetto) < 0)
+                {
+                    ErroriIOService _service = new ErroriIOService();
+                    Errore = _service.GetById("028");
+                }
+            }
+            return Errore;
+        }
+        public T_ErroriIODao Esegui(string valore)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
     public class ValidaDataNascita : Valida, IValida
     {
         public Asdep.Common.DAO.T_ErroriIODao Esegui(string codiceFiscale, DateTime? valore)
         {
             try
             {
-                if (!string.IsNullOrEmpty(valore.ToString()))
+                if (valore.HasValue)
                 {
-
                     if (!string.IsNullOrEmpty(codiceFiscale))
                     {
                         string calcolato = CodiceFiscale.GetDateFromFiscalCode(codiceFiscale);
@@ -316,7 +356,7 @@ namespace AsdepGestioneAnagraficheBLL.Extra
     {
         public Asdep.Common.DAO.T_ErroriIODao Esegui(string valore)
         {
-            if (!valore.ToLower().Equals("dipendenti"))
+            if (!valore.ToLower().Equals("001"))
             {
                 ErroriIOService _service = new ErroriIOService();
                 Errore = _service.GetById("010");
@@ -336,7 +376,7 @@ namespace AsdepGestioneAnagraficheBLL.Extra
     {
         public Asdep.Common.DAO.T_ErroriIODao Esegui(string valore)
         {
-            if (!(valore.ToLower().Equals("base_integrativa") || valore.ToLower().Equals("base")))
+            if (!(valore.ToLower().Equals("004") || valore.ToLower().Equals("005")))
             {
                 ErroriIOService _service = new ErroriIOService();
                 Errore = _service.GetById("011");

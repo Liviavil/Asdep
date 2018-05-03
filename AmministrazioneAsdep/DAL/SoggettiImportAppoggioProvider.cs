@@ -342,10 +342,48 @@ namespace AmministrazioneAsdep.DAL
                             if (_capoNucleo != null)
                             {
                                 //Aggiornare il capo nucleo
+                                _capoNucleo.Nome = !string.IsNullOrEmpty(_soggCN.Nome) ? _soggCN.Nome : _capoNucleo.Nome;
+                                _capoNucleo.SecondoNome = !string.IsNullOrEmpty(_soggCN.SecondoNome) ? _soggCN.SecondoNome : _capoNucleo.SecondoNome;
+                                _capoNucleo.Cognome = !string.IsNullOrEmpty(_soggCN.Cognome) ? _soggCN.Cognome : _capoNucleo.Cognome;
+                                _capoNucleo.CodiceFiscale = !string.IsNullOrEmpty(_soggCN.CodiceFiscaleAssicurato) ? _soggCN.CodiceFiscaleAssicurato : _capoNucleo.CodiceFiscale;
+                                _capoNucleo.CapResidenza = !string.IsNullOrEmpty(_soggCN.CapResidenza) ? _soggCN.CapResidenza : _capoNucleo.CapResidenza;
+                                _capoNucleo.DataAggiornamento = DateTime.Now;
+                                _capoNucleo.DataNascita = DateTime.Parse(_soggCN.DataNascitaAssicurato.ToString());
+                                _capoNucleo.Email = !string.IsNullOrEmpty(_soggCN.Email) ? _soggCN.Email : _capoNucleo.Email;
+                                _capoNucleo.IBAN = !string.IsNullOrEmpty(_soggCN.Iban) ? _soggCN.Iban : _capoNucleo.IBAN;
+                                _capoNucleo.IndirizzoResidenza = !string.IsNullOrEmpty(_soggCN.IndirizzoResidenza) ? _soggCN.IndirizzoResidenza : _capoNucleo.IndirizzoResidenza;
+                                _capoNucleo.LuogoNascita = !string.IsNullOrEmpty(_soggCN.LuogoNascitaAssicurato) ? _soggCN.LuogoNascitaAssicurato : _capoNucleo.LuogoNascita;
+                                _capoNucleo.SiglaProvinciaResidenza = !string.IsNullOrEmpty(_soggCN.LuogoNascitaAssicurato) ? _soggCN.SiglaProvResidenza : _capoNucleo.SiglaProvinciaResidenza;
+                                _capoNucleo.StatoRecord = "02";
+                                _capoNucleo.Telefono = !string.IsNullOrEmpty(_soggCN.Telefono) ? _soggCN.Telefono : _capoNucleo.Telefono;
+                                _capoNucleo.Fonte = "AC";
+                                _capoNucleo.FonteModifica = "AC";
+                                _capoNucleo.DataInizio = DateTime.Now;
+                                _capoNucleo.DataFine = DateTime.MaxValue;
+                                _capoNucleo.CodiceUtente = "xxx";
                             }
                             else
                             {
                                 //Creare il soggetto caponucleo
+                                _capoNucleo.Nome = _soggCN.Nome;
+                                _capoNucleo.SecondoNome = _soggCN.SecondoNome;
+                                _capoNucleo.Cognome = _soggCN.Cognome;
+                                _capoNucleo.CodiceFiscale = _soggCN.CodiceFiscaleAssicurato;
+                                _capoNucleo.CapResidenza = _soggCN.CapResidenza;
+                                _capoNucleo.DataAggiornamento = DateTime.Now;
+                                _capoNucleo.DataNascita = DateTime.Parse(_soggCN.DataNascitaAssicurato.ToString());
+                                _capoNucleo.Email = _soggCN.Email;
+                                _capoNucleo.IBAN = _soggCN.Iban;
+                                _capoNucleo.IndirizzoResidenza = _soggCN.IndirizzoResidenza;
+                                _capoNucleo.LuogoNascita = _soggCN.LuogoNascitaAssicurato;
+                                _capoNucleo.SiglaProvinciaResidenza = _soggCN.SiglaProvResidenza;
+                                _capoNucleo.StatoRecord = "02";
+                                _capoNucleo.Telefono = _soggCN.Telefono;
+                                _capoNucleo.Fonte = "AC";
+                                _capoNucleo.FonteModifica = "AC";
+                                _capoNucleo.DataInizio = DateTime.Now;
+                                _capoNucleo.DataFine = DateTime.MaxValue;
+                                _capoNucleo.CodiceUtente = "xxx";
                                 db.Soggetto.Add(_capoNucleo);
                             }
                             #endregion
@@ -408,14 +446,33 @@ namespace AmministrazioneAsdep.DAL
                                         _enteApp.CodAppl = "xxx";
                                         db.EnteAppartenenza.Add(_enteApp);
                                     }
+
+                                    //Aggiungere nuova adesione caponucleo
+                                    Adesione newAdesione = new Adesione();
+
+                                    newAdesione.CodLegame = (from TableLegame in  db.T_TipiLegame where TableLegame.DescLegame.Equals(_soggCN.LegameNucleo) select TableLegame.CodLegame).ToString();
+                                    newAdesione.CodTipoAdesione = (from TableAdesione in db.T_TipoAdesione where TableAdesione.DescBreve.Equals(_soggCN.NumeroPolizza) select TableAdesione.CodTipoAdesione).ToString();
+                                    newAdesione.CodTipoSoggetto = (from TableSoggetto in db.T_TipoSoggetto where TableSoggetto.DescTipoSoggetto.Equals(_soggCN.Categoria) select TableSoggetto.CodTipoSoggetto).ToString();
+                                    newAdesione.DataAggiornamento = DateTime.Now;
+                                    newAdesione.DataInizio = _soggCN.Effetto;
+                                    newAdesione.IdEnte = long.Parse((from EnteTab in db.Ente where EnteTab.CodiceEnte.Equals(_soggCN.Ente) select EnteTab.IdEnte).ToString());
+                                    newAdesione.StatoAdesione = "02";
+                                    newAdesione.IdCaponucleo = _capoNucleo.IdSoggetto;
+                                    newAdesione.IdSoggetto = _capoNucleo.IdSoggetto;
+                                    newAdesione.MeseDecorrenza = 0;
+                                    newAdesione.AnnoDecorrenza = 0;
+                                    newAdesione.AnnoScadenza = 0;
+                                    newAdesione.DataFine = DateTime.Now;
+                                    newAdesione.CodiceUtente = "xxx";
+                                    newAdesione.CodAppl = "xxx";
+                                    db.Adesione.Add(newAdesione);
+
                                 }
                                 #endregion
                                 #region else
                                 else
                                 {
-
                                     _adesioneCN.DataFine = FineAdesione;
-
                                 }
                                 #endregion
                             }
@@ -475,8 +532,8 @@ namespace AmministrazioneAsdep.DAL
                                     _famigliare.Telefono = !string.IsNullOrEmpty(_fami.Telefono) ? _fami.Telefono : _famigliare.Telefono;
                                     _famigliare.Fonte = "AC";
                                     _famigliare.FonteModifica = "AC";
-                                    _famigliare.DataInizio = _fami.Effetto;
-                                    //_famigliare.DataFine = _fami.DataFine;
+                                    _famigliare.DataInizio = DateTime.Now;
+                                    _famigliare.DataFine = DateTime.MaxValue;
                                     _famigliare.CodiceUtente = "xxx";
                                 }
                                 else
@@ -485,7 +542,7 @@ namespace AmministrazioneAsdep.DAL
                                     _famigliare.Nome = _fami.Nome;
                                     _famigliare.SecondoNome = _fami.SecondoNome;
                                     _famigliare.Cognome = _fami.Cognome;
-                                    _famigliare.CodiceFiscale = _fami.Categoria;
+                                    _famigliare.CodiceFiscale = _fami.CodiceFiscaleAssicurato;
                                     _famigliare.CapResidenza = _fami.CapResidenza;
                                     _famigliare.DataAggiornamento = DateTime.Now;
                                     _famigliare.DataNascita = DateTime.Parse(_fami.DataNascitaAssicurato.ToString());
@@ -498,8 +555,8 @@ namespace AmministrazioneAsdep.DAL
                                     _famigliare.Telefono = _fami.Telefono;
                                     _famigliare.Fonte = "AC";
                                     _famigliare.FonteModifica = "AC";
-                                    _famigliare.DataInizio = _fami.Effetto;
-                                   // _famigliare.DataFine = _fami.DataFine;
+                                    _famigliare.DataInizio = DateTime.Now;
+                                    _famigliare.DataFine = DateTime.MaxValue;
                                     _famigliare.CodiceUtente = "xxx";
                                     db.Soggetto.Add(_famigliare);
                                 }
@@ -540,7 +597,7 @@ namespace AmministrazioneAsdep.DAL
                                                                             where TipoAdesione.DescBreve.ToUpper().Equals(_fami.NumeroPolizza.ToUpper())
                                                                             select TipoAdesione.CodTipoAdesione).ToString();
                                     adesioniSoggettoFami.DataFine = new DateTime(2019, 7, 1);//_capoNucleo.Effetto.Subtract(new TimeSpan(1, 0, 0, 0));
-                                    adesioniSoggettoFami.IdEnte = _adesioneCN.IdEnte;
+                                    adesioniSoggettoFami.IdEnte = long.Parse((from EnteTab in db.Ente where EnteTab.CodiceEnte.Equals(_soggCN.Ente) select EnteTab.IdEnte).ToString());
                                     adesioniSoggettoFami.StatoAdesione = "02";
                                     adesioniSoggettoFami.MeseDecorrenza = 0;
                                     adesioniSoggettoFami.AnnoDecorrenza = 0;

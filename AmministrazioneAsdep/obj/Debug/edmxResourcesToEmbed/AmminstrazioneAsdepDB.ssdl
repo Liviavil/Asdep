@@ -57,6 +57,7 @@
     <Property Name="DataAggiornamento" Type="datetime2" Precision="7" Nullable="false" />
     <Property Name="CodiceUtente" Type="varchar" MaxLength="16" Nullable="false" />
     <Property Name="CodAppl" Type="varchar" MaxLength="4" Nullable="false" />
+    <Property Name="DataRinnovo" Type="date" Nullable="false" />
   </EntityType>
   <EntityType Name="DatiEnte">
     <Key>
@@ -114,6 +115,22 @@
     <Property Name="Anno" Type="tinyint" Nullable="false" />
     <Property Name="NumeroRate" Type="tinyint" Nullable="false" />
     <Property Name="ImportoRata" Type="decimal" Precision="13" Scale="4" Nullable="false" />
+    <Property Name="DataInizio" Type="date" Nullable="false" />
+    <Property Name="DataFine" Type="date" Nullable="false" />
+    <Property Name="DataAggiornamento" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="CodiceUtente" Type="varchar" MaxLength="16" Nullable="false" />
+    <Property Name="CodAppl" Type="varchar" MaxLength="4" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SemestriValidita">
+    <Key>
+      <PropertyRef Name="Semestre" />
+    </Key>
+    <Property Name="Semestre" Type="tinyint" Nullable="false" />
+    <Property Name="GiornoInizio" Type="tinyint" Nullable="false" />
+    <Property Name="MeseInizio" Type="tinyint" Nullable="false" />
+    <Property Name="GiornoFine" Type="tinyint" Nullable="false" />
+    <Property Name="MeseFine" Type="tinyint" Nullable="false" />
+    <Property Name="AddAnnoEffettoPerScadenza" Type="tinyint" Nullable="false" />
     <Property Name="DataInizio" Type="date" Nullable="false" />
     <Property Name="DataFine" Type="date" Nullable="false" />
     <Property Name="DataAggiornamento" Type="datetime2" Precision="7" Nullable="false" />
@@ -673,6 +690,7 @@
     <EntitySet Name="Ente" EntityType="Self.Ente" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="EnteAppartenenza" EntityType="Self.EnteAppartenenza" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ModalitaPagamentoEnte" EntityType="Self.ModalitaPagamentoEnte" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SemestriValidita" EntityType="Self.SemestriValidita" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SoggettiImportAppoggio" EntityType="Self.SoggettiImportAppoggio" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Soggetto" EntityType="Self.Soggetto" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="StoricoAdesione" EntityType="Self.StoricoAdesione" Schema="dbo" store:Type="Tables" />

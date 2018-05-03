@@ -24,6 +24,7 @@ namespace AmministrazioneAsdep
         public System.DateTime DataAggiornamento { get; set; }
         public string CodiceUtente { get; set; }
         public string CodAppl { get; set; }
+        public System.DateTime DataRinnovo { get; set; }
     
         public virtual Ente Ente { get; set; }
         public virtual T_TipoAdesione T_TipoAdesione { get; set; }

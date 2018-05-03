@@ -324,6 +324,11 @@ namespace AsdepGestioneAnagraficheBLL.Business
         public void UpdateOne(SoggettiImportAppoggioDao soggetti, List<T_ErroriIODao> errori)
         {
             string err = "";
+            if (string.IsNullOrEmpty(soggetti.DataNascitaAssicurato.ToString()))
+            {
+                soggetti.DataNascitaAssicurato = DateTime.Parse(CodiceFiscale.GetDateFromFiscalCode(soggetti.CodiceFiscaleAssicurato));
+            }
+
 
             SoggettiImportAppoggio _soggBL = new SoggettiImportAppoggio();
             Asdep.Common.DAO.ExtraDao.PropertyCopier<SoggettiImportAppoggioDao, SoggettiImportAppoggio>.Copy(soggetti, _soggBL);
@@ -334,9 +339,7 @@ namespace AsdepGestioneAnagraficheBLL.Business
             if (!string.IsNullOrEmpty(err))
                 err = err.Remove(err.Length - 1);
             _soggBL.Errori = err;
-
             provider.Update(db, _soggBL, err);
-
         }
 
         public SoggettiImportAppoggioDao SelectById(long id)
@@ -427,7 +430,11 @@ namespace AsdepGestioneAnagraficheBLL.Business
         {
             SoggettiImportAppoggioDao _dao = new SoggettiImportAppoggioDao();
             SoggettiImportAppoggio _sogg = new SoggettiImportAppoggio();
-            _sogg = provider.GetByCodiceFiscale(db, cf);
+            using (db=new AmministrazioneAsdepEntities ())
+            {
+                _sogg = provider.GetByCodiceFiscale(db, cf);
+            }
+           
             Asdep.Common.DAO.ExtraDao.PropertyCopier<SoggettiImportAppoggio, SoggettiImportAppoggioDao>.Copy(_sogg, _dao);
             return _dao;
         }

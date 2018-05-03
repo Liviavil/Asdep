@@ -8,6 +8,7 @@
     <EntitySet Name="Ente" EntityType="AmministrazioneAsdepModel.Ente" />
     <EntitySet Name="EnteAppartenenza" EntityType="AmministrazioneAsdepModel.EnteAppartenenza" />
     <EntitySet Name="ModalitaPagamentoEnte" EntityType="AmministrazioneAsdepModel.ModalitaPagamentoEnte" />
+    <EntitySet Name="SemestriValidita" EntityType="AmministrazioneAsdepModel.SemestriValidita" />
     <EntitySet Name="SoggettiImportAppoggio" EntityType="AmministrazioneAsdepModel.SoggettiImportAppoggio" />
     <EntitySet Name="Soggetto" EntityType="AmministrazioneAsdepModel.Soggetto" />
     <EntitySet Name="StoricoAdesione" EntityType="AmministrazioneAsdepModel.StoricoAdesione" />
@@ -177,6 +178,7 @@
     <Property Name="DataAggiornamento" Type="DateTime" Nullable="false" Precision="7" />
     <Property Name="CodiceUtente" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
     <Property Name="CodAppl" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="DataRinnovo" Type="DateTime" Nullable="false" Precision="0" />
     <NavigationProperty Name="Ente" Relationship="AmministrazioneAsdepModel.FK_ContribuzioneEnte_Ente" FromRole="ContribuzioneEnte" ToRole="Ente" />
     <NavigationProperty Name="T_TipoAdesione" Relationship="AmministrazioneAsdepModel.FK_ContribuzioneEnte_TipoAdesione" FromRole="ContribuzioneEnte" ToRole="T_TipoAdesione" />
   </EntityType>
@@ -243,6 +245,22 @@
     <Property Name="Anno" Type="Byte" Nullable="false" />
     <Property Name="NumeroRate" Type="Byte" Nullable="false" />
     <Property Name="ImportoRata" Type="Decimal" Nullable="false" Precision="13" Scale="4" />
+    <Property Name="DataInizio" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="DataFine" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="DataAggiornamento" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="CodiceUtente" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
+    <Property Name="CodAppl" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="SemestriValidita">
+    <Key>
+      <PropertyRef Name="Semestre" />
+    </Key>
+    <Property Name="Semestre" Type="Byte" Nullable="false" />
+    <Property Name="GiornoInizio" Type="Byte" Nullable="false" />
+    <Property Name="MeseInizio" Type="Byte" Nullable="false" />
+    <Property Name="GiornoFine" Type="Byte" Nullable="false" />
+    <Property Name="MeseFine" Type="Byte" Nullable="false" />
+    <Property Name="AddAnnoEffettoPerScadenza" Type="Byte" Nullable="false" />
     <Property Name="DataInizio" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="DataFine" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="DataAggiornamento" Type="DateTime" Nullable="false" Precision="7" />

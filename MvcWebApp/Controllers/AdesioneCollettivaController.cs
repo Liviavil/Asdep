@@ -76,9 +76,11 @@ namespace MvcWebApp.Controllers
 
             modello.Results = new List<Asdep.Common.DAO.AdesioneDao>();
 
+
             return View(modello);
         }
 
+        [HttpPost]
         public ActionResult RisultatiAdesioni(SearchAdesioniModel model)
         {
             string nome = model.Nome;
@@ -137,7 +139,7 @@ namespace MvcWebApp.Controllers
                 enti = _hp.channel.GetAllEnti();
                 legami = _hp.channel.GetTipiLegame();
                 tipiSogg = _hp.channel.GetTipoSoggetti();
-                tipoAdesione = _hp.channel.GetTipoAdesioni();
+                tipoAdesione = _hp.channel.GetTipoAdesioni().Where(x => x.CategoriaAdesione.Equals("AC")).ToList(); ;
                 model = _hp.channel.GetAdesioneById(id);
             }
 
@@ -198,11 +200,11 @@ namespace MvcWebApp.Controllers
         public ActionResult SalvaAdesione(Asdep.Common.DAO.AdesioneDao model)
         {
             AdesioneDao _dao = new AdesioneDao();
-            ViewBag.EntiList =     Session["EntiList"] ;     
-            ViewBag.TipiSoggList =  Session["TipiSoggList"];
+            ViewBag.EntiList = Session["EntiList"];
+            ViewBag.TipiSoggList = Session["TipiSoggList"];
             ViewBag.TipiLegamiList = Session["TipiLegamiList"];
             ViewBag.TipiAdesList = Session["TipiAdesList"];
-           
+
             using (HelperService _hp = new HelperService())
             {
                 _dao = _hp.channel.ModificaAdesione(model.IdAdesione);
@@ -275,9 +277,9 @@ namespace MvcWebApp.Controllers
             #endregion
 
             AdesioneDao dao = new AdesioneDao();
-            dao.Soggetto=new SoggettoDao();
+            dao.Soggetto = new SoggettoDao();
             dao.Soggetto1 = new SoggettoDao();
-            dao.ErroriList = new List<T_ErroriIODao> ();
+            dao.ErroriList = new List<T_ErroriIODao>();
             return View(dao);
         }
 
@@ -293,20 +295,19 @@ namespace MvcWebApp.Controllers
                 List<T_ErroriIODao> errori = new List<T_ErroriIODao>();
 
                 int result = -1;
-                AdesioneDao _dao = new AdesioneDao();
-                _dao.ErroriList = errori;
+                model.ErroriList = errori;
                 using (HelperService _hp = new HelperService())
                 {
                     errori = _hp.channel.VerificaAdesione(model);
                 }
-                _dao.ErroriList = errori;
-                if (_dao.ErroriList.Any())
+                model.ErroriList = errori;
+                if (model.ErroriList.Any())
                 {
-                    return View("CreaAdesione", _dao);
+                    return View("CreaAdesione", model);
                 }
                 else
                 {
-                     using (HelperService _hp = new HelperService())
+                    using (HelperService _hp = new HelperService())
                     {
                         result = _hp.channel.AggiungiAdesione(model);
                     }

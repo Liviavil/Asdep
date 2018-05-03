@@ -4,6 +4,7 @@
     ViewBag.Title = "EditSoggettoImportato";
     Session["page"] = Request.QueryString["page"] != null ? Request.QueryString["page"].ToString() : "0";
     Session["ente"] = Model.Ente;
+    Session["tracciato"] = Model.TipoTracciato;
 }
 
 @*<h2>EditSoggettoImportato</h2>*@
@@ -15,6 +16,7 @@
     <!--form edit 1-->
 
    @Html.HiddenFor(t=> t.IdSoggetto)
+     @Html.HiddenFor(t=> t.TipoTracciato)
 
     <div class="Form Form--spaced u-layout-r-withGutter u-padding-top-xxl u-text-r-xs">
         <fieldset class="Form-fieldset">
@@ -125,12 +127,12 @@
                         @{ string descrDataNascitaAssicurato = Model.ErroriList.Where(x => x.NomeColonna.Equals("DataNascitaAssicurato")).FirstOrDefault() != null ? Model.ErroriList.Where(x => x.NomeColonna.Equals("DataNascitaAssicurato")).FirstOrDefault().DescErrore : null;
                            if (!string.IsNullOrEmpty(descrDataNascitaAssicurato))
                            {
-                            <input class="Form-input u-text-r-s u-borderRadius-m border-color-red" id="DataNascitaAssicurato"  name="DataNascitaAssicurato" value="@Model.DataNascitaAssicurato">
+                            <input type="date" class="Form-input u-text-r-s u-borderRadius-m border-color-red" id="DataNascitaAssicurato"  name="DataNascitaAssicurato" value='@if(Model.DataNascitaAssicurato.HasValue){ @Model.DataNascitaAssicurato.Value.ToString("yyyy-MM-dd")}'>
                             <span class="u-color-red">@descrDataNascitaAssicurato</span>  
                            }
                            else
                            {  
-                            <input class="Form-input u-text-r-s u-borderRadius-m" id="DataNascitaAssicurato"  name="DataNascitaAssicurato" value="@Model.DataNascitaAssicurato">
+                            <input type="date" class="Form-input u-text-r-s u-borderRadius-m" id="DataNascitaAssicurato"  name="DataNascitaAssicurato" value='@if(Model.DataNascitaAssicurato.HasValue){ @Model.DataNascitaAssicurato.Value.ToString("yyyy-MM-dd")}'>
                            }}
                     </div>
                 </div>
@@ -157,12 +159,14 @@
                         @{ string descrLegameNucleo = Model.ErroriList.Where(x => x.NomeColonna.Equals("LegameNucleo")).FirstOrDefault() != null ? Model.ErroriList.Where(x => x.NomeColonna.Equals("LegameNucleo")).FirstOrDefault().DescErrore : null;
                            if (!string.IsNullOrEmpty(descrLegameNucleo))
                            {
-                            <input class="Form-input u-text-r-s u-borderRadius-m border-color-red" id="LegameNucleo" aria-required="true" name="LegameNucleo" required value="@Model.LegameNucleo">
+                            @*<input class="Form-input u-text-r-s u-borderRadius-m border-color-red" id="LegameNucleo" aria-required="true" name="LegameNucleo" required value="@Model.LegameNucleo">*@
+                            @Html.DropDownListFor(m => m.LegameNucleo, new SelectList(ViewBag.TipiLegamiList, "Value", "Text",  Model.LegameNucleo), new { @class = "Form-input u-text-r-s u-borderRadius-m border-color-red" })
                             <span class="u-color-red">@descrLegameNucleo</span>  
                            }
                            else
                            {
-                            <input class="Form-input u-text-r-s u-borderRadius-m" id="LegameNucleo" aria-required="true" name="LegameNucleo" required value="@Model.LegameNucleo">
+                            @Html.DropDownListFor(m => m.LegameNucleo, new SelectList(ViewBag.TipiLegamiList, "Value", "Text", Model.LegameNucleo), new { @class = "Form-input u-text-r-s u-borderRadius-m" })
+                               @*<input class="Form-input u-text-r-s u-borderRadius-m" id="LegameNucleo" aria-required="true" name="LegameNucleo" required value="@Model.LegameNucleo">*@
                            }}
                     </div>
                 </div>
@@ -323,12 +327,12 @@
                         @{ string descrEffetto = Model.ErroriList.Where(x => x.NomeColonna.Equals("Effetto")).FirstOrDefault() != null ? Model.ErroriList.Where(x => x.NomeColonna.Equals("Effetto")).FirstOrDefault().DescErrore : null;
                            if (!string.IsNullOrEmpty(descrEffetto))
                            {
-                            <input class="Form-input u-text-r-s u-borderRadius-m border-color-red" id="Effetto" aria-required="true" required name="Effetto" value="@Model.Effetto.ToString().Split(' ')[0]">
+                            <input type="date" class="Form-input u-text-r-s u-borderRadius-m border-color-red" id="Effetto" aria-required="true" required name="Effetto" value="@Model.Effetto.ToString("yyyy-MM-dd")">
                             <span class="u-color-red">@descrEffetto</span>  
                            }
                            else
                            {
-                            <input class="Form-input u-text-r-s u-borderRadius-m" id="Effetto" aria-required="true" required name="Effetto" value="@Model.Effetto.ToString().Split(' ')[0]">
+                            <input type="date" class="Form-input u-text-r-s u-borderRadius-m" id="Effetto" aria-required="true" required name="Effetto" value="@Model.Effetto.ToString("yyyy-MM-dd")">
                            }
                         }
                     </div>
@@ -340,12 +344,12 @@
                         @{ string descrDataCessazione = Model.ErroriList.Where(x => x.NomeColonna.Equals("DataCessazione")).FirstOrDefault() != null ? Model.ErroriList.Where(x => x.NomeColonna.Equals("DataCessazione")).FirstOrDefault().DescErrore : null;
                            if (!string.IsNullOrEmpty(descrDataCessazione))
                            {
-                            <input class="Form-input u-text-r-s u-borderRadius-m border-color-red" id="DataCessazione" name="DataCessazione" value="@Model.DataCessazione.ToString().Split(' ')[0]">
+                            <input type="date" class="Form-input u-text-r-s u-borderRadius-m border-color-red" id="DataCessazione" name="DataCessazione" value="@if (Model.DataCessazione.HasValue) { @Model.DataCessazione.Value.ToString("yyyy-MM-dd") }">
                             <span class="u-color-red">@descrDataCessazione</span>  
                            }
                            else
                            {
-                            <input class="Form-input u-text-r-s u-borderRadius-m" id="DataCessazione" name="DataCessazione" value="@Model.DataCessazione.ToString().Split(' ')[0]">
+                            <input type="date" class="Form-input u-text-r-s u-borderRadius-m" id="DataCessazione" name="DataCessazione" value="@if (Model.DataCessazione.HasValue) { @Model.DataCessazione.Value.ToString("yyyy-MM-dd") }">
                            }
                         }
                     </div>
@@ -374,12 +378,14 @@
                         @{ string descrCategoria = Model.ErroriList.Where(x => x.NomeColonna.Equals("Categoria")).FirstOrDefault() != null ? Model.ErroriList.Where(x => x.NomeColonna.Equals("Categoria")).FirstOrDefault().DescErrore : null;
                            if (!string.IsNullOrEmpty(descrCategoria))
                            {
-                            <input class="Form-input u-text-r-s u-borderRadius-m border-color-red" id="Categoria" aria-required="true" required name="Categoria" value="@Model.Categoria">
+                                @Html.DropDownListFor(m => m.Categoria, new SelectList(ViewBag.TipiSoggList, "Value", "Text", Model.Categoria), new { @class = "Form-input u-text-r-s u-borderRadius-m border-color-red" })
+                                @*<input class="Form-input u-text-r-s u-borderRadius-m border-color-red" id="Categoria" aria-required="true" required name="Categoria" value="@Model.Categoria">*@
                             <span class="u-color-red">@descrCategoria</span>  
                            }
                            else
                            {
-                            <input class="Form-input u-text-r-s u-borderRadius-m" id="Categoria" aria-required="true" required name="Categoria" value="@Model.Categoria">
+                               @Html.DropDownListFor(m => m.Categoria, new SelectList(ViewBag.TipiSoggList, "Value", "Text", Model.Categoria), new { @class = "Form-input u-text-r-s u-borderRadius-m" })
+                            @*<input class="Form-input u-text-r-s u-borderRadius-m" id="Categoria" aria-required="true" required name="Categoria" value="@Model.Categoria">*@
                            }
                         }
                     </div>
@@ -408,12 +414,14 @@
                         @{ string descrNumeroPolizza = Model.ErroriList.Where(x => x.NomeColonna.Equals("NumeroPolizza")).FirstOrDefault() != null ? Model.ErroriList.Where(x => x.NomeColonna.Equals("NumeroPolizza")).FirstOrDefault().DescErrore : null;
                            if (!string.IsNullOrEmpty(descrNumeroPolizza))
                            {
-                            <input class="Form-input u-text-r-s u-borderRadius-m border-color-red" id="NumeroPolizza" aria-required="true" required name="NumeroPolizza" value="@Model.NumeroPolizza">
+                            @Html.DropDownListFor(m => m.NumeroPolizza, new SelectList(ViewBag.TipiAdesList, "Value", "Text", Model.NumeroPolizza), new { @class = "Form-input u-text-r-s u-borderRadius-m border-color-red" })
+                               @*<input class="Form-input u-text-r-s u-borderRadius-m border-color-red" id="NumeroPolizza" aria-required="true" required name="NumeroPolizza" value="@Model.NumeroPolizza">*@
                             <span class="u-color-red">@descrNumeroPolizza</span>  
                            }
                            else
                            {
-                            <input class="Form-input u-text-r-s u-borderRadius-m" id="NumeroPolizza" aria-required="true" required name="NumeroPolizza" value="@Model.NumeroPolizza">
+                            @Html.DropDownListFor(m => m.NumeroPolizza, new SelectList(ViewBag.TipiAdesList, "Value", "Text", Model.NumeroPolizza), new { @class = "Form-input u-text-r-s u-borderRadius-m" })   
+                            @*<input class="Form-input u-text-r-s u-borderRadius-m" id="NumeroPolizza" aria-required="true" required name="NumeroPolizza" value="@Model.NumeroPolizza">*@
                            }
                         }
                     </div>

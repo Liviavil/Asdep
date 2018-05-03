@@ -32,6 +32,7 @@ namespace AmministrazioneAsdep
         public DbSet<Ente> Ente { get; set; }
         public DbSet<EnteAppartenenza> EnteAppartenenza { get; set; }
         public DbSet<ModalitaPagamentoEnte> ModalitaPagamentoEnte { get; set; }
+        public DbSet<SemestriValidita> SemestriValidita { get; set; }
         public DbSet<SoggettiImportAppoggio> SoggettiImportAppoggio { get; set; }
         public DbSet<Soggetto> Soggetto { get; set; }
         public DbSet<StoricoAdesione> StoricoAdesione { get; set; }

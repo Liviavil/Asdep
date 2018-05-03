@@ -94,10 +94,10 @@ namespace MvcWebApp.CustomCode
             
         }
 
-        public DataTable ConvertCSVtoDataTable(string strFilePath)
+        public DataTable ConvertCSVtoDataTable(HttpPostedFileBase strFilePath)
         {
             DataTable dt = new DataTable();
-            using (StreamReader sr = new StreamReader(strFilePath))
+            using (StreamReader sr = new StreamReader(strFilePath.InputStream))
             {
                 string[] headers = sr.ReadLine().Split(';');
                 //foreach (string header in headers)

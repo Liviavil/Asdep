@@ -194,9 +194,10 @@ namespace AmministrazioneAsdep.DAL
             throw new NotImplementedException();
         }
 
-        public List<Adesione> RicercaAdesione(AmministrazioneAsdepEntities db)
+        public List<Adesione> RicercaAdesioneJoin(AmministrazioneAsdepEntities db)
         {
-            List<Adesione> result = null;
+           // var ll = db.Database.SqlQuery<Adesione>("SELECT * FROM [GestioneASDEP].[dbo].[Adesione]").ToList();
+            List<Adesione> result = new List<Adesione>();
             result = (from AdesTbl in db.Adesione
                       join SoggTbl in db.Soggetto on AdesTbl.IdSoggetto equals SoggTbl.IdSoggetto
                       join Sogg1Table in db.Soggetto on AdesTbl.IdCaponucleo equals Sogg1Table.IdSoggetto
@@ -204,7 +205,7 @@ namespace AmministrazioneAsdep.DAL
                       join TipoAdesTable in db.T_TipoAdesione on AdesTbl.CodTipoAdesione equals TipoAdesTable.CodTipoAdesione
                       join TipoLegameTable in db.T_TipiLegame on AdesTbl.CodLegame equals TipoLegameTable.CodLegame
                       join TipoSoggTable in db.T_TipoSoggetto on AdesTbl.CodTipoSoggetto equals TipoSoggTable.CodTipoSoggetto
-                      select AdesTbl).ToList();
+                      select AdesTbl).ToList<Adesione>();
 
             return result;
         }

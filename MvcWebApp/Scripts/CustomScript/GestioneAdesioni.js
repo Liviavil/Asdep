@@ -31,19 +31,17 @@ function tableAdesioni() {
             {
                 targets: 0,
                 createdCell: function (td, cellData, rowData, row, col) {
-                    //var htmlErrori = '<a title="salva" class="salva u-md-margin color-primo u-textClean-Icon u-text-m" >';
-                    //htmlErrori += '      <span class="far fa-save" aria-hidden="true"></span>';
-                    //htmlErrori += '    <span class="u-hiddenVisually">salva</span>';
-                    //htmlErrori += '    </a>';
-                var htmlErrori = '   <a title="cancella" class="cancella u-md-margin color-primo u-textClean-Icon u-text-m" >';
-                    htmlErrori += '       <span class="far fa-trash-alt" aria-hidden="true"></span>';
-                    htmlErrori += '       <span class="u-hiddenVisually">cancella</span>';
-                    htmlErrori += '   </a>';
-                    htmlErrori += '<a title="modifica" class="modifica color-primo u-textClean-Icon u-text-m" >';
-                    htmlErrori += ' <span class="far fa-edit" aria-hidden="true"></span>';
-                    htmlErrori += '<span class="u-hiddenVisually">modifica</span>';
-                    htmlErrori += '</a>';
-                    $(td).html(htmlErrori);
+                    if (rowData.T_TipoAdesione.CategoriaAdesione == "AC") {
+                        var htmlErrori = '   <a title="cancella" class="cancella u-md-margin color-primo u-textClean-Icon u-text-m" >';
+                        htmlErrori += '       <span class="far fa-trash-alt" aria-hidden="true"></span>';
+                        htmlErrori += '       <span class="u-hiddenVisually">cancella</span>';
+                        htmlErrori += '   </a>';
+                        htmlErrori += '<a title="modifica" class="modifica color-primo u-textClean-Icon u-text-m" >';
+                        htmlErrori += ' <span class="far fa-edit" aria-hidden="true"></span>';
+                        htmlErrori += '<span class="u-hiddenVisually">modifica</span>';
+                        htmlErrori += '</a>';
+                        $(td).html(htmlErrori);
+                    }
                 }
             }
         ],

@@ -16,6 +16,7 @@ namespace Asdep.Common.DAO
         public string NumeroPolizza { get; set; }
         public System.DateTime DataFine { get; set; }
         public System.DateTime DataAggiornamento { get; set; }
+        public System.DateTime DataRinnovo { get; set; }
         public string CodiceUtente { get; set; }
         public string CodAppl { get; set; }
     }

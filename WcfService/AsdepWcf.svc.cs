@@ -440,9 +440,14 @@ namespace WcfService
         {
             List<AdesioneDao> _adesioni = new List<AdesioneDao>();
 
-            AdesioneService service = new AdesioneService();
-            _adesioni = service.RicercaAdesioni();
-            return _adesioni;
+              AdesioneService service = new AdesioneService();
+              _adesioni = service.SearchAdesioni();
+
+            //var lc =  Newtonsoft.Json.JsonConvert.SerializeObject(_adesioni);
+
+            //var lc1 = Newtonsoft.Json.JsonConvert.DeserializeObject<List<AdesioneDao>>(lc);
+
+              return _adesioni;
         }
 
         public AdesioneDao GetAdesioneById(long id) 

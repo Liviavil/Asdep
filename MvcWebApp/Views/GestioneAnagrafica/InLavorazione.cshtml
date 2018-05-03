@@ -69,19 +69,26 @@
     <div id="risultati">
         @*@{ Model.SearchResults.Selected = Request.QueryString["en"];}*@
         @{
-         var model = new MvcWebApp.Models.SoggImportAppoggioSearchResults();
-         if (string.IsNullOrEmpty(Request.QueryString["en"]))
-         {
+            var model = new MvcWebApp.Models.SoggImportAppoggioSearchResults();
+            if (string.IsNullOrEmpty(Request.QueryString["en"]))
+            {
 
-             model.selectedId = Model.selectedId;
-         }
-         else
-         {
-             model.selectedTracciato = Request.QueryString["tt"];
-             model.selectedId = Request.QueryString["en"];
-             model.NumPage = Model.NumPage;//Request.QueryString["page"] != null? Request.QueryString["page"].ToString() : "0";
+                model.selectedId = Model.selectedId;
+            }
+            else
+            {
+                if (!string.IsNullOrEmpty(Request.QueryString["tt"]))
+                {
+                    model.selectedTracciato = Request.QueryString["tt"].ToString();
+                }
+                model.selectedId = Request.QueryString["en"];
+                model.NumPage = Model.NumPage;//Request.QueryString["page"] != null? Request.QueryString["page"].ToString() : "0";
 
-         }
+            }
+            if (Session["tracciato"] != null)
+            {
+                model.selectedTracciato = Session["tracciato"].ToString();
+            }
             model.Results = Model.Results;
             model.CountResults = Model.CountResults;
             Html.RenderAction("RisultatiSoggettiImportati", "GestioneAnagrafica", new { modello = model });

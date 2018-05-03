@@ -56,17 +56,18 @@ namespace AsdepGestioneAnagraficheBLL.Business
             throw new NotImplementedException();
         }
 
-        public List<AdesioneDao> RicercaAdesioni()
+        public List<AdesioneDao> SearchAdesioni()
         {
             List<AdesioneDao> adesioniDao = new List<AdesioneDao>();
-            List<Adesione> _adesioni = new List<Adesione>();
+            List<Adesione> _adesioni1 = new List<Adesione>();
             using (db = new AmministrazioneAsdep.AmministrazioneAsdepEntities())
             {
-                _adesioni = provider.RicercaAdesione(db);
-                foreach (Adesione _ad in _adesioni)
+                _adesioni1 = provider.RicercaAdesioneJoin(db);
+                foreach (Adesione _ad in _adesioni1)
                 {
                     AdesioneDao _dao = new AdesioneDao();
-                    _dao.Eta = Helper.CalculateAge(_ad.Soggetto.DataNascita);
+                    if(_ad.Soggetto != null)
+                        _dao.Eta = Helper.CalculateAge(_ad.Soggetto.DataNascita);
                     Asdep.Common.DAO.ExtraDao.PropertyCopier<Adesione, AdesioneDao>.Copy(_ad, _dao);
                     EnteDao EnteDao = new EnteDao();
                     Asdep.Common.DAO.ExtraDao.PropertyCopier<Ente, EnteDao>.Copy(_ad.Ente, EnteDao);

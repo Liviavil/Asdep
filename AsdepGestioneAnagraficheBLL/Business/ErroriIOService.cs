@@ -85,6 +85,11 @@ namespace AsdepGestioneAnagraficheBLL.Business
             errori.Add(_validazioneData.Esegui(sogg.CodiceFiscaleAssicurato, sogg.DataNascitaAssicurato));
             _validazione = new ValidaSiglaProv();
             errori.Add(_validazione.Esegui(sogg.SiglaProvResidenza));
+            ValidaDataNascitaEffetto _valida = new ValidaDataNascitaEffetto();
+            errori.Add(_valida.Esegui(sogg.DataNascitaAssicurato, sogg.Effetto));
+            ValidaCopertura _validazione1 = new ValidaCopertura();
+            errori.Add(_validazione1.Esegui(sogg.Effetto, sogg.CodiceFiscaleCapoNucleo));
+
 
             if (tipoTracciato.Equals("Esclusioni")) 
             {

@@ -102,6 +102,9 @@
       <DependentUpon>AmminstrazioneAsdepDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SemestriValidita.cs">
+      <DependentUpon>AmminstrazioneAsdepDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="SoggettiImportAppoggio.cs">
       <DependentUpon>AmminstrazioneAsdepDB.tt</DependentUpon>
     </Compile>

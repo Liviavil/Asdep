@@ -47,6 +47,7 @@
     <EntitySetMapping Name="ContribuzioneEnte">
       <EntityTypeMapping TypeName="AmministrazioneAsdepModel.ContribuzioneEnte">
         <MappingFragment StoreEntitySet="ContribuzioneEnte">
+          <ScalarProperty Name="DataRinnovo" ColumnName="DataRinnovo" />
           <ScalarProperty Name="CodAppl" ColumnName="CodAppl" />
           <ScalarProperty Name="CodiceUtente" ColumnName="CodiceUtente" />
           <ScalarProperty Name="DataAggiornamento" ColumnName="DataAggiornamento" />
@@ -120,6 +121,23 @@
           <ScalarProperty Name="NumeroRate" ColumnName="NumeroRate" />
           <ScalarProperty Name="Anno" ColumnName="Anno" />
           <ScalarProperty Name="IdEnte" ColumnName="IdEnte" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SemestriValidita">
+      <EntityTypeMapping TypeName="AmministrazioneAsdepModel.SemestriValidita">
+        <MappingFragment StoreEntitySet="SemestriValidita">
+          <ScalarProperty Name="CodAppl" ColumnName="CodAppl" />
+          <ScalarProperty Name="CodiceUtente" ColumnName="CodiceUtente" />
+          <ScalarProperty Name="DataAggiornamento" ColumnName="DataAggiornamento" />
+          <ScalarProperty Name="DataFine" ColumnName="DataFine" />
+          <ScalarProperty Name="DataInizio" ColumnName="DataInizio" />
+          <ScalarProperty Name="AddAnnoEffettoPerScadenza" ColumnName="AddAnnoEffettoPerScadenza" />
+          <ScalarProperty Name="MeseFine" ColumnName="MeseFine" />
+          <ScalarProperty Name="GiornoFine" ColumnName="GiornoFine" />
+          <ScalarProperty Name="MeseInizio" ColumnName="MeseInizio" />
+          <ScalarProperty Name="GiornoInizio" ColumnName="GiornoInizio" />
+          <ScalarProperty Name="Semestre" ColumnName="Semestre" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

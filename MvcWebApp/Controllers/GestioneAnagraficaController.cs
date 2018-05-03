@@ -32,7 +32,7 @@ namespace MvcWebApp.Controllers
                     if (!string.IsNullOrEmpty(codiceEnte))
                     {
                         Helper hp = new Helper();
-                        DataTable dt = hp.ConvertCSVtoDataTable(path);
+                        DataTable dt = hp.ConvertCSVtoDataTable(file);
                         hp.InsertIntoTableAppoggio(dt, "Prima adesione/Rinnovo");
                         ViewBag.Message = "File caricato con successo";
                         return RedirectToAction("InLavorazione", "GestioneAnagrafica", new { en = ente, tt = "Prima adesione/Rinnovo" });
@@ -101,15 +101,22 @@ namespace MvcWebApp.Controllers
                     results.selectedTracciato = tt;
                 }
             }
+
+            if (Session["Soggetti"] != null)
+            {
+                results.Results = Session["Soggetti"] as List<SoggettiImportAppoggioDao>;
+                results.CountResults = results.Results.Count;
+            }
             Session["Ddl"] = results.ListItemEnti;
             results.NumPage = page;
+            
             //soggetto.SearchResults = results;
             return View(results);
         }
 
         public ActionResult RisultatiSoggettiImportati(SoggImportAppoggioSearchResults modello)
         {
-            Search<SoggImportAppoggio> results = new SoggImportAppoggioSearchResults();
+            Search<SoggettiImportAppoggioDao> results = new SoggImportAppoggioSearchResults();
             //List<SoggImportAppoggio> soggetti = new List<SoggImportAppoggio>();
             List<SoggettiImportAppoggioDao> _anagrafiche = new List<SoggettiImportAppoggioDao>();
             if (modello.selectedId != null && modello.selectedTracciato != null)
@@ -295,6 +302,49 @@ namespace MvcWebApp.Controllers
         [HttpGet]
         public ActionResult EditSoggettoImportato(string id)
         {
+            List<T_TipiLegameDao> legami = new List<T_TipiLegameDao>();
+            List<T_TipoSoggettoDao> tipiSogg = new List<T_TipoSoggettoDao>();
+            List<T_TipoAdesioneDao> tipoAdesione = new List<T_TipoAdesioneDao>();
+
+            using (HelperService _hp = new HelperService())
+            {
+                legami = _hp.channel.GetTipiLegame();
+                tipiSogg = _hp.channel.GetTipoSoggetti();
+                tipoAdesione = _hp.channel.GetTipoAdesioni().Where(x=>x.CategoriaAdesione.Equals("AC")).ToList();
+            }
+
+            #region DropDownList
+            List<SelectListItem> soggettiList = new List<SelectListItem>();
+            List<SelectListItem> tipoAdesioniList = new List<SelectListItem>();
+            List<SelectListItem> tipoLegamiList = new List<SelectListItem>();
+
+            foreach (T_TipoSoggettoDao valore in tipiSogg)
+            {
+                SelectListItem elem = new SelectListItem { Text = valore.DescTipoSoggetto, Value = valore.CodTipoSoggetto };
+                soggettiList.Add(elem);
+            }
+
+            foreach (T_TipoAdesioneDao valore in tipoAdesione)
+            {
+                SelectListItem elem = new SelectListItem { Text = valore.DescBreve, Value = valore.CodTipoAdesione };
+                tipoAdesioniList.Add(elem);
+            }
+
+            foreach (T_TipiLegameDao valore in legami)
+            {
+                SelectListItem elem = new SelectListItem { Text = valore.CodLegameImport, Value = valore.CodLegameImport };
+                tipoLegamiList.Add(elem);
+            }
+
+            Session["TipiSoggList"] = soggettiList;
+            Session["TipiLegamiList"] = tipoLegamiList;
+            Session["TipiAdesList"] = tipoAdesioniList;
+            ViewBag.TipiSoggList = soggettiList;
+            ViewBag.TipiLegamiList = tipoLegamiList;
+            ViewBag.TipiAdesList = tipoAdesioniList;
+            #endregion
+
+
 
             SoggettiImportAppoggioDao soggDao = (from soggetti in (List<SoggettiImportAppoggioDao>)Session["Soggetti"] where soggetti.IdSoggetto.Equals(long.Parse(id)) select soggetti).FirstOrDefault();
             return View(soggDao);
@@ -303,6 +353,16 @@ namespace MvcWebApp.Controllers
         [HttpPost]
         public ActionResult Modifica(SoggettiImportAppoggioDao modello)
         {
+            List<SelectListItem> soggettiList = new List<SelectListItem>();
+            List<SelectListItem> tipoAdesioniList = new List<SelectListItem>();
+            List<SelectListItem> tipoLegamiList = new List<SelectListItem>();
+            soggettiList = Session["TipiSoggList"] as List<SelectListItem>;
+            tipoLegamiList = Session["TipiLegamiList"] as List<SelectListItem>;
+            tipoAdesioniList = Session["TipiAdesList"] as List<SelectListItem>;
+            ViewBag.TipiSoggList = soggettiList;
+            ViewBag.TipiLegamiList = tipoLegamiList;
+            ViewBag.TipiAdesList = tipoAdesioniList;
+
             string ente = modello.Ente;
             long idSoggetto = modello.IdSoggetto;
             SoggettiImportAppoggioDao modelloValidato = new SoggettiImportAppoggioDao();
@@ -311,8 +371,9 @@ namespace MvcWebApp.Controllers
                 _hp.channel.ValidaSoggettoSingolo(modello,modello.TipoTracciato);
                 modelloValidato = _hp.channel.SelectById(idSoggetto);
             }
-            if (!modelloValidato.Errori.Any())
+            if (!modelloValidato.ErroriList.Any())
             {
+                Session["tracciato"] = modello.TipoTracciato;
                 return RedirectToAction("InLavorazione", "GestioneAnagrafica", new { en = ente, page = Session["page"].ToString() });
             }
             else
@@ -322,7 +383,7 @@ namespace MvcWebApp.Controllers
         }
         public ActionResult Back()
         {
-            return RedirectToAction("InLavorazione", "GestioneAnagrafica", new { en = Session["ente"].ToString(), page = Session["page"].ToString() });
+            return RedirectToAction("InLavorazione", "GestioneAnagrafica", new { en = Session["ente"].ToString(), page = Session["page"].ToString(), tt = Session["tracciato"].ToString() });
         }
 
         [HttpGet]
@@ -333,7 +394,6 @@ namespace MvcWebApp.Controllers
             {
                 _hp.channel.DeleteSoggettoImportato(long.Parse(id));
             }
-
             return RedirectToAction("InLavorazione", "GestioneAnagrafica", new { en = Session["ente"].ToString(), page = Session["page"].ToString() });
         }
 
@@ -361,7 +421,7 @@ namespace MvcWebApp.Controllers
                     if (!string.IsNullOrEmpty(codiceEnte))
                     {
                         Helper hp = new Helper();
-                        DataTable dt = hp.ConvertCSVtoDataTable(path);
+                        DataTable dt = hp.ConvertCSVtoDataTable(file);
                         hp.InsertIntoTableAppoggio(dt, "Esclusioni");
                         return RedirectToAction("InLavorazione", "GestioneAnagrafica", new { en = ente });
                     }
@@ -391,7 +451,7 @@ namespace MvcWebApp.Controllers
                     if (!string.IsNullOrEmpty(codiceEnte))
                     {
                         Helper hp = new Helper();
-                        DataTable dt = hp.ConvertCSVtoDataTable(path);
+                        DataTable dt = hp.ConvertCSVtoDataTable(file);
                         hp.InsertIntoTableAppoggio(dt, "Inclusioni");
                         return RedirectToAction("InLavorazione", "GestioneAnagrafica", new { en = ente });
                     }

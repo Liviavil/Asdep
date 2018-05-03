@@ -36,6 +36,8 @@ function tableCreate() {
             {
                 targets: 0,
                 createdCell: function (td, cellData, rowData, row, col) {
+                    td.style.display = "block";
+                    td.style.width = "100%";
                     if (rowData.ErroriList.length > 0)
                     {
                         var htmlErrori = "";

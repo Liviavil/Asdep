@@ -151,17 +151,23 @@ namespace AsdepGestioneAnagraficheBLL.Extra
             bool result = false;
             try 
             {
+                DateTime _valore = DateTime.Parse(valore.ToString());
                 ContribuzioneEnteService _service = new ContribuzioneEnteService();
                 ContribuzioneEnteDao _ce = _service.SelectByNomeEnte(ente);
-                if(_ce!=null  && !_ce.DataFine.ToString().Equals(string.Empty))
+                //if(_ce!=null  && !_ce.DataFine.ToString().Equals(string.Empty))
+                //{
+                //    DateTime _ceData = DateTime.Parse(_ce.DataFine.ToString());
+                //    DateTime _data = DateTime.Parse(valore.ToString());
+                //    if (_data.CompareTo(_ceData) < 0 ) 
+                //    {
+                //        result = true;
+                //    }
+                //}
+                if (_valore.CompareTo(_ce.DataRinnovo) > 0) 
                 {
-                    DateTime _ceData = DateTime.Parse(_ce.DataFine.ToString());
-                    DateTime _data = DateTime.Parse(valore.ToString());
-                    if (_data.CompareTo(_ceData) < 0 ) 
-                    {
-                        result = true;
-                    }
+                    result = true;
                 }
+
             }
             catch { }
             return result;

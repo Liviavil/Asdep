@@ -5,6 +5,7 @@ using System.Web;
 using MvcWebApp.CustomCode;
 using System.Web.Mvc;
 using System.ComponentModel;
+using Asdep.Common.DAO;
 
 namespace MvcWebApp.Models
 {
@@ -39,7 +40,7 @@ namespace MvcWebApp.Models
         //public SoggImportAppoggioSearchResults SearchResults { get; set; }
     }
 
-    public class SoggImportAppoggioSearchResults : Search<SoggImportAppoggio>
+    public class SoggImportAppoggioSearchResults : Search<SoggettiImportAppoggioDao>
     {
         public string selectedId { get; set; }
         public SelectList ListItemEnti { get; set; }
